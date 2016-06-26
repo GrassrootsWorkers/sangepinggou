@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Title -->
+    <title>打造最专业的一站式互联网并购服务平台-北京并购网络科技有限公司</title>
+    <meta name="Keywords" content="北京并购网络科技有限公司,项目投资,人脉拓展,找项目,找投资,投资顾问,产权交易,企业产权交易顾问,经纪服务">
+    <meta name="Description" content="北京并购网络科技有限公司【并购网络】,我们致力于打造最专业的一站式互联网并购服务平台,为有项目找投资,有资金找项目等并购服务,产权交易等提供一站式的咨询,交流,顾问式的服务。">
+    <!-- Favicon -->
+    <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js"  data-appid="101294011" charset="utf-8"></script>
+    <!-- Stylesheets -->
+    <!--#include virtual="/html/header/common_header.html"-->
+    <script type="text/javascript" src="http://s.sangepg.com/js/user/register.js"></script>
+    <script type="text/javascript" src="http://s.sangepg.com/js/user/login.js"></script>
+    <link href="http://s.sangepg.com/css/login.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        function openQQ(){
+            QC.Login.showPopup({
+                appId:"101294011",
+                redirectURI:"/user_login.html"
+            });
+        }
+        var paras = {};
+        QC.api("get_user_info", paras)
+                .success(function(s){
+                    if(QC.Login.check()){
+                        QC.Login.getMe(function(openId, accessToken){
+                            $.ajax({
+                                url : "/user/third/qq",
+                                type : "post",
+                                cache : false,
+                                data : {
+                                    nickName:encodeURI(s.data.nickname),
+                                    openId:openId,
+                                    accessToken:accessToken,
+                                    jointTypeName:"QQ登录",
+                                    joinType:'1',
+                                    figureUrl: s.data.figureurl_qq_1
+                                },
+                                success : function(data) {
+
+                                    if(data.success){
+                                        if(data.validate){
+                                            //跳转到原来的地方
+                                        }else{
+                                            //展示绑定手机号页面
+                                        }
+
+                                    }else{
+                                        o_confirm('bg_fixed_bg_noBtn','win_box_noBtn','win_close_noBtn',data.msg);
+                                    }
+
+                                }
+                            });
+                        });
+
+                    }else {
+                        window.location.href="";
+                    }
+
+                })
+                //指定接口访问失败的接收函数，f为失败返回Response对象
+                .error(function(f){
+                    //失败回调
+                    window.location.href="/jsp/user/user_login.html";
+                })
+                //指定接口完成请求后的接收函数，c为完成请求返回Response对象
+                .complete(function(c){
+
+                });
+
+    </script>
+</head>
+
+<body >
+<!-- Container -->
+<div class="loginmain">
+    <div class="hander-main">
+       <!--#include virtual="/html/header/header.html"-->
+    </div>
+
+
+    <!---------登录内容--------->
+    <div class="content">
+        <div class="login_hand">
+            <h1 href="index.html">用户登录</h1>
+            <div>
+                <a href="/index.html">返回首页</a>
+                <a href="/jsp/user/user_login.html"><i></i>常规登录</a>
+            </div>
+        </div>
+        <div class="login_con_bg">
+            <div class="input-list">
+                <div class="inputbk">
+                    <i class="info_phone_icon"></i>
+                    <input id="mobile" name="mobile" onblur="checkMobileIfRegisterOnBlur('mobile');" placeholder="请输入手机验证码" type="text"/>
+                    <p  class="error" id="mobile_error" style="display: none"></p>
+                </div>
+            </div>
+
+            <div class="input-list">
+                <div class="inputbk input_error">
+                    <i class="info_dt_icon"></i>
+
+                    <input id="vcode" name="vcode" class="info_dt_input" onfocus="hideOtherTips('vcode')"
+                           placeholder="请输入动态密码" onblur="validateCodeError('vcode')" type="text">
+                    <button class="btn_fsyzm" onclick="sendValidateCode(this,'mobile','vcode','resetPwd')"
+                            id="btnValidateCode" name="btnValidateCode">发送验证码
+                    </button>
+                    <p class="error" id="show_time" style="display: none"></p>
+                    <p class="error" id="vcode_tip" style="display: none">若验证短信收取不正常,请联系客服</p>
+                    <p class="error" id="vcode_error" style="display: none">请输入动态密码</p>
+                </div>
+            </div>
+            <div class="login-btn">
+                <button  type="button"  onclick="fastLogin()">登&nbsp;&nbsp;&nbsp;录</button>
+            </div>
+            <div class="login-hz">
+                <i></i>
+                <a  class="a-qq" href="javascript:;" onclick="openQQ()"></a>
+                <a class="a-wx" href="javascript:;" onclick="openWeiXin()"></a>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <!-- /Container -->
+    <!--#include virtual="/html/footer/register_footer.html"-->
+</div>
+
+<!-- jQuery -->
+<!--#include virtual="/html/footer/common_footer.html"-->
+
+
+<!---背景js动画--->
+<script type="text/javascript">
+    function checkMobileIfRegisterOnBlur(id) {
+        var mobileValue = jQuery("#" + id).val();
+        if (mobile(mobileValue)) {
+            $.ajax({
+                url: "/user/validateUser",
+                type: "GET",
+                cache: false,
+                data: {
+                    mobile: mobileValue
+                },
+                success: function (data) {
+                    if (data.success) {
+                        $.cookie("bg_temp_u",mobileValue,{path:"/"});
+                        window.location.href="/jsp/user/register.html";
+                    }
+                }
+            });
+        } else {
+            jQuery("#" + id + "_error").show();
+            if (mobileValue == "") {
+                jQuery("#" + id + "_error").text("手机号不能为空");
+            } else {
+                jQuery("#" + id + "_error").text("手机格式不正确");
+            }
+        }
+    }
+    function openWeiXin() {
+        window.location.href = "https://open.weixin.qq.com/connect/qrconnect?appid=wxefcb9899679c9066&redirect_uri=http://test.bing-gou.com/user/third/weixin&response_type=code&scope=snsapi_login&state=bgwx";
+    }
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,289 @@
+
+
+/**************************帮助中心样式***************************/
+.bg{
+    background-color: #fff;
+    border-radius: 8px;
+}
+.breadcrumb{
+    color:#9c9c9c;
+    background-color:rgba(0,0,0,0);
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.breadcrumb a{
+    color:#9c9c9c;
+    text-decoration: none;
+}
+.breadcrumb a:last-child{
+    color:#3998d0;
+}
+.help_tel{
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #efefef;
+    color:#bebebe;
+    padding-left: 50px;
+}
+.help_tel span{
+    color:#3e98d0;
+}
+.sidebar{
+    width: 165px;
+    float: left;
+    background: #f9f9f9;
+    min-height: 800px;
+    border-bottom-left-radius: 8px;
+}
+.sidebar ul{
+    padding-left: 0;
+    margin-left: 0;
+    cursor: pointer;
+}
+.sidebar ul li{
+    border-bottom:1px solid #efefef;
+    width: 100%;
+    border-right:1px solid #efefef;
+}
+.sidebar ul li{
+    color: #000;
+    font-size: 16px;
+    padding:15px 0 15px 50px;
+    display: block;
+    margin-bottom: 1px;
+    font-weight: bold;
+}
+.sidebar ul li a{
+    color: #444444;
+    text-decoration: none;
+}
+.sidebar ul li.active{
+    color: #3e98d0;
+    display: block;
+    text-decoration: none;
+    border-right:1px solid #fff;
+    font-weight: 500;
+    border-left: 5px solid #3e98d0;
+    background: #fff;
+    padding-left: 45px;
+    font-weight: bold;
+}
+.sidebar ul li.active a{
+    color: #3e98d0;
+}
+
+.sidebar ul li:last-child a{
+    text-decoration: none;
+}
+.content_r{
+    float: left;
+    width: 950px;
+    margin-left:40px;
+}
+.content_r ol{
+    width: 100%;
+    line-height: 40px;
+    font-size:16px ;
+    color: #5c5c5c;
+}
+.help_title{
+    height: 55px;
+    line-height:55px;
+    border-bottom: 1px solid #efefef;
+}
+.content_r .help_title a.tit{
+    float: left;
+    color:#444444;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.content_r .help_title a.tit i{
+    float: left;
+    color:#444444;
+    font-size: 14px;
+    background: url("../images/help_title_i_icon.png") no-repeat;
+    width: 4px;
+    height: 4px;
+    margin-top: 30px;
+    margin-right: 5px;
+
+}
+.content_r .help_title a.return{
+    float: right;
+    text-decoration: none;
+    color:#3e98d0;
+}
+
+.help_cont{
+    margin-top: 20px;
+    color:#777777;
+    margin-left: 8px;
+    line-height: 30px;
+}
+
+.help_title_list{
+    height: 60px;
+    line-height:60px;
+    padding-left: 0;
+    margin-left: 0;
+
+}
+.help_title_list li{
+    width: 100%;
+    border-bottom: 1px solid #efefef;
+    cursor: pointer;
+}
+.help_title_list li:hover{
+    background: #f9f9f9;
+}
+.content_r .help_title_list li a.tit{
+    float: left;
+    color:#444444;
+    font-size: 14px;
+    background: url("../images/help_title_i_icon.png") no-repeat left center;
+    margin-right: 5px;
+    display: block;
+    padding-left: 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+/*项目显示页面结束*/
+/*////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*我要反馈样式开始*/
+/*////////////////////////////////////////////////////////////////////////////////*/
+.w700{
+    width: 700px;
+}
+.w300{
+    width: 300px;
+}
+.textarea_w700{
+    width: 700px;
+    height: 220px;
+    border:1px solid #bdbab4;
+    border-radius:5px;
+}
+.feedback_modal_bg{
+    background: rgba(0,0,0,0.5) none repeat scroll 0 0;
+    background: url(../images/feedback_modal_bg.png) repeat \9;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+.feedback_win{
+    border-radius: 5px;
+    width:840px;
+    height: 500px;
+    position : absolute;
+    top : 50%;
+    left: 50%;
+    margin-top: -280px;
+    margin-left: -420px;
+    display : none;
+    background:#fff;
+    padding:40px 40px 35px 40px;
+}
+.feedback_win h1{
+    color:#777777;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0 0 40px;
+    text-align: center;
+}
+.feedback_win_con{
+
+}
+.feedback_win_con label span{
+    color:#777777;
+    font-size: 14px;
+    font-weight:normal;
+}
+.feedback_win_con label span.tit{
+    color:#777777;
+    font-size: 14px;
+    font-weight:normal;
+    display: block;
+    float: left;
+    margin-right: 4px;
+}
+.feedback_win_con label span.email{
+    margin-left: 53px;
+}
+.feedback_win_con label input{
+    height: 40px;
+    border:1px solid #bdbab4;
+    border-radius:5px;
+    font-weight: normal;
+    padding-left: 10px;
+}
+.feedback_win_con label textarea{
+    padding-left: 10px;
+    padding-top: 5px;
+    font-weight: normal;
+}
+.feedback_win_con label i{
+    color:#e60012;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+}
+.feedback_win_con label p{
+    color:#bdbab4;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    text-align: right;
+    margin: 5px 0 0;
+}
+/*控制关闭按钮的位置*/
+.feedback_close{
+    cursor: pointer;
+    float: right;
+    position: relative;
+    background: url(../images/modal_close_img.png);
+    width: 49px;
+    height: 49px;
+    margin-right: -89px;
+    margin-top: -20px;
+}
+.feedback_win .feedback_btn_sure {
+    width: 150px;
+    height: 40px;
+    background: #ffaf23;
+    color:#fff;
+    font-size: 14px;
+    text-align: center;
+    line-height: 40px;
+    display:block;
+    border-radius: 3px;
+    margin:25px auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*我要反馈样式结束*/
+/*////////////////////////////////////////////////////////////////////////////////*/
+
+@media screen and (min-width: 1024px) and  (max-width: 1280px) {
+
+    #jump{position:fixed;bottom:20px;left:50%;margin-left:560px;width:40px;z-index:400;}
+}

@@ -1,0 +1,156 @@
+<div id="leftsead">
+    <ul>
+
+        <li id="right_not_login">
+            <a href="javascript:;" onclick="register_html()" >
+                <img src="http://p1.binggou.com/images/login_icon.png" width="47" height="49" class="shows" />
+                <img src="http://p1.binggou.com/images/login_icon_all.png" width="130" height="49" class="hides"/>
+            </a>
+        </li>
+
+        <li id="right_app">
+            <a class="youhui">
+                <img src="http://p1.binggou.com/images/apple_icon.png" width="47" height="49" class="shows" />
+                <img src="http://p1.binggou.com/images/apple_icon_all.png" width="109" height="127" class="hides" usemap="#taklhtml"/>
+            </a>
+        </li>
+        <li>
+            <a href="http://www.binggou.com/project/forword_add_project">
+                <img src="http://p1.binggou.com/images/bookmarks_icon.png" width="47" height="49" class="shows" />
+                <img src="http://p1.binggou.com/images/bookmarks_icon_all.png" width="130" height="49"  class="hides"/>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;" onclick="showWin()">
+                <img src="http://p1.binggou.com/images/fk_icon.png" width="47" height="49" class="shows" />
+                <img src="http://p1.binggou.com/images/fk_icon_all.png" width="130" height="49" class="hides"/>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="feedback_id" class="feedback_bg">
+    <div class="feedback_win">
+        <span class="feedback_close" onclick="hide()"></span>
+        <div class="feedback_win_con">
+            <h1>您好,并购网络,欢迎您给我们产品的使用感受和建议！</h1>
+            <!--<label>
+                <span><i>*</i>标题：</span>
+                <input  id="feed_back_title" class="w700"  placeholder="请输入4~30个字符"/>
+                <p id="feed_back_title_tip">还可以输入<i>30</i>字符/汉字</p>
+            </label>-->
+            <label>
+                <span class="tit"><i>*</i>内容：</span>
+                <textarea id="feed_back_txt" class="textarea_w700" placeholder="感谢您给我们提出的建议。抱歉我们不能逐一回复您的意见。您的感受和建议一旦在此发布，即表示您同意我
+们可无偿参考您的感受和意见来优化我们的产品和服务。若您有商业合作意向，请联系公司相关业务部门。" onkeyup="feedBackContent()"></textarea>
+                <p id="feed_back_tip">还可以输入<i>500</i>字符/汉字</p>
+            </label>
+            <label>
+                <span><i>&nbsp;</i>手机：</span>
+                <input id="feed_back_mobile" class="w300"/>
+                <span class="email">邮箱：</span>
+                <input id="feed_back_email" class="w300"/>
+            </label>
+        </div>
+        <a  id="feed_back_commit" class="feedback_btn_sure" href="javascript:;" onclick="commitFeedBack()">确定提交</a>
+    </div>
+</div>
+<link href="http://s1.binggou.com/css/help.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+    //我要反馈弹框
+    function showWin(){
+        /*找到div节点并返回*/
+        var winNode = jQuery(".feedback_win");
+        winNode.fadeIn();
+        jQuery(".feedback_bg").addClass("feedback_modal_bg");
+    }
+    function hide(){
+        var winNode = jQuery(".feedback_win");
+        winNode.hide();
+        jQuery(".feedback_bg").removeClass("feedback_modal_bg");
+    }
+    function  feedBackContent(){
+        var str = jQuery("#feed_back_txt").val();
+       var length = getStringLen(str);
+        if(length >500){
+            jQuery("#feed_back_tip").html("已超过<i>"+(500-length)+"</i>字");
+            jQuery("#feed_back_commit").attr("disabled",true);
+        }else{
+            jQuery("#feed_back_tip").html("还可以输入<i>"+(500-length)+"</i>字符/汉字");
+        }
+
+    }
+   function  feedBackTitle(){
+       var str = jQuery("#feed_back_title").val();
+       var length = getStringLen(str);
+       if(length >30){
+           jQuery("#feed_back_title_tip").html("已超过<i>"+(length -30)+"</i>字");
+           jQuery("#feed_back_commit").attr("disabled",true);
+       }else{
+           jQuery("#feed_back_title_tip").html("还可以输入<i>"+(30-length)+"</i>字符/汉字");
+       }
+    }
+    function getStringLen(str){
+        var   i,len,code;
+        if(str==null || str == "")   return   0;
+        len = str.length;
+        for   (i = 0;i   < str.length;i++){
+            code = str.charCodeAt(i);
+            if   (code > 255) {len ++;}
+        }
+        return   len;
+    }
+    function commitFeedBack(){
+        var title = jQuery("#feed_back_title").val();
+        var content = jQuery("#feed_back_txt").val();
+        var mobile = jQuery("#feed_back_mobile").val();
+        var email = jQuery("#feed_back_email").val();
+        if(!isMobile(mobile)){
+            o_confirm('bg_fixed_bg_noBtn','win_box_noBtn','win_close_noBtn',"手机号不正确！");
+            return ;
+        }else if(!isEmail(email)){
+            o_confirm('bg_fixed_bg_noBtn','win_box_noBtn','win_close_noBtn',"邮箱格式不正确！");
+            return ;
+        }else{
+            jQuery.ajax({
+                url: "/feedback/add",
+                type: "POST",
+                cache: false,
+                data: {
+                    feedBackTitle: title,
+                    feedBackContent: content,
+                    feedBackMobile: mobile,
+                    feedBackEmail: email
+                },
+                success: function (data) {
+                    if (data.success) {
+                        hide();
+                    } else {
+                        alert(data.msg);
+
+                    }
+                }
+            });
+        }
+
+    }
+    function isMobile(value) {
+        var regMobile = /^(13[0-9]||15[012356789]||18[0123456789]||147||145||17[0-9])\d{8}$/;
+        if (!regMobile.test(value)) {
+            return false;
+        }
+        return true;
+    }
+    function isEmail(str){
+        var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+        return reg.test(str);
+    }
+    function register_html() {
+        /*$.cookie("returnUrl","http://localhost:8081", { path: '/' });*/
+        window.location.href = "/jsp/user/register.html";
+    }
+    function login_html() {
+        jQuery.cookie("returnUrl", "http://www.binggou.com", {path: '/'});
+        window.location.href = "/jsp/user/user_login.html";
+    }
+</script>

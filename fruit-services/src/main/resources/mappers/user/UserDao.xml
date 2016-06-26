@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.user.IUserDao">
+	<resultMap id="BaseResultMap" type="User">
+		<id column="id" property="id" />
+		<result column="mobile" property="mobile" />
+		<result column="open_id" property="openId" />
+		<result column="nick_name" property="nickName" />
+		<result column="user_image" property="userImage" />
+		<result column="password" property="password" />
+		<result column="register_time" property="registerTime" />
+		<result column="last_login_time" property="lastLoginTime" />
+		<result column="user_type" property="userType" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, mobile, open_id, nick_name, user_image, password, register_time,
+		last_login_time,user_type
+	</sql>
+	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from qr_user
+		where id = #{value}
+	</select>
+	<select id="get" resultMap="BaseResultMap" parameterType="UserQuery">
+		select
+		id,mobile,open_id,nick_name,user_image,password,register_time,last_login_time,user_type
+		from qr_user
+		where id = #{id}
+	</select>
+	<delete id="delete" parameterType="UserQuery">
+		delete from qr_user
+		where id = #{id}
+	</delete>
+	<insert id="insert" parameterType="User">
+		insert into qr_user (
+		id, mobile, open_id, nick_name, user_image, password,register_time,
+		last_login_time, user_type
+		)
+		values (
+		#{id}, #{mobile}, #{openId}, #{nickName}, #{userImage},
+		#{password},#{registerTime}, #{lastLoginTime}, #{userType}
+		)
+	</insert>
+	<update id="update" parameterType="User">
+		update qr_user
+		set mobile = #{mobile},
+		open_id = #{openId},
+		nick_name = #{nickName},
+		user_image = #{userImage},
+		password = #{password},
+		register_time = #{registerTime},
+		last_login_time = #{lastLoginTime},
+		user_type = #{userType}
+		where id = #{id}
+	</update>
+
+</mapper>

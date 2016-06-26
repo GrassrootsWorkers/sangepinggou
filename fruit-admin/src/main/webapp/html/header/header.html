@@ -1,0 +1,152 @@
+<div class="bg-nav">
+    <div class="nav-top">
+        <div class="content">
+            <div class="nav-l">
+                <ul>
+                    <li  id="bg_index"><a href="javascript:;" onclick="showHeaderTab('bg_index','http://www.sangepg.com')">首页</a></li>
+                    <li id="bg_project"><a href="javascript:;" onclick="showHeaderTab('bg_project','http://www.sangepg.com/project/listload')">我的</a></li>
+                    
+                </ul>
+            </div>
+            <div class="nav-r">
+                <!-- login-->
+                <div id="online" style="display:none" class="login-r login-r-img">
+
+                </div>
+                <div id="notOnline"  style="display:none" class="login-r">
+                    <a href="http://www.sangepg.com/jsp/user/register.html">注册 &nbsp;|&nbsp;</a>
+                    <a href="http://www.sangepg.com/jsp/user/user_login.html">登录</a>
+                </div>
+                <!-- ios and android-->
+                <div class="ios-android">
+                    <i class="app_icon"></i><a href="javascript:;">微信公众号</a>
+                </div>
+                <!-- ios and android -->
+                <!-- 400电话 -->
+                <div class="tel">
+                    	欢迎致电:400-100-1000
+                </div>
+                <!-- /400电话-->
+
+            </div>
+            <!-- /login -->
+        </div>
+    </div>
+
+</div>
+<!-- 通用没有按钮弹窗开始 -->
+<div class="bg_fixed_bg_noBtn">
+    <div class="win_box_noBtn">
+        <span class="win_close_noBtn"></span>
+        <div class="win_cont_noBtn">
+            <span class="win_cont_noBtn_tit"></span>
+        </div>
+    </div>
+</div>
+<!-- 通用没有按钮弹窗结束 -->
+
+<script type="text/javascript">
+    jQuery(function(){
+        initialUserStatus();
+    });
+
+    function initialUserStatus() {
+
+        var img = "http://p1.binggou.com/images/user/user_img.png";
+        var nickName = jQuery.cookie("bg_nk");
+        if (typeof nickName == "undefined") {
+            nickName = "并购";
+        }
+        var val = jQuery.cookie("bg_uid");
+        if (typeof  val != "undefined") {
+            jQuery("#footer_1").hide();
+            jQuery("#footer_2").hide();
+            var userId = val.split("_")[0];
+            img = "http://p1.binggou.com/images/" + parseInt(userId / 1000) + "/" + userId + "/" + userId + ".jpeg";
+            var html = "<div class='user_bk_img'><img src='" + img + "' onerror='resetImage()'/>"
+                    + "<ul class='login_user_info'> "
+                    + "<span class='arrow-up'></span> "
+                    + "<li>" + nickName + "</li>"
+                    + "<li><i class='personal_icon'></i><a href='http://www.sangepg.com/user/project/list/1'>个人中心</a></li> "
+                    + "<li><i class='data_icon'></i><a href='http://www.sangepg.com/user/info/"+userId+"'> 完善资料</a></li> "
+                    + "<li><i class='release_icon'></i><a href='http://www.sangepg.com/project/forword_add_project'>免费发布</a></li>"
+                    + "<li><i class='sign_out_icon'></i><a href='javascript:;' onclick='logout()'>退出</a></li> "
+                    + "</ul></div>";
+
+            jQuery("#footer_3").show();
+            jQuery("#footer_app_li").addClass("bt-login-success-app");
+            jQuery("#right_app").addClass("right_success-app");
+            jQuery("#right_not_login").hide();
+            jQuery("#online").html(html);
+            jQuery("#online").show();
+        } else{
+            jQuery("#notOnline").show();
+        }
+    }
+    function freePublish(){
+        window.location.href="http://www.sangepg.com/project/forword_add_project";
+    }
+    function showHeaderTab(id,url){
+        //jQuery.cookie("nav",id,{expire:0,path:"/"});
+        window.location.href=url;
+    }
+    function logout() {
+        jQuery.cookie("bg_uid", null,{expires:0,path:"/"});
+        window.location.href = "http://www.sangepg.com/user/logout";
+    }
+    function resetImage() {
+        var img = event.srcElement;
+        img.src = "http://p1.binggou.com/images/user/user_img.png";
+        img.onerror = null;
+    }
+    function collection(type,id,url){
+        jQuery.ajax({
+            url:"http://www.sangepg.com/collection/add",
+            type:"POST",
+            cache:false,
+            data:{
+                collectionType:type,
+                typeCode:id
+            },
+            success:function(data){
+                if("login" ==data.success){
+                    jQuery.cookie("returnUrl",url,{expire:0,path:"/"});
+                    window.location.href = "http://www.sangepg.com/jsp/user/user_login.html";
+                }else if("exist"==data.success){
+                    o_confirm('bg_fixed_bg_noBtn','win_box_noBtn','win_close_noBtn',data.msg);
+
+                }else{
+                    o_confirm('bg_fixed_bg_noBtn','win_box_noBtn','win_close_noBtn',data.msg);
+                }
+            }
+
+
+        });
+    }
+    function search(){
+        var searchType = jQuery("li.selected").html();
+        if(searchType == '需求'){
+            window.location.href="http://www.sangepg.com/demand/forword_list?keyword="+jQuery("input.inp_srh").val();
+        }else{
+            window.location.href="http://www.sangepg.com/project/listsearchload?projecttitle="+jQuery("input.inp_srh").val();
+        }
+
+    }
+    //弹框o_confirm('bg_fixed_bg_noBtn','win_box_noBtn','win_close_noBtn');
+    function o_confirm(bg_fixed,win_box,win_close,content){
+
+        var o_bg_fixed = jQuery("."+bg_fixed);
+        var o_win_box = jQuery("."+win_box);
+        var o_win_close = jQuery("."+win_close);
+
+        if(o_win_box.is(":hidden")==true){
+            jQuery(o_win_box).fadeIn();
+            jQuery(o_bg_fixed).css("display","block");
+            jQuery(".win_cont_noBtn_tit").html(content);
+            jQuery(o_win_close).click(function(){
+                jQuery(o_win_box).fadeOut("slow");
+                jQuery(o_bg_fixed).css("display","none");
+            })
+        }
+    }
+</script>

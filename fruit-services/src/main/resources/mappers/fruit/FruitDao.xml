@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.fruit.FruitDao" >
+  <resultMap id="BaseResultMap" type="com.farmer.fruit.models.fruit.Fruit" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="fruit_code" property="fruitCode" jdbcType="VARCHAR" />
+    <result column="base_code" property="baseCode" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="height" property="height" jdbcType="DOUBLE" />
+    <result column="width" property="width" jdbcType="DOUBLE" />
+    <result column="high" property="high" jdbcType="DOUBLE" />
+    <result column="maturing_status" property="maturingStatus" jdbcType="TINYINT" />
+    <result column="harvest_time" property="harvestTime" jdbcType="TIMESTAMP" />
+    <result column="market_price" property="marketPrice" jdbcType="DOUBLE" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user_id" property="addUserId" jdbcType="INTEGER" />
+    <result column="checkout_user_id" property="checkoutUserId" jdbcType="INTEGER" />
+    <result column="checkout_time" property="checkoutTime" jdbcType="TIMESTAMP" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="CHAR" />
+    <result column="price_flag" property="priceFlag" jdbcType="CHAR" />
+    <result column="lottery_flag" property="lotteryFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      id, fruit_code, base_code, weight, height, width, high, maturing_status, harvest_time, 
+      market_price, add_time, add_user_id, checkout_user_id, checkout_time, delete_flag, 
+      price_flag, lottery_flag
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.farmer.fruit.models.fruit.FruitQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from qr_fruit_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    id,fruit_code,base_code,weight,height,width,high,maturing_status,harvest_time,market_price,add_time,add_user_id,checkout_user_id,checkout_time,delete_flag,price_flag,lottery_flag
+    from qr_fruit_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from qr_fruit_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.farmer.fruit.models.fruit.FruitQuery" >
+    delete from qr_fruit_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.farmer.fruit.models.fruit.Fruit" >
+    insert into qr_fruit_detail (id, fruit_code, base_code, 
+      weight, height, width, 
+      high, maturing_status, harvest_time, 
+      market_price, add_time, add_user_id, 
+      checkout_user_id, checkout_time, delete_flag, 
+      price_flag, lottery_flag)
+    values (#{id,jdbcType=BIGINT}, #{fruitCode,jdbcType=VARCHAR}, #{baseCode,jdbcType=INTEGER}, 
+      #{weight,jdbcType=DOUBLE}, #{height,jdbcType=DOUBLE}, #{width,jdbcType=DOUBLE}, 
+      #{high,jdbcType=DOUBLE}, #{maturingStatus,jdbcType=TINYINT}, #{harvestTime,jdbcType=TIMESTAMP}, 
+      #{marketPrice,jdbcType=DOUBLE}, #{addTime,jdbcType=TIMESTAMP}, #{addUserId,jdbcType=INTEGER}, 
+      #{checkoutUserId,jdbcType=INTEGER}, #{checkoutTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=CHAR}, 
+      #{priceFlag,jdbcType=CHAR}, #{lotteryFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farmer.fruit.models.fruit.Fruit" >
+    insert into qr_fruit_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fruitCode != null" >
+        fruit_code,
+      </if>
+      <if test="baseCode != null" >
+        base_code,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="width != null" >
+        width,
+      </if>
+      <if test="high != null" >
+        high,
+      </if>
+      <if test="maturingStatus != null" >
+        maturing_status,
+      </if>
+      <if test="harvestTime != null" >
+        harvest_time,
+      </if>
+      <if test="marketPrice != null" >
+        market_price,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUserId != null" >
+        add_user_id,
+      </if>
+      <if test="checkoutUserId != null" >
+        checkout_user_id,
+      </if>
+      <if test="checkoutTime != null" >
+        checkout_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="priceFlag != null" >
+        price_flag,
+      </if>
+      <if test="lotteryFlag != null" >
+        lottery_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="fruitCode != null" >
+        #{fruitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="baseCode != null" >
+        #{baseCode,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=DOUBLE},
+      </if>
+      <if test="high != null" >
+        #{high,jdbcType=DOUBLE},
+      </if>
+      <if test="maturingStatus != null" >
+        #{maturingStatus,jdbcType=TINYINT},
+      </if>
+      <if test="harvestTime != null" >
+        #{harvestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        #{addUserId,jdbcType=INTEGER},
+      </if>
+      <if test="checkoutUserId != null" >
+        #{checkoutUserId,jdbcType=INTEGER},
+      </if>
+      <if test="checkoutTime != null" >
+        #{checkoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="priceFlag != null" >
+        #{priceFlag,jdbcType=CHAR},
+      </if>
+      <if test="lotteryFlag != null" >
+        #{lotteryFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.farmer.fruit.models.fruit.FruitQuery" resultType="java.lang.Integer" >
+    select count(*) from qr_fruit_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update qr_fruit_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.fruitCode != null" >
+        fruit_code = #{record.fruitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baseCode != null" >
+        base_code = #{record.baseCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=DOUBLE},
+      </if>
+      <if test="record.width != null" >
+        width = #{record.width,jdbcType=DOUBLE},
+      </if>
+      <if test="record.high != null" >
+        high = #{record.high,jdbcType=DOUBLE},
+      </if>
+      <if test="record.maturingStatus != null" >
+        maturing_status = #{record.maturingStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.harvestTime != null" >
+        harvest_time = #{record.harvestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.marketPrice != null" >
+        market_price = #{record.marketPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.addUserId != null" >
+        add_user_id = #{record.addUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkoutUserId != null" >
+        checkout_user_id = #{record.checkoutUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkoutTime != null" >
+        checkout_time = #{record.checkoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.priceFlag != null" >
+        price_flag = #{record.priceFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.lotteryFlag != null" >
+        lottery_flag = #{record.lotteryFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update qr_fruit_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      fruit_code = #{record.fruitCode,jdbcType=VARCHAR},
+      base_code = #{record.baseCode,jdbcType=INTEGER},
+      weight = #{record.weight,jdbcType=DOUBLE},
+      height = #{record.height,jdbcType=DOUBLE},
+      width = #{record.width,jdbcType=DOUBLE},
+      high = #{record.high,jdbcType=DOUBLE},
+      maturing_status = #{record.maturingStatus,jdbcType=TINYINT},
+      harvest_time = #{record.harvestTime,jdbcType=TIMESTAMP},
+      market_price = #{record.marketPrice,jdbcType=DOUBLE},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      add_user_id = #{record.addUserId,jdbcType=INTEGER},
+      checkout_user_id = #{record.checkoutUserId,jdbcType=INTEGER},
+      checkout_time = #{record.checkoutTime,jdbcType=TIMESTAMP},
+      delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      price_flag = #{record.priceFlag,jdbcType=CHAR},
+      lottery_flag = #{record.lotteryFlag,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farmer.fruit.models.fruit.Fruit" >
+    update qr_fruit_detail
+    <set >
+      <if test="fruitCode != null" >
+        fruit_code = #{fruitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="baseCode != null" >
+        base_code = #{baseCode,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="width != null" >
+        width = #{width,jdbcType=DOUBLE},
+      </if>
+      <if test="high != null" >
+        high = #{high,jdbcType=DOUBLE},
+      </if>
+      <if test="maturingStatus != null" >
+        maturing_status = #{maturingStatus,jdbcType=TINYINT},
+      </if>
+      <if test="harvestTime != null" >
+        harvest_time = #{harvestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="marketPrice != null" >
+        market_price = #{marketPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        add_user_id = #{addUserId,jdbcType=INTEGER},
+      </if>
+      <if test="checkoutUserId != null" >
+        checkout_user_id = #{checkoutUserId,jdbcType=INTEGER},
+      </if>
+      <if test="checkoutTime != null" >
+        checkout_time = #{checkoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="priceFlag != null" >
+        price_flag = #{priceFlag,jdbcType=CHAR},
+      </if>
+      <if test="lotteryFlag != null" >
+        lottery_flag = #{lotteryFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farmer.fruit.models.fruit.Fruit" >
+    update qr_fruit_detail
+    set fruit_code = #{fruitCode,jdbcType=VARCHAR},
+      base_code = #{baseCode,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=DOUBLE},
+      height = #{height,jdbcType=DOUBLE},
+      width = #{width,jdbcType=DOUBLE},
+      high = #{high,jdbcType=DOUBLE},
+      maturing_status = #{maturingStatus,jdbcType=TINYINT},
+      harvest_time = #{harvestTime,jdbcType=TIMESTAMP},
+      market_price = #{marketPrice,jdbcType=DOUBLE},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user_id = #{addUserId,jdbcType=INTEGER},
+      checkout_user_id = #{checkoutUserId,jdbcType=INTEGER},
+      checkout_time = #{checkoutTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=CHAR},
+      price_flag = #{priceFlag,jdbcType=CHAR},
+      lottery_flag = #{lotteryFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.farmer.fruit.models.fruit.FruitQuery" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from qr_fruit_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+</mapper>

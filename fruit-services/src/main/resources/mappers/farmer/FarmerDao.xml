@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.farmer.IFarmerDao" >
+  <resultMap id="BaseResultMap" type="Farmer" >
+    <id column="id" property="id"/>
+    <result column="mobile" property="mobile"/>
+    <result column="name" property="name"/>
+    <result column="password" property="password"/>
+    <result column="id_card" property="idCard"/>
+    <result column="audit_flag" property="auditFlag"/>
+    <result column="home_town" property="homeTown"/>
+    <result column="current_address" property="currentAddress"/>
+    <result column="growth_address" property="growthAddress"/>
+    <result column="experience_age" property="experienceAge"/>
+    <result column="register_time" property="registerTime"/>
+    <result column="last_login_time" property="lastLoginTime"/>
+    <result column="token" property="token"/>
+  </resultMap>
+ 
+  <sql id="Base_Column_List" >
+      id, mobile, name, password, id_card, audit_flag, home_town, current_address, growth_address, experience_age, register_time, last_login_time, token
+  </sql>
+  <select id="get" resultMap="BaseResultMap" parameterType="FarmerQuery" >
+    select
+    <include refid="Base_Column_List" />
+    from qr_farmer where mobile =#{mobile}
+    <if test="auditFlag !=null">
+      and audit_flag = #{auditFlag}
+    </if>
+  </select>
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from qr_farmer
+    where id = #{id}
+  </select>
+  <delete id="delete" parameterType="FarmerQuery" >
+    delete from qr_farmer where id = #{id}
+  </delete>
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="userId"   parameterType="Farmer" >
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+    insert into qr_farmer (
+      mobile, name, password, id_card, audit_flag,
+      home_town, current_address, growth_address,
+      experience_age, register_time, last_login_time,token
+      )
+    values (
+      #{mobile}, #{name},#{password}, #{idCard}, #{auditFlag},
+      #{homeTown}, #{currentAddress}, #{growthAdress},#{experienceAge}, #{registerTime}, #{lastLoginTime}, #{token}
+      )
+  </insert>
+ 
+</mapper>

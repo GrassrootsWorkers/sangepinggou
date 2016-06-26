@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Title -->
+    <title>打造最专业的一站式互联网并购服务平台-北京并购网络科技有限公司</title>
+    <meta name="Keywords" content="北京并购网络科技有限公司,项目投资,人脉拓展,找项目,找投资,投资顾问,产权交易,企业产权交易顾问,经纪服务">
+    <meta name="Description" content="北京并购网络科技有限公司【并购网络】,我们致力于打造最专业的一站式互联网并购服务平台,为有项目找投资,有资金找项目等并购服务,产权交易等提供一站式的咨询,交流,顾问式的服务。">
+  	<!--#include virtual="/html/header/common_header.html"-->
+	<script type="text/javascript" src="http://s.sangepg.com/js/user/register.js?t=2"></script>
+    <link href="http://s.sangepg.com/css/login.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Container -->
+<div id="binggouparticles"></div>
+<div class="loginmain">
+    <!--头部-->
+    <div class="hander-main">
+        <!--#include virtual="/html/header/header.html"-->
+    </div>
+    <div class="content">
+        <div class="login_hand">
+            <h1 href="index.html">注册用户</h1>
+            <div class="help-con">
+                <a href="http://www.binggou.com">返回首页</a>
+                <a href="http://www.binggou.com/help/list"><i></i>帮助中心</a>
+            </div>
+        </div>
+        <div class="login_con_bg pd50" >
+            <div class="input-list" id="mobile_div">
+                <div class="inputbk">
+                    <i class="phone_icon"></i>
+                    <p class="cn">86+</p>
+                    <input class="cn_input_70" id="mobile" name="mobile" onblur="checkMobileOnBlur('mobile');" placeholder="请输入手机号" type="text"/>
+                    <p  class="error" id="mobile_error" style="display: none"></p>
+                </div>
+
+            </div>
+
+            <div class="input-list" id="vcode_div">
+                <div class="inputbk">
+                    <i class="info_yz_icon"></i>
+                    <input id="vcode" name="vcode" class="info_dt_input"  placeholder="6位手机验证码" onblur="validateCodeError('vcode')" type="text">
+                    <button class="btn_fsyzm" onclick="sendValidateCode(this,'mobile','vcode','register')"
+                            id="btnValidateCode" name="btnValidateCode">发送验证码
+                    </button>
+                    <p class="error" id="show_time" style="display: none"></p>
+                    <p class="error" id="vcode_tip" style="display: none">若验证短信收取不正常,请联系客服</p>
+                    <p class="error" id="vcode_error" style="display: none">请输入六位的验证码</p>
+                </div>
+
+            </div>
+
+            <div class="input-list" id="password_div">
+                <div class="inputbk">
+                    <i class="pass_icon"></i>
+                    <input id="password" name="password" onfocus="hideOtherTips('password')" placeholder="密码" onblur="checkPasswordOnBlur('password');" type="password"/>
+                    <p class="error" id="password_tip" style="display: none">6－20位字符，可由大小写英文、数字或符号组成</p>
+                    <p class="error" id="password_error" style="display: none"></p>
+                </div>
+            </div>
+
+            <div class="input-list" id="password2_div">
+                <div class="inputbk">
+                    <i class="pass_icon"></i>
+                    <input id="password2" name="password2" placeholder="确认密码" onfocus="hideOtherTips('password2')"
+                            onblur="checkPassword2OnBlur('password2');" type="password"/>
+                    <p class="error" id="password2_tip" style="display: none">请再次输入密码</p>
+                    <p class="error"  id="password2_error"></p>
+                    <p class="error"  id="system_error"></p>
+                </div>
+
+            </div>
+
+            <div class="agreement_con">
+                <p>注册表示您已同意</p>
+                <p class="color">《我公司网络用协议》</p>
+            </div>
+            <div class="login-btn">
+                <input type="button" id="register" value="立即注册" name="button" onclick="register()">
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <!-- /Container -->
+    <!-- Bootstrap -->
+    <!--#include virtual="/html/footer/register_footer.html"-->
+</div>
+
+<!-- 注册成功弹窗开始 -->
+<div class="bg_fixed_register" id="nextStep" >
+    <div class="win_box_register" >
+        <span class="win_close_register"></span>
+        <div class="win_cont_register">
+            <span class="win_icon"></span>
+            <span class="win_tit">恭喜您,注册成功！</br>完善信息,获取发布资格！</span>
+        </div>
+        <div class="bottom_btn">
+            <a class="cancel " href="http://www.sangepg.com" >去浏览首页</a>
+            <a class="sure" id="user_center" >完善个人信息</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://s.sangepg.com/js/commons.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        //搜索弹出调用
+        $('.search-item').mouseover(function () {
+            $('.search_con').show(500);
+        });
+        $('.search-item').mouseleave(function () {
+            $('.search_con').hide(500);
+        });
+
+
+    });
+
+
+</script>
+</body>
+</html>

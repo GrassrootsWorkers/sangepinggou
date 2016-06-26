@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.fruit.FruitPictureDao" >
+  <resultMap id="BaseResultMap" type="com.farmer.fruit.models.fruit.FruitPicture" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="org_image" property="orgImage" jdbcType="VARCHAR" />
+    <result column="big_image" property="bigImage" jdbcType="VARCHAR" />
+    <result column="center_image" property="centerImage" jdbcType="VARCHAR" />
+    <result column="small_image" property="smallImage" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="VARCHAR" />
+    <result column="if_main" property="ifMain" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      id, type, number, org_image, big_image, center_image, small_image, add_time, if_main
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.farmer.fruit.models.fruit.FruitPictureQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from qr_fruit_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    id,type,number,org_image,big_image,center_image,small_image,add_time,if_main
+    from qr_fruit_picture
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qr_fruit_picture
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.farmer.fruit.models.fruit.FruitPictureQuery" >
+    delete from qr_fruit_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.farmer.fruit.models.fruit.FruitPicture" >
+    insert into qr_fruit_picture (id, type, number, 
+      org_image, big_image, center_image, 
+      small_image, add_time, if_main
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{orgImage,jdbcType=VARCHAR}, #{bigImage,jdbcType=VARCHAR}, #{centerImage,jdbcType=VARCHAR}, 
+      #{smallImage,jdbcType=VARCHAR}, #{addTime,jdbcType=VARCHAR}, #{ifMain,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.farmer.fruit.models.fruit.FruitPicture" >
+    insert into qr_fruit_picture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="orgImage != null" >
+        org_image,
+      </if>
+      <if test="bigImage != null" >
+        big_image,
+      </if>
+      <if test="centerImage != null" >
+        center_image,
+      </if>
+      <if test="smallImage != null" >
+        small_image,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="ifMain != null" >
+        if_main,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="orgImage != null" >
+        #{orgImage,jdbcType=VARCHAR},
+      </if>
+      <if test="bigImage != null" >
+        #{bigImage,jdbcType=VARCHAR},
+      </if>
+      <if test="centerImage != null" >
+        #{centerImage,jdbcType=VARCHAR},
+      </if>
+      <if test="smallImage != null" >
+        #{smallImage,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMain != null" >
+        #{ifMain,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.farmer.fruit.models.fruit.FruitPictureQuery" resultType="java.lang.Integer" >
+    select count(*) from qr_fruit_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update qr_fruit_picture
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgImage != null" >
+        org_image = #{record.orgImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bigImage != null" >
+        big_image = #{record.bigImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.centerImage != null" >
+        center_image = #{record.centerImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smallImage != null" >
+        small_image = #{record.smallImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifMain != null" >
+        if_main = #{record.ifMain,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update qr_fruit_picture
+    set id = #{record.id,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=VARCHAR},
+      org_image = #{record.orgImage,jdbcType=VARCHAR},
+      big_image = #{record.bigImage,jdbcType=VARCHAR},
+      center_image = #{record.centerImage,jdbcType=VARCHAR},
+      small_image = #{record.smallImage,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=VARCHAR},
+      if_main = #{record.ifMain,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farmer.fruit.models.fruit.FruitPicture" >
+    update qr_fruit_picture
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="orgImage != null" >
+        org_image = #{orgImage,jdbcType=VARCHAR},
+      </if>
+      <if test="bigImage != null" >
+        big_image = #{bigImage,jdbcType=VARCHAR},
+      </if>
+      <if test="centerImage != null" >
+        center_image = #{centerImage,jdbcType=VARCHAR},
+      </if>
+      <if test="smallImage != null" >
+        small_image = #{smallImage,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMain != null" >
+        if_main = #{ifMain,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farmer.fruit.models.fruit.FruitPicture" >
+    update qr_fruit_picture
+    set type = #{type,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      org_image = #{orgImage,jdbcType=VARCHAR},
+      big_image = #{bigImage,jdbcType=VARCHAR},
+      center_image = #{centerImage,jdbcType=VARCHAR},
+      small_image = #{smallImage,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      if_main = #{ifMain,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.farmer.fruit.models.fruit.FruitPictureQuery" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from qr_fruit_picture
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+</mapper>

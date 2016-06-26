@@ -1,0 +1,110 @@
+@charset "utf-8";
+.select-wrapper{
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    *display: inline;
+    *float: left;
+    *margin-right: 10px;
+
+    background: #f7f7f7;
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 14px;
+    font-weight: normal;
+    height: 38px!important;
+    line-height: 35px!important;
+
+}
+.select-wrapper.focus{
+    border: 1px solid #bebebe;
+}
+.select-button{
+    font: normal 14px '\5FAE\8F6F\96C5\9ED1';
+    width: 238px;
+    height: 34px!important;
+    border: 0;
+    border-radius: 3px;
+    background:transparent;
+    cursor: pointer;
+    padding: 0 26px 0 10px;
+    overflow: hidden;
+    text-align: left;
+    outline: none;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow:hidden;
+}
+.select-down{
+    position: absolute;
+    background:url("../images/com_select_ico.png")no-repeat;
+    width: 9px;
+    height: 5px;
+    top: 16px!important;
+    right: 12px;
+}
+.disabled{
+    color: #cccccc;
+}
+.select-list{
+    width: 238px;
+    background: #fff;
+    border-radius: 5px;
+    border:1px solid #bebebe;
+    border-top: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius:0px;
+    display: none;
+    z-index: 7;
+    position: absolute;
+    left: -1px;
+    top: 35px!important;
+    overflow: hidden;
+}
+.select-list ul{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 34px;
+    max-height: 240px;
+}
+.select-list ul li{
+    width: auto;
+    height: 34px;
+    padding-left: 10px;
+    border-top:1px solid #FFF;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+}
+.select-list ul li.selected,
+.select-list ul li:hover{
+    background: transparent;
+}
+
+/* 下拉列表不可用样式 */
+.select-button-disable{
+    color: #ccc;
+    width: 238px;
+    height: 34px!important;;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    background: #fff;
+    cursor: pointer;
+    padding-left: 10px;
+    overflow: hidden;
+    text-align: left;
+    outline: none;
+}
+.select-down-disable{
+    color: #ccc;
+    font-size: 18px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    line-height: 34px;
+}

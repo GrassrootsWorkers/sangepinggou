@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.store.PriceDao" >
+  <resultMap id="BaseResultMap" type="com.farmer.fruit.models.store.Price" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="supermarket_id" property="supermarketId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="address" property="address" jdbcType="INTEGER" />
+    <result column="last_price_id" property="lastPriceId" jdbcType="INTEGER" />
+    <result column="audit_flag" property="auditFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      id, supermarket_id, user_id, type, brand_id, price, address, last_price_id, audit_flag
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.farmer.fruit.models.store.PriceQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from qr_price_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    id,supermarket_id,user_id,type,brand_id,price,address,last_price_id,audit_flag
+    from qr_price_list
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qr_price_list
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.farmer.fruit.models.store.PriceQuery" >
+    delete from qr_price_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.farmer.fruit.models.store.Price" >
+    insert into qr_price_list (id, supermarket_id, user_id, 
+      type, brand_id, price, address, 
+      last_price_id, audit_flag)
+    values (#{id,jdbcType=INTEGER}, #{supermarketId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{type,jdbcType=CHAR}, #{brandId,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{address,jdbcType=INTEGER}, 
+      #{lastPriceId,jdbcType=INTEGER}, #{auditFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farmer.fruit.models.store.Price" >
+    insert into qr_price_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="supermarketId != null" >
+        supermarket_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="lastPriceId != null" >
+        last_price_id,
+      </if>
+      <if test="auditFlag != null" >
+        audit_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="supermarketId != null" >
+        #{supermarketId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=INTEGER},
+      </if>
+      <if test="lastPriceId != null" >
+        #{lastPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="auditFlag != null" >
+        #{auditFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.farmer.fruit.models.store.PriceQuery" resultType="java.lang.Integer" >
+    select count(*) from qr_price_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update qr_price_list
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.supermarketId != null" >
+        supermarket_id = #{record.supermarketId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=CHAR},
+      </if>
+      <if test="record.brandId != null" >
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastPriceId != null" >
+        last_price_id = #{record.lastPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditFlag != null" >
+        audit_flag = #{record.auditFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update qr_price_list
+    set id = #{record.id,jdbcType=INTEGER},
+      supermarket_id = #{record.supermarketId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=CHAR},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DOUBLE},
+      address = #{record.address,jdbcType=INTEGER},
+      last_price_id = #{record.lastPriceId,jdbcType=INTEGER},
+      audit_flag = #{record.auditFlag,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farmer.fruit.models.store.Price" >
+    update qr_price_list
+    <set >
+      <if test="supermarketId != null" >
+        supermarket_id = #{supermarketId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=INTEGER},
+      </if>
+      <if test="lastPriceId != null" >
+        last_price_id = #{lastPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="auditFlag != null" >
+        audit_flag = #{auditFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farmer.fruit.models.store.Price" >
+    update qr_price_list
+    set supermarket_id = #{supermarketId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      type = #{type,jdbcType=CHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      address = #{address,jdbcType=INTEGER},
+      last_price_id = #{lastPriceId,jdbcType=INTEGER},
+      audit_flag = #{auditFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.farmer.fruit.models.store.PriceQuery" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from qr_price_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+</mapper>
