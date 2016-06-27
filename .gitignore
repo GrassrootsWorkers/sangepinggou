@@ -2,6 +2,7 @@
 *.apk
 target/
 .settings/
+.idea/
 *.project
 *.classpath
 *.iml
