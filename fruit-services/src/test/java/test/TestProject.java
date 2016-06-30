@@ -22,7 +22,7 @@ public class TestProject {
 	 @Test
 	 public void testProject(){
 		 System.out.println(userServiceImpl);
-		 User  user = userServiceImpl.getById(1);
+		 User  user = userServiceImpl.getById(1L);
 		 System.out.println(user.getId());
 	 }
 	        

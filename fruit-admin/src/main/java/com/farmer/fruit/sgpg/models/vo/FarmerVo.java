@@ -5,6 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FarmerVo{
+
+	private Long farmerId;
 	/**
 	 * 手机号
 	 */
@@ -53,11 +55,13 @@ public class FarmerVo{
 	/**
 	 * 
 	 */
-	private Date lastLoginTime;
+	private String lastLoginTime;
 	/**
 	 * 验证码
 	 */
 	private String validateCode;
+
+
 
 	public boolean validateMobile(String mobile){
 		Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(17[0-9])|(18[0,5-9]))\\d{8}$");
@@ -152,11 +156,19 @@ public class FarmerVo{
 		this.registerTime = registerTime;
 	}
 
-	public Date getLastLoginTime() {
+	public Long getFarmerId() {
+		return farmerId;
+	}
+
+	public void setFarmerId(Long farmerId) {
+		this.farmerId = farmerId;
+	}
+
+	public String getLastLoginTime() {
 		return lastLoginTime;
 	}
 
-	public void setLastLoginTime(Date lastLoginTime) {
+	public void setLastLoginTime(String lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
 	}
 

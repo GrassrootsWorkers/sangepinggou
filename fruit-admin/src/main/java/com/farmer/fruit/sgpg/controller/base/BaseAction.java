@@ -110,14 +110,14 @@ public class BaseAction {
         String s = mobile.substring(3,7);
         return mobile.replace(s,"****");
     }
-    protected boolean recordLoginTrack( int userId,String userName){
+    protected boolean recordLoginTrack( int userId,String userName,String type){
  		//cookie
 		//记录userId bg_ui
 		//记录userName
 		//记录username
 		int expireHour = ReloadableConfig.getIntProperty("session_expire_time");
 		String userIdKey = ReloadableConfig.getStringProperty("cookie_user_id","qr_id");
-		addCookie(userIdKey,"qr_"+userId,expireHour);
+		addCookie(userIdKey,userId+"_"+type,expireHour);
 		
 		String userNameKey =ReloadableConfig.getStringProperty("cookie_user_name","qr_nm");
 		addCookie(userNameKey,userName,expireHour);

@@ -15,11 +15,7 @@ function userLogin() {
             },
             success: function (data) {
                 if (data.success) {
-                    var returnUrl = $.cookie("returnUrl");
-                    if (typeof(returnUrl) == "undefined") {
-                        returnUrl = "http://www.sangepg.com";
-                    }
-                    window.location.href = returnUrl;
+                    window.location.href = "/admin/fruit/list?pageIndex=1&farmerId="+data.userId;
                 } else {
                     if (data.elem == "mobile") {
                         jQuery("#mobile_div").addClass("input_error");

@@ -22,7 +22,7 @@ public class CrudService < D extends CrudDao<T,Q>, Q extends QueryDataEntity, T 
 	 * @param id
 	 * @return
 	 */
-	public T getById(Integer id) {
+	public T getById(Long id) {
 		return dao.getById(id);
 	}
 	
@@ -41,7 +41,9 @@ public class CrudService < D extends CrudDao<T,Q>, Q extends QueryDataEntity, T 
 	 * @return
 	 */
 	public List<T> findList(Q entity,int pageNo, int pageSize) {
-		return dao.findList(entity,pageNo,pageSize);
+		entity.setPageNo(pageNo);
+		entity.setPageSize(pageSize);
+		return dao.findList(entity);
 	}
 	
 	

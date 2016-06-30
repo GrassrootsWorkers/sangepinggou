@@ -8,7 +8,7 @@ public class User extends BaseEntity {
 	
 	private static final long serialVersionUID = -2139464441482874862L;
 
-	private Integer id;
+	private Long id;
 
     private String mobile;
 
@@ -26,13 +26,11 @@ public class User extends BaseEntity {
 
     private String userType;
 
-   
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

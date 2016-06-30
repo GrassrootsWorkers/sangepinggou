@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- Title -->
-<title>打造最专业的一站式互联网并购服务平台-北京并购网络科技有限公司</title>
-<meta name="Keywords" content="北京并购网络科技有限公司,项目投资,人脉拓展,找项目,找投资,投资顾问,产权交易,企业产权交易顾问,经纪服务">
-<meta name="Description" content="北京并购网络科技有限公司【并购网络】,我们致力于打造最专业的一站式互联网并购服务平台,为有项目找投资,有资金找项目等并购服务,产权交易等提供一站式的咨询,交流,顾问式的服务。">
-<!--#include virtual="/html/header/common_header.html"-->
-<script type="text/javascript" src="http://s.sangepg.com/js/user/register.js"></script>
-<script type="text/javascript" src="http://s.sangepg.com/js/user/login.js?t=1"></script>
-<link href="http://s.sangepg.com/css/login.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101294011" data-callback="true" charset="utf-8"></script>
-<script type="text/javascript">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Title -->
+    <title>登录系统</title>
+    <meta name="Keywords" content="亿万中产阶级托付的平台">
+    <meta name="Description" content="农村城市的纽带，吃出放心，吃出健康">
+    <!--#include virtual="/html/header/common_header.html"-->
+    <link href="http://s.sangepg.com/css/login.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://s.sangepg.com/js/user/register.js"></script>
+    <script type="text/javascript" src="http://s.sangepg.com/js/user/login.js?t=2"></script>
+    <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101294011"
+            data-callback="true" charset="utf-8"></script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#loginVcode").trigger("click");
             if (typeof($.cookie("qr_up")) != "undefined") {
-                $("#password").val($.cookie("bg_up"));
-                $("#mobile").val($.cookie("bg_un"));
+                $("#password").val($.cookie("qr_up"));
+                $("#mobile").val($.cookie("qr_un"));
             }
         });
         function rememberPwd() {
@@ -26,12 +27,12 @@
         }
     </script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
         <!--qq联合登陆-->
-        function openQQ(){
+        function openQQ() {
             QC.Login.showPopup({
-                appId:"101294011",
-                redirectURI:"http://test.bing-gou.com/jsp/user/user_login.html"
+                appId: "101294011",
+                redirectURI: "http://test.bing-gou.com/jsp/user/user_login.html"
             });
         }
         var paras = {};
@@ -40,7 +41,7 @@
                     if (QC.Login.check()) {
                         QC.Login.getMe(function (openId, accessToken) {
                             $.ajax({
-                                url: "http://test.bing-gou.com/user/third/qq",
+                                url: "http://www.sangepg.com/user/third/qq",
                                 type: "post",
                                 cache: false,
                                 data: {
@@ -57,17 +58,17 @@
                                         if (data.validate) {
                                             //跳转到原来的地方
                                             var url = jQuery.cookie("returnUrl");
-                                            if(typeof(url)== "undefined"){
-                                                url ="http://www.binggou.com";
+                                            if (typeof(url) == "undefined") {
+                                                url = "http://www.sangepg.com";
                                             }
-                                            window.location.href=url;
+                                            window.location.href = url;
                                         } else {
-                                            window.location.href="http://test.bing-gou.com/jsp/user/bind_mobile.html";
+                                            window.location.href = "http://www.sanggepg.com/jsp/user/bind_mobile.html";
                                             //展示绑定手机号页面
                                         }
 
                                     } else {
-                                        o_confirm('bg_fixed_bg_noBtn','win_box_noBtn','win_close_noBtn',data.msg);
+                                        o_confirm('bg_fixed_bg_noBtn', 'win_box_noBtn', 'win_close_noBtn', data.msg);
                                     }
 
                                 }
@@ -75,97 +76,101 @@
                         });
 
                     } else {
-                        window.location.href = "http://www.binggou.com";
+                        window.location.href = "http://www.sanggepg.com";
                     }
 
                 })
                 //指定接口访问失败的接收函数，f为失败返回Response对象
                 .error(function (f) {
                     //失败回调
-                    window.location.href = "http://test.bing-gou.com/jsp/user/user_login.html";
+                    window.location.href = "http://www.sangepg.com/jsp/user/user_login.html";
                 })
                 //指定接口完成请求后的接收函数，c为完成请求返回Response对象
                 .complete(function (c) {
 
                 });
         function openWeiXin() {
-            window.location.href = "https://open.weixin.qq.com/connect/qrconnect?appid=wxefcb9899679c9066&redirect_uri=http://test.bing-gou.com/user/third/weixin&response_type=code&scope=snsapi_login&state=bgwx";
+            window.location.href = "https://open.weixin.qq.com/connect/qrconnect?appid=wxefcb9899679c9066&redirect_uri=http://www.sangepg.com/user/third/weixin&response_type=code&scope=snsapi_login&state=bgwx";
         }
     </script>
 
 </head>
 
 <body>
-	<!-- Container -->
-	<div class="loginmain">
-		<div class="hander-main">
-			<!--#include virtual="/html/header/header.html"-->
-		</div>
+<!-- Container -->
+<div class="loginmain">
+    <div class="hander-main">
+        <!--#include virtual="/html/header/header.html"-->
+    </div>
 
-		<!---------登录内容--------->
-		<div class="content">
-			<div class="login_hand">
-				<h1>用户登录</h1>
-				<div>
-					<a href="http://www.sangepg.com/index.html">返回首页</a> 
-					<a href="http://www.sangepg.com/jsp/user/fast_login.html"><i></i>短信快捷登录</a>
-				</div>
-			</div>
-			<div class="login-con">
+    <!---------登录内容--------->
+    <div class="content">
+        <div class="login_hand">
+            <h1>用户登录</h1>
+            <div>
+                <a href="http://www.sangepg.com/index.html">返回首页</a>
+                <a href="http://www.sangepg.com/jsp/user/fast_login.html"><i></i>短信快捷登录</a>
+            </div>
+        </div>
+        <div class="login-con">
 
-				<div class="input-list" id="mobile_div">
-					<div class="inputbk">
-						  <i class="info_phone_icon"></i>
-                        <input id="mobile" type="text" name="mobile" onblur="checkMobileOnBlur('mobile')" placeholder="手机号码">
-						<p id="mobile_desc" class="error" style="display: none">账号不能为空！</p>
-					</div>
+            <div class="input-list" id="mobile_div">
+                <div class="inputbk">
+                    <i class="info_phone_icon"></i>
+                    <input id="mobile" type="text" name="mobile" onblur="checkMobileOnBlur('mobile')"
+                           placeholder="手机号码">
+                    <p id="mobile_desc" class="error" style="display: none">账号不能为空！</p>
+                </div>
 
-				</div>
-				<div class="input-list" id="pwd_div">
-					<div class="inputbk">
-						<i class="pass_icon"></i> <input id="pwd" name="password"
-							type="password" onblur="validatePassword('pwd')" placeholder="请输入6～12位密码" />
-						<p id="pwd_desc" class="error" style="display: none">密码不能为空</p>
-					</div>
+            </div>
+            <div class="input-list" id="pwd_div">
+                <div class="inputbk">
+                    <i class="pass_icon"></i> <input id="pwd" name="password"
+                                                     type="password" onblur="validatePassword('pwd')"
+                                                     placeholder="请输入6～12位密码"/>
+                    <p id="pwd_desc" class="error" style="display: none">密码不能为空</p>
+                </div>
 
-				</div>
-				<div class="input-list" id="vcd_div">
-					<div class="inputbk">
-				  <i class="info_yz_icon"></i>
+            </div>
+            <div class="input-list" id="vcd_div">
+                <div class="inputbk">
+                    <i class="info_yz_icon"></i>
 
                     <input id="vcd" name="validCode" class="info_dt_input" onfocus="hideOtherTips('vcode')"
                            placeholder="请输入手机验证码" onblur="validateCode('vcd')" type="text">
-							 <img class="yzm_img" id="loginVcode" title="点击刷新验证码" onclick="this.src='/servlet/validateCodeServlet?t='+(new Date()).getTime()"
-							alt="验证码" />
-						<p id="vcd_desc" class="error" style="display: none">验证码不能为空！</p>
-					</div>
-				</div>
-				<div class="forget_cont">
-					<input type="checkbox" class="forget_pass" target="_blank" onclick="rememberPwd()">记住密码</input> 
-					<a class="forget_resget" href="http://www.sangepg.com/jsp/user/password.html" target="_blank">忘记密码？</a>
-				</div>
-				<div class="login-btn">
-					<button id="login" name="button" type="button"
-						onclick="userLogin()">登&nbsp;&nbsp;&nbsp;录</button>
-					<span id="error_desc" class="error" style="display: none"></span>
-				</div>
-				<div class="login-hz">
-					<i></i> <a class="a-qq" href="javascript:;" onclick="openQQ()"></a>
-					<a class="a-wx" href="javascript:;" onclick="openWeiXin()"></a>
-				</div>
-			</div>
-			<div class="login_bottom">
-				<a href="/jsp/user/register.html">还不是会员？立即注册</a>
-			</div>
-		</div>
-		<!-- /Container -->
-		<!--#include virtual="/html/footer/register_footer.html"-->
-	</div>
+                    <img class="yzm_img" id="loginVcode" title="点击刷新验证码"
+                         onclick="this.src='/servlet/validateCodeServlet?t='+(new Date()).getTime()"
+                         alt="验证码"/>
+                    <p id="vcd_desc" class="error" style="display: none">验证码不能为空！</p>
+                </div>
+            </div>
+            <div class="forget_cont">
+                <input type="checkbox" class="forget_pass" target="_blank" onclick="rememberPwd()">记住密码</input>
+                <a class="forget_resget" href="http://www.sangepg.com/jsp/user/password.html" target="_blank">忘记密码？</a>
+            </div>
+            <div class="login-btn">
+                <button id="login" name="button" type="button"
+                        onclick="userLogin()">登&nbsp;&nbsp;&nbsp;录
+                </button>
+                <span id="error_desc" class="error" style="display: none"></span>
+            </div>
+            <div class="login-hz">
+                <i></i> <a class="a-qq" href="javascript:;" onclick="openQQ()"></a>
+                <a class="a-wx" href="javascript:;" onclick="openWeiXin()"></a>
+            </div>
+        </div>
+        <div class="login_bottom">
+            <a href="/jsp/user/register.html">还不是会员？立即注册</a>
+        </div>
+    </div>
+    <!-- /Container -->
+    <!--#include virtual="/html/footer/register_footer.html"-->
+</div>
 
-	<script src="http://s.sangepg.com/js/jquery.cookie.js"></script>
-	<script src="http://s.sangepg.com/js/commons.js"></script>
-	<script type="text/javascript" src="http://s.sangepg.com/js/user/login.js"></script>
-	<!-- Bootstrap -->
+<script src="http://s.sangepg.com/js/jquery.cookie.js"></script>
+<script src="http://s.sangepg.com/js/commons.js"></script>
+<script type="text/javascript" src="http://s.sangepg.com/js/user/login.js"></script>
+<!-- Bootstrap -->
 
 </body>
 

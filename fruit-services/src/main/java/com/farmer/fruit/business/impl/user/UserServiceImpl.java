@@ -19,7 +19,7 @@ public class UserServiceImpl implements IUserService<User, UserQuery> {
 	private IUserDao userDao;
 
 	@Override
-	public User getById(Integer id) {
+	public User getById(Long id) {
 		return userDao.getById(id);
 	}
 
@@ -34,15 +34,18 @@ public class UserServiceImpl implements IUserService<User, UserQuery> {
 	}
 
 	@Override
-	public List<User> findList(UserQuery entity) {
-		return userDao.findList(entity, entity.getPageNo(), entity.getPageSize());
+	public List<User> findList(UserQuery entity,int pageNo,int pageSize) {
+		entity.setPageNo(pageNo);
+		entity.setPageSize(pageSize);
+		return userDao.findList(entity);
 	}
 
 	@Override
 	@Transactional(readOnly=false)
 	public Integer save(User entity) {
 		if (entity.isNewRecord()) {
-			return userDao.insert(entity);
+			userDao.insert(entity);
+			return entity.getId().intValue();
 		} else {
 			return userDao.update(entity);
 		}

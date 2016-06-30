@@ -1,11 +1,8 @@
 <div class="top_nav_con_l top_nav_con_l_tab">
     <ul>
-        <li id="my_publish"> <a href="http://www.binggou.com/user/project/list/1?timeBucket=30&publishStatus=0">我的发布</a></li>
-        <li id="my_discuss"><a href="http://www.binggou.com/remind/forword_list"> 我的洽谈 <i id="myapply_if_show_red_point" class="num" style="display: none;"></i></a></li>
-        <li id="project_library"><a href="http://www.binggou.com/remind/forword_myproject_house"> 项&nbsp;&nbsp;目&nbsp;&nbsp;库</a></li>
-        <li id="my_collection"><a href="http://www.binggou.com/collection/list/1/0?timeBucket=90"> 我的收藏</a></li>
-        <li id="my_view_history"><a href="http://www.binggou.com/history/view/1?timeBucket=90"> 浏览记录</a></li>
-        <li id="sys_message"><a href="http://www.binggou.com/sys/message/1"> 系统消息 <i id="system_if_show_red_point" class="num" style="display: none;"></i></a></li>
+        <li id="my_information"> <a href="http://www.binggou.com/user/project/list/1?timeBucket=30&publishStatus=0">我的资料</a></li>
+        <li id="my_fruits"><a href="http://www.binggou.com/remind/forword_list">我的水果</a></li>
+        <li id="qr_center"><a href="http://www.binggou.com/remind/forword_myproject_house">二维码专区</a></li>
     </ul>
 </div>
 <script type="text/javascript">
@@ -13,34 +10,5 @@
         jQuery("#"+id).attr("class","active");
         setMyApplyFlag();
         setSystemMessageTip();
-    }
-    function setSystemMessageTip(){
-        jQuery.ajax({
-            type: "get",
-            url: "/sys/message/flag",
-            success: function (result) {
-                if(result) {
-                    jQuery("#system_if_show_red_point").show();
-                } else {
-                    jQuery("#system_if_show_red_point").hide();
-                }
-            }
-        });
-    }
-    function setMyApplyFlag(){
-        //判断我的洽谈是否有新消息，是否显示红点标记  add by wqw 2016.4.19
-        jQuery.ajax({
-            type: "post",
-            url: "/remind/myapplyIfShowRedPoint",
-            data: {
-            },
-            success: function (result) {
-                if(result && result > 0) {
-                    jQuery("#myapply_if_show_red_point").show();
-                } else {
-                    jQuery("#myapply_if_show_red_point").hide();
-                }
-            }
-        });
     }
 </script>

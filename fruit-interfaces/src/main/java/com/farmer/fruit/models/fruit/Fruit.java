@@ -1,9 +1,12 @@
 package com.farmer.fruit.models.fruit;
 
+import com.farmer.fruit.models.BaseEntity;
+
 import java.io.Serializable;
 import java.util.Date;
 
-public class Fruit implements Serializable {
+public class Fruit extends BaseEntity {
+
     private Long id;
 
     private String fruitCode;
@@ -37,8 +40,22 @@ public class Fruit implements Serializable {
     private String priceFlag;
 
     private String lotteryFlag;
+    /**
+     * 主图
+     */
+    private String image;
+    /**
+     * 二维码
+     */
+    private String qrPath;
+
+    private String ifSale;
 
     private static final long serialVersionUID = 1L;
+
+    public String getImage() {
+        return "http://s.sangepg.com/images/fruit/" + id / 1000 + "/center_" + id + ".jpg";
+    }
 
     public Long getId() {
         return id;
@@ -174,6 +191,27 @@ public class Fruit implements Serializable {
 
     public void setLotteryFlag(String lotteryFlag) {
         this.lotteryFlag = lotteryFlag == null ? null : lotteryFlag.trim();
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getQrPath() {
+        return "http://s.sangepg.com/images/no_picture.png";
+    }
+
+    public void setQrPath(String qrPath) {
+        this.qrPath = qrPath;
+    }
+
+    public String getIfSale() {
+        if ("N".equals(ifSale)) return "否";
+        return "是";
+    }
+
+    public void setIfSale(String ifSale) {
+        this.ifSale = ifSale;
     }
 
     @Override

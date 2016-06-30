@@ -46,8 +46,7 @@
 		<mongodb.version>3.0.3</mongodb.version>
 
 		<!-- log -->
-		<slf4j.version>1.7.12</slf4j.version>
-
+		<slf4j.version>1.7.7</slf4j.version>
 		<!-- web -->
 		<servlet.api.version>2.5</servlet.api.version>
 		<ognl.version>3.0.6</ognl.version>
@@ -98,7 +97,12 @@
 		
 	</properties>
 	<dependencies>
-	
+		<!-- freemarker engine -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
@@ -115,7 +119,17 @@
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 		</dependency>
-		
+		<!-- LOGGING begin -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
 		<!-- common-logging 实际调用slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -128,12 +142,7 @@
 			<artifactId>jul-to-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.12</version>
-		</dependency>
-		
+		<!-- LOGGING end -->
 	</dependencies>
 	<build>
 	<finalName>farmer</finalName>

@@ -11,14 +11,14 @@ public interface ICurdService<T,Q>{
 	 * @param id
 	 * @return
 	 */
-	public T getById(Integer id);
+	T getById(Long id);
 	
 	/**
 	 * 获取单条数据
 	 * @param entity
 	 * @return
 	 */
-	public T get(Q entity);
+	T get(Q entity);
 	
 
 	/**
@@ -26,14 +26,14 @@ public interface ICurdService<T,Q>{
 	 * @param entity
 	 * @return
 	 */
-	public int findListCount(Q entity);
+	int findListCount(Q entity);
 	
 	/**
 	 * 查询列表数据
 	 * @param entity
 	 * @return
 	 */
-	public List<T> findList(Q entity);
+	List<T> findList(Q entity,int pageNo,int pageSize);
 	
 	
 	/**
@@ -41,13 +41,13 @@ public interface ICurdService<T,Q>{
 	 * @param entity
 	 */
 	@Transactional(readOnly = false)
-	public Integer save(T entity);
+	Integer save(T entity);
 	
 	/**
 	 * 删除数据
 	 * @param entity
 	 */
 	@Transactional(readOnly = false)
-	public void delete(Q entity);
+	void delete(Q entity);
 
 }

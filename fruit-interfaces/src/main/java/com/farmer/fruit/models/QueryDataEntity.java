@@ -18,7 +18,7 @@ public abstract class QueryDataEntity implements Serializable {
 	 */
 	private int pageNo;
 	/**
-	 * 默认20条记录
+	 * 默认10条记录
 	 */
 	private int pageSize = 20;
 	/**
@@ -68,7 +68,7 @@ public abstract class QueryDataEntity implements Serializable {
 	}
 
 	public int getPageIndex() {
-		return pageIndex =pageIndex + 1;
+		return pageIndex;
 	}
 
 	public void setPageIndex(int pageIndex) {

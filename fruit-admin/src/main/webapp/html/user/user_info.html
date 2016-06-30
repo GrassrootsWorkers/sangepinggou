@@ -7,54 +7,42 @@
         </div>
         <div class="c">
             <div class="user">
-                <span class="small_user"><p id="real_name"></p>职称</span>
+                <span class="small_user"><p id="real_name"></p></span>
                 <span class="small_company" id="company"></span>
             </div>
             <div class="time">
                 <span class="small_t"><p>上次登录时间：</p><p id="time_tip"></p></span>
                     <span class="small_b">
-                        <span>信息完整度：</span>
+                        <!--<span>信息完整度：</span>
                         <span class="bar">
-
-                            <!--.personal_top .c .time .small_b span.bar p.bar_completed  更改进度条的长度改变进度的百分比-->
                             <p class="bar_completed"></p>
                         </span>
-                        <span>100%</span>
+                        <span>100%</span>-->
                     </span>
             </div>
         </div>
-        <div class="r" onclick="window.location.href='http://www.binggou.com/friends/forword_my_friends'">
-        </div>
+
     </div>
 </div>
-<script type="text/javascript" src="http://s1.binggou.com/js/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://s.sangepg.com/js/jquery.cookie.js"></script>
 <script type="text/javascript">
     jQuery(function(){
         initialUserInfo();
     });
     function initialUserInfo() {
-        var val = jQuery.cookie("bg_uid");
+        var val = jQuery.cookie("qr_id");
         if (typeof  val != "undefined") {
             var userId = val.split("_")[0];
             jQuery.ajax({
-                url: "/user/center/" + userId,
+                url: "/admin/user/" + userId,
                 type: "GET",
                 cache: true,
                 success: function (data) {
                     if (data != "") {
-                        var pBar = data.completedAmount;
-                        jQuery("p.bar_completed").css("width", 2 * pBar);
-                        if(!data.headerpic==""){
-                            jQuery("#user_icon").attr("src",data.headerpic);
-                        }else{
-                            jQuery("#user_icon").attr("src","http://p1.binggou.com/images/user/photo_user_img.png");
-                        }
-
-
-                        jQuery("#user_info").attr("href","http://www.binggou.com/user/info/"+data.userId);
-                        jQuery("#real_name").html(data.realname);
-                        jQuery("#company").html(data.company);
-                        jQuery("#time_tip").html(data.lastLogTimeStr);
+                        jQuery("#user_info").attr("href","http://www.sangepg.com/admin/user/info/"+data.userId);
+                        jQuery("#real_name").html(data.name);
+                        jQuery("#company").html(data.mobile);
+                        jQuery("#time_tip").html(data.lastLoginTime);
                     }
                 }
             });

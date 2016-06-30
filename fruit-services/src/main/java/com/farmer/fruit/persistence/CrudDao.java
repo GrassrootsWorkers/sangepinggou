@@ -13,14 +13,14 @@ public interface CrudDao<T,Q> {
 	 * @param id
 	 * @return
 	 */
-	public T getById(Integer id);
+	T getById(Long id);
 	
 	/**
 	 * 获取单条数据
 	 * @param entity
 	 * @return
 	 */
-	public T get(Q entity);
+	T get(Q entity);
 	
 	
 	/**记录总数
@@ -28,41 +28,41 @@ public interface CrudDao<T,Q> {
 	 * @param entity
 	 * @return
 	 */
-	public int getTotalCount(Q entity);
+	int getTotalCount(Q entity);
 	
 	/**
 	 * 记录list
 	 * @param entity
 	 * @return
 	 */
-	public List<T> findList(Q entity,int pageNo,int pageSize);
+	List<T> findList(Q entity);
 	
 	/**
 	 * 查询所有数据列表
 	 * @param entity
 	 * @return
 	 */
-	public List<T> findAllList(Q entity);
+	List<T> findAllList(Q entity);
 	
 	/**
 	 * 插入数据
 	 * @param entity
 	 * @return
 	 */
-	public int insert(T entity);
+	int insert(T entity);
 	
 	/**
 	 * 更新数据
 	 * @param entity
 	 * @return
 	 */
-	public int update(T entity);
+	int update(T entity);
 	
 	/**
 	 * 删除数据（一般为逻辑删除，更新delete_flag字段为1）
 	 * @param entity
 	 * @return
 	 */
-	public int delete(Q entity);
+	int delete(Q entity);
 	
 }

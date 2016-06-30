@@ -17,7 +17,7 @@ public class FarmerServiceImpl implements IFarmerService {
     @Autowired
     private IFarmerDao farmerDao;
     @Override
-    public Farmer getById(Integer id) {
+    public Farmer getById(Long id) {
         return farmerDao.getById(id);
     }
 
@@ -32,11 +32,13 @@ public class FarmerServiceImpl implements IFarmerService {
     }
 
     @Override
-    public List<Farmer> findList(FarmerQuery entity) {
+    public List<Farmer> findList(FarmerQuery entity,int pageNo,int pageSize) {
+        entity.setPageNo(pageNo);
+        entity.setPageSize(pageSize);
         int count =farmerDao.getTotalCount(entity);
         if(count <=0) return null;
         entity.setCount(count);
-        return farmerDao.findList(entity,entity.getPageNo(),entity.getPageSize());
+        return farmerDao.findList(entity);
     }
 
     @Override

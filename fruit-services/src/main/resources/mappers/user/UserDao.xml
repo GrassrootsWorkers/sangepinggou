@@ -16,7 +16,7 @@
 		id, mobile, open_id, nick_name, user_image, password, register_time,
 		last_login_time,user_type
 	</sql>
-	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
 		from qr_user

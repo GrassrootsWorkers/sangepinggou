@@ -2,12 +2,11 @@ package com.farmer.fruit.models.farmer;
 
 import com.farmer.fruit.models.BaseEntity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 public class Farmer  extends BaseEntity {
 	
-    private Integer id;
+    private Long id;
 
     private String mobile;
 
@@ -26,7 +25,7 @@ public class Farmer  extends BaseEntity {
 
     private String currentAddress;
 
-    private String growthAdress;
+    private String growthAddress;
 
     private Byte experienceAge;
 
@@ -38,11 +37,19 @@ public class Farmer  extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public String getGrowthAddress() {
+        return growthAddress;
+    }
+
+    public void setGrowthAddress(String growthAddress) {
+        this.growthAddress = growthAddress;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -102,13 +109,6 @@ public class Farmer  extends BaseEntity {
         this.currentAddress = currentAddress == null ? null : currentAddress.trim();
     }
 
-    public String getGrowthAdress() {
-        return growthAdress;
-    }
-
-    public void setGrowthAdress(String growthAdress) {
-        this.growthAdress = growthAdress == null ? null : growthAdress.trim();
-    }
 
     public Byte getExperienceAge() {
         return experienceAge;
@@ -156,7 +156,7 @@ public class Farmer  extends BaseEntity {
         sb.append(", auditFlag=").append(auditFlag);
         sb.append(", homeTown=").append(homeTown);
         sb.append(", currentAddress=").append(currentAddress);
-        sb.append(", growthAdress=").append(growthAdress);
+        sb.append(", growthAddress=").append(growthAddress);
         sb.append(", experienceAge=").append(experienceAge);
         sb.append(", registerTime=").append(registerTime);
         sb.append(", lastLoginTime=").append(lastLoginTime);
