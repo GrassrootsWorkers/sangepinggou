@@ -3,9 +3,10 @@ package com.farmer.fruit.business.impl.fruit;
 import com.farmer.fruit.interfaces.fruit.IFruitService;
 import com.farmer.fruit.models.fruit.Fruit;
 import com.farmer.fruit.models.fruit.FruitQuery;
-import com.farmer.fruit.persistence.fruit.FruitDao;
+import com.farmer.fruit.persistence.fruit.IFruitDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,9 +14,10 @@ import java.util.List;
  * Created by liuzhi on 2016/6/29.
  */
 @Service
+@Transactional(readOnly=true)
 public class FruitServiceImpl implements IFruitService<Fruit,FruitQuery> {
     @Autowired
-    FruitDao fruitDao;
+    IFruitDao fruitDao;
     @Override
     public Fruit getById(Long id) {
         return fruitDao.getById(id);
@@ -39,12 +41,14 @@ public class FruitServiceImpl implements IFruitService<Fruit,FruitQuery> {
     }
 
     @Override
-    public Integer save(Fruit entity) {
+    @Transactional(readOnly=false)
+    public Long save(Fruit entity) {
         if (entity.isNewRecord()) {
             fruitDao.insert(entity);
-            return entity.getId().intValue();
+            return entity.getId();
         } else {
-            return fruitDao.update(entity);
+            int count = fruitDao.update(entity);
+            return  new Long(count);
         }
     }
 

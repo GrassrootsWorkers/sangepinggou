@@ -293,7 +293,7 @@ input:hover,input:focus{
     -webkit-background-size:cover;
     -o-background-size:cover;
     width: 100%;
-    height: 120px;
+    height: 55px;
 }
 .bg{
     background-color: #fff;
@@ -372,10 +372,11 @@ input:hover,input:focus{
     margin-top: 2px;
 }
 .personal_top .c .time{
-    background: url("../images/user_line.png") no-repeat right top;
+    /* background: url("../images/user_line.png") no-repeat right top; */
     height: 44px;
     width: 455px;
     padding-left: 60px;
+    padding-top: 10px;
     float: left;
     color:#8f8f8f;
 }
@@ -455,7 +456,7 @@ input:hover,input:focus{
     font-weight: normal;
     line-height: 40px;
 }
-.personal_top_nav>ul>li>label>span{
+.personal_span{
     float: left;
     color:#777777;
     font-weight: normal;
@@ -2023,7 +2024,7 @@ a.refuse_more ul.refuse_more_ul li:hover{
 .personal_pro .message_top_nav{
     font-size:14px;
     color:#444444;
-    margin: 26px 0;
+    /*margin: 26px 0;*/
 }
 .personal_pro .message_top_nav i,.personal_pro .message_top_nav a{
     font-style: normal;
@@ -2034,7 +2035,18 @@ a.refuse_more ul.refuse_more_ul li:hover{
 .personal_pro .message_top_nav .r{
    float: right;
 }
+
 .personal_pro .message_top_nav .r a{
+   /*border: 2px solid #dedede;*/
+    /* color:#444444; */
+    text-decoration:none;
+    /* display: block; */
+    padding: 0 26px;
+    height: 20px;
+    line-height: 18px;
+}
+
+/*.personal_pro .message_top_nav .r a{
     border:1px solid #dedede;
     color:#444444;
     text-decoration:none;
@@ -2042,7 +2054,7 @@ a.refuse_more ul.refuse_more_ul li:hover{
     padding:0 36px;
     height: 20px;
     line-height: 16px;
-}
+}*/
 .sys_message_ul{
     border:1px solid #efefef;
     margin-left: 0;
@@ -2112,15 +2124,15 @@ a.refuse_more ul.refuse_more_ul li:hover{
     height: 100%;
 }
 .personal_con .top_nav_con_r ul.sys_message_ul li.sys_message_li div.r span.operation a.delete{
-    background:url("../images/pro_del_icon.png") no-repeat scroll left center;
-    top: 0;
-    color: #bebebe;
+    background:url("../images/iconfont_tijiaoxiugai3.png") no-repeat scroll left center;
+    top: 50px;
+    /* color: #bebebe; */
     padding-left: 15px;
     right: 0;
     height: 14px;
     line-height: 15px;
     position: absolute;
-    display: none;
+    /* display: none; */
 }
 .personal_con .top_nav_con_r ul.sys_message_ul li.sys_message_li div.r span.operation a.delete:hover{
     color: #3e98d0;
@@ -2129,7 +2141,7 @@ a.refuse_more ul.refuse_more_ul li:hover{
     display: block;
 }
 .personal_con .top_nav_con_r ul.sys_message_ul li.sys_message_li div.r span.operation a.time{
-    bottom: 0;
+   /* bottom: 0;*/
     color: #bebebe;
     padding-left: 15px;
     right: 0;

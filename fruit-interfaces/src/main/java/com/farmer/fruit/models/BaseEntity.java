@@ -20,6 +20,7 @@ public abstract class BaseEntity  implements Serializable {
 	 * 记录的状态
 	 */
 	private String status;
+
 	public String getRemarks() {
 		return remarks;
 	}

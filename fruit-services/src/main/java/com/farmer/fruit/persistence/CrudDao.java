@@ -49,7 +49,7 @@ public interface CrudDao<T,Q> {
 	 * @param entity
 	 * @return
 	 */
-	int insert(T entity);
+	Long insert(T entity);
 	
 	/**
 	 * 更新数据

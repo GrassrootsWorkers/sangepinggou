@@ -4,7 +4,7 @@
             <div class="nav-l">
                 <ul>
                     <li  id="bg_index"><a href="javascript:;" onclick="showHeaderTab('bg_index','http://www.sangepg.com')">首页</a></li>
-                    <li id="bg_project"><a href="javascript:;" onclick="showHeaderTab('bg_project','http://www.sangepg.com/project/listload')">我的</a></li>
+                    <li id="bg_project"><a href="javascript:;" onclick="showHeaderTab('bg_project','http://www.sangepg.com/admin/qr/page?pageIndex=1')">我的二维码</a></li>
                     
                 </ul>
             </div>
@@ -63,9 +63,9 @@
                     + "<ul class='login_user_info'> "
                     + "<span class='arrow-up'></span> "
                     + "<li>" + nickName + "</li>"
-                    + "<li><i class='personal_icon'></i><a href='http://www.sangepg.com/user/project/list/1'>个人中心</a></li> "
-                    + "<li><i class='data_icon'></i><a href='http://www.sangepg.com/user/info/"+userId+"'> 完善资料</a></li> "
-                    + "<li><i class='release_icon'></i><a href='http://www.sangepg.com/project/forword_add_project'>申请二维码</a></li>"
+                    + "<li><i class='personal_icon'></i><a href='http://www.sangepg.com/admin/fruit/list?pageIndex=1&farmerId="+userId+"'>个人中心</a></li> "
+                    + "<li><i class='data_icon'></i><a href='http://www.sangepg.com/admin/user/info/"+userId+"'> 完善资料</a></li> "
+                    + "<li><i class='release_icon'></i><a href='http://www.sangepg.com/admin/qr/toApplyQr'>申请二维码</a></li>"
                     + "<li><i class='sign_out_icon'></i><a href='javascript:;' onclick='logout()'>退出</a></li> "
                     + "</ul></div>";
             $("#online").html(html);
@@ -78,7 +78,7 @@
         window.location.href=url;
     }
     function logout() {
-        $.cookie("bg_uid", null,{expires:0,path:"/"});
+        $.cookie("qr_un", null,{expires:0,path:"/"});
         window.location.href = "http://www.sangepg.com/user/logout";
     }
     function resetImage() {

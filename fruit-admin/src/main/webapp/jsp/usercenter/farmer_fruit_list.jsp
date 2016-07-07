@@ -33,21 +33,12 @@
             </div>
         </div>
         <div class="personal_con">
-            <div class="top_nav_con_l top_nav_con_l_tab">
-                <ul>
-                    <li class="active"><a href="个人中心_我的收藏列表.html">我的水果</a></li>
-                    <li><a href="个人中心_我的发布项目列表.html">我的资料</a></li>
-                    <li><a href="个人中心_我的洽谈.html">我的二维码</a></li>
-                </ul>
-            </div>
+            <!--#include virtual="/html/user/user_left_menu.html"-->
             <div class="top_nav_con_r personal_r_tab">
                 <div class="personal_pro">
-                    <div class="bottom_tips">
-                        <div class="r">
-                            <div class="r_total">
-                                总计：<i>${count}</i>
-                            </div>
-                        </div>
+                    <div class="message_top_nav"  style="margin-bottom: 20px">
+                        您一共上传了<i>${count}</i>条记录
+
                     </div>
                     <ul class="r_con_ul">
                         <c:if test="${fruits !=null}">
@@ -176,7 +167,7 @@
     </div>
     <!-- /Container -->
     <div style="clear:both;"></div>
-    <!--#include virtual="/html/footer/register_footer.html"-->
+    <!--#include virtual="/html/footer/my_footer.html"-->
 </div>
 <!-- /Container -->
 <!--右侧固定图标-->
@@ -190,6 +181,7 @@
 <script src="http://s.sangepg.com/js/personal.js" type="text/javascript"></script>
 <script>
     $(function($){
+        setCurrentTab("my_fruits");
         $(".top_nav_con_l").height($(".top_nav_con_r").height()+27);
         $('.personal_r_tab ul.personal_collection li').click(function(){
             //获得当前被点击的元素索引值

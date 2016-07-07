@@ -42,12 +42,13 @@ public class UserServiceImpl implements IUserService<User, UserQuery> {
 
 	@Override
 	@Transactional(readOnly=false)
-	public Integer save(User entity) {
+	public Long save(User entity) {
 		if (entity.isNewRecord()) {
 			userDao.insert(entity);
-			return entity.getId().intValue();
+			return entity.getId();
 		} else {
-			return userDao.update(entity);
+			int count = userDao.update(entity);
+			return new Long(count);
 		}
 
 	}

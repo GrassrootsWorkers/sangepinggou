@@ -41,7 +41,7 @@ public interface ICurdService<T,Q>{
 	 * @param entity
 	 */
 	@Transactional(readOnly = false)
-	Integer save(T entity);
+	Long save(T entity);
 	
 	/**
 	 * 删除数据

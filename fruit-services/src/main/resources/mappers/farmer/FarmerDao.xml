@@ -15,10 +15,11 @@
     <result column="register_time" property="registerTime"/>
     <result column="last_login_time" property="lastLoginTime"/>
     <result column="token" property="token"/>
+    <result column="user_image" property="userImage"/>
   </resultMap>
  
   <sql id="Base_Column_List" >
-      id, mobile, name, password, id_card, audit_flag, home_town, current_address, growth_address, experience_age, register_time, last_login_time, token
+      id, mobile, name, password, id_card, audit_flag, home_town, current_address, growth_address, experience_age, register_time, last_login_time, token,user_image
   </sql>
   <select id="get" resultMap="BaseResultMap" parameterType="FarmerQuery" >
     select
@@ -45,8 +46,8 @@
   </delete>
   <insert id="insert"  useGeneratedKeys="true" keyProperty="userId"   parameterType="Farmer" >
     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
-      SELECT LAST_INSERT_ID() AS id
-    </selectKey>
+    SELECT LAST_INSERT_ID() AS id
+  </selectKey>
     insert into qr_farmer (
       mobile, name, password, id_card, audit_flag,
       home_town, current_address, growth_address,
@@ -54,8 +55,46 @@
       )
     values (
       #{mobile}, #{name},#{password}, #{idCard}, #{auditFlag},
-      #{homeTown}, #{currentAddress}, #{growthAdress},#{experienceAge}, #{registerTime}, #{lastLoginTime}, #{token}
+      #{homeTown}, #{currentAddress}, #{growthAddress},#{experienceAge}, #{registerTime}, #{lastLoginTime}, #{token}
       )
   </insert>
- 
+ <update id="update" parameterType="Farmer">
+   update qr_farmer
+   <set >
+     <if test="name != null" >
+       name = #{name},
+     </if>
+     <if test="password != null" >
+       password = #{password},
+     </if>
+     <if test="idCard != null" >
+       id_card = #{idCard},
+     </if>
+     <if test="auditFlag != null" >
+       audit_flag = #{auditFlag},
+     </if>
+     <if test="homeTown != null" >
+       home_town = #{homeTown},
+     </if>
+     <if test="currentAddress != null" >
+       current_address = #{currentAddress},
+     </if>
+     <if test="growthAddress != null" >
+       growth_address = #{growthAddress},
+     </if>
+     <if test="experienceAge != null" >
+       experience_age = #{experienceAge},
+     </if>
+     <if test="lastLoginTime != null" >
+       last_login_time = #{lastLoginTime},
+     </if>
+     <if test="userImage != null" >
+       user_image = #{userImage},
+     </if>
+     <if test="token != null" >
+       token = #{token},
+     </if>
+   </set>
+   where id =#{id}
+ </update>
 </mapper>

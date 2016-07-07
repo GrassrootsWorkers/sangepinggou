@@ -18,6 +18,8 @@ public class Farmer  extends BaseEntity {
 
     private String auditFlag;
 
+    private String userImage;
+
     /**
      * 家庭住址
      */
@@ -36,6 +38,14 @@ public class Farmer  extends BaseEntity {
     private String token;
 
     private static final long serialVersionUID = 1L;
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
 
     public String getGrowthAddress() {
         return growthAddress;

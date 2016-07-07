@@ -6,6 +6,7 @@ import com.farmer.fruit.models.farmer.FarmerQuery;
 import com.farmer.fruit.persistence.farmer.IFarmerDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * Created by liuzhi on 2016/6/26.
  */
 @Service
+@Transactional(readOnly=true)
 public class FarmerServiceImpl implements IFarmerService {
     @Autowired
     private IFarmerDao farmerDao;
@@ -42,11 +44,13 @@ public class FarmerServiceImpl implements IFarmerService {
     }
 
     @Override
-    public Integer save(Farmer entity) {
+    @Transactional(readOnly=false)
+    public Long save(Farmer entity) {
         if (entity.isNewRecord()) {
             return farmerDao.insert(entity);
         } else {
-            return farmerDao.update(entity);
+            int count= farmerDao.update(entity);
+            return new Long(count);
         }
     }
 

@@ -6,6 +6,8 @@ import java.util.Date;
 public class Brand implements Serializable {
     private Integer id;
 
+    private String name;
+
     private String type;
 
     private String brandDesc;
@@ -44,6 +46,14 @@ public class Brand implements Serializable {
 
     public void setAddTime(Date addTime) {
         this.addTime = addTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

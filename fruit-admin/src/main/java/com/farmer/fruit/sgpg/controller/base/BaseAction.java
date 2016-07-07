@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 public class BaseAction {
   
 	public static final String VALIDATE_CODE = "validateCode";
+	public static final String CURRENT_USER = "ID";
     protected HttpServletRequest request;
     protected HttpServletResponse response;
 
@@ -39,6 +40,10 @@ public class BaseAction {
         this.response = response;
     }
 
+    public Long getFarmerId(String mobile){
+        Long farmerId = (Long)this.request.getSession().getAttribute(mobile);
+        return farmerId;
+    }
     protected  String getCookieValue(String key){
         Cookie[] cookies = request.getCookies();
         if(cookies == null) return null;

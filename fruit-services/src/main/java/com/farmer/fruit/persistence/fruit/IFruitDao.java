@@ -6,5 +6,5 @@ import com.farmer.fruit.persistence.CrudDao;
 import com.farmer.fruit.persistence.MyBatisDao;
 
 @MyBatisDao
-public interface FruitDao extends CrudDao<Fruit,FruitQuery>{
+public interface IFruitDao extends CrudDao<Fruit,FruitQuery>{
 }

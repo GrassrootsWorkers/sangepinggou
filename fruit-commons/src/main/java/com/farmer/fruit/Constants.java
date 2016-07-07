@@ -6,6 +6,17 @@ package com.farmer.fruit;
  * 
  */
 public abstract class Constants {
+	public static String CONTEXT_PATH;
+
+	// ========================上传图片、附件==============================================
+	static {
+		CONTEXT_PATH="/app/web_site";
+	}
+
+	public static String UPLOAD_IMGE_FILE_PATH = "/images/temp/";// 图片上传的根路径
+	public static Integer BIGE_IMGE_FILE_SIZE = 800;// 大图的宽度
+	public static Integer CENTER_IMGE_FILE_SIZE = 600;// 中图的宽度
+	public static Integer SMALL_IMGE_FILE_SIZE = 400;// 小图的宽度
 
 	/**  默认时间格式 **/
 	public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";

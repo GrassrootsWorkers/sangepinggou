@@ -36,6 +36,7 @@ import java.util.*;
 public class FarmerController extends BaseAction {
     @Autowired
     IFarmerService farmerService;
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> register(FarmerVo farmer, HttpServletRequest request, HttpServletResponse response) {
@@ -103,7 +104,7 @@ public class FarmerController extends BaseAction {
         farmerPo.setLastLoginTime(new Date());
         farmerService.save(farmerPo);
         //记录登录信息
-        this.recordLoginTrack(farmerPo.getId().intValue(), farmerPo.getMobile(),"F");
+        this.recordLoginTrack(farmerPo.getId().intValue(), farmerPo.getMobile(), "F");
         //删除验证码
         //写入已经注册的redis中
 
@@ -128,6 +129,7 @@ public class FarmerController extends BaseAction {
         returnContent.put("success", true);
         return returnContent;
     }
+
     public static Map<String, Object> chuangLanSend(String url, String messages, String mobile) {
         String result = null;
         Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -174,12 +176,12 @@ public class FarmerController extends BaseAction {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", false);
         Farmer farmer = farmerService.get(query);
-        if(farmer == null){
+        if (farmer == null) {
             result.put("elem", "mobile");
             result.put("msg", "手机未注册或");
             return result;
         }
-        if(!MD5Util.validatePassword(vo.getPassword(),farmer.getPassword())){
+        if (!MD5Util.validatePassword(vo.getPassword(), farmer.getPassword())) {
             result.put("elem", "pwd");
             result.put("msg", "密码不正确");
             return result;
@@ -189,32 +191,55 @@ public class FarmerController extends BaseAction {
             result.put("msg", "验证码不正确");
             return result;
         }
-        result.put("success",true);
-        result.put("userId",farmer.getId());
-        this.recordLoginTrack(farmer.getId().intValue(), farmer.getMobile(),"F");
-        request.getSession().setAttribute(farmer.getMobile(),farmer.getId());
+        result.put("success", true);
+        result.put("userId", farmer.getId());
+        this.recordLoginTrack(farmer.getId().intValue(), farmer.getMobile(), "F");
+        request.getSession().setAttribute(farmer.getMobile(), farmer.getId());
         return result;
     }
 
-
-    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{farmerId}", method = RequestMethod.GET)
     @ResponseBody
-    public FarmerVo updateUserInfo(@PathVariable("userId")int userId,HttpServletRequest request,HttpServletResponse response){
+    public FarmerVo getFarmerInfoJson(@PathVariable("farmerId") long farmerId, HttpServletRequest request, HttpServletResponse response) {
         FarmerQuery query = new FarmerQuery();
-        query.setFarmerId(userId);
+        query.setFarmerId(farmerId);
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", false);
         Farmer farmer = farmerService.get(query);
         FarmerVo vo = new FarmerVo();
         vo.setFarmerId(farmer.getId());
         vo.setMobile(farmer.getMobile());
-        if(farmer.getName()==null){
+        if (farmer.getName() == null) {
             vo.setName(farmer.getMobile());
-        }else{
+        } else {
             vo.setName(farmer.getName());
         }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         vo.setLastLoginTime(format.format(farmer.getLastLoginTime()));
         return vo;
+    }
+
+    @RequestMapping(value = "/info/{farmerId}", method = RequestMethod.GET)
+    public ModelAndView getFarmerInfo(@PathVariable("farmerId") long farmerId) {
+        Farmer farmer = farmerService.getById(farmerId);
+        ModelAndView view = new ModelAndView("/usercenter/farmer_info", "farmer", farmer);
+        return view;
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public ModelAndView updateFarmerInfo(Farmer farmer, HttpServletRequest request) {
+        FarmerQuery query = new FarmerQuery();
+        query.setFarmerId(farmer.getId());
+        RedirectView redirectView = new RedirectView("/jsp/user/user_login.html");
+        Long farmerServerId = (Long) request.getSession().getAttribute(farmer.getMobile());
+        if (farmerServerId == null || query.getFarmerId().longValue() != farmerServerId.longValue()) {
+            ModelAndView view = new ModelAndView(redirectView);
+            return view;
+        } else {
+            farmer.setNewRecord(false);
+            farmer.setPassword(null);
+            farmerService.save(farmer);
+            return new ModelAndView("redirect:/admin/fruit/list?farmerId=" + farmer.getId());
+        }
     }
 }

@@ -8,9 +8,13 @@ public class Variety implements Serializable {
 
     private String type;
 
+    private String name;
+
     private String varietyDesc;
 
     private Date addTime;
+
+    private Integer brandId;
 
     private static final long serialVersionUID = 1L;
 
@@ -44,6 +48,22 @@ public class Variety implements Serializable {
 
     public void setAddTime(Date addTime) {
         this.addTime = addTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
     }
 
     @Override

@@ -1,57 +1,86 @@
 package com.farmer.fruit.models.farmer;
 
-import java.io.Serializable;
+import com.farmer.fruit.models.BaseEntity;
+
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Reserved implements Serializable {
-    private Integer id;
+public class Reserved extends BaseEntity {
+    public  static Map<String,String> statusNameMap;
+    static {
+        statusNameMap = new HashMap<String,String>();
+        statusNameMap.put("0","已经保存");
+        statusNameMap.put("1","正在审核");
+        statusNameMap.put("2","等待付款");
+        statusNameMap.put("3","审核未通过");
+        statusNameMap.put("4","等待发货");
+        statusNameMap.put("5","已经发货");
+        statusNameMap.put("6","等待确认收货");
+    }
+    private Long id;
 
-    private Integer farmerId;
+    private Long farmerId;
 
-    private String begin;
+    private int begin;
 
-    private String end;
+    private int end;
 
     private String status;
 
+    private String statusName;
+
     private String token;
 
-    private Integer count;
+    private Integer applyCount;
 
     private Date applyTime;
 
+    /**
+     * 水果类型 苹果，梨
+     */
+    private String type;
+    /**
+     * 品牌Id
+     */
+    private Integer brandId;
+    /**
+     * 品牌名称
+     */
+    private String brandName;
+    /**
+     * 品种Id
+     */
+    private Integer varietyId;
+    /**
+     * 系列名称
+     */
+    private String varietyName;
+    /**
+     * 审核描述
+     */
+    private String auditDesc;
+    /**
+     * 申请留言
+     */
+    private String applyDesc;
+
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getFarmerId() {
-        return farmerId;
-    }
-
-    public void setFarmerId(Integer farmerId) {
-        this.farmerId = farmerId;
-    }
-
-    public String getBegin() {
-        return begin;
-    }
-
-    public void setBegin(String begin) {
-        this.begin = begin == null ? null : begin.trim();
-    }
-
-    public String getEnd() {
+    public int getEnd() {
         return end;
     }
 
-    public void setEnd(String end) {
-        this.end = end == null ? null : end.trim();
+    public void setEnd(int end) {
+        this.end = end;
+    }
+
+    public int getBegin() {
+        return begin;
+    }
+
+    public void setBegin(int begin) {
+        this.begin = begin;
     }
 
     public String getStatus() {
@@ -70,12 +99,12 @@ public class Reserved implements Serializable {
         this.token = token == null ? null : token.trim();
     }
 
-    public Integer getCount() {
-        return count;
+    public Integer getApplyCount() {
+        return applyCount;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setApplyCount(Integer applyCount) {
+        this.applyCount = applyCount;
     }
 
     public Date getApplyTime() {
@@ -84,6 +113,87 @@ public class Reserved implements Serializable {
 
     public void setApplyTime(Date applyTime) {
         this.applyTime = applyTime;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
+    }
+
+    public Integer getVarietyId() {
+        return varietyId;
+    }
+
+    public void setVarietyId(Integer varietyId) {
+        this.varietyId = varietyId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getFarmerId() {
+        return farmerId;
+    }
+
+    public void setFarmerId(Long farmerId) {
+        this.farmerId = farmerId;
+    }
+
+    public String getStatusName() {
+        String name = statusNameMap.get(status);
+        return name;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getVarietyName() {
+        return varietyName;
+    }
+
+    public void setVarietyName(String varietyName) {
+        this.varietyName = varietyName;
+    }
+
+    public String getAuditDesc() {
+        return auditDesc;
+    }
+
+    public void setAuditDesc(String auditDesc) {
+        this.auditDesc = auditDesc;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public String getApplyDesc() {
+        return applyDesc;
+    }
+
+    public void setApplyDesc(String applyDesc) {
+        this.applyDesc = applyDesc;
     }
 
     @Override
@@ -98,7 +208,7 @@ public class Reserved implements Serializable {
         sb.append(", end=").append(end);
         sb.append(", status=").append(status);
         sb.append(", token=").append(token);
-        sb.append(", count=").append(count);
+        sb.append(", count=").append(applyCount);
         sb.append(", applyTime=").append(applyTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

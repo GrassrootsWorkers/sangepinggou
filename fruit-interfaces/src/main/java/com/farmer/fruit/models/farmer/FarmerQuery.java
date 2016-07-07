@@ -8,7 +8,7 @@ public class FarmerQuery extends QueryDataEntity {
 
 	private static final long serialVersionUID = 481441946191855172L;
 
-	private Integer farmerId;
+	private Long farmerId;
 
 	private String mobile;
 
@@ -37,11 +37,11 @@ public class FarmerQuery extends QueryDataEntity {
 
 	private String token;
 
-	public Integer getFarmerId() {
+	public Long getFarmerId() {
 		return farmerId;
 	}
 
-	public void setFarmerId(Integer farmerId) {
+	public void setFarmerId(Long farmerId) {
 		this.farmerId = farmerId;
 	}
 

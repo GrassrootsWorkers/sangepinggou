@@ -26,23 +26,23 @@
 </div>
 <script type="text/javascript" src="http://s.sangepg.com/js/jquery.cookie.js"></script>
 <script type="text/javascript">
-    jQuery(function(){
+    $(function(){
         initialUserInfo();
     });
     function initialUserInfo() {
-        var val = jQuery.cookie("qr_id");
+        var val = $.cookie("qr_id");
         if (typeof  val != "undefined") {
             var userId = val.split("_")[0];
-            jQuery.ajax({
+            $.ajax({
                 url: "/admin/user/" + userId,
                 type: "GET",
                 cache: true,
                 success: function (data) {
                     if (data != "") {
-                        jQuery("#user_info").attr("href","http://www.sangepg.com/admin/user/info/"+data.userId);
-                        jQuery("#real_name").html(data.name);
-                        jQuery("#company").html(data.mobile);
-                        jQuery("#time_tip").html(data.lastLoginTime);
+                        $("#user_info").attr("href","http://www.sangepg.com/admin/user/info/"+data.farmerId);
+                        $("#real_name").html(data.name);
+                        $("#company").html(data.mobile);
+                        $("#time_tip").html(data.lastLoginTime);
                     }
                 }
             });

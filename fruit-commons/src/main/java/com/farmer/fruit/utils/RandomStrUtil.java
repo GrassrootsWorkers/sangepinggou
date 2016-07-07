@@ -91,7 +91,7 @@ public class RandomStrUtil {
 		for(int i=0;i<length;i++){
 			buffer.append(getLowerChar());
 		}
-		return buffer.toString();
+		return buffer.toString().toUpperCase();
 	}
 	
 	/**
