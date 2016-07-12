@@ -64,6 +64,19 @@ public class Reserved extends BaseEntity {
      * 申请留言
      */
     private String applyDesc;
+    /**
+     * 上传后的文件路径
+     */
+    private String filePath;
+    /**
+     * 上传后的图片路径
+     */
+    private String picturePath;
+    /**
+     * 验证token是否正确
+     */
+    private String testUrl;
+
 
     private static final long serialVersionUID = 1L;
 
@@ -194,6 +207,30 @@ public class Reserved extends BaseEntity {
 
     public void setApplyDesc(String applyDesc) {
         this.applyDesc = applyDesc;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+    }
+
+    public String getTestUrl() {
+        return testUrl;
+    }
+
+    public void setTestUrl(String testUrl) {
+        this.testUrl = testUrl;
     }
 
     @Override

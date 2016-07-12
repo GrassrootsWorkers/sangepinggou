@@ -44,7 +44,7 @@
             <div class="row_w pd30">
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 15px; padding-bottom: 0px;">
                     <label>
-                        <span style="float: left"><i>*</i>申请类型：</span>
+                        <span style="float: left"><i>*</i>水果类型：</span>
                     </label>
                     <div class="com_select">
                         <select id="fruit_type" name="type" class="select2" onchange="changeType()"  style="width:150px">
@@ -56,14 +56,14 @@
                     </div>
 
                     <label>
-                        <span><i>*</i>品牌：</span>
+                        <span><i>*</i>水果品牌：</span>
                     </label>
                     <div class="com_select">
                         <select id="brand_id" name="brandId" style="width:150px" onchange="changeBrand()">
                         </select>
                     </div>
                     <label>
-                        <span><i>*</i>品种：</span>
+                        <span><i>*</i>水果种类：</span>
                     </label>
                     <div class="com_select">
                         <select id="variety_id" name="varietyId" style="width:150px">
@@ -74,8 +74,8 @@
             <div class="row_w pd30 ">
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 15px; padding-bottom: 0px;">
                     <label>
-                        <span><i>*</i>申请多少张：</span>
-                        <input type="text" name="applyCount" class="bgef"/><span class="color00">&nbsp;张</span>
+                        <span><i>*</i>需要多少张：</span>
+                        <input type="text" name="applyCount" class="bgef"/><span class="color00"></span>
                     </label>
                 </section>
             </div>
@@ -117,6 +117,23 @@
 <script type="text/javascript" src="/plugins/select2/select2.full.min.js"></script>
 <script src="http://s.sangepg.com/js/jquery/jquery.form.js"></script>
 <script type="text/javascript">
+    jQuery("#imgFile").change(function () {
+        //异步表单提交 先提交图片
+        jQuery("#project_form").ajaxSubmit({
+            type: "POST",
+            url: "/upload",
+            dataType: "text",
+            data: {
+                fileType: "imge"
+            },
+            success: function (data) {
+                alert(data);
+            }
+        });
+
+    });
+
+
     function submitQr(status){
         $("#apply_status").val(status);
         if(status ==0){

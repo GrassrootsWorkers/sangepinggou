@@ -12,7 +12,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.farmer.fruit.interfaces.farmer.IFarmerService;
+import com.farmer.fruit.models.farmer.Farmer;
+import com.farmer.fruit.models.farmer.FarmerQuery;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * Created by Administrator on 2016/1/17 0017.
@@ -23,7 +29,22 @@ public class BaseAction {
 	public static final String CURRENT_USER = "ID";
     protected HttpServletRequest request;
     protected HttpServletResponse response;
+    @Autowired
+    protected IFarmerService farmerService;
 
+    protected ModelAndView returnLoginHtml(){
+        RedirectView redirectView = new RedirectView("/jsp/user/user_login.html");
+        ModelAndView view = new ModelAndView(redirectView);
+        return view;
+    }
+    protected Farmer getLoginFarmer(HttpServletRequest request){
+        this.request = request;
+        String mobile = this.getCookieValue("qr_un");
+        FarmerQuery farmerQuery = new FarmerQuery();
+        farmerQuery.setMobile(mobile);
+        Farmer farmer = farmerService.get(farmerQuery);
+        return farmer;
+    }
     public HttpServletRequest getRequest() {
         return request;
     }

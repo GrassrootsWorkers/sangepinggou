@@ -30,9 +30,6 @@ import java.util.Map;
 public class FruitController extends BaseAction {
     @Autowired
     IFruitService fruitService;
-    @Autowired
-    IFarmerService farmerService;
-
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView toUserCenter(FruitQuery query, HttpServletRequest request, HttpServletResponse response) {

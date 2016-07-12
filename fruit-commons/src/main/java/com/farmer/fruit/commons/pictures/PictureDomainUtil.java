@@ -11,16 +11,16 @@ public class PictureDomainUtil {
 
 	static {
 		domainMap = new HashMap<String, String>();
-		domainMap.put("p0", "http://p1.binggou.com");
-		domainMap.put("p1", "http://p1.binggou.com");
-		domainMap.put("p2", "http://p2.binggou.com");
-		domainMap.put("p3", "http://p3.binggou.com");
-		domainMap.put("p4", "http://p4.binggou.com");
-		domainMap.put("s0", "http://s1.binggou.com");
-		domainMap.put("s1", "http://s1.binggou.com");
-		domainMap.put("s2", "http://s2.binggou.com");
-		domainMap.put("s3", "http://s3.binggou.com");
-		domainMap.put("s4", "http://s4.binggou.com");
+		domainMap.put("p0", "http://s.sangepg.com.com");
+		domainMap.put("p1", "http://s.sangepg.com.com");
+		domainMap.put("p2", "http://s.sangepg.com.com");
+		domainMap.put("p3", "http://s.sangepg.com.com");
+		domainMap.put("p4", "http://s.sangepg.com.com");
+		domainMap.put("s0", "http://s.sangepg.com.com");
+		domainMap.put("s1", "http://s.sangepg.com.com");
+		domainMap.put("s2", "http://s.sangepg.com.com");
+		domainMap.put("s3", "http://s.sangepg.com.com");
+		domainMap.put("s4", "http://s.sangepg.com.com");
 	}
 
 	public static String getRandomDomain(String domainName) {

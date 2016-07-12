@@ -60,7 +60,12 @@
 
                                     <div class="r">
                                         <span class="operation">
-                                            <a class="delete" href="/admin/qr/toApplyQr?id=${qr.id}" target="_blank">编辑</a>
+                                            <c:if test="${qr.status != '5'}">
+                                                <a class="delete" href="/admin/qr/toApplyQr?id=${qr.id}" target="_blank">编辑</a>
+                                            </c:if>
+                                          <c:if test="${qr.status eq '5'}">
+                                              <a class="delete" href="http://www.sangepg.com/admin/qr/toUpload?id=${qr.id}" target="_blank">上传水果</a>
+                                          </c:if>
                                             <a class="time"><f:formatDate value="${qr.applyTime}" pattern="yyyy-MM-dd"/></a>
                                         </span>
                                     </div>
@@ -141,8 +146,6 @@
                             </div>
                         </div>
                     </div>
-                </c:if>
-                <c:if test="${qrCodes ==null}">
                 </c:if>
             </div>
             <div style="clear: both;"></div>

@@ -149,10 +149,10 @@ input:hover,input:focus{
 	font-size: 14px;
 	font-weight: normal;
 	height: 38px;
-	line-height: 38px;
+	/*line-height: 38px;*/
 	padding: 0 10px;
 	float:left;
-	width: 170px;
+	/*width: 170px;*/
 	background: #f7f7f7;
 }
 

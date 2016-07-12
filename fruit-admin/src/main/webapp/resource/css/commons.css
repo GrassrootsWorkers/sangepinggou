@@ -73,7 +73,7 @@ img.align-right{
 }
 .mt_13{margin-top: -13px!important;}
 .pdt40{
-	padding-top:40px;
+	padding-top:20px;
 }
 .min_height110{
 	min-height: 100px;
@@ -340,6 +340,16 @@ li{
 }
 .login-r-img ul li i.sign_out_icon{
 	background:url("../images/sign_out_icon.png") no-repeat ;
+	width: 15px;
+	height: 16px;
+	display: block;
+	margin-right: 10px;
+	margin-top: 8px;
+	float: left;
+}
+
+.login-r-img ul li i.upload_fruit{
+	background:url("../images/apple_icon_u.png") no-repeat ;
 	width: 15px;
 	height: 16px;
 	display: block;
