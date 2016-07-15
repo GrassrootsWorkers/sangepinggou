@@ -38,7 +38,7 @@
                 <div class="personal_pro">
                     <div class="message_top_nav"  style="margin-bottom: 20px">
                         您一共上传了<i>${count}</i>条记录
-                        <div class="r" >  <a href="http://www.sangepg.com/admin/qr/toUpload">添加水果</a></div>
+                       <%-- <div class="r" >  <a href="http://www.sangepg.com/admin/qr/toUpload">添加水果</a></div>--%>
                     </div>
                     <ul class="r_con_ul">
                         <c:if test="${fruits !=null}">

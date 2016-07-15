@@ -6,7 +6,8 @@
 		">
 		
     <import resource="classpath*:applicationContext-service.xml" />
-	
+    <import resource="classpath*:spring-freemarker.xml" />
+
 	 <bean id="stringConverter"
         class="org.springframework.http.converter.StringHttpMessageConverter">
         <property name="supportedMediaTypes">

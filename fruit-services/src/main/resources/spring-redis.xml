@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	 <bean id="jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
+		<constructor-arg index="0" ref="jedisPoolConfig"/>
+		<constructor-arg index="1" value="master.redis.sangepg.com" />
+		<constructor-arg index="2" value="6379" type="int"/>
+		 <constructor-arg index="3" value="1000000" type="int"/>
+	</bean>
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="200"/>
+		<property name="maxIdle" value="3000"/>
+		<property name="minIdle" value="1000"/>
+	</bean>
+</beans>

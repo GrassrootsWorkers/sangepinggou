@@ -166,11 +166,6 @@
         $('#fruit_type').select2({placeholder: '请选择', allowClear: true, minimumResultsForSearch: Infinity});
     });
     $("#imgFile").change(function () {
-        var fruit_type =$("#fruit_type").val();
-        if(!validateDate()){
-            jQuery("#imgFile").val("");
-            return ;
-        }
         //异步表单提交 先提交图片
         jQuery("#qr_form").ajaxSubmit({
             type: "POST",
@@ -195,11 +190,7 @@
 
     });
     $("#picture").change(function () {
-        //异步表单提交 先提交图片
-        if(!validateDate()){
-            jQuery("#picture").val("");
-            return ;
-        }
+        jQuery("#imgFile").val("");
         jQuery("#qr_form").ajaxSubmit({
             type: "POST",
             url: "/admin/qr/uploadPicture",
@@ -239,7 +230,7 @@
         }
 
         if($("#test_url").val()==""){
-            alert("请填写您申请的任意一个二维码");
+            alert("请填写您申请的二维码链接");
             return false;
         }
         if($("#file_path").val()==""){

@@ -48,10 +48,25 @@ public class Fruit extends BaseEntity {
      * 二维码
      */
     private String qrPath;
-
+    /**
+     * 标记是否出售
+     */
     private String ifSale;
+    /**
+     * 图片的原始路径
+     */
+    private String origImage;
+
 
     private static final long serialVersionUID = 1L;
+
+    public String getOrigImage() {
+        return origImage;
+    }
+
+    public void setOrigImage(String origImage) {
+        this.origImage = origImage;
+    }
 
     public String getImage() {
         return "http://s.sangepg.com/images/fruit/" + id / 1000 + "/center_" + id + ".jpg";

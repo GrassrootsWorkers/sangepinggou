@@ -17,6 +17,7 @@ public class Reserved extends BaseEntity {
         statusNameMap.put("4","等待发货");
         statusNameMap.put("5","已经发货");
         statusNameMap.put("6","等待确认收货");
+        statusNameMap.put("7","已经完成");
     }
     private Long id;
 

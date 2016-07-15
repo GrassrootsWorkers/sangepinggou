@@ -112,10 +112,10 @@ public class QrCodeController extends BaseAction {
             return view;
         }
         String token =RandomStrUtil.getLowerStr(4).toUpperCase();
-       /* farmer.setNewRecord(false);
+       farmer.setNewRecord(false);
         farmer.setToken(token);
-        farmerService.save(farmer);*/
-        reserved.setToken(token);
+        farmerService.save(farmer);
+        reserved.setToken(farmer.getToken()+"_"+token);
         reserved.setFarmerId(farmer.getId());
         if(reserved.getId()!=null){
             reserved.setNewRecord(false);
@@ -184,8 +184,16 @@ public class QrCodeController extends BaseAction {
         reserved.setNewRecord(false);
         reserved.setId(applied.getId());
         reserved.setStatus(ReservedQuery.USED);
-        qrCodeService.save(reserved);
-        return new ModelAndView("redirect:/admin/fruit/list?pageIndex=1");
+        //qrCodeService.save(reserved);
+        //调用模板 发布页面
+       boolean flag = qrCodeService.createFruit(reserved,farmer.getId());
+        if(!flag){
+            //跳转错误页面
+            return null;
+        }else{
+            return new ModelAndView("redirect:/admin/fruit/list?pageIndex=1");
+        }
+
     }
     @RequestMapping(value="ajaxAddFruitInfo",method = RequestMethod.POST)
     @ResponseBody
@@ -228,7 +236,17 @@ public class QrCodeController extends BaseAction {
     @ResponseBody
     public Map<String,Object> uploadTemporaryPic(@RequestParam(value = "picture", required = false) MultipartFile file,String fileType,ReservedQuery reserved,HttpServletRequest request) {
         this.request = request;
-        return uploadAll(file,fileType,reserved);
+        String fileName =file.getOriginalFilename();
+        String suffix = fileName.substring(fileName.lastIndexOf("."),fileName.length());
+        if(".zip".equalsIgnoreCase(suffix) ||".rar".equalsIgnoreCase(suffix)){
+            return uploadAll(file,fileType,reserved);
+        }else{
+            Map<String,Object> dataMap = new HashMap<String,Object>();
+            dataMap.put("success",false);
+            dataMap.put("tip","文件格式只能是rar或者zip");
+            return dataMap;
+        }
+
     }
 
     @RequestMapping(value = "/uploadFile")
@@ -247,14 +265,13 @@ public class QrCodeController extends BaseAction {
             dataMap.put("tip","login");
             return dataMap;
         }
-        reserved.setStatus(ReservedQuery.SEND_OUT);
-        List<Reserved> list = qrCodeService.findList(reserved,1,1);
-        if(list == null ||list.size() <=0){
+        Reserved applied = qrCodeService.getById(reserved.getId());
+        if(applied == null){
             dataMap.put("success",false);
             dataMap.put("tip","还没有申请二维码");
             return dataMap;
         }
-        String fileNamePath = getFilePath(file.getOriginalFilename(),farmer.getId()+"_"+list.get(0).getId());
+        String fileNamePath = getFilePath(file.getOriginalFilename(),farmer.getId()+"_"+applied.getId());
         String resultPath = uploadTemporaryFile(file, fileNamePath,fileType);
         dataMap.put("tip",resultPath);
         return dataMap;
