@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.common.ICommonDao" >
+  <resultMap id="brand_map" type="com.farmer.fruit.models.brand.Brand">
+    <id column="id" property="id"/>
+    <result column="type" property="type"/>
+    <result column="name" property="name"/>
+    <result column="brand_desc" property="brandDesc"/>
+    <result column="add_time" property="addTime"/>
+  </resultMap>
+  <resultMap id="variety_map" type="com.farmer.fruit.models.brand.Variety">
+    <id column="id" property="id"/>
+    <result column="type" property="type"/>
+    <result column="name" property="name"/>
+    <result column="variety_desc" property="varietyDesc"/>
+    <result column="add_time" property="addTime"/>
+    <result column="brand_id" property="brandId"/>
+  </resultMap>
+  <resultMap id="address_map" type="com.farmer.fruit.models.address.Address">
+    <id column="id" property="id"/>
+    <result column="type" property="type"/>
+    <result column="name" property="name"/>
+    <result column="parent_id" property="parentId"/>
+  </resultMap>
+
+  <select id="getBrands" parameterType="com.farmer.fruit.models.brand.BrandQuery" resultMap="brand_map">
+    select  id,`type`,brand_desc,add_time,name from qr_brand
+    where `type` = #{type}
+    <if test="id !=null">
+      and id = #{id}
+    </if>
+  </select>
+
+  <select id="getVarieties" parameterType="com.farmer.fruit.models.brand.VarietyQuery" resultMap="variety_map">
+    select  id,`type`,variety_desc,add_time,name from qr_variety
+    where 1=1
+    <if test="id !=null">
+      and id = #{id}
+    </if>
+    <if test="brandId !=null">
+      and brand_id = #{brandId}
+    </if>
+  </select>
+
+  <select id="getAddress" parameterType="com.farmer.fruit.models.address.Address" resultMap="address_map">
+    select id,name,parent_id,`type` from qr_address
+    where 1=1
+    <if test="type !=null">
+      and  `type` = #{type}
+    </if>
+    <if test="parentId !=null">
+      and parent_id = #{parentId}
+    </if>
+  </select>
+
+
+</mapper>
