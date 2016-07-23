@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly=true)
-public class FruitServiceImpl implements IFruitService<Fruit,FruitQuery> {
+public class FruitServiceImpl implements IFruitService {
     @Autowired
     IFruitDao fruitDao;
     @Override

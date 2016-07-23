@@ -3,7 +3,7 @@ package com.farmer.fruit.models.brand;
 import java.util.Date;
 
 public class VarietyQuery {
-    private Integer id;
+    private Long id;
 
     private String type;
 
@@ -17,11 +17,11 @@ public class VarietyQuery {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

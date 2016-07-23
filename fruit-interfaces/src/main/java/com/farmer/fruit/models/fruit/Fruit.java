@@ -11,7 +11,7 @@ public class Fruit extends BaseEntity {
 
     private String fruitCode;
 
-    private Integer baseCode;
+    private Long baseCode;
 
     private Double weight;
 
@@ -88,11 +88,11 @@ public class Fruit extends BaseEntity {
         this.fruitCode = fruitCode == null ? null : fruitCode.trim();
     }
 
-    public Integer getBaseCode() {
+    public Long getBaseCode() {
         return baseCode;
     }
 
-    public void setBaseCode(Integer baseCode) {
+    public void setBaseCode(Long baseCode) {
         this.baseCode = baseCode;
     }
 

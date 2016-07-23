@@ -1,13 +1,16 @@
 package com.farmer.fruit.models.fruit;
 
-import java.io.Serializable;
+import com.farmer.fruit.models.BaseEntity;
 
-public class FruitInformation implements Serializable {
-    private Integer id;
+public class FruitInformation extends BaseEntity{
 
-    private Byte type;
+    private Long id;
 
-    private Byte growthPeriod;
+    private String type;
+
+    private String typeName;
+
+    private int growthPeriod;
 
     private String productionPlace;
 
@@ -15,45 +18,48 @@ public class FruitInformation implements Serializable {
 
     private String company;
 
-    private String environmentDesc;
+    private String FarmerDesc;
 
-    private Integer brandId;
+    private Long brandId;
 
-    private Integer varietyId;
+    private String brandName;
 
-    private Integer farmerId;
+    private Long varietyId;
+
+    private String varietyName;
+
+    private Long farmerId;
 
     private String storageWay;
 
-    private Byte deratingRate;
+    private int destroyRate;
 
-    private Byte waterRate;
+    private int waterRate;
 
-    private Byte sugerRate;
+    private int sugarRate;
 
-    private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Byte getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public Byte getGrowthPeriod() {
+    public int getGrowthPeriod() {
         return growthPeriod;
     }
 
-    public void setGrowthPeriod(Byte growthPeriod) {
+    public void setGrowthPeriod(int growthPeriod) {
         this.growthPeriod = growthPeriod;
     }
 
@@ -62,7 +68,7 @@ public class FruitInformation implements Serializable {
     }
 
     public void setProductionPlace(String productionPlace) {
-        this.productionPlace = productionPlace == null ? null : productionPlace.trim();
+        this.productionPlace = productionPlace;
     }
 
     public String getProductionPlaceDesc() {
@@ -70,7 +76,7 @@ public class FruitInformation implements Serializable {
     }
 
     public void setProductionPlaceDesc(String productionPlaceDesc) {
-        this.productionPlaceDesc = productionPlaceDesc == null ? null : productionPlaceDesc.trim();
+        this.productionPlaceDesc = productionPlaceDesc;
     }
 
     public String getCompany() {
@@ -78,38 +84,38 @@ public class FruitInformation implements Serializable {
     }
 
     public void setCompany(String company) {
-        this.company = company == null ? null : company.trim();
+        this.company = company;
     }
 
-    public String getEnvironmentDesc() {
-        return environmentDesc;
+    public String getFarmerDesc() {
+        return FarmerDesc;
     }
 
-    public void setEnvironmentDesc(String environmentDesc) {
-        this.environmentDesc = environmentDesc == null ? null : environmentDesc.trim();
+    public void setFarmerDesc(String farmerDesc) {
+        FarmerDesc = farmerDesc;
     }
 
-    public Integer getBrandId() {
+    public Long getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Integer brandId) {
+    public void setBrandId(Long brandId) {
         this.brandId = brandId;
     }
 
-    public Integer getVarietyId() {
+    public Long getVarietyId() {
         return varietyId;
     }
 
-    public void setVarietyId(Integer varietyId) {
+    public void setVarietyId(Long varietyId) {
         this.varietyId = varietyId;
     }
 
-    public Integer getFarmerId() {
+    public Long getFarmerId() {
         return farmerId;
     }
 
-    public void setFarmerId(Integer farmerId) {
+    public void setFarmerId(Long farmerId) {
         this.farmerId = farmerId;
     }
 
@@ -118,55 +124,54 @@ public class FruitInformation implements Serializable {
     }
 
     public void setStorageWay(String storageWay) {
-        this.storageWay = storageWay == null ? null : storageWay.trim();
+        this.storageWay = storageWay;
     }
 
-    public Byte getDeratingRate() {
-        return deratingRate;
+    public int getDestroyRate() {
+        return destroyRate;
     }
 
-    public void setDeratingRate(Byte deratingRate) {
-        this.deratingRate = deratingRate;
+    public void setDestroyRate(int destroyRate) {
+        this.destroyRate = destroyRate;
     }
 
-    public Byte getWaterRate() {
+    public int getWaterRate() {
         return waterRate;
     }
 
-    public void setWaterRate(Byte waterRate) {
+    public void setWaterRate(int waterRate) {
         this.waterRate = waterRate;
     }
 
-    public Byte getSugerRate() {
-        return sugerRate;
+    public int getSugarRate() {
+        return sugarRate;
     }
 
-    public void setSugerRate(Byte sugerRate) {
-        this.sugerRate = sugerRate;
+    public void setSugarRate(int sugarRate) {
+        this.sugarRate = sugarRate;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", type=").append(type);
-        sb.append(", growthPeriod=").append(growthPeriod);
-        sb.append(", productionPlace=").append(productionPlace);
-        sb.append(", productionPlaceDesc=").append(productionPlaceDesc);
-        sb.append(", company=").append(company);
-        sb.append(", environmentDesc=").append(environmentDesc);
-        sb.append(", brandId=").append(brandId);
-        sb.append(", varietyId=").append(varietyId);
-        sb.append(", farmerId=").append(farmerId);
-        sb.append(", storageWay=").append(storageWay);
-        sb.append(", deratingRate=").append(deratingRate);
-        sb.append(", waterRate=").append(waterRate);
-        sb.append(", sugerRate=").append(sugerRate);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getVarietyName() {
+        return varietyName;
+    }
+
+    public void setVarietyName(String varietyName) {
+        this.varietyName = varietyName;
     }
 }

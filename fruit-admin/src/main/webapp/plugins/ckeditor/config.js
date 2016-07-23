@@ -10,9 +10,9 @@ CKEDITOR.editorConfig = function (config) {
     config.toolbar = 'Full',
         config.width = 750,
         config.height = 200,
-        config.filebrowserUploadUrl = '/framework/upload/question?type=file',
-        config.filebrowserImageUploadUrl = '/framework/upload/question?type=image',
-        config.filebrowserFlashUploadUrl = '/framework/upload/question?type=flash',
+        config.filebrowserUploadUrl = '/admin/commons/upload/images?type=file',
+        config.filebrowserImageUploadUrl = '/admin/commons/upload/images?type=image',
+        config.filebrowserFlashUploadUrl = '/admin/commons/upload/images?type=flash',
         config.enterMode = CKEDITOR.ENTER_BR,
         config.shiftEnterMode = CKEDITOR.ENTER_BR,
         config.toolbar_Full = [

@@ -1,378 +1,126 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.farmer.fruit.persistence.fruit.FruitInformationDao" >
-  <resultMap id="BaseResultMap" type="com.farmer.fruit.models.fruit.FruitInformation" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="type" property="type" jdbcType="TINYINT" />
-    <result column="growth_period" property="growthPeriod" jdbcType="TINYINT" />
-    <result column="production_place" property="productionPlace" jdbcType="VARCHAR" />
-    <result column="production_place_desc" property="productionPlaceDesc" jdbcType="VARCHAR" />
-    <result column="company" property="company" jdbcType="VARCHAR" />
-    <result column="environment_desc" property="environmentDesc" jdbcType="VARCHAR" />
-    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
-    <result column="variety_id" property="varietyId" jdbcType="INTEGER" />
-    <result column="farmer_id" property="farmerId" jdbcType="INTEGER" />
-    <result column="storage_way" property="storageWay" jdbcType="VARCHAR" />
-    <result column="derating_rate" property="deratingRate" jdbcType="TINYINT" />
-    <result column="water_rate" property="waterRate" jdbcType="TINYINT" />
-    <result column="suger_rate" property="sugerRate" jdbcType="TINYINT" />
+<mapper namespace="com.farmer.fruit.persistence.fruit.IFruitInformationDao" >
+  <resultMap id="BaseResultMap" type="FruitInformation" >
+    <id column="id" property="id" />
+    <result column="type" property="type"/>
+    <result column="growth_period" property="growthPeriod"/>
+    <result column="production_place" property="productionPlace"/>
+    <result column="production_place_desc" property="productionPlaceDesc"/>
+    <result column="company" property="company"/>
+    <result column="farmer_desc" property="farmerDesc"/>
+    <result column="brand_id" property="brandId" />
+    <result column="variety_id" property="varietyId" />
+    <result column="farmer_id" property="farmerId" />
+    <result column="storage_way" property="storageWay"/>
+    <result column="destroy_rate" property="destroyRate"/>
+    <result column="water_rate" property="waterRate"/>
+    <result column="sugar_rate" property="sugarRate"/>
+    <result column="status" property="status"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List" >
-    <if test="fields == null" >
-      id, type, growth_period, production_place, production_place_desc, company, environment_desc, 
-      brand_id, variety_id, farmer_id, storage_way, derating_rate, water_rate, suger_rate
-    </if>
-    <if test="fields != null" >
-      ${fields}
-    </if>
+      id, `type`, growth_period, production_place, production_place_desc, company, farmer_desc,
+      brand_id, variety_id, farmer_id, storage_way, destroy_rate, water_rate, sugar_rate,status,create_time,update_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.farmer.fruit.models.fruit.FruitInformationQuery" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from qr_fruit_information
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-    <if test="startRow != null" >
-      limit #{startRow} , #{pageSize}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
-    id,type,growth_period,production_place,production_place_desc,company,environment_desc,brand_id,variety_id,farmer_id,storage_way,derating_rate,water_rate,suger_rate
+    <include refid="Base_Column_List"/>
     from qr_fruit_information
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from qr_fruit_information
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.farmer.fruit.models.fruit.FruitInformationQuery" >
-    delete from qr_fruit_information
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+  <select id="get" parameterType="FruitInformationQuery" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from qr_fruit_information
+    where farmer_id = #{farmerId} and `type` = #{type}
+    <if test="varietyId !=null">
+      and variety_id = #{varietyId}
     </if>
-  </delete>
-  <insert id="insert" parameterType="com.farmer.fruit.models.fruit.FruitInformation" >
-    insert into qr_fruit_information (id, type, growth_period, 
-      production_place, production_place_desc, company, 
-      environment_desc, brand_id, variety_id, 
-      farmer_id, storage_way, derating_rate, 
-      water_rate, suger_rate)
-    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{growthPeriod,jdbcType=TINYINT}, 
-      #{productionPlace,jdbcType=VARCHAR}, #{productionPlaceDesc,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
-      #{environmentDesc,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, #{varietyId,jdbcType=INTEGER}, 
-      #{farmerId,jdbcType=INTEGER}, #{storageWay,jdbcType=VARCHAR}, #{deratingRate,jdbcType=TINYINT}, 
-      #{waterRate,jdbcType=TINYINT}, #{sugerRate,jdbcType=TINYINT})
+  </select>
+  
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id"    parameterType="FruitInformation" >
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+    insert into qr_fruit_information (
+    `type`, growth_period,production_place, production_place_desc,company,
+     farmer_desc,brand_id, variety_id,farmer_id, storage_way, destroy_rate,water_rate, sugar_rate,`status`,create_time,update_time)
+    values (
+    #{type}, #{growthPeriod},#{productionPlace}, #{productionPlaceDesc}, #{company},
+    #{farmerDesc}, #{brandId}, #{varietyId},#{farmerId}, #{storageWay}, #{destroyRate},#{waterRate}, #{sugarRate},#{status},#{createTime},#{updateTime}
+   )
   </insert>
-  <insert id="insertSelective" parameterType="com.farmer.fruit.models.fruit.FruitInformation" >
-    insert into qr_fruit_information
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="type != null" >
-        type,
-      </if>
-      <if test="growthPeriod != null" >
-        growth_period,
-      </if>
-      <if test="productionPlace != null" >
-        production_place,
-      </if>
-      <if test="productionPlaceDesc != null" >
-        production_place_desc,
-      </if>
-      <if test="company != null" >
-        company,
-      </if>
-      <if test="environmentDesc != null" >
-        environment_desc,
-      </if>
-      <if test="brandId != null" >
-        brand_id,
-      </if>
-      <if test="varietyId != null" >
-        variety_id,
-      </if>
-      <if test="farmerId != null" >
-        farmer_id,
-      </if>
-      <if test="storageWay != null" >
-        storage_way,
-      </if>
-      <if test="deratingRate != null" >
-        derating_rate,
-      </if>
-      <if test="waterRate != null" >
-        water_rate,
-      </if>
-      <if test="sugerRate != null" >
-        suger_rate,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="type != null" >
-        #{type,jdbcType=TINYINT},
-      </if>
-      <if test="growthPeriod != null" >
-        #{growthPeriod,jdbcType=TINYINT},
-      </if>
-      <if test="productionPlace != null" >
-        #{productionPlace,jdbcType=VARCHAR},
-      </if>
-      <if test="productionPlaceDesc != null" >
-        #{productionPlaceDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="company != null" >
-        #{company,jdbcType=VARCHAR},
-      </if>
-      <if test="environmentDesc != null" >
-        #{environmentDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="brandId != null" >
-        #{brandId,jdbcType=INTEGER},
-      </if>
-      <if test="varietyId != null" >
-        #{varietyId,jdbcType=INTEGER},
-      </if>
-      <if test="farmerId != null" >
-        #{farmerId,jdbcType=INTEGER},
-      </if>
-      <if test="storageWay != null" >
-        #{storageWay,jdbcType=VARCHAR},
-      </if>
-      <if test="deratingRate != null" >
-        #{deratingRate,jdbcType=TINYINT},
-      </if>
-      <if test="waterRate != null" >
-        #{waterRate,jdbcType=TINYINT},
-      </if>
-      <if test="sugerRate != null" >
-        #{sugerRate,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.farmer.fruit.models.fruit.FruitInformationQuery" resultType="java.lang.Integer" >
+<sql id="condition">
+  <where>
+    <if test="farmerId !=null">
+      and farmer_id = #{farmerId}
+    </if>
+    <if test="brandId !=null">
+      and brand_id = #{brand_id}
+    </if>
+    <if test="type !=null">
+      and type = #{type}
+    </if>
+    <if test="varietyId !=null">
+      and variety_id = #{varietyId}
+    </if>
+  </where>
+</sql>
+  <select id="getTotalCount" parameterType="FruitInformationQuery" resultType="java.lang.Integer" >
     select count(*) from qr_fruit_information
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
+    <include refid="condition"/>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update qr_fruit_information
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.type != null" >
-        type = #{record.type,jdbcType=TINYINT},
-      </if>
-      <if test="record.growthPeriod != null" >
-        growth_period = #{record.growthPeriod,jdbcType=TINYINT},
-      </if>
-      <if test="record.productionPlace != null" >
-        production_place = #{record.productionPlace,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productionPlaceDesc != null" >
-        production_place_desc = #{record.productionPlaceDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="record.company != null" >
-        company = #{record.company,jdbcType=VARCHAR},
-      </if>
-      <if test="record.environmentDesc != null" >
-        environment_desc = #{record.environmentDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="record.brandId != null" >
-        brand_id = #{record.brandId,jdbcType=INTEGER},
-      </if>
-      <if test="record.varietyId != null" >
-        variety_id = #{record.varietyId,jdbcType=INTEGER},
-      </if>
-      <if test="record.farmerId != null" >
-        farmer_id = #{record.farmerId,jdbcType=INTEGER},
-      </if>
-      <if test="record.storageWay != null" >
-        storage_way = #{record.storageWay,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deratingRate != null" >
-        derating_rate = #{record.deratingRate,jdbcType=TINYINT},
-      </if>
-      <if test="record.waterRate != null" >
-        water_rate = #{record.waterRate,jdbcType=TINYINT},
-      </if>
-      <if test="record.sugerRate != null" >
-        suger_rate = #{record.sugerRate,jdbcType=TINYINT},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update qr_fruit_information
-    set id = #{record.id,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=TINYINT},
-      growth_period = #{record.growthPeriod,jdbcType=TINYINT},
-      production_place = #{record.productionPlace,jdbcType=VARCHAR},
-      production_place_desc = #{record.productionPlaceDesc,jdbcType=VARCHAR},
-      company = #{record.company,jdbcType=VARCHAR},
-      environment_desc = #{record.environmentDesc,jdbcType=VARCHAR},
-      brand_id = #{record.brandId,jdbcType=INTEGER},
-      variety_id = #{record.varietyId,jdbcType=INTEGER},
-      farmer_id = #{record.farmerId,jdbcType=INTEGER},
-      storage_way = #{record.storageWay,jdbcType=VARCHAR},
-      derating_rate = #{record.deratingRate,jdbcType=TINYINT},
-      water_rate = #{record.waterRate,jdbcType=TINYINT},
-      suger_rate = #{record.sugerRate,jdbcType=TINYINT}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.farmer.fruit.models.fruit.FruitInformation" >
+  <select id="findList"  parameterType="FruitInformationQuery" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from qr_fruit_information
+    <include refid="condition"/> order BY  update_time desc
+    limit #{pageNo},#{pageSize}
+  </select>
+  <update id="update" parameterType="FruitInformation" >
     update qr_fruit_information
     <set >
       <if test="type != null" >
-        type = #{type,jdbcType=TINYINT},
+        `type` = #{type},
       </if>
       <if test="growthPeriod != null" >
-        growth_period = #{growthPeriod,jdbcType=TINYINT},
+        growth_period = #{growthPeriod},
       </if>
       <if test="productionPlace != null" >
-        production_place = #{productionPlace,jdbcType=VARCHAR},
+        production_place = #{productionPlace},
       </if>
       <if test="productionPlaceDesc != null" >
-        production_place_desc = #{productionPlaceDesc,jdbcType=VARCHAR},
+        production_place_desc = #{productionPlaceDesc},
       </if>
       <if test="company != null" >
-        company = #{company,jdbcType=VARCHAR},
+        company = #{company},
       </if>
-      <if test="environmentDesc != null" >
-        environment_desc = #{environmentDesc,jdbcType=VARCHAR},
+      <if test="farmerDesc != null" >
+        farmer_desc = #{farmerDesc},
       </if>
       <if test="brandId != null" >
-        brand_id = #{brandId,jdbcType=INTEGER},
+        brand_id = #{brandId},
       </if>
       <if test="varietyId != null" >
-        variety_id = #{varietyId,jdbcType=INTEGER},
+        variety_id = #{varietyId},
       </if>
-      <if test="farmerId != null" >
-        farmer_id = #{farmerId,jdbcType=INTEGER},
-      </if>
+     
       <if test="storageWay != null" >
-        storage_way = #{storageWay,jdbcType=VARCHAR},
+        storage_way = #{storageWay},
       </if>
-      <if test="deratingRate != null" >
-        derating_rate = #{deratingRate,jdbcType=TINYINT},
+      <if test="destroyRate != null" >
+        destroy_rate = #{destroyRate},
       </if>
       <if test="waterRate != null" >
-        water_rate = #{waterRate,jdbcType=TINYINT},
+        water_rate = #{waterRate},
       </if>
-      <if test="sugerRate != null" >
-        suger_rate = #{sugerRate,jdbcType=TINYINT},
+      <if test="sugarRate != null" >
+        sugar_rate = #{sugarRate},
+      </if>
+      <if test="status !=null">
+        status = #{status},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.farmer.fruit.models.fruit.FruitInformation" >
-    update qr_fruit_information
-    set type = #{type,jdbcType=TINYINT},
-      growth_period = #{growthPeriod,jdbcType=TINYINT},
-      production_place = #{productionPlace,jdbcType=VARCHAR},
-      production_place_desc = #{productionPlaceDesc,jdbcType=VARCHAR},
-      company = #{company,jdbcType=VARCHAR},
-      environment_desc = #{environmentDesc,jdbcType=VARCHAR},
-      brand_id = #{brandId,jdbcType=INTEGER},
-      variety_id = #{varietyId,jdbcType=INTEGER},
-      farmer_id = #{farmerId,jdbcType=INTEGER},
-      storage_way = #{storageWay,jdbcType=VARCHAR},
-      derating_rate = #{deratingRate,jdbcType=TINYINT},
-      water_rate = #{waterRate,jdbcType=TINYINT},
-      suger_rate = #{sugerRate,jdbcType=TINYINT}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select resultMap="BaseResultMap" parameterType="com.farmer.fruit.models.fruit.FruitInformationQuery" id="selectByExampleWithRowbounds" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from qr_fruit_information
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-    <if test="startRow != null" >
-      limit #{startRow} , #{pageSize}
-    </if>
-  </select>
-</mapper>
+  </mapper>

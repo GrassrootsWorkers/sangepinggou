@@ -19,11 +19,12 @@
         <result column="file_path" property="filePath"/>
         <result column="picture_path" property="picturePath"/>
         <result column="test_url" property="testUrl"/>
+        <result column="finish_flag" property="finishFlag"/>
     </resultMap>
 
     <sql id="base_column_List">
       r.id, r.farmer_id, `begin`, `end`, r.`status`, r.token, r.apply_time,r.apply_count,r.brand_id,r.variety_id,
-      r.`type`,r.audit_desc,r.apply_desc,r.file_path,r.picture_path,r.test_url
+      r.`type`,r.audit_desc,r.apply_desc,r.file_path,r.picture_path,r.test_url,r.finish_flag
   </sql>
     <sql id="condition">
         <if test="farmerId != null">
@@ -108,6 +109,9 @@
             </if>
             <if test="testUrl !=null">
                 test_url = #{testUrl},
+            </if>
+            <if test="finishFlag !=null">
+                finish_flag = #{finishFlag},
             </if>
         </set>
         where id = #{id}

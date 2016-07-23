@@ -44,7 +44,7 @@
   <delete id="delete" parameterType="FarmerQuery" >
     delete from qr_farmer where id = #{id}
   </delete>
-  <insert id="insert"  useGeneratedKeys="true" keyProperty="userId"   parameterType="Farmer" >
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id"   parameterType="Farmer" >
     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
     SELECT LAST_INSERT_ID() AS id
   </selectKey>

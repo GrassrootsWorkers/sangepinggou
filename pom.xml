@@ -41,6 +41,7 @@
 		<druid.version>1.0.11</druid.version>
 
 		<!-- Nosql -->
+		<!--redis-->
 		<jedis.version>2.7.3</jedis.version>
 		
 		<mongodb.version>3.0.3</mongodb.version>

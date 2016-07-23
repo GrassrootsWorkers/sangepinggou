@@ -71,3 +71,10 @@ jQuery(function($){
     });
 
 });
+function validateIfNumber(val){
+    var reg = new RegExp("^[0-9]*$");
+    if(!reg.test(val)){
+      return false;
+    }
+    return true;
+}

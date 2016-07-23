@@ -27,8 +27,22 @@ public class CommonServiceImpl implements ICommonService {
     }
 
     @Override
+    public String getBrandName(Long brandId) {
+        BrandQuery query = new BrandQuery();
+        query.setId(brandId);
+        return commonDao.getBrands(query).get(0).getName();
+    }
+
+    @Override
     public List<Variety> getVarieties(VarietyQuery query) {
         return commonDao.getVarieties(query);
+    }
+
+    @Override
+    public String getVarietyName(Long varietyId) {
+        VarietyQuery query = new VarietyQuery();
+        query.setId(varietyId);
+        return commonDao.getVarieties(query).get(0).getName();
     }
 
     @Override
@@ -47,6 +61,19 @@ public class CommonServiceImpl implements ICommonService {
         type2.setName("脆梨");
         types.add(type2);
         return  types;
+    }
+
+    @Override
+    public String getFruitTypeName(String typeCode) {
+        if("PG".equalsIgnoreCase(typeCode)){
+            return "苹果";
+        }else if("XG".equalsIgnoreCase(typeCode)){
+            return "西瓜";
+        }else if("L".equalsIgnoreCase(typeCode)){
+            return "梨";
+        }else{
+            return "未知";
+        }
     }
 
     @Override

@@ -1,14 +1,15 @@
 package com.farmer.fruit.queue;
 
 
+import com.farmer.fruit.json.GsonUtil;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Queue;
 
-import com.farmer.fruit.json.GsonUtil;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 /**
  * Created by liuzhi on 2016/7/15.
  */
@@ -173,5 +174,6 @@ public class RedisQueue<E> implements Queue<E> {
     public E peek() {
         return element();
     }
+
 
 }

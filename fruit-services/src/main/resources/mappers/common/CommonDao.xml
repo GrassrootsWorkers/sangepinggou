@@ -25,7 +25,10 @@
 
   <select id="getBrands" parameterType="com.farmer.fruit.models.brand.BrandQuery" resultMap="brand_map">
     select  id,`type`,brand_desc,add_time,name from qr_brand
-    where `type` = #{type}
+    where 1=1
+    <if test="type !=null">
+    and `type` = #{type}
+    </if>
     <if test="id !=null">
       and id = #{id}
     </if>

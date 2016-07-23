@@ -77,6 +77,18 @@ public class Reserved extends BaseEntity {
      * 验证token是否正确
      */
     private String testUrl;
+    /**
+     * 市场价格
+     */
+    private Double markPrice;
+    /**
+     * 采摘日期
+     */
+    private Date harvestTime;
+    /**
+     * 标记是否完成
+     */
+    private String finishFlag;
 
 
     private static final long serialVersionUID = 1L;
@@ -232,6 +244,30 @@ public class Reserved extends BaseEntity {
 
     public void setTestUrl(String testUrl) {
         this.testUrl = testUrl;
+    }
+
+    public Double getMarkPrice() {
+        return markPrice;
+    }
+
+    public void setMarkPrice(Double markPrice) {
+        this.markPrice = markPrice;
+    }
+
+    public Date getHarvestTime() {
+        return harvestTime;
+    }
+
+    public void setHarvestTime(Date harvestTime) {
+        this.harvestTime = harvestTime;
+    }
+
+    public String getFinishFlag() {
+        return finishFlag;
+    }
+
+    public void setFinishFlag(String finishFlag) {
+        this.finishFlag = finishFlag;
     }
 
     @Override
