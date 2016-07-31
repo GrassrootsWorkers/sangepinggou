@@ -76,23 +76,35 @@
                     <span><i>*</i>水果种类：</span>
                 </label>
                 <div class="com_select">
-                    <select id="variety_id" name="varietyId" style="width:150px">
+                    <select id="variety_id" name="varietyId" style="width:150px" onchange="validateIfAdd()">
                     </select>
                 </div>
-
+            </div>
+            <div class="row_w ">
+                <label>
+                    <span><i>*</i>合作社：&nbsp;&nbsp;&nbsp;</span>
+                    <input style="width: 320px;" type="text" id="company_name" name="company" class="bgef" placeholder="合作社名称，没有参加填写本人姓名"/>
+                </label>
+                <label>
+                    <span><i>*</i>种植园地址：</span>
+                    <input style="width: 320px;" type="text" id="production_place" name="productionPlace" class="bgef" placeholder="种植园所在镇或乡的地址"/>
+                </label>
             </div>
             <div class="row_w ">
                 <label>
                     <span><i>*</i>生长期：&nbsp;&nbsp;&nbsp;</span>
-                    <input type="text" id="growth_period" name="growthPeriod" class="bgef" placeholder="100天"/>
+                    <input style="width: 150px;" type="text" id="growth_period" name="growthPeriod" class="bgef" placeholder="100天"/>
+                    <span class="color00">&nbsp;&nbsp;天</span>
                 </label>
                 <label>
                     <span><i>*</i>含水量：</span>
-                    <input type="text" id="water_rate" name="waterRate" class="bgef" placeholder="100%"/>
+                    <input style="width: 150px;" type="text" id="water_rate" name="waterRate" class="bgef" placeholder="100%"/>
+                    <span class="color00">&nbsp;&nbsp;%</span>
                 </label>
                 <label>
                     <span><i>*</i>含糖量：</span>
-                    <input type="text" id="sugar_rate" name="sugarRate" class="bgef" placeholder="100%"/>
+                    <input style="width: 150px;" type="text" id="sugar_rate" name="sugarRate" class="bgef" placeholder="100%"/>
+                    <span class="color00">&nbsp;&nbsp;%</span>
                 </label>
             </div>
             <div class="row_w">
@@ -110,7 +122,7 @@
                 <textarea rows="2" cols="1" id="place_desc" name="t_productionPlaceDesc"></textarea>
                 <script type="text/javascript">
                     var placeDesc = CKEDITOR.replace("t_productionPlaceDesc", {
-                        width: 800,
+                        width: 860,
                         height: 200,
                         toolbarCanCollapse: true,
                         entities: false,
@@ -127,7 +139,7 @@
                 <textarea rows="2" cols="1" id="farmer_desc" name="t_farmerDesc"></textarea>
                 <script type="text/javascript">
                     var farmerDesc = CKEDITOR.replace("t_farmerDesc", {
-                        width: 800,
+                        width: 860,
                         height: 200,
                         toolbarCanCollapse: true,
                         entities: false,
@@ -159,7 +171,27 @@
 <script type="text/javascript" src="/plugins/select2/select2.full.min.js"></script>
 <script src="http://s.sangepg.com/js/jquery/jquery.form.js"></script>
 <script type="text/javascript">
-
+    var ifAllowSubmit = false;
+    function validateIfAdd(){
+        $.ajax({
+            type: "get",
+            url: "/admin/fruit/info/ifAdded",
+            data: {
+                "type": $("select[name='type']").val(),
+                brandId:$("select[name='brandId']").val(),
+                varietyId:$("select[name='varietyId']").val()
+            },
+            dataType: "json",
+            async: false,
+            success: function (msg) {
+              if(msg.flag){
+                  ifAllowSubmit = true;
+              }else{
+                  alert("已经添加了");
+              }
+            }
+        });
+    }
     function submitInfo(status) {
         var nameValue = $("select[name='type']").val();
         if (nameValue == "-1") {
@@ -176,6 +208,17 @@
             alert("请选择要添加水果的品种");
             return;
         }
+        var company = $("#company_name").val();
+        if(company == ""){
+            alert("请填写合作社名称，没有参加合作社请填写本人姓名");
+            return;
+        }
+        var productionPlace = $("#production_place").val();
+        if(productionPlace ==""){
+            alert("请填写种植园的地址");
+            return;
+        }
+
         var waterRate = $("#water_rate").val().replace("%", "");
         $("#water_rate").val(waterRate);
         if (waterRate >= 100) {
@@ -213,6 +256,10 @@
             return;
         } else {
             $("#h_farmer_desc").val(encodeURI(farmerDescContent));
+        }
+        if(!ifAllowSubmit){
+            alert("已经添加过了");
+            return false;
         }
         if (status == 0) {
             $("#info_form").ajaxSubmit({

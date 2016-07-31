@@ -66,9 +66,8 @@ public class QRUtil {
     }
 
     private static void makeImgDir(File file){
-        File f = new File(file.getPath().replaceAll("\\d+\\..*$", ""));
-        if(!f.isDirectory()&&!f.exists()){
-            f.mkdirs();
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
         }
     }
 

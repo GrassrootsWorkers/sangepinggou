@@ -3,13 +3,13 @@ package com.farmer.fruit.sgpg.controller.fruit;
 import com.farmer.fruit.interfaces.common.ICommonService;
 import com.farmer.fruit.interfaces.fruit.IFruitBaseInfoService;
 import com.farmer.fruit.models.farmer.Farmer;
-import com.farmer.fruit.models.farmer.Reserved;
-import com.farmer.fruit.models.farmer.ReservedQuery;
 import com.farmer.fruit.models.fruit.FruitInformation;
 import com.farmer.fruit.models.fruit.FruitInformationQuery;
 import com.farmer.fruit.models.fruit.FruitType;
 import com.farmer.fruit.sgpg.controller.base.BaseAction;
-import com.farmer.fruit.utils.RandomStrUtil;
+import com.farmer.fruit.sgpg.controller.base.ReloadableConfig;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.io.*;
+import java.net.URLDecoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,8 @@ public class FruitBaseInfoController extends BaseAction {
     ICommonService commonService;
     @Autowired
     public IFruitBaseInfoService fruitBaseInfoService;
+    @Autowired
+    FreeMarkerConfigurer freeMarkerConfigurer;
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public ModelAndView index(FruitInformationQuery query, HttpServletRequest request) {
@@ -92,6 +95,17 @@ public class FruitBaseInfoController extends BaseAction {
 
         return modelAndView;
     }
+    @RequestMapping(value="ifAdded")
+    @ResponseBody
+    public Map<String,Object> validateIfAdded(FruitInformationQuery query){
+        Map<String, Object> dataMap = new HashMap<String, Object>();
+        dataMap.put("flag",true);
+        FruitInformation fruitInformation = fruitBaseInfoService.get(query);
+        if(fruitInformation !=null){
+            dataMap.put("flag",false);
+        }
+        return dataMap;
+    }
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ModelAndView add(FruitInformation info, HttpServletRequest request) throws UnsupportedEncodingException {
         Farmer farmer = getLoginFarmer(request);
@@ -106,6 +120,8 @@ public class FruitBaseInfoController extends BaseAction {
             ModelAndView view = new ModelAndView(redirectView);
             return view;
         }
+
+
         if(info.getId() !=null){
             info.setNewRecord(false);
         }else{
@@ -115,8 +131,52 @@ public class FruitBaseInfoController extends BaseAction {
         info.setUpdateTime(new Date());
         info.setStatus("2");
         fruitBaseInfoService.save(info);
-        //发布为静态页面
+        if(!publishBaseInfo(info)){
+            info.setStatus("3");
+            info.setNewRecord(false);
+            fruitBaseInfoService.save(info);
+        }
         return new ModelAndView("redirect:/admin/fruit/info/index?pageIndex=1");
+    }
+
+    public boolean publishBaseInfo(FruitInformation info) {
+        info.setTypeName(commonService.getFruitTypeName(info.getType()));
+        info.setBrandName(commonService.getBrandName(info.getBrandId()));
+        info.setVarietyName(commonService.getVarietyName(info.getVarietyId()));
+        //发布为静态页面
+        String templateName = info.getType()+"_base_info.ftl";
+        Writer out = null;
+        try {
+            info.setFarmerDesc(URLDecoder.decode(info.getFarmerDesc(),"UTF-8"));
+            info.setProductionPlaceDesc(URLDecoder.decode(info.getProductionPlaceDesc(),"UTF-8"));
+            Template template = freeMarkerConfigurer.getConfiguration().getTemplate(templateName);
+            String htmlFilePath = ReloadableConfig.getStringProperty("static.html")+"/"+info.getFarmerId()+"/"+info.getFarmerId()+"_"+info.getType()+"_"+info.getId()+".html";
+            File htmlFile = new File(htmlFilePath);
+            if (!htmlFile.getParentFile().exists()) {
+                htmlFile.getParentFile().mkdirs();
+            }
+            if (!htmlFile.exists()) {
+                htmlFile.createNewFile();
+            }
+            Map<String,FruitInformation> map = new HashMap<String,FruitInformation>();
+            map.put("info",info);
+            out = new OutputStreamWriter(new FileOutputStream(htmlFilePath),"UTF-8");
+            template.process(map, out);
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }catch (TemplateException e){
+            e.printStackTrace();
+            return  false;
+        }finally {
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return true;
     }
     @RequestMapping(value="ajaxAdd",method = RequestMethod.POST)
     @ResponseBody

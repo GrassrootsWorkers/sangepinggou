@@ -3,14 +3,37 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- 配置线程池 -->
-    <bean id ="taskExecutor"  class ="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" >
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <!-- 线程池维护线程的最少数量 -->
-       <property name ="corePoolSize" value ="5" />
+        <property name="corePoolSize" value="5"/>
         <!-- 线程池维护线程所允许的空闲时间 -->
-        <property name ="keepAliveSeconds" value ="30000" />
+        <property name="keepAliveSeconds" value="30000"/>
         <!-- 线程池维护线程的最大数量 -->
-       <property name ="maxPoolSize" value ="1000" />
+        <property name="maxPoolSize" value="1000"/>
         <!-- 线程池所使用的缓冲队列 -->
-       <property name ="queueCapacity" value ="200" />
+        <property name="queueCapacity" value="200"/>
+    </bean>
+    <bean id="fruitPublishTask" class="com.farmer.fruit.publish.fruit.FruitPublishTask">
+        <property name="freeMarkerConfigurer" ref="freeMarkerConfigurer"/>
+        <property name="rootPath" value="I://app/web_site/page/fruit"/>
+    </bean>
+
+    <!-- 配置块发布线程池 -->
+    <bean id="blockThreadManager" class="com.farmer.fruit.publish.ThreadManager">
+        <constructor-arg index="0">
+            <value>BlockThreadPool</value>
+        </constructor-arg>
+        <constructor-arg index="1">
+            <value>10</value>
+        </constructor-arg>
+        <constructor-arg index="2">
+            <value>50</value>
+        </constructor-arg>
+        <constructor-arg index="3">
+            <value>100</value>
+        </constructor-arg>
+        <constructor-arg index="4">
+            <value>600</value>
+        </constructor-arg>
     </bean>
 </beans>

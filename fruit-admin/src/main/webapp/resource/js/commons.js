@@ -78,3 +78,10 @@ function validateIfNumber(val){
     }
     return true;
 }
+function validateNDouble(val){//验证小数，保留一位小数点
+
+    var patten = /^-?\d+\.?\d{2}$/;
+
+    return patten.test(val);
+
+}

@@ -89,6 +89,16 @@
             </div>
             <div class="row_w ">
                 <label>
+                    <span><i>*</i>合作社：&nbsp;&nbsp;&nbsp;</span>
+                    <input style="width: 320px;" type="text" id="company_name" name="company"  value="${info.company}" placeholder="合作社名称，没有参加填写本人姓名"/>
+                </label>
+                <label>
+                    <span><i>*</i>种植园地址：</span>
+                    <input style="width: 320px;" type="text" id="production_place" name="productionPlace"  value="${info.productionPlace}" placeholder="种植园所在镇或乡的地址"/>
+                </label>
+            </div>
+            <div class="row_w ">
+                <label>
                     <span><i>*</i>生长期：&nbsp;&nbsp;&nbsp;</span>
                     <input style="width: 150px;" type="text" id="growth_period" name="growthPeriod" class="bgef"
                            placeholder="100天" value="${info.growthPeriod}"/><span
@@ -122,7 +132,7 @@
                 <textarea rows="2" cols="1" id="place_desc" name="t_productionPlaceDesc"></textarea>
                 <script type="text/javascript">
                     var placeDesc = CKEDITOR.replace("t_productionPlaceDesc", {
-                        width: 800,
+                        width: 860,
                         height: 200,
                         toolbarCanCollapse: true,
                         entities: false,
@@ -143,7 +153,7 @@
                 <textarea rows="2" cols="1" id="farmer_desc" name="t_farmerDesc"></textarea>
                 <script type="text/javascript">
                     var farmerDesc = CKEDITOR.replace("t_farmerDesc", {
-                        width: 800,
+                        width: 860,
                         height: 200,
                         toolbarCanCollapse: true,
                         entities: false,
@@ -201,6 +211,16 @@
         nameValue = $("select[name='varietyId']").val();
         if (nameValue == "-1") {
             alert("请选择要添加水果的品种");
+            return;
+        }
+        var company = $("#company_name").val();
+        if(company == ""){
+            alert("请填写合作社名称，没有参加合作社请填写本人姓名");
+            return;
+        }
+        var productionPlace = $("#production_place").val();
+        if(productionPlace ==""){
+            alert("请填写种植园的地址");
             return;
         }
         var waterRate = $("#water_rate").val().replace("%", "");

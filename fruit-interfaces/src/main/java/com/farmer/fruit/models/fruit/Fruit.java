@@ -9,9 +9,31 @@ public class Fruit extends BaseEntity {
 
     private Long id;
 
+    private Long farmerId;
+
     private String fruitCode;
 
     private Long baseCode;
+    /**
+     * 基础信息块的url
+     */
+    private String baseInfoPath;
+    /**
+     * 水果种类
+     */
+    private String type;
+    /**
+     * 水果种类名称
+     */
+    private String typeName;
+
+    private Long brandId;
+
+    private String brandName;
+
+    private Long varietyId;
+
+    private String varietyName;
 
     private Double weight;
 
@@ -29,13 +51,12 @@ public class Fruit extends BaseEntity {
 
     private Date addTime;
 
-    private Integer addUserId;
+    private Long addUserId;
 
-    private Integer checkoutUserId;
+    private Long checkoutUserId;
 
     private Date checkoutTime;
 
-    private String deleteFlag;
 
     private String priceFlag;
 
@@ -56,7 +77,34 @@ public class Fruit extends BaseEntity {
      * 图片的原始路径
      */
     private String origImage;
+    /**
+     * 静态文件的路径
+     */
+    private String filePath;
 
+    public Long getFarmerId() {
+        return farmerId;
+    }
+
+    public void setFarmerId(Long farmerId) {
+        this.farmerId = farmerId;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getBaseInfoPath() {
+        return baseInfoPath;
+    }
+
+    public void setBaseInfoPath(String baseInfoPath) {
+        this.baseInfoPath = baseInfoPath;
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -69,7 +117,7 @@ public class Fruit extends BaseEntity {
     }
 
     public String getImage() {
-        return "http://s.sangepg.com/images/fruit/" + id / 1000 + "/center_" + id + ".jpg";
+        return "http://s.sangepg.com/images/fruit/" + id /10000 + "/center_" + id + ".jpg";
     }
 
     public Long getId() {
@@ -160,19 +208,19 @@ public class Fruit extends BaseEntity {
         this.addTime = addTime;
     }
 
-    public Integer getAddUserId() {
+    public Long getAddUserId() {
         return addUserId;
     }
 
-    public void setAddUserId(Integer addUserId) {
+    public void setAddUserId(Long addUserId) {
         this.addUserId = addUserId;
     }
 
-    public Integer getCheckoutUserId() {
+    public Long getCheckoutUserId() {
         return checkoutUserId;
     }
 
-    public void setCheckoutUserId(Integer checkoutUserId) {
+    public void setCheckoutUserId(Long checkoutUserId) {
         this.checkoutUserId = checkoutUserId;
     }
 
@@ -182,14 +230,6 @@ public class Fruit extends BaseEntity {
 
     public void setCheckoutTime(Date checkoutTime) {
         this.checkoutTime = checkoutTime;
-    }
-
-    public String getDeleteFlag() {
-        return deleteFlag;
-    }
-
-    public void setDeleteFlag(String deleteFlag) {
-        this.deleteFlag = deleteFlag == null ? null : deleteFlag.trim();
     }
 
     public String getPriceFlag() {
@@ -213,7 +253,7 @@ public class Fruit extends BaseEntity {
     }
 
     public String getQrPath() {
-        return "http://s.sangepg.com/images/no_picture.png";
+        return "http://s.sangepg.com/images/fruit/" + id /10000 + "/" + fruitCode + ".png";
     }
 
     public void setQrPath(String qrPath) {
@@ -221,39 +261,59 @@ public class Fruit extends BaseEntity {
     }
 
     public String getIfSale() {
-        if ("N".equals(ifSale)) return "否";
-        return "是";
+        return ifSale;
     }
 
     public void setIfSale(String ifSale) {
         this.ifSale = ifSale;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", fruitCode=").append(fruitCode);
-        sb.append(", baseCode=").append(baseCode);
-        sb.append(", weight=").append(weight);
-        sb.append(", height=").append(height);
-        sb.append(", width=").append(width);
-        sb.append(", high=").append(high);
-        sb.append(", maturingStatus=").append(maturingStatus);
-        sb.append(", harvestTime=").append(harvestTime);
-        sb.append(", marketPrice=").append(marketPrice);
-        sb.append(", addTime=").append(addTime);
-        sb.append(", addUserId=").append(addUserId);
-        sb.append(", checkoutUserId=").append(checkoutUserId);
-        sb.append(", checkoutTime=").append(checkoutTime);
-        sb.append(", deleteFlag=").append(deleteFlag);
-        sb.append(", priceFlag=").append(priceFlag);
-        sb.append(", lotteryFlag=").append(lotteryFlag);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public String getType() {
+        return type;
     }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public Long getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public Long getVarietyId() {
+        return varietyId;
+    }
+
+    public void setVarietyId(Long varietyId) {
+        this.varietyId = varietyId;
+    }
+
+    public String getVarietyName() {
+        return varietyName;
+    }
+
+    public void setVarietyName(String varietyName) {
+        this.varietyName = varietyName;
+    }
+
 }

@@ -12,7 +12,9 @@ import com.farmer.fruit.business.impl.user.UserServiceImpl;
 import com.farmer.fruit.models.user.User;
 import redis.clients.jedis.*;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -83,6 +85,13 @@ public class TestProject {
 
         jedisCluster.close();
 
+    }
+    @Test
+    public void testLambda(){
+        List features = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API");
+        features.forEach(
+                n -> System.out.println(n)
+        );
     }
 
 }

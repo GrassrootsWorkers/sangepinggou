@@ -9,7 +9,7 @@
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="freemarkerSettings" ref="freemarkerConfiguration" />
         <property name="templateLoaderPath">
-            <value>/WEB-INF/template/</value>
+            <value>/template/</value>
         </property>
     </bean>
 

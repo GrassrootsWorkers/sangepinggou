@@ -57,7 +57,7 @@ public class FruitController extends BaseAction {
             query.setAddFarmerId(farmer.getId());
             int count = fruitService.findListCount(query);
             query.setCount(count);
-            query.setEndDate(new Date());
+           // query.setEndDate(new Date());
             List<Fruit> fruitList = fruitService.findList(query, query.getPageNo(), query.getPageSize());
             Map<String, Object> dataMap = new HashMap<String, Object>();
             dataMap.put("fruits", fruitList);

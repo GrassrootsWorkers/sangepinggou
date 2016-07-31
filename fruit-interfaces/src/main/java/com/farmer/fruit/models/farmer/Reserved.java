@@ -1,7 +1,12 @@
 package com.farmer.fruit.models.farmer;
 
 import com.farmer.fruit.models.BaseEntity;
+import org.junit.Test;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,9 +47,13 @@ public class Reserved extends BaseEntity {
      */
     private String type;
     /**
+     * 水果类型名称
+     */
+    private String typeName;
+    /**
      * 品牌Id
      */
-    private Integer brandId;
+    private Long brandId;
     /**
      * 品牌名称
      */
@@ -52,7 +61,7 @@ public class Reserved extends BaseEntity {
     /**
      * 品种Id
      */
-    private Integer varietyId;
+    private Long varietyId;
     /**
      * 系列名称
      */
@@ -84,12 +93,20 @@ public class Reserved extends BaseEntity {
     /**
      * 采摘日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:SS" )
     private Date harvestTime;
     /**
      * 标记是否完成
      */
     private String finishFlag;
 
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -149,19 +166,19 @@ public class Reserved extends BaseEntity {
         this.type = type;
     }
 
-    public Integer getBrandId() {
+    public Long getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Integer brandId) {
+    public void setBrandId(Long brandId) {
         this.brandId = brandId;
     }
 
-    public Integer getVarietyId() {
+    public Long getVarietyId() {
         return varietyId;
     }
 
-    public void setVarietyId(Integer varietyId) {
+    public void setVarietyId(Long varietyId) {
         this.varietyId = varietyId;
     }
 

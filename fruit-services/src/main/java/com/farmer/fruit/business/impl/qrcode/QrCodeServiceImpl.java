@@ -2,6 +2,8 @@ package com.farmer.fruit.business.impl.qrcode;
 
 import com.farmer.fruit.excel.ExcelUtils;
 import com.farmer.fruit.file.CompressFile;
+import com.farmer.fruit.interfaces.common.ICommonService;
+import com.farmer.fruit.interfaces.fruit.IFruitService;
 import com.farmer.fruit.interfaces.qrcode.IQrCodeService;
 import com.farmer.fruit.models.farmer.Reserved;
 import com.farmer.fruit.models.farmer.ReservedQuery;
@@ -28,12 +30,15 @@ public class QrCodeServiceImpl implements IQrCodeService {
     @Autowired
     IReservedDao reservedDao;
     @Autowired
+    ICommonService commonService;
+    @Autowired
     JedisPool jedisPool;
     @Autowired
     IFruitInformationDao fruitInformationDao;
     @Autowired
     ThreadPoolTaskExecutor taskExecutor;
-
+    @Autowired
+    IFruitService fruitService;
     @Override
     public Reserved getById(Long id) {
         return reservedDao.getById(id);
@@ -95,12 +100,13 @@ public class QrCodeServiceImpl implements IQrCodeService {
         ExcelUtils utils = new ExcelUtils();
         String fileSuffix = reserved.getFilePath().substring(reserved.getFilePath().lastIndexOf("."), reserved.getFilePath().length());
         try {
-            if ("xls".equals(fileSuffix)) {
+            if (".xls".equals(fileSuffix)) {
                 fruitMapList = utils.loadExcel2003Info(reserved.getFilePath());
             } else {
                 fruitMapList = utils.loadExcel2007Info(reserved.getFilePath());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         int length = fruitMapList.size();
@@ -119,12 +125,16 @@ public class QrCodeServiceImpl implements IQrCodeService {
         if (files.length == length) {
             //保存上传信息
             save(reserved);
+            reserved.setBrandName(commonService.getBrandName(reserved.getBrandId()));
+            reserved.setTypeName(commonService.getFruitTypeName(reserved.getType()));
+            reserved.setVarietyName(commonService.getVarietyName(reserved.getVarietyId()));
             System.out.println("begin pool size :" + taskExecutor.getPoolSize());
             AddFruitTask task = new AddFruitTask(reserved);
             task.setJedisPool(jedisPool);
             task.setFruitInformationDao(fruitInformationDao);
-            task.run();
-           // taskExecutor.execute(task);
+            task.setFruitService(fruitService);
+            //task.run();
+            taskExecutor.execute(task);
             System.out.println("end pool size :" + taskExecutor.getPoolSize());
             return true;
         } else {

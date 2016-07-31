@@ -20,11 +20,15 @@
     <result column="price_flag" property="priceFlag"/>
     <result column="lottery_flag" property="lotteryFlag"/>
     <result column="if_sale" property="ifSale"/>
+    <result column="type" property="type"/>
+    <result column="brand_id" property="brandId"/>
+    <result column="variety_id" property="varietyId"/>
+    <result column="orig_image" property="origImage"/>
   </resultMap>
   <sql id="Base_Column_List" >
       id, fruit_code, base_code, weight, height, width, high, maturing_status, harvest_time, 
       market_price, add_time, add_user_id, checkout_user_id, checkout_time, delete_flag, 
-      price_flag, lottery_flag,if_sale
+      price_flag, lottery_flag,if_sale,variety_id,brand_id,`type`,orig_image
   </sql>
   <select id="get" resultMap="BaseResultMap" parameterType="FruitQuery" >
     select
@@ -48,6 +52,9 @@
       <if test="endDate !=null">
         and f.add_time >= #{endDate}
       </if>
+      <if test="deleteFlag !=null">
+        and delete_flag = #{deleteFlag}
+      </if>
     </where>
   </sql>
   <select id="findList" parameterType="FruitQuery" resultMap="BaseResultMap" >
@@ -61,20 +68,23 @@
     select count(1) from qr_fruit_detail f
     <include refid="condition"/>
   </select>
-  <insert id="insert" parameterType="Fruit" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id"    parameterType="Fruit" >
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
     insert into qr_fruit_detail (
     fruit_code, base_code, 
       weight, height, width, 
       high, maturing_status, harvest_time, 
       market_price, add_time, add_user_id, 
       checkout_user_id, checkout_time, delete_flag, 
-      price_flag, lottery_flag)
+      price_flag, lottery_flag,`type`,brand_id,variety_id,orig_image)
     values (#{fruitCode}, #{baseCode}, 
       #{weight}, #{height}, #{width}, 
       #{high}, #{maturingStatus}, #{harvestTime}, 
       #{marketPrice}, #{addTime}, #{addUserId}, 
       #{checkoutUserId}, #{checkoutTime}, #{deleteFlag}, 
-      #{priceFlag}, #{lotteryFlag})
+      #{priceFlag}, #{lotteryFlag},#{type},#{brandId},#{varietyId},#{origImage})
   </insert>
 
   <update id="update" parameterType="Fruit" >

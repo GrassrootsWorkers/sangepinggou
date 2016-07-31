@@ -61,7 +61,7 @@
                                     <div class="r">
                                         <span class="operation">
                                             <c:choose>
-                                                <c:when test="${qr.status == '5'}">
+                                                <c:when test="${qr.status == '5' or qr.status =='6'}">
                                                     <a class="delete" href="http://www.sangepg.com/admin/qr/toUpload?id=${qr.id}" target="_blank">上传水果</a>
                                                 </c:when>
                                                 <c:when test="${qr.status == '7'}">

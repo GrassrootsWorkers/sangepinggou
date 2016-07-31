@@ -118,9 +118,7 @@ public class RedisQueue<E> implements Queue<E> {
         Jedis jedis = null;
         try{
             jedis = jedisPool.getResource();
-
             jedis.rpush(redisKey, GsonUtil.getJSON(e));
-
         } finally{
            jedis.close();
         }

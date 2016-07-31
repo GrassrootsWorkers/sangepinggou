@@ -15,16 +15,16 @@ import com.farmer.fruit.utils.RandomStrUtil;
 
 
 
-public class BinggouPictureUtil {
-	public static String root = "/app/web_site/images";
-	public static String path_prefix = "/app/web_site";
-	public static String water_mark = "/app/web_site/images/mark_water.png";
+public class FruitPictureUtil {
+	public static String root = "I://app/web_site/images/fruit";
+	public static String path_prefix = "I://app/web_site";
+	public static String water_mark = "I://app/web_site/images/mark_water.png";
 	public static int water_mark_width = 100;
 	public static int water_mark_height = 100;
 	// 水印在中间位置
 	public static int mark_location = 5;
 	public static int alpha = 50;
-	public final static int base = 1000;
+	public final static int base = 10000;
 	public static int icon_width = 194;
 	public static int icon_height = 162;
 	public static Map<String, Integer> pictureSize;
@@ -107,27 +107,15 @@ public class BinggouPictureUtil {
 
 	/**
 	 * 大图 get("big") 中图get("center") 小图get("small");
-	 * 
 	 * @param id
-	 * @param type
-	 *            1--project 2--demand
 	 * @return
 	 */
-	public static Map<String, String> getBinggouMainPicture(int id, int type, String prefix) {
-		String typeStr = "";
-		if (type == 1) {
-			typeStr = "project";
-		}
-		if (type == 2) {
-			typeStr = "demand";
-		}
-		String filePath = root + File.separator + typeStr+File.separator+id / base + File.separator + id + File.separator;
+	public static Map<String, String> getMainPicture(long id, String prefix) {
+		String filePath = root + File.separator +File.separator+id / base + File.separator + id + File.separator;
 		File file = new File(filePath);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
-
-
 		Map<String, String> imagePath = new HashMap<String, String>();
 		imagePath.put("normal", filePath + "normal." + prefix);
 		imagePath.put("big", filePath + "big." + prefix);
@@ -139,16 +127,15 @@ public class BinggouPictureUtil {
 	/**
 	 * 
 	 * @param projectId
-	 * @param type 1--project 2--demand
 	 * @param srcFile
 	 * @return
 	 * @throws Exception
 	 */
 
-	public static Map<String, String> getBinggouMainPictureUrl(int projectId, int type, String srcFile)
+	public static Map<String, String> getMainPictureUrl(long projectId, String srcFile)
 			throws Exception {
 		String prefix = srcFile.substring(srcFile.lastIndexOf(".") + 1, srcFile.length());
-		Map<String, String> fileMap = getBinggouMainPicture(projectId, type, prefix);
+		Map<String, String> fileMap = getMainPicture(projectId, prefix);
 		return getSinglePictureSize(srcFile, fileMap);
 	}
 
@@ -212,7 +199,6 @@ public class BinggouPictureUtil {
 				alpha);
 		String value = filePath.replace(path_prefix, PictureDomainUtil.getRandomDomain(null));
 		filePathMap.put("normal", value);
-
 		requireWidth = pictureSize.get("big");
 		width = width > requireWidth ? requireWidth : width;
 		PictureUtils.zoomImage(srcPath, filePathMap.get("big"), width, null);

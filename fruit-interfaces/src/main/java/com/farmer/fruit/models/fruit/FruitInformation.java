@@ -18,7 +18,7 @@ public class FruitInformation extends BaseEntity{
 
     private String company;
 
-    private String FarmerDesc;
+    private String farmerDesc;
 
     private Long brandId;
 
@@ -88,11 +88,11 @@ public class FruitInformation extends BaseEntity{
     }
 
     public String getFarmerDesc() {
-        return FarmerDesc;
+        return farmerDesc;
     }
 
     public void setFarmerDesc(String farmerDesc) {
-        FarmerDesc = farmerDesc;
+        this.farmerDesc = farmerDesc;
     }
 
     public Long getBrandId() {

@@ -37,6 +37,10 @@
     <if test="varietyId !=null">
       and variety_id = #{varietyId}
     </if>
+    <if test="brandId!=null">
+      and brand_id =${brandId}
+    </if>
+    limit 1
   </select>
   
   <insert id="insert"  useGeneratedKeys="true" keyProperty="id"    parameterType="FruitInformation" >

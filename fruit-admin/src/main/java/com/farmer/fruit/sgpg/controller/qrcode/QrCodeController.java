@@ -177,6 +177,9 @@ public class QrCodeController extends BaseAction {
          return  returnLoginHtml();
         }
         Reserved applied = qrCodeService.getById(reserved.getId());
+        if("7".equals(applied.getStatus())){
+            return  returnLoginHtml();
+        }
         //验证token的正确性
         if(!validateToken(reserved.getTestUrl(),applied.getToken())){
             return  returnLoginHtml();
@@ -185,12 +188,9 @@ public class QrCodeController extends BaseAction {
         applied.setStatus(ReservedQuery.USED);
         applied.setFilePath(reserved.getFilePath());
         applied.setPicturePath(reserved.getPicturePath());
-        if(reserved.getHarvestTime() == null){
-            applied.setHarvestTime(new Date());
-        }else{
-            applied.setHarvestTime(reserved.getHarvestTime());
-        }
-
+        applied.setMarkPrice(reserved.getMarkPrice());
+        //此处有坑
+        applied.setHarvestTime(reserved.getHarvestTime());
         //qrCodeService.save(reserved);
         //调用模板 发布页面
        boolean flag = qrCodeService.createFruit(applied,farmer.getId());
@@ -233,7 +233,7 @@ public class QrCodeController extends BaseAction {
         return dataMap;
     }
     private boolean validateToken(String dest,String source){
-        if(dest.toLowerCase().contains(source.toUpperCase()) || dest.equalsIgnoreCase(source)){
+        if(dest.toLowerCase().contains(source.toLowerCase()) || dest.equalsIgnoreCase(source)){
             return true;
         }else{
             return false;
