@@ -82,16 +82,6 @@
             </div>
             <div class="row_w ">
                 <label>
-                    <span><i>*</i>合作社：&nbsp;&nbsp;&nbsp;</span>
-                    <input style="width: 320px;" type="text" id="company_name" name="company" class="bgef" placeholder="合作社名称，没有参加填写本人姓名"/>
-                </label>
-                <label>
-                    <span><i>*</i>种植园地址：</span>
-                    <input style="width: 320px;" type="text" id="production_place" name="productionPlace" class="bgef" placeholder="种植园所在镇或乡的地址"/>
-                </label>
-            </div>
-            <div class="row_w ">
-                <label>
                     <span><i>*</i>生长期：&nbsp;&nbsp;&nbsp;</span>
                     <input style="width: 150px;" type="text" id="growth_period" name="growthPeriod" class="bgef" placeholder="100天"/>
                     <span class="color00">&nbsp;&nbsp;天</span>
@@ -107,6 +97,17 @@
                     <span class="color00">&nbsp;&nbsp;%</span>
                 </label>
             </div>
+            <div class="row_w ">
+                <label>
+                    <span><i>*</i>合作社：&nbsp;&nbsp;&nbsp;</span>
+                    <input style="width: 340px;" type="text" id="company_name" name="company" class="bgef" placeholder="合作社名称，没有参加填写本人姓名"/>
+                </label>
+                <label>
+                    <span><i>*</i>种植园地址：</span>
+                    <input style="width: 340px;" type="text" id="production_place" name="productionPlace" class="bgef" placeholder="种植园所在镇或乡的地址"/>
+                </label>
+            </div>
+
             <div class="row_w">
                 <input type="hidden" id="farmer_id" name="farmerId" value="${farmer.id}">
                 <input type="hidden" id="info_id" name="id">

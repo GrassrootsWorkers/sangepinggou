@@ -13,15 +13,12 @@
         <!-- 线程池所使用的缓冲队列 -->
         <property name="queueCapacity" value="200"/>
     </bean>
-    <bean id="fruitPublishTask" class="com.farmer.fruit.publish.fruit.FruitPublishTask">
-        <property name="freeMarkerConfigurer" ref="freeMarkerConfigurer"/>
-        <property name="rootPath" value="I://app/web_site/page/fruit"/>
-    </bean>
+
 
     <!-- 配置块发布线程池 -->
-    <bean id="blockThreadManager" class="com.farmer.fruit.publish.ThreadManager">
+    <bean id="fruitThreadManager" class="com.farmer.fruit.publish.ThreadManager">
         <constructor-arg index="0">
-            <value>BlockThreadPool</value>
+            <value>fruitHtmlThreadPool</value>
         </constructor-arg>
         <constructor-arg index="1">
             <value>10</value>
@@ -35,5 +32,16 @@
         <constructor-arg index="4">
             <value>600</value>
         </constructor-arg>
+    </bean>
+    <bean id="fruitMonitor" class="com.farmer.fruit.publish.fruit.FruitMonitor" init-method="init">
+        <property name="task" ref="fruitPublishTask"/>
+        <property name="threadManager" ref="fruitThreadManager"/>
+        <property name="jedisPool" ref="jedisPool"/>
+        <property name="redisKey" value="fruit_queue"/>
+    </bean>
+
+    <bean id="fruitPublishTask" class="com.farmer.fruit.publish.fruit.FruitPublishTask" >
+        <property name="freeMarkerConfigurer" ref="freemarkerConfig"/>
+        <property name="rootPath" value="I://app/web_site/static/fruit"/>
     </bean>
 </beans>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -85,14 +86,16 @@ public class FruitBaseInfoController extends BaseAction {
         dataMap.put("farmer", farmer);
         List<FruitType> types = commonService.getFruitType();
         dataMap.put("types", types);
+
         if(query !=null &&query.getId()!=null){
            FruitInformation information = fruitBaseInfoService.getById(query.getId());
+            information.setFarmerDesc(HtmlUtils.htmlEscape(information.getFarmerDesc()));
+            information.setProductionPlaceDesc(HtmlUtils.htmlEscape(information.getProductionPlaceDesc()));
             dataMap.put("info",information);
             ModelAndView modelAndView = new ModelAndView("usercenter/fruit_base_info_edit", dataMap);
             return modelAndView;
         }
         ModelAndView modelAndView = new ModelAndView("usercenter/fruit_base_info", dataMap);
-
         return modelAndView;
     }
     @RequestMapping(value="ifAdded")
@@ -120,8 +123,6 @@ public class FruitBaseInfoController extends BaseAction {
             ModelAndView view = new ModelAndView(redirectView);
             return view;
         }
-
-
         if(info.getId() !=null){
             info.setNewRecord(false);
         }else{
@@ -130,6 +131,8 @@ public class FruitBaseInfoController extends BaseAction {
         info.setCreateTime(new Date());
         info.setUpdateTime(new Date());
         info.setStatus("2");
+        info.setFarmerDesc(URLDecoder.decode(info.getFarmerDesc(),"UTF-8"));
+        info.setProductionPlaceDesc(URLDecoder.decode(info.getProductionPlaceDesc(),"UTF-8"));
         fruitBaseInfoService.save(info);
         if(!publishBaseInfo(info)){
             info.setStatus("3");
@@ -144,11 +147,11 @@ public class FruitBaseInfoController extends BaseAction {
         info.setBrandName(commonService.getBrandName(info.getBrandId()));
         info.setVarietyName(commonService.getVarietyName(info.getVarietyId()));
         //发布为静态页面
-        String templateName = info.getType()+"_base_info.ftl";
+        String templateName = info.getType().toLowerCase()+"_base_info.ftl";
         Writer out = null;
         try {
-            info.setFarmerDesc(URLDecoder.decode(info.getFarmerDesc(),"UTF-8"));
-            info.setProductionPlaceDesc(URLDecoder.decode(info.getProductionPlaceDesc(),"UTF-8"));
+            info.setFarmerDesc(info.getFarmerDesc());
+            info.setProductionPlaceDesc(info.getProductionPlaceDesc());
             Template template = freeMarkerConfigurer.getConfiguration().getTemplate(templateName);
             String htmlFilePath = ReloadableConfig.getStringProperty("static.html")+"/"+info.getFarmerId()+"/"+info.getFarmerId()+"_"+info.getType()+"_"+info.getId()+".html";
             File htmlFile = new File(htmlFilePath);
@@ -195,10 +198,18 @@ public class FruitBaseInfoController extends BaseAction {
         info.setCreateTime(new Date());
         info.setUpdateTime(new Date());
         info.setFarmerId(farmer.getId());
-        info.setStatus("0");
-        long id = fruitBaseInfoService.save(info);
-        dataMap.put("id",id);
-        dataMap.put("tip","success");
+        try {
+            info.setFarmerDesc(URLDecoder.decode(info.getFarmerDesc(),"UTF-8"));
+            info.setProductionPlaceDesc(URLDecoder.decode(info.getProductionPlaceDesc(),"UTF-8"));
+            info.setStatus("0");
+            long id = fruitBaseInfoService.save(info);
+            dataMap.put("id",id);
+            dataMap.put("tip","success");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            dataMap.put("tip","login");
+            return dataMap;
+        }
         return dataMap;
     }
 

@@ -373,7 +373,8 @@ ul {
 .clearfix:after {
     content: " ";
     clear: both;
-    display: table
+    display: table;
+    padding-top: 8px;
 }
 
 .comTxt:after, .logisticsStatus ul:before, .paySelect:after {
@@ -407,7 +408,7 @@ ul {
     display: block;
     width: 42px;
     height: 42px;
-    background: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_spellgroup.png) -65px -77px no-repeat;
+    background: url(http://s.sangepg.com/html/images/ico_spellgroup.png) -65px -77px no-repeat;
     background-size: 130px auto
 }
 
@@ -541,7 +542,7 @@ ul {
 }
 
 .exp_ttl, .goodsDetail, .groupExplain {
-    margin-bottom: 10px
+    margin-bottom: 1px
 }
 
 .groupBtn {
@@ -669,9 +670,8 @@ ul {
 
 .exp_step em {
     float: left;
-    width: 25%;
     color: #999;
-    font-size: 11px
+    font-size: 14px
 }
 
 .exp_step em i {
@@ -763,7 +763,7 @@ ul {
     width: 80px;
     height: 80px;
     margin-top: -40px;
-    background: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_done.png) no-repeat;
+    background: url(http://s.sangepg.com/html/images/ico_done.png) no-repeat;
     background-size: 80px auto
 }
 
@@ -1162,7 +1162,7 @@ ul.payTypes {
     top: 50%;
     transform: translateY(-50%);
     padding: 0;
-    background: url(http://r.360img.cn/wgroup/frontend/dist/images/order_icon.png) left center no-repeat;
+    background: url(http://s.sangepg.com/html/images/order_icon.png) left center no-repeat;
     width: 20px;
     height: 20px;
     background-size: 20px auto;

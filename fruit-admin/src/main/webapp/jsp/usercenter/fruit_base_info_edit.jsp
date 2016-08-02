@@ -129,7 +129,7 @@
                 <span style="margin-top: 5px;"><i>*</i>产地描述：</span>
             </label>
             <div class="span_class" style="margin-top: 5px;">
-                <textarea rows="2" cols="1" id="place_desc" name="t_productionPlaceDesc"></textarea>
+                <textarea  id="place_desc" name="t_productionPlaceDesc"></textarea>
                 <script type="text/javascript">
                     var placeDesc = CKEDITOR.replace("t_productionPlaceDesc", {
                         width: 860,
@@ -139,7 +139,7 @@
                         fillEmptyBlocks: false,
                     });
                     placeDesc.on('instanceReady', function (e) {
-                        placeDesc.setData(decodeURI("${info.productionPlaceDesc}").replace(/&amp;gt;/g, ">").replace(/&amp;amp;/g, "&"));
+                        placeDesc.insertHtml("${info.productionPlaceDesc}".replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;amp;/g,"&"));
                     });
                 </script>
             </div>
@@ -160,7 +160,7 @@
                         fillEmptyBlocks: false
                     });
                     farmerDesc.on('instanceReady', function (e) {
-                        farmerDesc.setData(decodeURI("${info.farmerDesc}").replace(/&amp;gt;/g, ">").replace(/&amp;amp;/g, "&"));
+                        farmerDesc.insertHtml("${info.farmerDesc}".replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;amp;/g,"&"));
                     });
                 </script>
             </div>

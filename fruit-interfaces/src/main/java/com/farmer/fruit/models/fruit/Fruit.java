@@ -83,7 +83,7 @@ public class Fruit extends BaseEntity {
     private String filePath;
 
     public Long getFarmerId() {
-        return farmerId;
+        return addUserId;
     }
 
     public void setFarmerId(Long farmerId) {
@@ -117,7 +117,7 @@ public class Fruit extends BaseEntity {
     }
 
     public String getImage() {
-        return "http://s.sangepg.com/images/fruit/" + id /10000 + "/center_" + id + ".jpg";
+        return "http://p.sangepg.com/images/fruit/" + getFarmerId()+"/"+id /10000 +"/"+id+ "/center.jpg";
     }
 
     public Long getId() {
@@ -253,7 +253,7 @@ public class Fruit extends BaseEntity {
     }
 
     public String getQrPath() {
-        return "http://s.sangepg.com/images/fruit/" + id /10000 + "/" + fruitCode + ".png";
+        return "http://p.sangepg.com/images/qr/"+getFarmerId() +"/"+ id /10000 + "/" + fruitCode + ".png";
     }
 
     public void setQrPath(String qrPath) {
@@ -316,4 +316,31 @@ public class Fruit extends BaseEntity {
         this.varietyName = varietyName;
     }
 
+    @Override
+    public String toString() {
+        return "Fruit{" +
+                "id=" + id +
+                ", farmerId=" + farmerId +
+                ", fruitCode='" + fruitCode + '\'' +
+                ", baseCode=" + baseCode +
+                ", baseInfoPath='" + baseInfoPath + '\'' +
+                ", type='" + type + '\'' +
+                ", typeName='" + typeName + '\'' +
+                ", brandId=" + brandId +
+                ", brandName='" + brandName + '\'' +
+                ", varietyId=" + varietyId +
+                ", varietyName='" + varietyName + '\'' +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", width=" + width +
+                ", high=" + high +
+                ", maturingStatus=" + maturingStatus +
+                ", marketPrice=" + marketPrice +
+                ", priceFlag='" + priceFlag + '\'' +
+                ", lotteryFlag='" + lotteryFlag + '\'' +
+                ", qrPath='" + qrPath + '\'' +
+                ", ifSale='" + ifSale + '\'' +
+                ", addUserId=" + addUserId +
+                '}';
+    }
 }

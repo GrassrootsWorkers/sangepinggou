@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		">
-		
-    <import resource="classpath*:applicationContext-service.xml" />
-    <import resource="classpath*:spring-freemarker.xml" />
 
-	 <bean id="stringConverter"
-        class="org.springframework.http.converter.StringHttpMessageConverter">
+    <import resource="classpath*:applicationContext-service.xml"/>
+    <bean id="stringConverter"
+          class="org.springframework.http.converter.StringHttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>text/plain;charset=UTF-8</value>
@@ -18,18 +16,18 @@
     </bean>
     <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>
     <!-- 完成请求和注解POJO的映射 -->
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >
-    	<property name="messageConverters">  
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
             <list>
-                <ref bean="stringConverter" />
-                <ref bean="jsonConverter" />
+                <ref bean="stringConverter"/>
+                <ref bean="jsonConverter"/>
             </list>
         </property>
     </bean>
-    
-	<!-- 支持文件上传 -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="1048576000" />
+
+    <!-- 支持文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="1048576000"/>
     </bean>
 
 </beans>

@@ -138,7 +138,7 @@ public class QrCodeServiceImpl implements IQrCodeService {
             System.out.println("end pool size :" + taskExecutor.getPoolSize());
             return true;
         } else {
-            return true;
+            return false;
         }
     }
 

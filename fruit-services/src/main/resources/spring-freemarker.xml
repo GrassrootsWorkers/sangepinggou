@@ -5,11 +5,10 @@
     <bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:/freemarker.properties" />
     </bean>
-    <bean id="freemarkerConfig"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="freemarkerSettings" ref="freemarkerConfiguration" />
         <property name="templateLoaderPath">
-            <value>/template/</value>
+            <value>file:I:/app/web_site/template</value>
         </property>
     </bean>
 

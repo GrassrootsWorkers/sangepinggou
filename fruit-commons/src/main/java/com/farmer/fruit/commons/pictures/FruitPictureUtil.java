@@ -111,7 +111,7 @@ public class FruitPictureUtil {
 	 * @return
 	 */
 	public static Map<String, String> getMainPicture(long id, String prefix) {
-		String filePath = root + File.separator +File.separator+id / base + File.separator + id + File.separator;
+		String filePath = root +File.separator+id / base + File.separator + id + File.separator;
 		File file = new File(filePath);
 		if (!file.exists()) {
 			file.mkdirs();

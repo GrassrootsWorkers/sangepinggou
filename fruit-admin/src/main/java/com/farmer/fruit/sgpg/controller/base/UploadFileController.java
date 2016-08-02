@@ -20,7 +20,7 @@ public class UploadFileController {
     static final String root_img =ReloadableConfig.getStringProperty("upload.img.path");
 
     @RequestMapping(value = "/images")
-    public String uploadQuestionPicture(@RequestParam(value = "upload", required = true) MultipartFile file, String type, String CKEditorFuncNum, HttpServletResponse response) {
+    public void uploadQuestionPicture(@RequestParam(value = "upload", required = true) MultipartFile file, String type, String CKEditorFuncNum, HttpServletResponse response) {
         StringBuffer path = new StringBuffer();
         if ("image".equals(type)) {
             Calendar calendar = Calendar.getInstance();
@@ -31,12 +31,9 @@ public class UploadFileController {
             try {
                 //String fileName = file.getOriginalFilename();
                 String fileType = file.getContentType();
-                if (!fileType.contains("image")) {
-                    return "error";
-                }
                 String fileName = UUID.randomUUID() + "." + fileType.split("/")[1];
                 uploadFile(root_img,file, path.toString(), fileName.replace("-", ""));
-                String resultPath = ReloadableConfig.getStringProperty("web_path","http://s.sangepg.com/")+"images/" + path + fileName.replace("-", "");
+                String resultPath = ReloadableConfig.getStringProperty("web.picture.path","http://p.sangepg.com")+"/"+"images/" + path + fileName.replace("-", "");
                 resultPath = getReturnContent(CKEditorFuncNum, resultPath);
                 PrintWriter out = response.getWriter();
                 out.print(resultPath);
@@ -46,7 +43,6 @@ public class UploadFileController {
                 e.printStackTrace();
             }
         }
-        return "success";
     }
 
 
@@ -68,7 +64,7 @@ public class UploadFileController {
         // 保存
         try {
             file.transferTo(f);
-            return ReloadableConfig.getStringProperty("upload.img.path","I://temp")+"/" + path + fileName;
+            return ReloadableConfig.getStringProperty("upload.img.path","/app/web_site/images")+"/" + path + fileName;
         } catch (Exception e) {
             e.printStackTrace();
             return "error";

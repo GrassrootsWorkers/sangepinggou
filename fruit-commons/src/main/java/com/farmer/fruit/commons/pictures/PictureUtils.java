@@ -525,6 +525,6 @@ public class PictureUtils {
     }
 
     public static void main(String[] args) {
-        zoomImage("d://temp//apple_icon_u.jpg","d://temp//apple_icon_u1.png",16,16);
+        zoomImage("I:\\app\\web_site\\images\\2008101617232580_2.jpg","I:\\app\\web_site\\images\\sample.jpg",600,600);
     }
 }

@@ -141,12 +141,12 @@
                 success: function(data){
                     if(data.tip =='success'){
                         jQuery("#apply_id").val(data.id);
-                        o_confirm('bg_fixed_bg_noBtn','win_box_noBtn','win_close_noBtn',"保存成功");
+                      alert("保存成功");
 
                     }else if(data.tip == 'login'){
                         window.location.href="http://www.sangepg.com/jsp/user/user_login.html";
                     }else{
-                        o_confirm('bg_fixed_bg_noBtn','win_box_noBtn','win_close_noBtn',"系统繁忙");
+                     alert("系统繁忙");
                     }
 
                 }

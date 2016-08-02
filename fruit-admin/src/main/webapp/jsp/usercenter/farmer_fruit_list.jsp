@@ -80,7 +80,7 @@
                                         </div>--%>
                                     </div>
                                     <div class="r">
-                                       <img src="http://s.sangepg.com/images/app_img.png">
+                                       <img src="${f.qrPath}">
                                     </div>
                                 </li>
                             </c:forEach>

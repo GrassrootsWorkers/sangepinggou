@@ -91,7 +91,7 @@
                     </label>
                 </section>
             </div>
-            <div class="row_w">
+           <%-- <div class="row_w">
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 1px; padding-bottom: 0px;">
                     <label>
                         <span><i>*</i>申请的二维码链接：</span>
@@ -99,7 +99,7 @@
                                placeholder="http://www.sangepg.com/${reserved.type}/${reserved.token}10000010001.html"/>
                     </label>
                 </section>
-            </div>
+            </div>--%>
 
             <div class="row_w pd30 ">
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 1px; padding-bottom: 0px;">

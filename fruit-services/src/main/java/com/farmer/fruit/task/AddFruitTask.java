@@ -1,5 +1,6 @@
 package com.farmer.fruit.task;
 
+import com.farmer.fruit.Constants;
 import com.farmer.fruit.commons.pictures.FruitPictureUtil;
 import com.farmer.fruit.excel.ExcelUtils;
 import com.farmer.fruit.interfaces.fruit.IFruitService;
@@ -12,6 +13,7 @@ import com.farmer.fruit.persistence.fruit.IFruitInformationDao;
 import com.farmer.fruit.queue.RedisQueue;
 import com.farmer.fruit.utils.QRUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import redis.clients.jedis.JedisPool;
 
 import java.io.File;
@@ -22,11 +24,14 @@ import java.util.*;
  * Created by liuzhi on 2016/7/14.
  */
 public class AddFruitTask  implements  Runnable{
-    public static String root = "I://app/web_site/images/fruit";
+
     private Reserved reserved;
-    JedisPool jedisPool;
-    IFruitInformationDao fruitInformationDao;
-    IFruitService fruitService;
+
+    private JedisPool jedisPool;
+
+    private IFruitInformationDao fruitInformationDao;
+
+    private IFruitService fruitService;
 
     public AddFruitTask(Reserved reserved) {
         this.reserved = reserved;
@@ -66,7 +71,7 @@ public class AddFruitTask  implements  Runnable{
                 fruit.setHarvestTime(reserved.getHarvestTime());
                 fruit.setMarketPrice(reserved.getMarkPrice());
                 long fruitId = fruitService.save(fruit);
-                fruit.setBaseInfoPath("block/" +fruitInformation.getFarmerId()+ fruitInformation.getFarmerId() + "_" + fruitInformation.getType() + "_" + fruitInformation.getId() + ".html");
+                fruit.setBaseInfoPath("block/" +fruitInformation.getFarmerId()+"/"+ fruitInformation.getFarmerId() + "_" + fruitInformation.getType() + "_" + fruitInformation.getId() + ".html");
                 //放入redis中 利用生产者消费者生成静态文件
                 redisQueue.add(fruit);
                 //生成图片
@@ -101,12 +106,13 @@ public class AddFruitTask  implements  Runnable{
         //token+类型+年+10000000'
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        return reserved.getToken() + reserved.getType() + year + (10000000 + index);
+        return reserved.getToken() + reserved.getType() + year + ( Constants.FRUIT_START_INDEX+ index);
     }
 
     private boolean createQr(long fruitId, String fruitCode,long farmerId) {
-        String content ="http://s.sangepg.com/fruit/" +farmerId+"/"+ fruitId /10000 + "/" + fruitCode + ".html";
-        String filePath = root+ "/" +farmerId+"/"+ fruitId /10000 + "/" + fruitCode + ".png";
+        String root = Constants.UPLOAD_IMAGE_PATH+"/qr";
+        String content ="http://www.sangepg.com/fruit/" +farmerId+"/"+ fruitId /Constants.IMAGES_RANGE_INDEX + "/" + fruitCode + ".html";
+        String filePath = root+ "/" +farmerId+"/"+ fruitId /Constants.IMAGES_RANGE_INDEX + "/" + fruitCode + ".png";
         QRUtil.encode(content,50,50,filePath);
         return true;
     }
