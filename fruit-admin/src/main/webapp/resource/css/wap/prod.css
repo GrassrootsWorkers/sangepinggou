@@ -1,0 +1,179 @@
+.list section.container { width:100%!important; padding:0;}
+header {background-color:#0083ce; height:43px; width:100%; position:relative;}
+header .row { height:43px;}
+.left img { width:87%; margin-top:8px;}
+header .col-xs-8 a {line-height:43px;color:#fff; font-weight:bold;}
+header .col-xs-8 a img { width:13px; height:13px;}
+.cart {background:url(http://s.maiyaole.com/images/wap/cart.png); background-size:32px auto; background-repeat:no-repeat; background-position:8px 8px;display:block;width:100%;height:43px;line-height:43px;color:#fff; background-color:#0093e7; font-size:12px; text-align:center;}
+.col_blue { padding:0px;float:right; }
+header h2 { margin:0; font-size:18px; color:#fff; font-weight:bold; line-height:43px; }
+.p_nav li{ width:33.3333333333%;float:left;line-height:38px; padding:0; text-align:center; background-color:#f3f3f3; }
+.p_nav li a {border-bottom:#f3f3f3 2px solid; color:#999999; font-weight:bold;}
+.p_focus { height:160px;border-bottom:#e6e6e6 1px solid;}
+.p_h1 {font-size:14px;font-weight:bold; margin:10px 0; line-height:1.3; padding:0 8px;}
+.p_content .col-xs-8{padding-right:0;}
+.p_content .col-xs-4{padding-left:0}
+.p_row .btn { border-radius:2px;}
+.add, .minu { background-color:#fff; font-size: 1.5rem;font-weight: 700;width:2rem; padding:0;}
+.num { width:40px; border-radius:10px; border:1px solid #e6e6e6; text-align: center; line-height:24px;height:24px;}
+.num:focus { border-color:#66AFE9;}
+.p_s {background-color:#f3f3f3; line-height:35px; height:35px; text-align:center; margin-top:20px;}
+.p_price b { color:#e72419; display:block; }
+.p_price del {color:#a5a5a5; font-size:12px;display:block;}
+.p_row .disabled { color:#e6e6e6;}
+.left_arrow{background:url(http://s.maiyaole.com/images/wap/a_l.png); background-size:45% 100%; background-repeat:no-repeat; background-position:7px 0;display:inline-block;height:12px;line-height:12px;}
+.star{background:url(http://s.maiyaole.com/images/wap/star.png) no-repeat 0 0 ;background-size:16px 16px;background-repeat:no-repeat; background-position:0px 0;display:inline-block;height:16px;line-height:16px;width:16px; }
+.p_content .row{ padding:0 10px;}
+.p_p { background-color:#f8f8f8;}
+.p_content .p_p { padding:10px;margin:10px 0;}
+.size_list,.color_list { margin-bottom:5px;}
+.size_list b, .color_list b{ margin-bottom:5px;}
+.size_list a, .color_list a {padding:5px 10px;display:inline-block; margin-bottom:10px; margin-right:7px;display:inline-block;background-color:#FFFFFF;border:#cccccc 1px solid; box-shadow:0 3px 5px rgba(0, 0, 0, 0.125) outside; color:#5e5e5e;position:relative; border-radius:2px;}
+.color_list .lion, .size_list .lion { display:none;}
+.size_list a:focus, .size_list a:hover, .color_list a:focus, .color_list a:hover {color:#e72419; text-decoration:none; border:#e72419 1px solid; }
+.color_list a.selected, .size_list a.selected{border:#e72419 2px solid; padding-left:9px; padding-right:9px;}
+.color_list a.selected i, .size_list a.selected i,.p_item_on,.p_content .collapsed, .q_a i{ background-image:url(http://s.maiyaole.com/images/wap/s_b.png);}
+.color_list a.selected i, .size_list a.selected i{ position:absolute;bottom:0;right:0;width:13px;height:13px;overflow:hidden;text-indent:-99em;display:block;background-repeat:no-repeat;background-position:right 3px;}
+.p_item_on {width:15px;height:15px;overflow:hidden;text-indent:-99em;display:block;background-repeat:no-repeat;background-position:0 -14px;}
+.p_content .collapsed {background-position:0 -30px;}
+.nav_qa {padding:0; margin-bottom:6px;}
+.nav_qa li { display:inline-block; color:#a5a5a5;}
+.nav_qa li.q_name{width:120px; margin-left:15px;}
+.q_a i {width:15px;height:15px;overflow:hidden;display:inline-block;text-indent:-99em;background-repeat:no-repeat;background-position:0 -76px; position:relative;top:4px; }
+.q_a .panel,.q_a .panel-footer { border-radius:0;border:0; position:relative; }
+.q_a .panel-footer{background-color:#f3f3f3; color:#999999; padding:8px 15px; margin-bottom:15px;}
+.panel-body{ padding:8px 15px; background-color:#fff;}
+.panel-footer {background:linear-gradient(#f3f3f3, #f6f6f6) repeat scroll 0 0 rgba(0, 0, 0, 0); border-color:#f3f3f3; font-weight:normal;}
+.panel-footer:before {}
+.panel-footer:after {
+    content:"";
+    position:absolute;
+    top:-18px;
+    left:50px;
+    border:10px solid transparent;
+    border-bottom-color:#F3F3F3;
+    /* reduce the damage in FF3.0 */
+    display:block;
+    width:0;
+}
+.example-commentheading:before {
+    content:"";
+    position:absolute;
+    top:16px;
+    left:15px;
+    width:15px;
+    height:15px;
+    color:#ffffff;
+    background:#f9b905;
+    /* css3 */
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:10px;
+    background: linear-gradient(#F9D835,#f9b905) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+/* creates the triangle */
+.example-commentheading:after {
+    content:"";
+    position:absolute;
+    top:22px;
+    left:25px;
+    border:4px solid transparent;
+    border-bottom-color:#f9b905;
+    /* reduce the damage in FF3.0 */
+    display:block;
+    width:0;
+}
+.example-commentheading span {color:#ffffff;z-index:1; position:relative;left:4px; font-weight:bold;}
+.pager b { font-weight:normal; margin:0 20px;}
+.pager li > a { border-radius:1px; font-weight:bold;color:#333;}
+.evaluate .col-xs-6 { padding-left:0;}
+.evaluate .col-xs-3 { padding-right:0;}
+.evaluate_box h2{ margin-bottom:0; margin-top:20px;}
+.evaluate_box h2 small { color:#e72419; font-size:12px; }
+.evaluate_box { margin-top:10px;}
+.evaluate_main .row { padding:10px;}
+.e_div { border-top:#e6e6e6 1px solid; border-bottom:#e6e6e6 1px solid;padding:10px; margin-top:-1px;}
+.e_div .nav_qa { margin-bottom:0;}
+.stars .glyphicon { margin:0 2px;color:#ffaa00;}
+.stars .gray { color:#a5a5a5;}
+.e_div .nav_qa li.q_name{margin: 0; width:135px;}
+.p_nav li.hp a { padding-left:10px; padding-right:10px;}
+.color_list a.disabled, .size_list a.disabled,.color_list a.disabled:focus, .color_list a.disabled:hover, .size_list a.disabled:focus, .size_list a.disabled:hover{ cursor:not-allowed; z-index:0;border:#e9e9e9 1px solid;color:#e6e6e6; }
+#newTabContents img { width:100%;}
+.swipe {
+    overflow: hidden;
+    visibility: hidden;
+    position: relative;
+}
+.swipe-wrap {
+    overflow: hidden;
+    position: relative;
+}
+.swipe-wrap > figure {
+    float: left;
+    width: 100%;
+    position: relative;
+    text-align:center;
+}
+.swipe-wrap > figure img { max-width:320px; margin:0 auto;}
+.p_nav li .rate{ padding-left:9px; padding-right:9px;}
+#prodDetailCotentDiv img { max-width:100%; height:auto;}
+#prodDetailCotentDiv table td span { display:inline;}
+#prodDetailCotentDiv table td > table{ width:320px;}
+.hd a{width:100%;height:auto;display:block;padding:8px 0;color:#a5a5a5;border-top:#e6e6e6 1px solid;border-bottom:#e6e6e6 1px solid;margin-top:-1px;position:relative;clear:both;float:left;line-height:130%;}
+.hd a:hover,.hd a:focus{color:#0083ce;text-decoration:none;}
+.hd{margin-bottom:15px;}
+.hd span{float:left;}
+.a_link{position:absolute;right:0;top:50%;margin-top:-6px; margin-right:10px; width:auto;height:14px;overflow:hidden; background:url(http://s.maiyaole.com/images/wap/l_a.png) no-repeat right 1px;padding-right:10px;float:right;}
+.studydiv {
+    -webkit-transform: rotate(45deg);
+    width: 20px;
+    height: 20px;
+    position:absolute;
+    left: 20px;
+    top: 20px;
+    border:2px solid #039bfc;
+    border-top:none;
+    border-left:none;
+    box-shadow: 3px 4px 0 white, 6px 6px 0 #039bfc;
+}
+.package .row {padding:0;}
+.package .table {}
+.package .table img {width:35px;height:35px;overflow:hidden;border:#e6e6e6 1px solid;margin-left:5px;}
+.package .table a {color:#5e5e5e;font-size:12px;}
+.package .table .td_link a {top:0;position:static;margin:0;padding:10px 15px;margin-right:10px;}
+.package .list-group-item {border-left:0;border-right:0;}
+.package_main .col-xs-6{padding-left:10px;padding-right:10px;padding-bottom:10px;padding-top:10px;}
+.package .h4 {color:#e72419;padding:0 8px;}
+.package del{color:#a5a5a5;font-size:12px;}
+.bag { background-color:#ffaa00; border:#ffaa00 2px solid; border-radius:10px;color:#fff; padding:0 8px;font-weight:700;}
+.package_main .btn-danger{margin-top:5px;}
+.package .list-group-item:last-child {border-bottom-left-radius:0;border-bottom-right-radius:0;}
+.p_title{padding:8px 10px;border-bottom:#e6e6e6 1px solid;color:#333;font-weight:bold;}
+.p_title .p_item_on{background-position:13px -14px;}
+.p_title .collapsed{background-position:13px -30px;}
+.package_item{border-bottom:25px solid #f8f8f8;border-top:#e6e6e6 1px solid;}
+.package_item:first-child{border-top:0;}
+.package_item .row{border-top:#e6e6e6 1px solid;border-bottom:#e6e6e6 1px solid;}
+.huodong_title{width:100%;height:auto;display:block;padding:8px 0;color:#5e5e5e;font-size:12px;position:relative;clear:both;float:left;line-height:130%;}
+.huodong_title .pull-left{max-width:260px;}
+.huodong_title span:first-child {margin-left:10px;}
+.p_content .huodong_main {border-top:#e6e6e6 1px solid;border-bottom:#e6e6e6 1px solid;float:left;width:100%;margin-top:-1px;background-color:#f3f3f3;font-size:12px;padding:10px;}
+.huodong_main img{width:35px;height:35px;overflow:hidden;margin-right:5px;float:left;}
+.huodong_main li {list-style:none;width:50%;font-size:12px;line-height:120%;float:left;}
+.huodong_main li a {color:#5e5e5e;}
+.huodong_main ul{padding:0;}
+.huodong_main li.disabled { opacity:0.5;}
+.receivegifts .row:first-child {padding:10px 10px 0 10px;}
+.r_g_table {border-top:#e6e6e6 1px solid; background-color:#f3f3f3; }
+.r_g_table td {border-bottom:#e6e6e6 1px solid; }
+.r_g_table tr td:first-child{padding-left:10px; text-align:left;}
+.r_g_table tr td:first-child{padding-left:10px; text-align:left;}
+.r_g_table b{display:block;height:18px;width:18px;margin-top:9px;overflow:hidden;border-radius:5px;left:10px;z-index:1;background:url(http://s.maiyaole.com/images/wap/l_bg0.png) no-repeat 0 -36px;}
+.r_g_table b.get{background-position:0 0;}
+.r_g_table b.normal{background-color:#fff;}
+.con_jian { background-color:#f3f3f3; border-bottom:#e6e6e6 1px solid;}
+#prodDetailCotentDiv p { margin:0;}
+#productDescDiv table .left { width:25%;vertical-align:top;}
+#productDescDiv table .right { width:75%;word-break:break-all;word-wrap:break-word;overflow:hidden;}

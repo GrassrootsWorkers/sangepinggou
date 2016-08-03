@@ -1,0 +1,169 @@
+2016-06-29 15:41:56,936 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 15:41:57,386 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2016-06-29 15:42:32,393 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 15:42:32,955 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} closed
+2016-06-29 15:44:06,509 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 15:45:07,278 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 15:45:53,419 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 15:46:25,213 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 15:48:28,859 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 15:49:00,603 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 15:50:34,482 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 15:51:50,969 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 16:06:22,465 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 17:14:13,902 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 17:38:10,442 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Identified candidate component class: file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\com\farmer\fruit\persistence\farmer\IFarmerDao.class]
+2016-06-29 17:38:10,445 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Identified candidate component class: file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\com\farmer\fruit\persistence\fruit\FruitDao.class]
+2016-06-29 17:38:10,447 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Identified candidate component class: file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\com\farmer\fruit\persistence\user\IUserDao.class]
+2016-06-29 17:38:10,448 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Creating MapperFactoryBean with name 'IFarmerDao' and 'com.farmer.fruit.persistence.farmer.IFarmerDao' mapperInterface
+2016-06-29 17:38:10,448 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Creating MapperFactoryBean with name 'fruitDao' and 'com.farmer.fruit.persistence.fruit.FruitDao' mapperInterface
+2016-06-29 17:38:10,448 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Creating MapperFactoryBean with name 'IUserDao' and 'com.farmer.fruit.persistence.user.IUserDao' mapperInterface
+2016-06-29 17:38:11,184 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 17:50:11,491 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Identified candidate component class: file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\com\farmer\fruit\persistence\farmer\IFarmerDao.class]
+2016-06-29 17:50:11,492 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Identified candidate component class: file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\com\farmer\fruit\persistence\fruit\FruitDao.class]
+2016-06-29 17:50:11,494 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Identified candidate component class: file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\com\farmer\fruit\persistence\user\IUserDao.class]
+2016-06-29 17:50:11,494 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Creating MapperFactoryBean with name 'IFarmerDao' and 'com.farmer.fruit.persistence.farmer.IFarmerDao' mapperInterface
+2016-06-29 17:50:11,495 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Creating MapperFactoryBean with name 'fruitDao' and 'com.farmer.fruit.persistence.fruit.FruitDao' mapperInterface
+2016-06-29 17:50:11,495 [main] DEBUG [org.mybatis.spring.mapper.ClassPathMapperScanner] - Creating MapperFactoryBean with name 'IUserDao' and 'com.farmer.fruit.persistence.user.IUserDao' mapperInterface
+2016-06-29 17:50:11,640 [main] DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.commons.JakartaCommonsLoggingImpl' adapter.
+2016-06-29 17:50:12,276 [main] INFO  [com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+2016-06-29 17:50:12,399 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Class not found: org.jboss.vfs.VFS
+2016-06-29 17:50:12,399 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - JBoss 6 VFS API is not available in this environment.
+2016-06-29 17:50:12,400 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Class not found: org.jboss.vfs.VirtualFile
+2016-06-29 17:50:12,400 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2016-06-29 17:50:12,401 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2016-06-29 17:50:12,402 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Find JAR URL: jar:file:/D:/studay-workspace/sangepinggou/fruit-interfaces/target/farmer.jar!/com/farmer/fruit/models
+2016-06-29 17:50:12,402 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Inner URL: file:/D:/studay-workspace/sangepinggou/fruit-interfaces/target/farmer.jar!/com/farmer/fruit/models
+2016-06-29 17:50:12,402 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Extracted JAR URL: file:/D:/studay-workspace/sangepinggou/fruit-interfaces/target/farmer.jar
+2016-06-29 17:50:12,403 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found JAR: file:/D:/studay-workspace/sangepinggou/fruit-interfaces/target/farmer.jar
+2016-06-29 17:50:12,403 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Listing jar:file:/D:/studay-workspace/sangepinggou/fruit-interfaces/target/farmer.jar!/com/farmer/fruit/models
+2016-06-29 17:50:12,406 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/BaseEntity.class
+2016-06-29 17:50:12,406 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/Brand.class
+2016-06-29 17:50:12,406 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/BrandQuery$Criteria.class
+2016-06-29 17:50:12,407 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/BrandQuery$Criterion.class
+2016-06-29 17:50:12,407 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/BrandQuery$GeneratedCriteria.class
+2016-06-29 17:50:12,407 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/BrandQuery.class
+2016-06-29 17:50:12,407 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/Variety.class
+2016-06-29 17:50:12,407 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/VarietyQuery$Criteria.class
+2016-06-29 17:50:12,408 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/VarietyQuery$Criterion.class
+2016-06-29 17:50:12,408 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/VarietyQuery$GeneratedCriteria.class
+2016-06-29 17:50:12,408 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/brand/VarietyQuery.class
+2016-06-29 17:50:12,408 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/farmer/Farmer.class
+2016-06-29 17:50:12,408 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/farmer/FarmerQuery.class
+2016-06-29 17:50:12,409 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/farmer/Reserved.class
+2016-06-29 17:50:12,409 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/farmer/ReservedQuery$Criteria.class
+2016-06-29 17:50:12,409 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/farmer/ReservedQuery$Criterion.class
+2016-06-29 17:50:12,409 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/farmer/ReservedQuery$GeneratedCriteria.class
+2016-06-29 17:50:12,410 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/farmer/ReservedQuery.class
+2016-06-29 17:50:12,410 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/Fruit.class
+2016-06-29 17:50:12,410 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitInformation.class
+2016-06-29 17:50:12,411 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitInformationQuery$Criteria.class
+2016-06-29 17:50:12,411 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitInformationQuery$Criterion.class
+2016-06-29 17:50:12,411 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitInformationQuery$GeneratedCriteria.class
+2016-06-29 17:50:12,412 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitInformationQuery.class
+2016-06-29 17:50:12,412 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitPicture.class
+2016-06-29 17:50:12,412 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitPictureQuery$Criteria.class
+2016-06-29 17:50:12,413 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitPictureQuery$Criterion.class
+2016-06-29 17:50:12,413 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitPictureQuery$GeneratedCriteria.class
+2016-06-29 17:50:12,414 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitPictureQuery.class
+2016-06-29 17:50:12,414 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/fruit/FruitQuery.class
+2016-06-29 17:50:12,414 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/QueryDataEntity.class
+2016-06-29 17:50:12,414 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/review/Review.class
+2016-06-29 17:50:12,414 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/review/ReviewQuery$Criteria.class
+2016-06-29 17:50:12,415 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/review/ReviewQuery$Criterion.class
+2016-06-29 17:50:12,415 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/review/ReviewQuery$GeneratedCriteria.class
+2016-06-29 17:50:12,415 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/review/ReviewQuery.class
+2016-06-29 17:50:12,416 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/shopping/ShoppingCart.class
+2016-06-29 17:50:12,416 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/shopping/ShoppingCartQuery$Criteria.class
+2016-06-29 17:50:12,416 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/shopping/ShoppingCartQuery$Criterion.class
+2016-06-29 17:50:12,416 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/shopping/ShoppingCartQuery$GeneratedCriteria.class
+2016-06-29 17:50:12,417 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/shopping/ShoppingCartQuery.class
+2016-06-29 17:50:12,417 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/Price.class
+2016-06-29 17:50:12,417 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/PriceQuery$Criteria.class
+2016-06-29 17:50:12,418 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/PriceQuery$Criterion.class
+2016-06-29 17:50:12,418 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/PriceQuery$GeneratedCriteria.class
+2016-06-29 17:50:12,418 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/PriceQuery.class
+2016-06-29 17:50:12,418 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/Supermarket.class
+2016-06-29 17:50:12,419 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/SupermarketQuery$Criteria.class
+2016-06-29 17:50:12,419 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/SupermarketQuery$Criterion.class
+2016-06-29 17:50:12,419 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/SupermarketQuery$GeneratedCriteria.class
+2016-06-29 17:50:12,420 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/store/SupermarketQuery.class
+2016-06-29 17:50:12,420 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/user/User.class
+2016-06-29 17:50:12,420 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Found resource: /com/farmer/fruit/models/user/UserQuery.class
+2016-06-29 17:50:12,421 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.BaseEntity matches criteria [is assignable to Object]
+2016-06-29 17:50:12,422 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.Brand matches criteria [is assignable to Object]
+2016-06-29 17:50:12,423 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.BrandQuery$Criteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,425 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.BrandQuery$Criterion matches criteria [is assignable to Object]
+2016-06-29 17:50:12,426 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.BrandQuery$GeneratedCriteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,426 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.BrandQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,427 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.Variety matches criteria [is assignable to Object]
+2016-06-29 17:50:12,427 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.VarietyQuery$Criteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,429 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.VarietyQuery$Criterion matches criteria [is assignable to Object]
+2016-06-29 17:50:12,429 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.VarietyQuery$GeneratedCriteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,430 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.brand.VarietyQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,430 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.farmer.Farmer matches criteria [is assignable to Object]
+2016-06-29 17:50:12,431 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.farmer.FarmerQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,432 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.farmer.Reserved matches criteria [is assignable to Object]
+2016-06-29 17:50:12,433 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.farmer.ReservedQuery$Criteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,435 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.farmer.ReservedQuery$Criterion matches criteria [is assignable to Object]
+2016-06-29 17:50:12,435 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.farmer.ReservedQuery$GeneratedCriteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,435 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.farmer.ReservedQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,436 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.Fruit matches criteria [is assignable to Object]
+2016-06-29 17:50:12,436 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitInformation matches criteria [is assignable to Object]
+2016-06-29 17:50:12,437 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitInformationQuery$Criteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,440 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitInformationQuery$Criterion matches criteria [is assignable to Object]
+2016-06-29 17:50:12,440 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitInformationQuery$GeneratedCriteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,440 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitInformationQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,441 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitPicture matches criteria [is assignable to Object]
+2016-06-29 17:50:12,441 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitPictureQuery$Criteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,443 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitPictureQuery$Criterion matches criteria [is assignable to Object]
+2016-06-29 17:50:12,443 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitPictureQuery$GeneratedCriteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,443 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitPictureQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,444 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.fruit.FruitQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,445 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.QueryDataEntity matches criteria [is assignable to Object]
+2016-06-29 17:50:12,445 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.review.Review matches criteria [is assignable to Object]
+2016-06-29 17:50:12,445 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.review.ReviewQuery$Criteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,447 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.review.ReviewQuery$Criterion matches criteria [is assignable to Object]
+2016-06-29 17:50:12,447 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.review.ReviewQuery$GeneratedCriteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,447 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.review.ReviewQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,448 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.shopping.ShoppingCart matches criteria [is assignable to Object]
+2016-06-29 17:50:12,448 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.shopping.ShoppingCartQuery$Criteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,450 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.shopping.ShoppingCartQuery$Criterion matches criteria [is assignable to Object]
+2016-06-29 17:50:12,450 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.shopping.ShoppingCartQuery$GeneratedCriteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,450 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.shopping.ShoppingCartQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,451 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.Price matches criteria [is assignable to Object]
+2016-06-29 17:50:12,451 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.PriceQuery$Criteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,453 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.PriceQuery$Criterion matches criteria [is assignable to Object]
+2016-06-29 17:50:12,453 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.PriceQuery$GeneratedCriteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,453 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.PriceQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,454 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.Supermarket matches criteria [is assignable to Object]
+2016-06-29 17:50:12,454 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.SupermarketQuery$Criteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,455 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.SupermarketQuery$Criterion matches criteria [is assignable to Object]
+2016-06-29 17:50:12,455 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.SupermarketQuery$GeneratedCriteria matches criteria [is assignable to Object]
+2016-06-29 17:50:12,455 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.store.SupermarketQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,456 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.user.User matches criteria [is assignable to Object]
+2016-06-29 17:50:12,456 [main] DEBUG [org.apache.ibatis.io.ResolverUtil] - Checking to see if class com.farmer.fruit.models.user.UserQuery matches criteria [is assignable to Object]
+2016-06-29 17:50:12,457 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Scanned package: 'com.farmer.fruit.models' for aliases
+2016-06-29 17:50:12,506 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed configuration file: 'class path resource [mybatis-config.xml]'
+2016-06-29 17:50:12,669 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\brand\BrandDao.xml]'
+2016-06-29 17:50:12,715 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\brand\VarietyDao.xml]'
+2016-06-29 17:50:12,737 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\farmer\FarmerDao.xml]'
+2016-06-29 17:50:12,782 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\farmer\ReservedDao.xml]'
+2016-06-29 17:50:12,800 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\fruit\FruitDao.xml]'
+2016-06-29 17:50:12,830 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\fruit\FruitInformationDao.xml]'
+2016-06-29 17:50:12,872 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\fruit\FruitPictureDao.xml]'
+2016-06-29 17:50:12,899 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\review\ReviewDao.xml]'
+2016-06-29 17:50:12,920 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\shopping\ShoppingCartDao.xml]'
+2016-06-29 17:50:12,945 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\store\PriceDao.xml]'
+2016-06-29 17:50:12,965 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\store\SupermarketDao.xml]'
+2016-06-29 17:50:12,984 [main] DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Parsed mapper file: 'file [D:\studay-workspace\sangepinggou\fruit-services\target\classes\mappers\user\UserDao.xml]'
+2016-06-29 17:50:13,203 [main] DEBUG [org.mybatis.spring.SqlSessionUtils] - Creating a new SqlSession
+2016-06-29 17:50:13,209 [main] DEBUG [org.mybatis.spring.SqlSessionUtils] - Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ac0e420]
+2016-06-29 17:50:13,215 [main] DEBUG [org.mybatis.spring.transaction.SpringManagedTransaction] - JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@78383390] will be managed by Spring
+2016-06-29 17:50:13,222 [main] DEBUG [com.farmer.fruit.persistence.user.IUserDao.getById] - ==>  Preparing: select id, mobile, open_id, nick_name, user_image, password, register_time, last_login_time,user_type from qr_user where id = ? 
+2016-06-29 17:50:13,260 [main] DEBUG [com.farmer.fruit.persistence.user.IUserDao.getById] - ==> Parameters: 1(Long)
+2016-06-29 17:50:13,282 [main] DEBUG [com.farmer.fruit.persistence.user.IUserDao.getById] - <==      Total: 1
+2016-06-29 17:50:13,283 [main] DEBUG [org.mybatis.spring.SqlSessionUtils] - Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ac0e420]
+2016-06-29 17:50:13,284 [main] DEBUG [org.mybatis.spring.SqlSessionUtils] - Transaction synchronization committing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ac0e420]
+2016-06-29 17:50:13,284 [main] DEBUG [org.mybatis.spring.SqlSessionUtils] - Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ac0e420]
+2016-06-29 17:50:13,284 [main] DEBUG [org.mybatis.spring.SqlSessionUtils] - Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7ac0e420]

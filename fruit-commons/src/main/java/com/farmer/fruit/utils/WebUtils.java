@@ -92,7 +92,6 @@ public abstract class WebUtils {
 				conn.setReadTimeout(readTimeout);
 			}catch(IOException e){
 				Map<String, String> map = getParamsFromUrl(url);
-				TopLogger.logCommError(e, url,map.get("app_key"),map.get("method"), content);
 				throw e;
 			}
 			
@@ -102,7 +101,6 @@ public abstract class WebUtils {
 				rsp = getResponseAsString(conn,charset);
 			}catch(IOException e){
 				Map<String, String> map=getParamsFromUrl(url);
-				TopLogger.logCommError(e, conn,map.get("app_key"),map.get("method"), content);
 				throw e;
 			}
 			
@@ -122,7 +120,6 @@ public abstract class WebUtils {
 	 * 执行带文件上传的HTTP POST请求。
 	 * 
 	 * @param url 请求地址
-	 * @param textParams 文本请求参数
 	 * @param fileParams 文件请求参数
 	 * @return 响应字符串
 	 * @throws IOException
@@ -143,7 +140,6 @@ public abstract class WebUtils {
 	 * 执行带文件上传的HTTP POST请求。
 	 * 
 	 * @param url 请求地址
-	 * @param textParams 文本请求参数
 	 * @param fileParams 文件请求参数
 	 * @param charset 字符集，如UTF-8, GBK, GB2312
 	 * @return 响应字符串
@@ -165,7 +161,6 @@ public abstract class WebUtils {
 				conn.setReadTimeout(readTimeout);
 			}catch(IOException e){
 				Map<String, String> map=getParamsFromUrl(url);
-				TopLogger.logCommError(e, url,map.get("app_key"),map.get("method"), params);
 				throw e;
 			}
 			
@@ -200,7 +195,6 @@ public abstract class WebUtils {
 				rsp = getResponseAsString(conn,charset);
 			}catch(IOException e){
 				Map<String, String> map=getParamsFromUrl(url);
-				TopLogger.logCommError(e, conn,map.get("app_key"),map.get("method"), params);
 				throw e;
 			}
 			
@@ -272,15 +266,12 @@ public abstract class WebUtils {
 				conn = getConnection(buildGetUrl(url, query), METHOD_GET, ctype);
 			}catch(IOException e){
 				Map<String, String> map=getParamsFromUrl(url);
-				TopLogger.logCommError(e, url,map.get("app_key"),map.get("method"), params);
-				throw e;
 			}
 			
 			try{
 				rsp = getResponseAsString(conn,charset);
 			}catch(IOException e){
 				Map<String, String> map=getParamsFromUrl(url);
-				TopLogger.logCommError(e, conn,map.get("app_key"),map.get("method"), params);
 				throw e;
 			}
 			

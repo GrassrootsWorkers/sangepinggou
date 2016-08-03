@@ -1,0 +1,38 @@
+.fl{float:left;}
+ul,li{ list-style:none;}
+.m_pd0{padding:0;}
+.m_pdr0{padding-right:0;}
+.m_mb20{margin-bottom:20px;}
+.m_mt20{margin-top:20px;}
+.m_mb200{margin-bottom:200px;}
+.fr{float:right;}
+.lg_h { height:43px; line-height:43px; font-weight:bold;}
+.lg_h .col-lg-4,.lg_h .col-xs-4,.lg_h .col-sm-10 { padding: 0;}
+.g_b{ background:transparent url("http://s.maiyaole.com/images/wap/g.png");background-size:23px 23px; background-repeat:no-repeat; background-position:0 11px;width:24px;display:inline-block; }
+.yzm_btn{border-radius:8px;color:#A5A5A5;}
+.btn-primary { background-color:#0099f1; border-color:#0099f1; border-bottom:#0083ce 4px  solid; }
+.timeDown{margin-left:5px;font-size:100%;}
+.mobile_results{color:#5E5E5E;}
+.mobile_results p{font-size:14px;margin:0;}	
+.mobile_results p.m_ft12{font-size:12px;}
+.mobile_results strong{font-weight:normal;}
+.m_col_blue{color:#428BCA;font-weight:bold;}
+.block_wrap{padding:10px;}
+.block_wrap:last-child{background:#FFFEEE;}
+.glyphicon-plus:before{content:"\2b"}
+.col_dgray{color:#5E5E5E;}
+.col_lgray{color:#A5A5A5;font-size:12px;}
+.bg_lgray{background:#F3F3F3;}
+.coupons_nav{padding-top:4px;}
+.coupons_nav li a{font-size:14px;color:#999;height:40px;line-height:30px;}
+.coupons_nav .active:first-child a{border-left:1px solid #fff;}
+.coupons_nav .active:last-child a{border-right:1px solid #fff;margin-right:0;}
+.coupons_nav > li > a:hover,.coupons_nav > li > a:focus {background-color:none;}
+.bgy_badge{background-color:#FFAA00;margin-left:3px;width:20px; height:20px; line-height:20px;padding:0;}
+.ico_coupons{background:url(http://s.maiyaole.com/images/wap/ico_coupons.png) no-repeat 0% 0%;background-size:44px 26px; font-weight:bold;color:#fff;padding:0 10px;height:26px;line-height:26px;margin-top:10px;}
+.coupons_list{padding:10px 0 60px;margin:0;}
+.coupons_list li{padding:10px 0 10px 10px;border-bottom:1px solid #E6E6E6;}
+.coupons_list h3{font-size:14px;margin:0;}
+.coupons_list p{line-height:180%;margin:0;}
+
+
