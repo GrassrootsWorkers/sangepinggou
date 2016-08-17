@@ -7,16 +7,13 @@ import com.farmer.fruit.models.BaseEntity;
 public class User extends BaseEntity {
 	
 	private static final long serialVersionUID = -2139464441482874862L;
-
+    public  static final String NORMAL_USER = "1";
+    public  static final String SHOPPER_USER = "2";
 	private Long id;
 
     private String mobile;
 
-    private String openId;
-
-    private String nickName;
-
-    private String userImage;
+    private String name;
 
     private String password;
 
@@ -25,6 +22,8 @@ public class User extends BaseEntity {
     private Date lastLoginTime;
 
     private String userType;
+
+    private long ip;
 
     public Long getId() {
         return id;
@@ -39,31 +38,7 @@ public class User extends BaseEntity {
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
-    }
-
-    public String getOpenId() {
-        return openId;
-    }
-
-    public void setOpenId(String openId) {
-        this.openId = openId == null ? null : openId.trim();
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName == null ? null : nickName.trim();
-    }
-
-    public String getUserImage() {
-        return userImage;
-    }
-
-    public void setUserImage(String userImage) {
-        this.userImage = userImage == null ? null : userImage.trim();
+        this.mobile = mobile;
     }
 
     public String getPassword() {
@@ -71,7 +46,7 @@ public class User extends BaseEntity {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public Date getRegisterTime() {
@@ -95,26 +70,22 @@ public class User extends BaseEntity {
     }
 
     public void setUserType(String userType) {
-        this.userType = userType == null ? null : userType.trim();
+        this.userType = userType;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", mobile=").append(mobile);
-        sb.append(", openId=").append(openId);
-        sb.append(", nickName=").append(nickName);
-        sb.append(", userImage=").append(userImage);
-        sb.append(", password=").append(password);
-        sb.append(", registerTime=").append(registerTime);
-        sb.append(", lastLoginTime=").append(lastLoginTime);
-        sb.append(", userType=").append(userType);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public long getIp() {
+        return ip;
+    }
+
+    public void setIp(long ip) {
+        this.ip = ip;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

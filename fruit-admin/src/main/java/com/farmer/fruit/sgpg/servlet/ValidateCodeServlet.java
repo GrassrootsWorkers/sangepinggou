@@ -88,7 +88,6 @@ public class ValidateCodeServlet extends HttpServlet {
 		 */
 		String s = createCharacter(g);
 		request.getSession().setAttribute(VALIDATE_CODE, s);
-
 		g.dispose();
 		OutputStream out = response.getOutputStream();
 		ImageIO.write(image, "JPEG", out);

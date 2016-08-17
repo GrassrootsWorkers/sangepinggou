@@ -117,7 +117,7 @@ public class Fruit extends BaseEntity {
     }
 
     public String getImage() {
-        return "http://p.sangepg.com/images/fruit/" + getFarmerId()+"/"+id /10000 +"/"+id+ "/center.jpg";
+        return "http://p.sangepg.com/images/fruit/"+id /10000 +"/"+id+ "/center.jpg";
     }
 
     public Long getId() {

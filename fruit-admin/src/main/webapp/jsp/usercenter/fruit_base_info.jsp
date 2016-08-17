@@ -15,13 +15,13 @@
     <!-- Favicon -->
     <!-- Stylesheets -->
     <!-- jQuery -->
-    <link href="http://s.sangepg.com/css/commons.css" rel="stylesheet" type="text/css">
-    <link href="http://s.sangepg.com/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/commons.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/plugins/select2/select2.css">
-    <script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
+    <script src="http://admin.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
 
-    <link href="http://s.sangepg.com/css/personal.css" rel="stylesheet" type="text/css">
-    <link href="http://s.sangepg.com/css/project.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/personal.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/project.css" rel="stylesheet" type="text/css">
     <!--ckeditor-->
     <script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
     <style>
@@ -167,10 +167,10 @@
 <ul id="jump">
     <li><a id="top" href="#top"></a></li>
 </ul>
-<script src="http://s.sangepg.com/js/commons.js"></script>
-<script src="http://s.sangepg.com/js/personal.js" type="text/javascript"></script>
+<script src="http://admin.sangepg.com/js/commons.js"></script>
+<script src="http://admin.sangepg.com/js/personal.js" type="text/javascript"></script>
 <script type="text/javascript" src="/plugins/select2/select2.full.min.js"></script>
-<script src="http://s.sangepg.com/js/jquery/jquery.form.js"></script>
+<script src="http://admin.sangepg.com/js/jquery/jquery.form.js"></script>
 <script type="text/javascript">
     var ifAllowSubmit = false;
     function validateIfAdd(){

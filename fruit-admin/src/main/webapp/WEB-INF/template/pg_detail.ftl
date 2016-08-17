@@ -5,12 +5,12 @@
     <meta name="format-detection" content="telephone=no, email=no">
     <meta content="no" name="apple-mobile-web-app-capable">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="http://r.360img.cn/images/H5/common/favicon.ico">
-    <meta name="keywords" content="健奥 电子体温计 T11">
-    <meta name="description" content="健奥 电子体温计 T11 软头设计，自动蜂鸣提示，满足不同测量习惯">
-    <title>健奥 电子体温计 T11</title>
-    <link rel="stylesheet" href="css/spellgroup.min.css?v=1.000">
-    <link rel="stylesheet" href="css/temp.css">
+    <link rel="shortcut icon" type="image/x-icon" href="http://p.sangepg.com/images/favicon.ico">
+    <meta name="keywords" content="三个苹果">
+    <meta name="description" content="">
+    <title>${fruit.brandName}-${fruit.typeName}</title>
+    <link rel="stylesheet" href="http://s.sangepg.com/css/spellgroup.min.css?v=1.000">
+    <link rel="stylesheet" href="http://s.sangepg.com/css/temp.css">
     <style>
         .i_price {
             color: #f55;
@@ -35,43 +35,43 @@
 </head>
 <body>
 <article class="container autoScroll" id="container">
-
     <div class="wrapper">
         <div class="goodsDetail">
             <div class="slider" id="slider">
                 <ul class="slideList swipe-wrap clearfix">
                     <li class="item">
-                        <img src="http://s.sangepg.com/html/images/sample.jpg" alt="三个苹果">
+                        <img src="${fruit.image}" alt="${fruit.brandName}">
                     </li>
                 </ul>
                 <div class="icolist" id="sliderPos"></div>
                 <span class="doneSpan"></span>
             </div>
             <div class="goodsName">
-                <p class="dt">山东烟台栖霞红富士</p>
+                <p class="dt">${fruit.brandName}${fruit.varietyName}</p>
             </div>
             <div class="goodsInfo clearfix">
-                <p class="marketValue">重 &nbsp;&nbsp;&nbsp;量：<i class="i_price">8.12kg</i></p>
+                <p class="marketValue">重 &nbsp;&nbsp;&nbsp;量：<i class="i_price">${fruit.weight} kg</i></p>
             </div>
-
+            <#--
             <div class="goodsInfo clearfix">
-                <p class="marketValue">市场价：<i class="i_price">&yen; 18.02/kg</i></p>
-            </div>
+                <p class="marketValue">市场价：<i class="i_price">&yen; ${fruit.marketPrice} 元/kg</i></p>
+            </div>-->
             <div class="goodsInfo clearfix">
-                <p class="marketValue">采摘时间：<i class="i_price">2016年10月24日</i></p>
+                <p class="marketValue">采摘时间：<i class="i_price">${fruit.harvestTime?string('yyyy-MM-dd')}</i></p>
             </div>
             <div class="groupPrice clearfix">
-                <p><i class="i_ico01"></i><span>售价</span><i class="i_price">&yen; 9.90/kg</i></p>
-                <span id="optFunction" onclick="gotoPay(this)" data-id="1612" class="groupBtn"><span id="optname">我要抽奖</span><i class="ico_circle1"></i><i class="ico_circle2"></i></span>
+                <p><i class="i_ico01"></i><span>市场价</span><i class="i_price">&yen;${fruit.marketPrice} 元/kg</i></p>
+                <span id="optFunction" onclick="addCart('fruit.fruitCode')" data-id="1612" class="groupBtn"><span id="optname"></span>我要抽奖<i class="ico_circle1"></i><i class="ico_circle2"></i></span>
             </div>
 
         </div>
+        <!--#include virtual="/block/${fruit.baseInfoPath}"-->
 
 </article>
 
 
 <div class="homeIcon">
-    <a href="http://wxt.360haoyao.com">
+    <a href="#" onclick="">
         <i class="order-numbers" id="carNum">2</i>
     </a>
 </div>

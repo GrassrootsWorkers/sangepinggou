@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="http://p.sangepg.com/images/favicon.ico">
     <!-- Title -->
     <title>三个苹果</title>
     <meta name="Keywords" content="亿万中产阶级托付的平台">
@@ -15,13 +15,12 @@
     <!-- Favicon -->
     <!-- Stylesheets -->
     <!-- jQuery -->
-    <link href="http://s.sangepg.com/css/commons.css" rel="stylesheet" type="text/css">
-    <link href="http://s.sangepg.com/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/commons.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/plugins/select2/select2.css">
-    <script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
-
-    <link href="http://s.sangepg.com/css/personal.css" rel="stylesheet" type="text/css">
-    <link href="http://s.sangepg.com/css/project.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/personal.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/project.css" rel="stylesheet" type="text/css">
+    <script src="http://admin.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
     <script>
         $(function () {
             $('select').select2({placeholder: '请选择', allowClear: true});
@@ -47,7 +46,8 @@
                         <span style="float: left"><i>*</i>水果类型：</span>
                     </label>
                     <div class="com_select">
-                        <select id="fruit_type" name="type" class="select2" onchange="changeType()"  style="width:150px">
+
+                        <select id="fruit_type" name="type" class="beautify_input" onchange="changeType()"  style="width:150px">
                             <option value="">请选择</option>
                             <c:forEach items="${types}" var="t">
                                 <option value="${t.code}">${t.name}</option>
@@ -112,10 +112,11 @@
 <ul id="jump">
     <li><a id="top" href="#top"></a></li>
 </ul>
-<script src="http://s.sangepg.com/js/commons.js"></script>
-<script src="http://s.sangepg.com/js/personal.js" type="text/javascript"></script>
+
+<script src="http://admin.sangepg.com/js/commons.js"></script>
+<script src="http://admin.sangepg.com/js/personal.js" type="text/javascript"></script>
 <script type="text/javascript" src="/plugins/select2/select2.full.min.js"></script>
-<script src="http://s.sangepg.com/js/jquery/jquery.form.js"></script>
+<script src="http://admin.sangepg.com/js/jquery/jquery.form.js"></script>
 <script type="text/javascript">
     jQuery("#imgFile").change(function () {
         //异步表单提交 先提交图片

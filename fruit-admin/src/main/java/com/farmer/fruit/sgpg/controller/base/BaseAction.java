@@ -1,6 +1,7 @@
 package com.farmer.fruit.sgpg.controller.base;
 
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.ParseException;
@@ -17,6 +18,7 @@ import com.farmer.fruit.models.farmer.Farmer;
 import com.farmer.fruit.models.farmer.FarmerQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -40,6 +42,7 @@ public class BaseAction {
     protected Farmer getLoginFarmer(HttpServletRequest request){
         this.request = request;
         String mobile = this.getCookieValue("qr_un");
+        if(mobile == null) return null;
         FarmerQuery farmerQuery = new FarmerQuery();
         farmerQuery.setMobile(mobile);
         Farmer farmer = farmerService.get(farmerQuery);
@@ -169,5 +172,17 @@ public class BaseAction {
 		return false;
 	}
 
+    protected static void uploadTempFile(MultipartFile file, String fileName){
+        String rootPath = ReloadableConfig.getStringProperty("upload.img.path", "/app/web_site");
+        File f = new File(rootPath + "/" + fileName);
+        if (!f.exists()) {
+            f.mkdirs();
+        }
+        try {
+            file.transferTo(f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
 }

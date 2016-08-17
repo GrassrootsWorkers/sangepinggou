@@ -4,27 +4,29 @@ import com.farmer.fruit.interfaces.farmer.IFarmerService;
 import com.farmer.fruit.interfaces.fruit.IFruitService;
 import com.farmer.fruit.models.farmer.Farmer;
 import com.farmer.fruit.models.farmer.FarmerQuery;
+import com.farmer.fruit.models.farmer.ReservedQuery;
 import com.farmer.fruit.models.fruit.Fruit;
 import com.farmer.fruit.models.fruit.FruitQuery;
 import com.farmer.fruit.sgpg.controller.base.BaseAction;
+import com.farmer.fruit.sgpg.controller.base.ReloadableConfig;
 import com.farmer.fruit.sgpg.models.vo.FarmerVo;
 import com.farmer.fruit.sgpg.servlet.ValidateCodeServlet;
+import com.farmer.fruit.sms.SmsUtil;
 import com.farmer.fruit.utils.MD5Util;
 import com.farmer.fruit.utils.RandomStrUtil;
 import com.farmer.fruit.utils.StringUtils;
 import com.farmer.fruit.utils.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -125,46 +127,11 @@ public class FarmerController extends BaseAction {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        Map<String, Object> returnContent = chuangLanSend("http://222.73.117.156/msg/HttpBatchSendSM", content, mobile);
+        Map<String, Object> returnContent = SmsUtil.chuangLanSend(content, mobile);
         returnContent.put("success", true);
         return returnContent;
     }
 
-    public static Map<String, Object> chuangLanSend(String url, String messages, String mobile) {
-        String result = null;
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        try {
-            Map<String, String> params = new HashMap<String, String>();
-            params.put("account", "jiekou-clcs-05");
-            params.put("pswd", "Tch599999");
-            params.put("mobile", mobile);
-            params.put("msg", URLEncoder.encode(messages, "UTF-8"));
-            params.put("needstatus", "true");
-            result = WebUtils.doGet(url, params, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (result != null && result != "") {
-            String[] strs = result.split("\n");
-            if (strs.length < 2) {
-               /* resultMap.put("error", "07");
-                resultMap.put("code", "07");
-                resultMap.put("msgid",null);*/
-                resultMap.put("error", "0");
-                resultMap.put("code", "07");
-                resultMap.put("msgid", "111");
-            } else {
-                String msgId = strs[1];
-                resultMap.put("error", "0");
-                resultMap.put("code", "0");
-                resultMap.put("msgid", msgId);
-            }
-            return resultMap;
-        }
-        return null;
-    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
@@ -197,6 +164,80 @@ public class FarmerController extends BaseAction {
         request.getSession().setAttribute(farmer.getMobile(), farmer.getId());
         return result;
     }
+
+    //修改手机号
+    //修改密码
+    @RequestMapping(value = "/logout")
+    public ModelAndView logout() {
+        return returnLoginHtml();
+    }
+
+    @RequestMapping(value = "change/password", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> changePassword(String oldPassword, String newPassword, HttpServletRequest request) {
+        Map<String, Object> dataMap = new HashMap<String, Object>();
+        Farmer farmer = getLoginFarmer(request);
+        if (farmer == null) {
+            dataMap.put("flag", false);
+            dataMap.put("msg", "login");
+            return dataMap;
+        }
+        if (!MD5Util.validatePassword(oldPassword, farmer.getPassword())) {
+            dataMap.put("flag", false);
+            dataMap.put("msg", "密码不正确");
+            return dataMap;
+        }
+        farmer.setPassword((MD5Util.entryptPassword(newPassword)));
+        farmer.setNewRecord(false);
+        farmer.setLastLoginTime(new Date());
+        farmerService.save(farmer);
+        dataMap.put("flag", true);
+        dataMap.put("msg", "密码修改成功");
+        return dataMap;
+    }
+    //手机号修改暂时不实现
+    /*@RequestMapping(value = "change/mobile", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> changeMobile(String picCheckCode, String oldCheckCode, String newCheckCode, String mobile, HttpServletRequest request) {
+        this.request = request;
+        Map<String, Object> result = new HashMap<String, Object>();
+        Farmer farmer = getLoginFarmer(request);
+        if (farmer.getMobile().equals(mobile)) {
+            result.put("flag", true);
+            result.put("msg", "更改成功！");
+            return result;
+        }
+        if (!validateCode(ValidateCodeServlet.VALIDATE_CODE, picCheckCode)) {
+            result.put("flag", false);
+            result.put("msg", "验证码不正确");
+            return result;
+        }
+        HttpSession session = request.getSession();
+        String oldCheckCode1 = (String) session.getAttribute(farmer.getMobile());
+        String newCheckCode1 = (String) session.getAttribute(mobile);
+        if (!oldCheckCode1.equalsIgnoreCase(oldCheckCode)) {
+            result.put("flag", false);
+            result.put("msg", "原手机验证码不正确");
+            return result;
+        }
+        if (!newCheckCode1.equalsIgnoreCase(newCheckCode)) {
+            result.put("flag", true);
+            result.put("msg", "现手机验证码不正确");
+            return result;
+        }
+
+        FarmerQuery query = new FarmerQuery();
+        query.setMobile(mobile);
+        List<Farmer> farmers = farmerService.findList(query, 0, 1);
+        if (farmers.size() > 0) {
+            query.setFarmerId(farmers.get(0).getId());
+            farmerService.delete(query);
+        }
+        farmer.setMobile(mobile);
+        farmer.setNewRecord(false);
+        farmerService.save(farmer);
+        return result;
+    }*/
 
     @RequestMapping(value = "/{farmerId}", method = RequestMethod.GET)
     @ResponseBody
@@ -242,4 +283,31 @@ public class FarmerController extends BaseAction {
             return new ModelAndView("redirect:/admin/fruit/list?farmerId=" + farmer.getId());
         }
     }
+
+    @RequestMapping(value = "/uploadIcon")
+    @ResponseBody
+    public Map<String, Object> uploadUserIcon(@RequestParam(value = "imgFile", required = false) MultipartFile imgFile, HttpServletRequest request) {
+        Map<String, Object> dataMap = new HashMap<String, Object>();
+        Farmer farmer = getLoginFarmer(request);
+        if (farmer == null) {
+            dataMap.put("tip", "login");
+            dataMap.put("success", false);
+            return dataMap;
+        }
+        String fileName = imgFile.getOriginalFilename();
+        String suffix = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
+        if ("JPEG".equalsIgnoreCase(suffix) || "JPG".equalsIgnoreCase(suffix)) {
+            String filePath = "user/" + (farmer.getId() / 1000) + "/" + farmer.getId() + "/" + farmer.getId() + ".jpg";
+            uploadTempFile(imgFile, filePath);
+            dataMap.put("tip", "http://p.sangepg.com/" + filePath);
+            dataMap.put("success", true);
+            return dataMap;
+        } else {
+            dataMap.put("tip", "imageError");
+            dataMap.put("success", false);
+            return dataMap;
+        }
+
+    }
+
 }

@@ -8,16 +8,17 @@
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="http://p.sangepg.com/images/favicon.ico">
     <!-- Title -->
     <title>三个苹果</title>
     <meta name="Keywords" content="亿万中产阶级托付的平台">
     <meta name="Description" content="农村城市的纽带，吃出放心，吃出健康">
     <!-- Favicon -->
     <!-- Stylesheets -->
-    <link href="http://s.sangepg.com/css/commons.css" rel="stylesheet" type="text/css">
-    <link href="http://s.sangepg.com/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
-    <link href="http://s.sangepg.com/css/personal.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/commons.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="http://admin.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
+    <link href="http://admin.sangepg.com/css/personal.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="bgf6">
@@ -46,7 +47,7 @@
                                 <li>
                                     <div class="l">
                                         <c:if test="${f.image ==null}">
-                                            <img src="http://s.sangepg.com/images/no_picture.png"/>
+                                            <img src="http://p.sangepg.com/images/no_picture.png"/>
                                         </c:if>
 
                                         <c:if test="${f.image !=null}">
@@ -56,7 +57,14 @@
                                     <div class="c">
                                         <div class="list_tag">
                                             <span>是否卖出：</span>
-                                            <span>${f.ifSale}</span>
+                                            <span>
+                                                <c:if test="${f.ifSale eq 'N'}">
+                                                   否
+                                                </c:if>
+                                                 <c:if test="${f.ifSale eq 'Y'}">
+                                                     是
+                                                 </c:if>
+                                            </span>
                                         </div>
                                         <div class="list_tag">
                                             <span>重量：</span>
@@ -176,9 +184,9 @@
     <li><a id="top" href="#top"></a></li>
 </ul>
 <!-- jQuery -->
-<script src="http://s.sangepg.com/js/jquery.cookie.js"></script>
-<script src="http://s.sangepg.com/js/commons.js"></script>
-<script src="http://s.sangepg.com/js/personal.js" type="text/javascript"></script>
+<script src="http://admin.sangepg.com/js/jquery.cookie.js"></script>
+<script src="http://admin.sangepg.com/js/commons.js"></script>
+<script src="http://admin.sangepg.com/js/personal.js" type="text/javascript"></script>
 <script>
     $(function($){
         setCurrentTab("my_fruits");

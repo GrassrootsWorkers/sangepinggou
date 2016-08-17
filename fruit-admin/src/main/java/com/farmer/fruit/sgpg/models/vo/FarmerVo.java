@@ -61,8 +61,6 @@ public class FarmerVo{
 	 */
 	private String validateCode;
 
-
-
 	public boolean validateMobile(String mobile){
 		Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(17[0-9])|(18[0,5-9]))\\d{8}$");
 		Matcher m = p.matcher(mobile);

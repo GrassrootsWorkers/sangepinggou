@@ -118,7 +118,7 @@ public class QrCodeController extends BaseAction {
         } else {
             String token = RandomStrUtil.getLowerStr(4).toUpperCase();
             farmer.setNewRecord(false);
-            farmer.setToken(token+","+farmer.getToken()==null?"":farmer.getToken());
+            farmer.setToken(token+","+(farmer.getToken()==null?"":farmer.getToken()));
             farmer.setLastLoginTime(new Date());
             farmerService.save(farmer);
             reserved.setToken(token);

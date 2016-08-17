@@ -60,12 +60,4 @@ public class UserServiceImpl implements IUserService<User, UserQuery> {
 
 	}
 
-	public IUserDao getUserDao() {
-		return userDao;
-	}
-
-	public void setUserDao(IUserDao userDao) {
-		this.userDao = userDao;
-	}
-
 }

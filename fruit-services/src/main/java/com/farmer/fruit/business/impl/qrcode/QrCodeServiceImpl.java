@@ -39,6 +39,7 @@ public class QrCodeServiceImpl implements IQrCodeService {
     ThreadPoolTaskExecutor taskExecutor;
     @Autowired
     IFruitService fruitService;
+
     @Override
     public Reserved getById(Long id) {
         return reservedDao.getById(id);

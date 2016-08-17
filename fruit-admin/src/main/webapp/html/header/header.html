@@ -58,7 +58,8 @@
         var val = $.cookie("qr_id");
         if (typeof(val) != "undefined") {
             var userId = val.split("_")[0];
-            img = "http://s.sangepg.com/images/" + parseInt(userId / 1000) + "/" + userId + "/" + userId + ".jpeg";
+            img = "http://p.sangepg.com/images/user/" + parseInt(userId / 1000) + "/" + userId + "/" + userId + ".jpg";
+            $("#user_icon").attr("src",img);
             var html = "<div class='user_bk_img'><img src='" + img + "' onerror='resetImage()'/>"
                     + "<ul class='login_user_info'> "
                     + "<span class='arrow-up'></span> "
@@ -79,11 +80,11 @@
     }
     function logout() {
         $.cookie("qr_un", null,{expires:0,path:"/"});
-        window.location.href = "http://www.sangepg.com/user/logout";
+        window.location.href = "http://www.sangepg.com/admin/user/logout";
     }
     function resetImage() {
         var img = event.srcElement;
-        img.src = "http://s.sangepg.com/images/user/user_img.png";
+        img.src = "http://p.sangepg.com/images/user/user_img.png";
         img.onerror = null;
     }
 

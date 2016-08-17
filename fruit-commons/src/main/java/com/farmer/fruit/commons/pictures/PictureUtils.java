@@ -525,6 +525,16 @@ public class PictureUtils {
     }
 
     public static void main(String[] args) {
-        zoomImage("I:\\app\\web_site\\images\\2008101617232580_2.jpg","I:\\app\\web_site\\images\\sample.jpg",600,600);
+        //zoomImage("I:\\app\\web_site\\images\\2008101617232580_2.jpg","I:\\app\\web_site\\images\\sample.jpg",600,600);
+        /*try {
+            watermarkImg("D:\\usr\\local\\resources\\user\\imgs\\photo\\video_timg.jpg","D:\\usr\\local\\resources\\user\\imgs\\photo\\video_timg1.jpg","D:\\usr\\local\\resources\\user\\imgs\\photo\\dongao.png",163,48,10,43,60);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IM4JavaException e) {
+            e.printStackTrace();
+        }*/
+
     }
 }

@@ -56,7 +56,9 @@ public class AddFruitTask  implements  Runnable{
                 fruit.setFarmerId(reserved.getFarmerId());
                 fruit.setBaseCode(fruitInformation.getId());
                 fruit.setOrigImage(files[i].getPath());
-                fruit.setFruitCode(getFruitCode(reserved, reserved.getBegin() + i));
+                String fruitCode = getFruitCode(reserved, reserved.getBegin() + i);
+                if(fruitCode == null ) break;
+                fruit.setFruitCode(fruitCode);
                 fruit.setAddTime(new Date());
                 fruit.setAddUserId(reserved.getFarmerId());
                 fruit.setCreateTime(new Date());
@@ -103,6 +105,9 @@ public class AddFruitTask  implements  Runnable{
     }
 
     private String getFruitCode(Reserved reserved, int index) {
+        if(index >reserved.getEnd()){
+            return null;
+        }
         //token+类型+年+10000000'
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);

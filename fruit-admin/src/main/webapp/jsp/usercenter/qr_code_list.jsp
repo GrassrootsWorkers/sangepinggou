@@ -14,10 +14,10 @@
     <meta name="Description" content="农村城市的纽带，吃出放心，吃出健康">
     <!-- Favicon -->
     <!-- Stylesheets -->
-    <link href="http://s.sangepg.com/css/commons.css" rel="stylesheet" type="text/css">
-    <link href="http://s.sangepg.com/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
-    <link href="http://s.sangepg.com/css/personal.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/commons.css" rel="stylesheet" type="text/css">
+    <link href="http://admin.sangepg.com/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="http://admin.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
+    <link href="http://admin.sangepg.com/css/personal.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="bgf6">
@@ -168,9 +168,9 @@
     <li><a id="top" href="#top"></a></li>
 </ul>
 <!-- jQuery -->
-<script src="http://s.sangepg.com/js/jquery.cookie.js"></script>
-<script src="http://s.sangepg.com/js/commons.js"></script>
-<script src="http://s.sangepg.com/js/personal.js" type="text/javascript"></script>
+<script src="http://admin.sangepg.com/js/jquery.cookie.js"></script>
+<script src="http://admin.sangepg.com/js/commons.js"></script>
+<script src="http://admin.sangepg.com/js/personal.js" type="text/javascript"></script>
 <script>
     $(function ($) {
         setCurrentTab("qr_center");
