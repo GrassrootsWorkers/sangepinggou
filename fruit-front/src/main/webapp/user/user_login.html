@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="http://p.sangepg.com/images/favicon.ico">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>登录_三个苹果</title>
+    <link rel="stylesheet" href="http://s.sangepg.com/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://s.sangepg.com/css/360/global.css">
+    <link rel="stylesheet" href="http://s.sangepg.com/css/360/login.css">
+    <link rel="stylesheet" href="http://s.sangepg.com/css/360/alerts.css">
+</head>
+<body>
+<article id="container">
+    <header id="gHeader" class="clearfix">
+        <div class="h_prev"><a href="javascript:historyUtils.back();"></a></div>
+        <h1>注 册</h1>
+    </header>
+    <div id="main">
+        <div class="log_type">
+            <input id="userMobile" class="user_name" type="text" name="" placeholder="请输入手机号">
+            <i onclick="clearUserMobile()" style="display:block"></i>
+        </div>
+        <p id="mobile_error" class="error_txt" style="display: none">请输入正确的手机号码</p>
+        <p id="mobile_empty" class="error_txt" style="display: none">请输入手机号码</p>
+        <ul id="mobileValidateCodeUL" class="captcha clearfix">
+            <li class="com_position">
+                <input type="number" placeholder="手机验证码" id="mobileValidateCode" class="captcha-txt">
+                <i></i>
+            </li>
+            <li id="fastLoginCode">
+                <button onclick="obtainMobileCode();" type="button" class="captcha_btn01">获取验证码</button>
+            </li>
+            <li style="display: none;" id="countdown">
+                <button type="button" class="captcha_btn01 captcha_btn02">
+                    <small id="timer" class="timeDown">60</small>
+                    秒后重新获取
+                </button>
+            </li>
+        </ul>
+        <p id="code_empty" class="error_txt" style="display: none">请输入验证码</p>
+        <p id="code_error" class="error_txt" style="display: none">请输入正确的验证码</p>
+        <div class="note_book">
+            <button id="fastLoginSubmit" type="button" name="" onclick="login()" class="comBtn">登 录</button>
+        </div>
+        <p class="commonLogin"></p>
+    </div>
+</article>
+<footer class="loginFooter footerNotitle">
+    <ul class="quickLogin col-list-3">
+        <li><a href="#" id="quickLogin_WX">微信</a></li>
+    </ul>
+</footer>
+<script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
+<script src="http://s.sangepg.com/js/jquery/jquery.cookie.js"></script>
+<script src="http://s.sangepg.com/js/bootstrap/bootstrap.js"></script>
+<script type="text/javascript" src="http://s.sangepg.com/js/360/jointlogin.js"></script>
+<script src="http://s.sangepg.com/js/jquery/jquery.alerts.js"></script>
+<script type="text/javascript" src="http://s.sangepg.com/js/360/global.js"></script>
+<script type="text/javascript" src="http://s.sangepg.com/js/360/simpleLogin.js"></script>
+<script>
+    function login() {
+        var flagFastLogin = true, flagFastCode = true;
+        if (jQuery.trim($("#userMobile").val()) == "") {
+            $("#mobile_empty").show();
+            flagFastLogin = false;
+            return false;
+        }
+        jQuery.cookie('mobile', jQuery.trim($("#userMobile").val()), {
+            path: '/',
+            domain: g_loction.domain,
+            expires: 365
+        });
+        if (jQuery.trim($("#mobileValidateCode").val()) == "") {
+            $("#code_empty").show();
+            flagFastCode = false;
+            return false;
+        }
+        if (flagFastLogin && flagFastCode) {
+        } else {
+            return false;
+        }
+        var userMobile = $.trim($("#userMobile").val());
+        var loginCode = $.trim($("#mobileValidateCode").val());
+        jQuery.ajax({
+            type: "post",
+            url: "http://m.sangepg.com/front/user/login",
+            data: {
+                "mobile": userMobile,
+                "code": loginCode,
+                "type": 1
+            },
+            async: false,
+            success: function (data) {
+                var json = data;
+                if (json.success) {
+                    var returnUrl = jQuery.cookie("ReturnUrl");
+                    if (returnUrl == null) {
+                        goHome();
+                    } else {
+                        jQuery.cookie("ReturnUrl", null, {
+                            path: "/",
+                            domain: g_loction.domain
+                        });
+                        returnUrl = returnUrl.replace(/\"/ig, '');
+                        window.location.href = returnUrl;
+                    }
+                } else {
+                    switch (json.errCode) {
+                        case '-1':
+                            $("#mobile_empty").show();
+                            break;
+                        case '-2':
+                            $("#code_empty").show();
+                            break;
+                        default:
+                            jAlert("系统异常");
+                    }
+                }
+            }
+        });
+
+    }
+
+</script>
+</body>
+</html>
