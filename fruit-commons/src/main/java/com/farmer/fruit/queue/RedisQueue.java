@@ -141,11 +141,13 @@ public class RedisQueue<E> implements Queue<E> {
         Jedis jedis = null;
         try{
             jedis = jedisPool.getResource();
-
             return GsonUtil.<E>getObject(jedis.lpop(redisKey), classT);
-
         } finally{
-           jedis.close();
+            if(jedis != null){
+                //jedisPool.returnResource(jedis);
+                jedis.close();
+            }
+
         }
     }
 
@@ -164,7 +166,9 @@ public class RedisQueue<E> implements Queue<E> {
             return GsonUtil.<E>getObject(l.get(0), classT);
 
         } finally{
-           jedis.close();
+            if(jedis != null){
+                jedis.close();
+            }
         }
     }
 

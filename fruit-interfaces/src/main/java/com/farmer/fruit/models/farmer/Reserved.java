@@ -89,7 +89,7 @@ public class Reserved extends BaseEntity {
     /**
      * 市场价格
      */
-    private Double markPrice;
+    private Double marketPrice;
     /**
      * 采摘日期
      */
@@ -263,12 +263,12 @@ public class Reserved extends BaseEntity {
         this.testUrl = testUrl;
     }
 
-    public Double getMarkPrice() {
-        return markPrice;
+    public Double getMarketPrice() {
+        return marketPrice;
     }
 
-    public void setMarkPrice(Double markPrice) {
-        this.markPrice = markPrice;
+    public void setMarketPrice(Double marketPrice) {
+        this.marketPrice = marketPrice;
     }
 
     public Date getHarvestTime() {

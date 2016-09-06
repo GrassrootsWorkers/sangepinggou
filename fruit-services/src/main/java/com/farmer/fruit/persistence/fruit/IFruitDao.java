@@ -7,4 +7,10 @@ import com.farmer.fruit.persistence.MyBatisDao;
 
 @MyBatisDao
 public interface IFruitDao extends CrudDao<Fruit,FruitQuery>{
+    /**
+     * 获取单条数据
+     * @param fruitCode
+     * @return
+     */
+    Fruit getByCode(String fruitCode);
 }

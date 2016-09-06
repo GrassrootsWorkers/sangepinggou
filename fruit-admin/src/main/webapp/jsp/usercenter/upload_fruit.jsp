@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,10 +54,6 @@
                                 <c:if test="${reserved.type == t.code}">
                                     <option selected="selected" value="${t.code}">${t.name}</option>
                                 </c:if>
-                                <c:if test="${reserved.type != t.code}">
-                                    <option value="${t.code}">${t.name}</option>
-                                </c:if>
-
                             </c:forEach>
                         </select>
                     </div>
@@ -81,13 +77,13 @@
             <div class="row_w">
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 1px; padding-bottom: 0px;">
                     <label>
-                        <span><i>*</i>市场价格：</span>
-                        <input  id="mark_price" name="markPrice" placeholder="填写实例:99.99"/>
+                        <span><i>*</i>市场价格(元/kg)：</span>
+                        <input  id="mark_price" name="marketPrice"  value="${reserved.marketPrice}" placeholder="填写实例:9.99"/>
                     </label>
 
                     <label>
                         <span><i>*</i>采摘时间：</span>
-                        <input id="harvest_time" name="harvestTime" placeholder="水果采摘的日期"/>
+                        <input id="harvest_time" name="harvestTime"   value="<fmt:formatDate value="${reserved.harvestTime}" pattern="YYYY-MM-dd HH:mm:ss"/> " placeholder="水果采摘的日期"/>
                     </label>
                 </section>
             </div>

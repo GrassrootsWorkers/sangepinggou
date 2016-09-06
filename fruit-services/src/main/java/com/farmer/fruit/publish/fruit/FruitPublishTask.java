@@ -1,8 +1,9 @@
 package com.farmer.fruit.publish.fruit;
 
-import com.farmer.fruit.Constants;
 import com.farmer.fruit.interfaces.task.Task;
+import com.farmer.fruit.models.Constants;
 import com.farmer.fruit.models.fruit.Fruit;
+import com.farmer.fruit.utils.StringUtils;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
@@ -30,7 +31,7 @@ public class FruitPublishTask implements Task<Fruit> {
         try {
             Template template = freeMarkerConfigurer.getConfiguration().getTemplate(templateName);
             String fileName = fruit.getFruitCode() + ".html";
-            String htmlFilePath = rootPath + "/" + fruit.getFarmerId() + "/" + fruit.getId() / Constants.IMAGES_RANGE_INDEX + "/" + fileName;
+            String htmlFilePath = rootPath +"/"+ fruit.getFarmerId() + "/" + StringUtils.getYear()+ "/" + fruit.getId() / Constants.IMAGES_RANGE_INDEX + "/" + fileName;
             File htmlFile = new File(htmlFilePath);
             if (!htmlFile.getParentFile().exists()) {
                 htmlFile.getParentFile().mkdirs();

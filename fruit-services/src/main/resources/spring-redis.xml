@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	 <bean id="jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
-		<constructor-arg index="0" ref="jedisPoolConfig"/>
-		<constructor-arg index="1" value="master.redis.sangepg.com" />
-		<constructor-arg index="2" value="6379" type="int"/>
-		 <constructor-arg index="3" value="1000000" type="int"/>
-	</bean>
-	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-		<property name="maxTotal" value="200"/>
-		<property name="maxIdle" value="3000"/>
-		<property name="minIdle" value="1000"/>
-	</bean>
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1" value="master.redis.sangepg.com"/>
+        <constructor-arg index="2" value="6379" type="int"/>
+        <constructor-arg index="3" value="1000000" type="int"/>
+    </bean>
+    <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+        <constructor-arg index="0">
+            <set>
+                <ref bean="hp0"/>
+                <ref bean="hp1"/>
+                <ref bean="hp2"/>
+                <ref bean="hp3"/>
+                <ref bean="hp4"/>
+                <ref bean="hp5"/>
+            </set>
+        </constructor-arg>
+        <constructor-arg index="1" value="5000" type="int"/>
+        <constructor-arg index="2" value="10" type="int"/>
+        <constructor-arg index="3" ref="jedisPoolConfig"/>
+    </bean>
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="2"/>
+        <property name="maxIdle" value="3000"/>
+        <property name="minIdle" value="1000"/>
+    </bean>
+    <bean id="hp0" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg index="0" value="192.168.118.128"/>
+        <constructor-arg index="1" value="7001"/>
+    </bean>
+    <bean id="hp1" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg index="0" value="192.168.118.128"/>
+        <constructor-arg index="1" value="7002"/>
+    </bean>
+    <bean id="hp2" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg index="0" value="192.168.118.128"/>
+        <constructor-arg index="1" value="7003"/>
+    </bean>
+    <bean id="hp3" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg index="0" value="192.168.118.128"/>
+        <constructor-arg index="1" value="7004"/>
+    </bean>
+    <bean id="hp4" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg index="0" value="192.168.118.128"/>
+        <constructor-arg index="1" value="7005"/>
+    </bean>
+    <bean id="hp5" class="redis.clients.jedis.HostAndPort">
+        <constructor-arg index="0" value="192.168.118.128"/>
+        <constructor-arg index="1" value="7006"/>
+    </bean>
 </beans>

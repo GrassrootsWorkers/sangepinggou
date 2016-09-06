@@ -6,9 +6,11 @@ import com.farmer.fruit.models.BaseEntity;
  * Created by liuzhi on 2016/7/1.
  */
 public class FruitType extends BaseEntity {
+    private Integer id;
     private String code;
     private String name;
     private String desc;
+    public static String CACHE_KEY = "fruit_type";
 
     public String getCode() {
         return code;

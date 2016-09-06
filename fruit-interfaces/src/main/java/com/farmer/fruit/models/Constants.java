@@ -1,4 +1,4 @@
-package com.farmer.fruit;
+package com.farmer.fruit.models;
 
 
 /**
@@ -14,4 +14,6 @@ public abstract class Constants {
 	public static int IMAGES_RANGE_INDEX = 10000;
 	//id开始值
 	public static long FRUIT_START_INDEX =10000000L;
+	//存在2天
+	public static int FRUIT_EXPIRE_SECOND = 2*24*60*60;
 }

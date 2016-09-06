@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="list_tag">
                                             <span>重量：</span>
-                                            <span>${f.weight}kg</span>
+                                            <span>${f.weight}g</span>
                                         </div>
                                         <div class="list_tag">
                                             <span>采摘日期：</span>

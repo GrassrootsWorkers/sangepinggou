@@ -4,7 +4,7 @@ public abstract class AbstractMonitor implements Runnable {
     protected String block_key;
     protected String fruit_key;
     protected ThreadManager threadManager;//线程管理器
-    protected int interval;
+    protected int interval =24;
 
     public String getBlock_key() {
         return block_key;

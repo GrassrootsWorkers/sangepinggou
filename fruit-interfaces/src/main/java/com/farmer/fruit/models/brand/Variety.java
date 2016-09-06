@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Variety implements Serializable {
+    public static String CACHE_KEY="variety_key";
     private Integer id;
 
     private String type;

@@ -37,9 +37,9 @@ public class UserController extends BaseAction {
     public Map<String, Object> sendSimpleLoginCode(String mobile) {
         RedisUtils redisUtils = new RedisUtils(jedisPool);
         String checkCode = RandomStrUtil.getNumStr(6);
-        boolean addFlag = redisUtils.setKey(mobile, checkCode, 60);
+        boolean addFlag = redisUtils.setKey(mobile, checkCode, 120);
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("success", false);
+            result.put("success", false);
         if (addFlag) {
             String content = null;
             try {
@@ -85,7 +85,6 @@ public class UserController extends BaseAction {
             user.setPassword(MD5Util.entryptPassword(mobile.substring(5,mobile.length())));
             user.setNewRecord(true);
             userService.save(user);
-            //addCookie(mobile,user.getId().toString(),0);
             redisUtils.addMobileToRedis(mobile);
             result.put("success", true);
         }

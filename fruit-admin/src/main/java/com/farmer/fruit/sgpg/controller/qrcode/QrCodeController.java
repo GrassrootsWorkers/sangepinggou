@@ -2,11 +2,14 @@ package com.farmer.fruit.sgpg.controller.qrcode;
 
 import com.farmer.fruit.interfaces.common.ICommonService;
 import com.farmer.fruit.interfaces.farmer.IFarmerService;
+import com.farmer.fruit.interfaces.fruit.IFruitBaseInfoService;
 import com.farmer.fruit.interfaces.qrcode.IQrCodeService;
 import com.farmer.fruit.models.farmer.Farmer;
 import com.farmer.fruit.models.farmer.FarmerQuery;
 import com.farmer.fruit.models.farmer.Reserved;
 import com.farmer.fruit.models.farmer.ReservedQuery;
+import com.farmer.fruit.models.fruit.FruitInformation;
+import com.farmer.fruit.models.fruit.FruitInformationQuery;
 import com.farmer.fruit.models.fruit.FruitQuery;
 import com.farmer.fruit.models.fruit.FruitType;
 import com.farmer.fruit.sgpg.controller.base.BaseAction;
@@ -39,6 +42,8 @@ public class QrCodeController extends BaseAction {
 
     @Autowired
     ICommonService commonService;
+    @Autowired
+    IFruitBaseInfoService fruitBaseInfoService;
 
     @RequestMapping(value = "/page")
     public ModelAndView toQrCodePage(ReservedQuery query, HttpServletRequest request) {
@@ -113,6 +118,12 @@ public class QrCodeController extends BaseAction {
             ModelAndView view = new ModelAndView(redirectView);
             return view;
         }
+        if(!validateIfMapBaseInfo(reserved)){
+            //错误提示页面
+            RedirectView redirectView = new RedirectView("/jsp/tip/load_fruit_info_error.html");
+            ModelAndView view = new ModelAndView(redirectView);
+            return view;
+        }
         if (reserved.getId() != null) {
             reserved.setNewRecord(false);
         } else {
@@ -132,10 +143,15 @@ public class QrCodeController extends BaseAction {
     @RequestMapping(value = "ajaxApply", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> ajaxApplyQrCode(Reserved reserved, HttpServletRequest request) {
+
         Farmer farmer = getLoginFarmer(request);
         Map<String, Object> dataMap = new HashMap<String, Object>();
         if (farmer == null) {
             dataMap.put("tip", "login");
+            return dataMap;
+        }
+        if(!validateIfMapBaseInfo(reserved)){
+            dataMap.put("tip", "error");
             return dataMap;
         }
         long id =0L;
@@ -160,7 +176,18 @@ public class QrCodeController extends BaseAction {
         return dataMap;
     }
 
-
+    private boolean validateIfMapBaseInfo(Reserved reserved) {
+        FruitInformationQuery query = new FruitInformationQuery();
+        query.setFarmerId(reserved.getFarmerId());
+        query.setType(reserved.getType());
+        query.setBrandId(reserved.getBrandId());
+        query.setVarietyId(reserved.getVarietyId());
+        FruitInformation fruitInformation = fruitBaseInfoService.get(query);
+        if (fruitInformation == null) {
+            return false;
+        }
+        return true;
+    }
     @RequestMapping(value = "toUpload", method = RequestMethod.GET)
     public ModelAndView uploadFruitInfo(Reserved reserved, HttpServletRequest request) {
         Reserved applied = qrCodeService.getById(reserved.getId());
@@ -200,7 +227,7 @@ public class QrCodeController extends BaseAction {
         applied.setStatus(ReservedQuery.USED);
         applied.setFilePath(reserved.getFilePath());
         applied.setPicturePath(reserved.getPicturePath());
-        applied.setMarkPrice(reserved.getMarkPrice());
+        applied.setMarketPrice(reserved.getMarketPrice());
         //此处有坑
         applied.setHarvestTime(reserved.getHarvestTime());
         //qrCodeService.save(reserved);
@@ -208,7 +235,7 @@ public class QrCodeController extends BaseAction {
         boolean flag = qrCodeService.createFruit(applied, farmer.getId());
         if (!flag) {
             //跳转错误页面
-            return null;
+            return new ModelAndView("redirect:/jsp/tip/load_fruit_info_error.html");
         } else {
             return new ModelAndView("redirect:/admin/fruit/list?pageIndex=1");
         }

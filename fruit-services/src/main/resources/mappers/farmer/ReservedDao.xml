@@ -20,11 +20,13 @@
         <result column="picture_path" property="picturePath"/>
         <result column="test_url" property="testUrl"/>
         <result column="finish_flag" property="finishFlag"/>
+        <result column="market_price" property="marketPrice"/>
+        <result column="harvest_time" property="harvestTime"/>
     </resultMap>
 
     <sql id="base_column_List">
       r.id, r.farmer_id, `begin`, `end`, r.`status`, r.token, r.apply_time,r.apply_count,r.brand_id,r.variety_id,
-      r.`type`,r.audit_desc,r.apply_desc,r.file_path,r.picture_path,r.test_url,r.finish_flag
+      r.`type`,r.audit_desc,r.apply_desc,r.file_path,r.picture_path,r.test_url,r.finish_flag,r.market_price,r.harvest_time
   </sql>
     <sql id="condition">
         <if test="farmerId != null">
@@ -65,9 +67,9 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         insert into qr_reserved (farmer_id, `begin`,`end`, `status`,
-        token,apply_count,apply_time,`type`,brand_id,variety_id,apply_desc)
+        token,apply_count,apply_time,`type`,brand_id,variety_id,apply_desc,market_price,harvest_time)
         values (#{farmerId}, #{begin},#{end}, #{status},
-        #{token},#{applyCount},#{applyTime},#{type},#{brandId},#{varietyId},#{applyDesc})
+        #{token},#{applyCount},#{applyTime},#{type},#{brandId},#{varietyId},#{applyDesc},#{marketPrice},#{harvestTime})
     </insert>
     <select id="getTotalCount" parameterType="ReservedQuery" resultType="java.lang.Integer">
         select count(1) from qr_reserved r where 1=1
@@ -110,9 +112,17 @@
             <if test="testUrl !=null">
                 test_url = #{testUrl},
             </if>
+
             <if test="finishFlag !=null">
                 finish_flag = #{finishFlag},
             </if>
+            <if test="harvestTime !=null">
+                harvest_time = #{harvestTime},
+            </if>
+            <if test="marketPrice !=null">
+             market_price = #{marketPrice},
+            </if>
+
         </set>
         where id = #{id}
     </update>

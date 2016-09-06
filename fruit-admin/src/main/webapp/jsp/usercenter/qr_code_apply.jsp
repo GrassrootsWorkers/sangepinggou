@@ -152,7 +152,7 @@
                     }else if(data.tip == 'login'){
                         window.location.href="http://www.sangepg.com/jsp/user/user_login.html";
                     }else{
-                       alert("系统繁忙");
+                       alert("请选择您登记的水果类型");
                     }
 
                 }

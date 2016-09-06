@@ -1,8 +1,10 @@
 package com.farmer.fruit.models.fruit;
 
 import com.farmer.fruit.models.BaseEntity;
+import com.farmer.fruit.models.Constants;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Fruit extends BaseEntity {
@@ -66,6 +68,10 @@ public class Fruit extends BaseEntity {
      */
     private String image;
     /**
+     * 小图
+     */
+    private String smallImage;
+    /**
      * 二维码
      */
     private String qrPath;
@@ -81,6 +87,45 @@ public class Fruit extends BaseEntity {
      * 静态文件的路径
      */
     private String filePath;
+    /**
+     * 扫描次数
+     */
+    private int clickTimes;
+    /**
+     * 售价
+     */
+    private BigDecimal salePrice;
+    /**
+     * 单个苹果的总价
+     */
+    private BigDecimal totalPrice;
+
+    public BigDecimal getTotalPrice() {
+        totalPrice = new BigDecimal(weight).divide(new BigDecimal(1000)).multiply(salePrice);
+        return totalPrice.setScale(2,BigDecimal.ROUND_HALF_UP);
+    }
+    public String getImage() {
+        return "http://p.sangepg.com/images/fruit/"+id /10000 +"/"+id+ "/center.jpg";
+    }
+
+    public String getSmallImage() {
+        return "http://p.sangepg.com/images/fruit/"+id /10000 +"/"+id+ "/small.jpg";
+    }
+    public String getQrPath() {
+        return "http://p.sangepg.com/images/qr/"+getFarmerId() +"/"+ id /10000 + "/" + fruitCode + ".png";
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public BigDecimal getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(BigDecimal salePrice) {
+        this.salePrice = salePrice;
+    }
 
     public Long getFarmerId() {
         return addUserId;
@@ -91,6 +136,9 @@ public class Fruit extends BaseEntity {
     }
 
     public String getFilePath() {
+        if(id !=null){
+            filePath= filePath+ id / Constants.IMAGES_RANGE_INDEX + "/" + fruitCode + ".html";
+        }
         return filePath;
     }
 
@@ -114,10 +162,6 @@ public class Fruit extends BaseEntity {
 
     public void setOrigImage(String origImage) {
         this.origImage = origImage;
-    }
-
-    public String getImage() {
-        return "http://p.sangepg.com/images/fruit/"+id /10000 +"/"+id+ "/center.jpg";
     }
 
     public Long getId() {
@@ -252,9 +296,6 @@ public class Fruit extends BaseEntity {
         this.image = image;
     }
 
-    public String getQrPath() {
-        return "http://p.sangepg.com/images/qr/"+getFarmerId() +"/"+ id /10000 + "/" + fruitCode + ".png";
-    }
 
     public void setQrPath(String qrPath) {
         this.qrPath = qrPath;
@@ -314,6 +355,14 @@ public class Fruit extends BaseEntity {
 
     public void setVarietyName(String varietyName) {
         this.varietyName = varietyName;
+    }
+
+    public int getClickTimes() {
+        return clickTimes;
+    }
+
+    public void setClickTimes(int clickTimes) {
+        this.clickTimes = clickTimes;
     }
 
     @Override

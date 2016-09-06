@@ -1,85 +1,153 @@
 package com.farmer.fruit.models.shopping;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.farmer.fruit.models.fruit.Fruit;
 
-public class ShoppingCart implements Serializable {
-    private Integer id;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-    private String fruitCode;
+public class ShoppingCart extends Cart {
 
-    private Integer userId;
+    /**
+     * 购物车商品分组 分类_品牌_品种_baseCode(种植人编码)
+     */
+    private String cartGroup;
+    /**
+     * 购物车显示名称
+     */
+    private String cartGroupName;
+    /**
+     * 意愿要买的水果列表
+     */
+    private List<Fruit> wishesBuyFruitList;
+    /**
+     * 暂无意愿要买的水果列表
+     */
+    private List<Fruit> noWishesBuyFruitList;
 
-    private String userFlag;
+    /**
+     * 购物车总个数
+     */
+    private int totalCount;
 
-    private String buyFlag;
+    /**
+     * 购物车总总量
+     */
+    private BigDecimal totalWeight;
+    /**
+     * 市场价
+     */
+    private BigDecimal markPrice;
+    /**
+     * 市场总价
+     */
+    private BigDecimal markTotalPrice;
+    /**
+     * 实际售价
+     */
+    private BigDecimal salePrice;
+    /**
+     * 实际应付总价
+     */
+    private BigDecimal saleTotalPrice;
+    /**
+     * 优惠总价
+     */
+    private BigDecimal discountTotalPrice;
 
-    private Date addTime;
-
-    private static final long serialVersionUID = 1L;
-
-    public Integer getId() {
-        return id;
+    public String getCartGroupName() {
+        return cartGroupName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCartGroupName(String cartGroupName) {
+        this.cartGroupName = cartGroupName;
     }
 
-    public String getFruitCode() {
-        return fruitCode;
+    public List<Fruit> getWishesBuyFruitList() {
+        if(wishesBuyFruitList == null){
+            wishesBuyFruitList = new ArrayList<Fruit>();
+        }
+        return wishesBuyFruitList;
     }
 
-    public void setFruitCode(String fruitCode) {
-        this.fruitCode = fruitCode == null ? null : fruitCode.trim();
+    public void setWishesBuyFruitList(List<Fruit> wishesBuyFruitList) {
+        this.wishesBuyFruitList = wishesBuyFruitList;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public List<Fruit> getNoWishesBuyFruitList() {
+        if(noWishesBuyFruitList == null){
+            noWishesBuyFruitList = new ArrayList<>();
+        }
+        return noWishesBuyFruitList;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setNoWishesBuyFruitList(List<Fruit> noWishesBuyFruitList) {
+        this.noWishesBuyFruitList = noWishesBuyFruitList;
     }
 
-    public String getUserFlag() {
-        return userFlag;
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
 
-    public void setUserFlag(String userFlag) {
-        this.userFlag = userFlag == null ? null : userFlag.trim();
+    public int getTotalCount() {
+        return totalCount;
     }
 
-    public String getBuyFlag() {
-        return buyFlag;
+    public BigDecimal getTotalWeight() {
+        return totalWeight;
     }
 
-    public void setBuyFlag(String buyFlag) {
-        this.buyFlag = buyFlag == null ? null : buyFlag.trim();
+    public void setTotalWeight(BigDecimal totalWeight) {
+        this.totalWeight = totalWeight;
     }
 
-    public Date getAddTime() {
-        return addTime;
+    public BigDecimal getMarkPrice() {
+        return markPrice;
     }
 
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
+    public void setMarkPrice(BigDecimal markPrice) {
+        this.markPrice = markPrice;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", fruitCode=").append(fruitCode);
-        sb.append(", userId=").append(userId);
-        sb.append(", userFlag=").append(userFlag);
-        sb.append(", buyFlag=").append(buyFlag);
-        sb.append(", addTime=").append(addTime);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+    public BigDecimal getMarkTotalPrice() {
+        return markTotalPrice;
+    }
+
+    public void setMarkTotalPrice(BigDecimal markTotalPrice) {
+        this.markTotalPrice = markTotalPrice;
+    }
+
+    public BigDecimal getSalePrice() {
+        if(salePrice == null) return new BigDecimal(0.00).setScale(2,BigDecimal.ROUND_HALF_UP);
+        return salePrice.setScale(2,BigDecimal.ROUND_HALF_UP);
+    }
+
+    public void setSalePrice(BigDecimal salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public BigDecimal getSaleTotalPrice() {
+        if(salePrice == null) return new BigDecimal(0.00).setScale(2,BigDecimal.ROUND_HALF_UP);
+        return saleTotalPrice.setScale(2,BigDecimal.ROUND_HALF_UP);
+    }
+
+    public void setSaleTotalPrice(BigDecimal saleTotalPrice) {
+        this.saleTotalPrice = saleTotalPrice;
+    }
+
+    public BigDecimal getDiscountTotalPrice() {
+        return  discountTotalPrice;
+    }
+
+    public void setDiscountTotalPrice(BigDecimal discountTotalPrice) {
+        this.discountTotalPrice = discountTotalPrice;
+    }
+
+    public String getCartGroup() {
+        return cartGroup;
+    }
+
+    public void setCartGroup(String cartGroup) {
+        this.cartGroup = cartGroup;
     }
 }

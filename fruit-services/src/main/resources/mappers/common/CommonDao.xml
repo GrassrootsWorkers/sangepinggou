@@ -22,6 +22,16 @@
     <result column="name" property="name"/>
     <result column="parent_id" property="parentId"/>
   </resultMap>
+  <resultMap id="fruit_type_map" type="com.farmer.fruit.models.fruit.FruitType">
+    <id column="id" property="id"/>
+    <result column="code" property="code"/>
+    <result column="name" property="name"/>
+    <result column="status" property="status"/>
+    <result column="description" property="desc"/>
+  </resultMap>
+  <select id="getFruitType" parameterType="com.farmer.fruit.models.fruit.FruitType" resultMap="fruit_type_map">
+    select id,code, name,description as `desc` ,status ,create_time,update_time from qr_fruit_type
+  </select>
 
   <select id="getBrands" parameterType="com.farmer.fruit.models.brand.BrandQuery" resultMap="brand_map">
     select  id,`type`,brand_desc,add_time,name from qr_brand

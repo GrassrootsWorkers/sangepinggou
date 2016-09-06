@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="GBK">
+    <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="http://p.sangepg.com/images/favicon.ico">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>µÇÂ¼_Èı¸öÆ»¹û</title>
+    <title>ç™»å½•_ä¸‰ä¸ªè‹¹æœ</title>
     <link rel="stylesheet" href="http://s.sangepg.com/css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://s.sangepg.com/css/360/global.css">
     <link rel="stylesheet" href="http://s.sangepg.com/css/360/login.css">
@@ -17,43 +17,43 @@
 <article id="container">
     <header id="gHeader" class="clearfix">
         <div class="h_prev"><a href="javascript:historyUtils.back();"></a></div>
-        <h1>×¢ ²á</h1>
+        <h1>æ‰‹æœºå¿«æ·ç™»å½•</h1>
     </header>
     <div id="main">
         <div class="log_type">
-            <input id="userMobile" class="user_name" type="text" name="" placeholder="ÇëÊäÈëÊÖ»úºÅ">
+            <input id="userMobile" class="user_name" type="text" name="" placeholder="è¯·è¾“å…¥æ‰‹æœºå·">
             <i onclick="clearUserMobile()" style="display:block"></i>
         </div>
-        <p id="mobile_error" class="error_txt" style="display: none">ÇëÊäÈëÕıÈ·µÄÊÖ»úºÅÂë</p>
-        <p id="mobile_empty" class="error_txt" style="display: none">ÇëÊäÈëÊÖ»úºÅÂë</p>
+        <p id="mobile_error" class="error_txt" style="display: none">è¯·è¾“å…¥æ­£ç¡®çš„æ‰‹æœºå·ç </p>
+        <p id="mobile_empty" class="error_txt" style="display: none">è¯·è¾“å…¥æ‰‹æœºå·ç </p>
         <ul id="mobileValidateCodeUL" class="captcha clearfix">
             <li class="com_position">
-                <input type="number" placeholder="ÊÖ»úÑéÖ¤Âë" id="mobileValidateCode" class="captcha-txt">
+                <input type="number" placeholder="æ‰‹æœºéªŒè¯ç " id="mobileValidateCode" class="captcha-txt">
                 <i></i>
             </li>
             <li id="fastLoginCode">
-                <button onclick="obtainMobileCode();" type="button" class="captcha_btn01">»ñÈ¡ÑéÖ¤Âë</button>
+                <button onclick="obtainMobileCode();" type="button" class="captcha_btn01">è·å–éªŒè¯ç </button>
             </li>
             <li style="display: none;" id="countdown">
                 <button type="button" class="captcha_btn01 captcha_btn02">
                     <small id="timer" class="timeDown">60</small>
-                    ÃëºóÖØĞÂ»ñÈ¡
+                    ç§’åé‡æ–°è·å–
                 </button>
             </li>
         </ul>
-        <p id="code_empty" class="error_txt" style="display: none">ÇëÊäÈëÑéÖ¤Âë</p>
-        <p id="code_error" class="error_txt" style="display: none">ÇëÊäÈëÕıÈ·µÄÑéÖ¤Âë</p>
+        <p id="code_empty" class="error_txt" style="display: none">è¯·è¾“å…¥éªŒè¯ç </p>
+        <p id="code_error" class="error_txt" style="display: none">è¯·è¾“å…¥æ­£ç¡®çš„éªŒè¯ç </p>
         <div class="note_book">
-            <button id="fastLoginSubmit" type="button" name="" onclick="login()" class="comBtn">µÇ Â¼</button>
+            <button id="fastLoginSubmit" type="button" name="fastLoginSubmit" onclick="login()" class="comBtn disabled">ç™» å½•</button>
         </div>
         <p class="commonLogin"></p>
     </div>
 </article>
-<footer class="loginFooter footerNotitle">
+<!--<footer class="loginFooter footerNotitle">
     <ul class="quickLogin col-list-3">
-        <li><a href="#" id="quickLogin_WX">Î¢ĞÅ</a></li>
+        <li><a href="#" id="quickLogin_WX">å¾®ä¿¡</a></li>
     </ul>
-</footer>
+</footer>-->
 <script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.js"></script>
 <script src="http://s.sangepg.com/js/jquery/jquery.cookie.js"></script>
 <script src="http://s.sangepg.com/js/bootstrap/bootstrap.js"></script>
@@ -85,7 +85,7 @@
         }
         var userMobile = $.trim($("#userMobile").val());
         var loginCode = $.trim($("#mobileValidateCode").val());
-        jQuery.ajax({
+        $.ajax({
             type: "post",
             url: "http://m.sangepg.com/front/user/login",
             data: {
@@ -117,7 +117,7 @@
                             $("#code_empty").show();
                             break;
                         default:
-                            jAlert("ÏµÍ³Òì³£");
+                            jAlert("ç³»ç»Ÿå¼‚å¸¸");
                     }
                 }
             }

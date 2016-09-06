@@ -7,6 +7,8 @@ import com.farmer.fruit.interfaces.fruit.IFruitService;
 import com.farmer.fruit.interfaces.qrcode.IQrCodeService;
 import com.farmer.fruit.models.farmer.Reserved;
 import com.farmer.fruit.models.farmer.ReservedQuery;
+import com.farmer.fruit.models.fruit.FruitInformation;
+import com.farmer.fruit.models.fruit.FruitInformationQuery;
 import com.farmer.fruit.persistence.farmer.IReservedDao;
 import com.farmer.fruit.persistence.fruit.IFruitInformationDao;
 import com.farmer.fruit.task.AddFruitTask;
@@ -138,10 +140,10 @@ public class QrCodeServiceImpl implements IQrCodeService {
             taskExecutor.execute(task);
             System.out.println("end pool size :" + taskExecutor.getPoolSize());
             return true;
-        } else {
-            return false;
-        }
-    }
 
+        }
+        return false;
+
+    }
 
 }

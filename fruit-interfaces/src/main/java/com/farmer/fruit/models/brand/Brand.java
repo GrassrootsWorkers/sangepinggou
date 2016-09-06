@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Brand implements Serializable {
+    public static String CACHE_KEY="brand_key";
     private Integer id;
 
     private String name;

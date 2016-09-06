@@ -29,6 +29,10 @@ public class FruitServiceImpl implements IFruitService {
     }
 
     @Override
+    public Fruit getByCode(String fruitCode){
+        return fruitDao.getByCode(fruitCode);
+    }
+    @Override
     public int findListCount(FruitQuery entity) {
         return fruitDao.getTotalCount(entity);
     }

@@ -9,6 +9,7 @@
     <result column="height" property="height"/>
     <result column="width" property="width"/>
     <result column="high" property="high"/>
+    <result column="file_path" property="filePath"/>
     <result column="maturing_status" property="maturingStatus"/>
     <result column="harvest_time" property="harvestTime"/>
     <result column="market_price" property="marketPrice"/>
@@ -26,7 +27,7 @@
     <result column="orig_image" property="origImage"/>
   </resultMap>
   <sql id="Base_Column_List" >
-      id, fruit_code, base_code, weight, height, width, high, maturing_status, harvest_time, 
+      id, fruit_code, base_code, weight, height, width, high,file_path, maturing_status, harvest_time,
       market_price, add_time, add_user_id, checkout_user_id, checkout_time, delete_flag, 
       price_flag, lottery_flag,if_sale,variety_id,brand_id,`type`,orig_image
   </sql>
@@ -34,12 +35,19 @@
     select
     <include refid="Base_Column_List" />
     from qr_fruit_detail
+    where id = #{id}
   </select>
   <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List"/>
     from qr_fruit_detail
     where id = #{id}
+  </select>
+  <select id="getByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List"/>
+    from qr_fruit_detail
+    where fruit_code = #{value}
   </select>
   <sql id="condition">
     <where>
@@ -72,19 +80,16 @@
     <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
       SELECT LAST_INSERT_ID() AS id
     </selectKey>
-    insert into qr_fruit_detail (
-    fruit_code, base_code, 
-      weight, height, width, 
-      high, maturing_status, harvest_time, 
-      market_price, add_time, add_user_id, 
-      checkout_user_id, checkout_time, delete_flag, 
-      price_flag, lottery_flag,`type`,brand_id,variety_id,orig_image)
-    values (#{fruitCode}, #{baseCode}, 
-      #{weight}, #{height}, #{width}, 
-      #{high}, #{maturingStatus}, #{harvestTime}, 
-      #{marketPrice}, #{addTime}, #{addUserId}, 
-      #{checkoutUserId}, #{checkoutTime}, #{deleteFlag}, 
-      #{priceFlag}, #{lotteryFlag},#{type},#{brandId},#{varietyId},#{origImage})
+    insert into qr_fruit_detail
+    (
+      fruit_code, base_code, weight, height, width, file_path, high, maturing_status, harvest_time, market_price, add_time, add_user_id,
+      checkout_user_id, checkout_time, delete_flag,price_flag, lottery_flag,`type`,brand_id,variety_id,orig_image
+    )
+    values
+    (
+      #{fruitCode}, #{baseCode}, #{weight}, #{height}, #{width}, #{filePath}, #{high},#{maturingStatus}, #{harvestTime},#{marketPrice}, #{addTime}, #{addUserId},
+      #{checkoutUserId}, #{checkoutTime}, #{deleteFlag}, #{priceFlag}, #{lotteryFlag},#{type},#{brandId},#{varietyId},#{origImage}
+    )
   </insert>
 
   <update id="update" parameterType="Fruit" >
