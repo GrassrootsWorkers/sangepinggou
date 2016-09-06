@@ -1,0 +1,2681 @@
+@charset "UTF-8";
+img, legend {
+    border: 0
+}
+
+*, legend, td, th {
+    padding: 0
+}
+
+*, .wrapper, a {
+    -webkit-tap-highlight-color: transparent
+}
+
+*, p, ul {
+    margin: 0
+}
+
+.bor_whiteBtn, .copy-right, .exp_step em i, .groupFixed .groupPrice a.groupNum, .groupMore-title, .icolist, .item, .newAddress, .redBtn, .taCenter, .yellowBtn {
+    text-align: center
+}
+
+.payList, ul {
+    list-style: none
+}
+
+.showtips, .txtAdd .nameAdd {
+    min-width: 100px
+}
+
+.allInfo a, .bor_whiteBtn:hover, .copyBox .copyBtn:hover, .groupBtn:hover, .groupExplain a, .linkAddress a:hover, .moreTtl a, .newAddress a, .proItem a:hover, .redBtn:focus, .redBtn:hover, .yellowBtn:focus, .yellowBtn:hover, a, a:active, a:hover {
+    text-decoration: none
+}
+
+body, html {
+    height: 100%
+}
+
+body {
+    background-color: #ebecec;
+    font-family: "Microsoft Yahei", sans-serif;
+    color: #333
+}
+
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block
+}
+
+audio, canvas, progress, video {
+    display: inline-block;
+    vertical-align: baseline
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+[hidden], template {
+    display: none
+}
+
+a {
+    background-color: transparent
+}
+
+a:active, a:hover {
+    outline: 0
+}
+
+abbr[title] {
+    border-bottom: 1px dotted
+}
+
+b, optgroup, strong {
+    font-weight: 700
+}
+
+dfn {
+    font-style: italic
+}
+
+h1 {
+    font-size: 2em;
+    margin: .67em 0
+}
+
+mark {
+    background: #ff0;
+    color: #000
+}
+
+.copy-right, body.white-bg {
+    background-color: #fff
+}
+
+small {
+    font-size: 80%
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+.fixedBox span i, .ico_03, .ico_04, .ico_add, .infoBox, .winningName i {
+    vertical-align: middle
+}
+
+sup {
+    top: -.5em
+}
+
+sub {
+    bottom: -.25em
+}
+
+img {
+    max-width: 100%
+}
+
+#container, .fixedBox, .groupFixed, .pop-fight, .shareBox {
+    max-width: 640px
+}
+
+svg:not(:root) {
+    overflow: hidden
+}
+
+figure {
+    margin: 1em 40px
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0
+}
+
+pre, textarea {
+    overflow: auto
+}
+
+code, kbd, pre, samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0
+}
+
+.exp_step em i, .groupDetail p i, .marketValue i, .moreGroup ul li p i, .ruleList li p i {
+    font-family: Arial
+}
+
+#countdown i, .menu_item a i, em, i {
+    font-style: normal
+}
+
+button {
+    overflow: visible
+}
+
+.bannerBox, .container, .goodsName, .groupFixed, .swipe, .swipe-wrap {
+    overflow: hidden
+}
+
+button, select {
+    text-transform: none
+}
+
+button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button[disabled], html input[disabled] {
+    cursor: default
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+input {
+    line-height: normal
+}
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    height: auto
+}
+
+input[type=search] {
+    -webkit-appearance: textfield;
+    box-sizing: content-box
+}
+
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+fieldset {
+    border: 1px solid silver;
+    margin: 0 2px;
+    padding: .35em .625em .75em
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+#container {
+    margin: 0 auto
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-right: 0;
+    padding-left: 0;
+    height: 100%;
+    padding-top: 0
+}
+
+.container.autoScroll {
+    height: auto;
+    overflow: hidden;
+    position: relative
+}
+
+footer {
+    margin-top: 10px
+}
+
+.copy-right {
+    padding: 15px 10px;
+    color: #777;
+    font-size: 12px
+}
+
+.hidden {
+    display: none !important
+}
+
+.wrapper {
+    position: absolute;
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none
+}
+
+.container.autoScroll .wrapper {
+    position: relative
+}
+
+ul {
+    padding: 0
+}
+
+.red {
+    color: #f55
+}
+
+.fr {
+    float: right
+}
+
+.fl {
+    float: left
+}
+
+.pb0 {
+    padding-bottom: 0 !important
+}
+
+.pr15 {
+    padding-right: 15px
+}
+
+.ml40 {
+    margin-left: 40px
+}
+
+.bor_whiteBtn, .redBtn, .yellowBtn {
+    background-color: #f55;
+    line-height: 38px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 0 10px;
+    display: inline-block;
+    border: 1px solid #f55
+}
+
+.groupBtn, .groupPrice p {
+    line-height: 40px;
+    float: left
+}
+
+@media (min-width: 325px) {
+    .bor_whiteBtn, .redBtn, .yellowBtn {
+        font-size: 15px;
+        padding: 0 15px
+    }
+}
+
+.redBtn.disabled, .yellowBtn.disabled {
+    background-color: #999;
+    border-color: #999
+}
+
+.bor_whiteBtn {
+    background-color: #fff;
+    border: 1px solid #dedede;
+    color: #333
+}
+
+.yellowBtn {
+    background-color: #ffae00;
+    border: 1px solid #ffae00
+}
+
+.redBtn:focus, .redBtn:hover, .yellowBtn:focus, .yellowBtn:hover {
+    color: #fff
+}
+
+.bor_whiteBtn:hover {
+    color: #333
+}
+
+.i_ico01, .ico_02, .ico_03, .ico_04, .ico_add, .ico_eait, .ico_name, .ico_tel {
+    background: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_spellgroup.png) no-repeat;
+    background-size: 150px auto
+}
+
+.clearfix:after {
+    content: " ";
+    clear: both;
+    display: table;
+    padding-top: 8px;
+}
+
+.comTxt:after, .logisticsStatus ul:before, .paySelect:after {
+    content: ""
+}
+
+.pb60 {
+    padding-bottom: 60px
+}
+
+.homeIcon, .myCenter, .pageTop, .serverIcon {
+    position: fixed;
+    right: 10px;
+    bottom: 90px;
+    z-index: 8
+}
+
+.pageTop {
+    display: none
+}
+
+.homeIcon {
+    bottom: 180px
+}
+
+.myCenter, .serverIcon {
+    bottom: 135px
+}
+
+.homeIcon a, .myCenter a, .pageTop a, .serverIcon a {
+    display: block;
+    width: 42px;
+    height: 42px;
+    background: url(http://p.sangepg.com/images/ico_spellgroup.png) -65px -77px no-repeat;
+    background-size: 130px auto
+}
+
+.goodsBox, .icolist .on {
+    background-color: #fff
+}
+
+.homeIcon a {
+    background-position: -9px -138px
+}
+
+.pageTop a {
+    background-position: -9px -77px
+}
+
+.serverIcon a {
+    background-position: -65px -138px
+}
+
+.mainImg {
+    position: relative
+}
+
+.icolist {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    z-index: 999;
+    -webkit-transform: translateZ(-1px);
+    -ms-transform: translateZ(-1px);
+    -o-transform: translateZ(-1px);
+    transform: translateZ(-1px)
+}
+
+.bannerBox, .groupBtn, .swipe, .swipe-wrap, .swipe-wrap > li {
+    position: relative
+}
+
+.icolist a {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #fff;
+    opacity: .6;
+    filter: alpha(opacity=60);
+    border-radius: 6px;
+    margin: 0 5px
+}
+
+.bannerBox, .goodsName, .goodsName span, .groupExplain span {
+    display: block
+}
+
+.bannerBox, .bannerBox img {
+    width: 100%
+}
+
+.goodsBox, .goodsDetail, .slider {
+    border-bottom: 1px solid #dedede
+}
+
+.swipe {
+    visibility: hidden
+}
+
+.swipe-wrap > li {
+    float: left;
+    width: 100%
+}
+
+.goodsBox {
+    margin-top: 10px
+}
+
+.goodsName {
+    padding: 15px;
+    margin: 0;
+    font-size: 14px
+}
+
+.goodsName .dt {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 4px
+}
+
+.goodsName .dd {
+    color: #999
+}
+
+.goodsName .dr {
+    color: #999;
+    font-size: 12px;
+    margin-top: 8px
+}
+
+.groupPrice {
+    padding-bottom: 15px
+}
+
+.groupPrice p {
+    background-color: #ff7272;
+    font-size: 14px;
+    padding: 0 10px 0 15px
+}
+
+.groupPrice p span {
+    color: #fff;
+    float: left;
+    margin-right: 8px
+}
+
+.groupPrice p .i_price {
+    float: left;
+    color: #fffc00;
+    font-size: 18px;
+    font-family: Arial
+}
+
+.groupBtn, .soldOut p .i_price {
+    color: #fff
+}
+
+.i_ico01 {
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-position: -6px -43px;
+    margin: 5px 6px 0 0
+}
+
+.exp_ttl, .goodsDetail, .groupExplain {
+    margin-bottom: 1px
+}
+
+.groupBtn {
+    background-color: #f55;
+    border-left: 1px dashed #fff;
+    width: 110px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 0 4px 4px 0
+}
+
+.groupBtn:hover {
+    color: #fff
+}
+
+.groupBtn i {
+    background-color: #fff;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    position: absolute;
+    left: -4px
+}
+
+.groupBtn .ico_circle1 {
+    top: -4px
+}
+
+.groupBtn .ico_circle2 {
+    bottom: -4px
+}
+
+.soldOut .i_ico01 {
+    background-position: -50px -43px
+}
+
+.soldOut p {
+    background-color: #c1c1c1
+}
+
+.soldOut .groupBtn {
+    background-color: #b0b0b0;
+    pointer-events: none;
+    cursor: default
+}
+
+.goodsInfo {
+    padding: 0 15px 15px
+}
+
+.goodsInfo p {
+    color: #999
+}
+
+.marketValue {
+    float: left;
+    font-size: 14px
+}
+
+.marketValue i {
+    font-size: 15px
+}
+
+.salesVolume {
+    float: right;
+    font-size: 14px
+}
+
+.goodsDetail {
+    background-color: #fff;
+    padding-top: 10px
+}
+
+.slider {
+    position: relative;
+    padding: 0 0 25px
+}
+
+.slider .icolist {
+    bottom: 0
+}
+
+.slider .icolist a {
+    background-color: #b2b2b2;
+    border: 0
+}
+
+.slider .icolist .on {
+    background-color: #666
+}
+
+.item img {
+    max-height: 200px
+}
+
+.txt01 {
+    color: #f55;
+    font-size: 14px;
+    padding: 0 15px 15px
+}
+
+.groupExplain {
+    background-color: #fff;
+    border-bottom: 1px solid #dedede;
+    padding: 15px
+}
+
+.groupExplain a {
+    color: #666;
+    display: block;
+    font-size: 14px
+}
+
+.exp_ttl em {
+    float: right
+}
+
+.ico_03 {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background-position: -98px -9px;
+    margin: -3px 0 0 5px
+}
+
+.exp_step em {
+    float: left;
+    color: #999;
+    font-size: 14px
+}
+
+.exp_step em i {
+    width: 20px;
+    height: 20px;
+    float: left;
+    border: 1px solid #999;
+    border-radius: 11px;
+    line-height: 19px;
+    font-size: 15px;
+    margin: 6px 5px 0 0
+}
+
+.exp_step .on {
+    color: #f55
+}
+
+.exp_step .on i {
+    background-color: #f55;
+    border: 1px solid #f55;
+    color: #fff
+}
+
+.groupFixed {
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    padding: 0 10px;
+    display: none
+}
+
+.groupFixed .groupPrice {
+    width: 50px;
+    float: right;
+    padding: 0
+}
+
+.groupFixed .groupBtn, .groupFixed .groupPrice a.groupNum {
+    line-height: 1.2;
+    padding: 6px 0;
+    background: rgba(255, 85, 85, .66)
+}
+
+.groupFixed .groupPrice a.groupNum {
+    float: none;
+    font-size: 13px;
+    border-radius: 0 0 6px 6px;
+    display: block;
+    color: #fff
+}
+
+.groupFixed .groupPrice a.groupNum span {
+    float: none;
+    display: block;
+    margin: 0
+}
+
+.groupFixed .groupPrice a.groupNum .i_price {
+    float: none;
+    display: block;
+    font-size: 14px
+}
+
+.fixedBox span, .groupDes img, .imgBox, .paySelect {
+    float: left
+}
+
+.groupFixed .groupBtn {
+    width: 50px;
+    font-size: 13px;
+    border-radius: 6px 6px 0 0;
+    border-top: 1px dashed #fff;
+    border-left: 0
+}
+
+.groupFixed .groupPrice.soldOut a.groupBtn, .groupFixed .groupPrice.soldOut a.groupNum {
+    background: rgba(150, 150, 150, .66)
+}
+
+.groupDes img {
+    width: 100%
+}
+
+.doneSpan {
+    position: absolute;
+    display: none;
+    right: 10px;
+    bottom: 10%;
+    width: 80px;
+    height: 80px;
+    margin-top: -40px;
+    background: url(http://p.sangepg.com/images/ico_done.png) no-repeat;
+    background-size: 80px auto
+}
+
+.groupMore, .groupMore-item, .groupMore-title {
+    position: relative;
+    display: block;
+    overflow: hidden
+}
+
+.groupMore {
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px
+}
+
+.groupMore-title {
+    padding: 15px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #666
+}
+
+@media (min-width: 325px) {
+    .groupMore-title {
+        font-size: 14px
+    }
+}
+
+.groupMore-list {
+    position: relative;
+    overflow: hidden
+}
+
+.groupMore-item {
+    height: 50px;
+    color: #666
+}
+
+.groupMore-img, .groupMore-img img {
+    display: block;
+    width: 40px;
+    height: 40px
+}
+
+.groupMore-item:focus, .groupMore-item:hover {
+    color: #666;
+    text-decoration: none
+}
+
+.groupMore-img {
+    position: absolute;
+    overflow: hidden;
+    left: 15px;
+    top: 5px;
+    z-index: 11
+}
+
+.groupMore-img img {
+    position: relative;
+    border-radius: 50%
+}
+
+.groupMore-info {
+    position: relative;
+    overflow: hidden;
+    padding: 0 10px 0 15px;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 8px;
+    margin-left: 45px;
+    margin-right: 70px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    z-index: 9
+}
+
+.groupMore-text {
+    position: relative;
+    overflow: hidden;
+    line-height: 30px
+}
+
+.groupMore-text i {
+    position: relative;
+    overflow: hidden;
+    padding: 0 2px;
+    color: #f55
+}
+
+.groupMore-Link {
+    position: absolute;
+    overflow: hidden;
+    right: 15px;
+    top: 5px;
+    line-height: 30px;
+    padding: 0 15px 0 5px;
+    border-radius: 0 3px 3px 0;
+    font-size: 12px;
+    margin-top: 3px;
+    z-index: 10
+}
+
+.groupMore-Link i, .imgBox img {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%)
+}
+
+.groupMore-Link i {
+    position: absolute;
+    right: 2px;
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/right.png);
+    width: 12px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px auto
+}
+
+.boxAddress {
+    background: url(http://r.360img.cn/wgroup/frontend/dist/images/line02.png) left bottom repeat-x #fff;
+    background-size: 74px auto;
+    border-bottom: 1px solid #dedede
+}
+
+.inrAdd {
+    background: url(http://r.360img.cn/wgroup/frontend/dist/images/line01.png) left top repeat-x;
+    background-size: 74px auto;
+    padding: 15px 0
+}
+
+.ico_add {
+    display: inline-block;
+    width: 31px;
+    height: 31px;
+    background-position: -93px -43px;
+    margin: -2px 5px 0 0
+}
+
+.newAddress {
+    font-size: 15px;
+    padding: 8px 0 6px
+}
+
+.newAddress a {
+    color: #333
+}
+
+.groupDetail {
+    margin: 10px 0;
+    background: #fff;
+    min-height: 130px;
+    position: relative
+}
+
+.imgBox {
+    width: 140px;
+    height: 130px;
+    overflow: hidden;
+    padding: 10px 15px;
+    position: relative
+}
+
+.imgBox img {
+    width: 110px;
+    border-radius: 0;
+    position: absolute;
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.infoBox, .payIcon {
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    top: 50%
+}
+
+.groupDetail p {
+    font-size: 16px;
+    color: #666;
+    text-align: left;
+    padding-bottom: 5px
+}
+
+.fixedBox02 a, .logisticsCar, .logisticsTxt, .notesTxt, .serviceTel {
+    text-align: center
+}
+
+.infoBox {
+    position: absolute;
+    left: 140px;
+    transform: translateY(-50%)
+}
+
+.payList, .payList li, .payTitle, .payType {
+    position: relative
+}
+
+.groupDetail p a {
+    color: #333
+}
+
+.groupDetail p span {
+    margin-left: 20px
+}
+
+.payType {
+    overflow: hidden
+}
+
+.payTitle {
+    padding: 15px;
+    color: #666
+}
+
+.payList li {
+    display: block
+}
+
+.payTypeTitle {
+    padding: 0 15px 15px;
+    font-size: 14px
+}
+
+.payIcon {
+    position: absolute;
+    padding: 0 15px;
+    height: 40px;
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.payCheck input[type=checkbox] + label, .pop-fight {
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%)
+}
+
+.paySelect {
+    position: relative;
+    width: 100%;
+    line-height: 50px;
+    padding-left: 80px
+}
+
+span.payText {
+    font-size: 16px;
+    color: #666
+}
+
+ul.payTypes {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    padding: 0
+}
+
+.payIcon img {
+    width: 40px
+}
+
+.paySelect:after {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    left: 80px;
+    bottom: 0;
+    background: #eee
+}
+
+.payType:last-child .paySelect:after {
+    display: none
+}
+
+.notesTxt {
+    font-size: 16px;
+    color: #f55;
+    background-color: #fffbd9;
+    border-top: 1px solid #f8e6bb;
+    border-bottom: 1px solid #f8e6bb;
+    padding: 14px 0;
+    margin-bottom: 10px
+}
+
+.fixedBox {
+    position: fixed;
+    width: 100%;
+    background-color: #37383c;
+    bottom: 0;
+    margin: 0 auto;
+    color: #fff;
+    padding: 5px 10px;
+    line-height: 40px
+}
+
+.fixedBox span i {
+    font-size: 24px;
+    color: #f55;
+    display: inline-block;
+    margin: -4px 0 0
+}
+
+.ico_02 {
+    background-position: -118px -11px;
+    width: 10px;
+    height: 18px;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin: -9px 0 0;
+    background-size: 180px auto
+}
+
+.isAnonymous, .payCheck, .txtAdd {
+    position: relative
+}
+
+.txtAdd {
+    padding: 20px 15px;
+    color: #999;
+    font-size: 14px;
+    border-bottom: 1px solid #dedede;
+    background-color: #fff;
+    margin-bottom: 10px
+}
+
+.txtAdd.noPadding {
+    padding: 0
+}
+
+.linkAddress {
+    padding: 0;
+    margin-bottom: 0;
+    border-bottom: 0
+}
+
+.linkAddress a {
+    color: #999;
+    display: block;
+    padding: 5px 30px 5px 15px
+}
+
+.txtAdd p {
+    font-size: 16px;
+    color: #333;
+    padding-bottom: 8px
+}
+
+.txtAdd p span {
+    display: inline-block
+}
+
+.isAnonymous, .payCheck, .txtAdd em {
+    display: block
+}
+
+.isAnonymous {
+    overflow: hidden;
+    padding: 10px;
+    line-height: 30px;
+    background: #fff
+}
+
+.checkBox .checkIcon {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    float: left;
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/checkbox.png);
+    background-size: 35px auto;
+    background-position: 0 30px
+}
+
+.checkBox.active .checkIcon {
+    background-position: 0 -3px
+}
+
+.payCheck {
+    float: right;
+    width: 20px;
+    margin-right: 15px;
+    height: 45px
+}
+
+.payCheck input[type=checkbox]:checked + label {
+    background: url(http://r.360img.cn/wgroup/frontend/dist/images/order_icon.png) 0 -42px no-repeat;
+    background-size: 20px auto
+}
+
+.payCheck input[type=checkbox] + label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    background: url(http://p.sangepg.com/images/order_icon.png) left center no-repeat;
+    width: 20px;
+    height: 20px;
+    background-size: 20px auto;
+    margin-bottom: 0
+}
+
+.payCheck input[type=checkbox] {
+    display: none
+}
+
+.editAddress {
+    position: relative;
+    padding: 20px 45px 20px 15px;
+    display: block;
+    overflow: hidden;
+    word-break: break-all;
+    color: #999
+}
+
+.editBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 55px
+}
+
+.ico_eait {
+    background-position: -7px -3px;
+    width: 20px;
+    height: 27px;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    margin: -14px 0 0;
+    display: block
+}
+
+.fixedBox02 {
+    background-color: #ebecec;
+    position: relative
+}
+
+.fixedBox02 a {
+    display: block;
+    font-size: 18px
+}
+
+.percent40 {
+    width: 40%
+}
+
+.percent60 {
+    width: 60%
+}
+
+.fillinAddress {
+    border-bottom: 1px solid #dedede;
+    padding-top: 10px
+}
+
+.inputBox, .inputBox3 {
+    line-height: 43px;
+    background-color: #fff;
+    border-top: 1px solid #dedede;
+    position: relative;
+    padding: 0 15px 0 45px
+}
+
+.ico_name, .ico_tel {
+    display: block;
+    width: 20px;
+    height: 21px;
+    background-position: -35px -6px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    margin-top: -11px
+}
+
+.ico_tel {
+    width: 15px;
+    height: 20px;
+    background-position: -67px -7px;
+    left: 18px
+}
+
+.input-txt {
+    height: 43px;
+    line-height: 23px;
+    border: 0;
+    background: 0;
+    color: #333;
+    width: 100%
+}
+
+.groupList li, .logisticsStatus ul li, .proItem a, .spellgroupInfo {
+    border-bottom: 1px solid #dedede
+}
+
+.inputBox2 {
+    line-height: 33px;
+    background-color: #fff;
+    border-top: 1px solid #dedede;
+    padding: 5px 0
+}
+
+.inputBox2 p {
+    width: 50%;
+    float: left;
+    position: relative;
+    padding: 0 15px
+}
+
+.inputBox2 .p_city {
+    border-left: 1px solid #dedede
+}
+
+.inputBox2 .p_county {
+    width: 100%;
+    float: none
+}
+
+.inputBox2 p span {
+    color: #999;
+    position: absolute;
+    left: 15px;
+    top: 0;
+    display: block;
+    height: 33px
+}
+
+.inputBox2 p select {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    line-height: 33px;
+    height: 33px
+}
+
+.inputBox3 {
+    padding-left: 15px
+}
+
+.logisticsStatus {
+    background-color: #fff;
+    padding: 20px 15px 20px 25px
+}
+
+.logisticsStatus ul {
+    position: relative;
+    color: #333;
+    padding: 0 0 30px 25px
+}
+
+.logisticsStatus ul:before {
+    display: block;
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    background-color: #dedede
+}
+
+.logisticsStatus ul li {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    color: #999
+}
+
+.logisticsStatus ul .ico_status {
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    background-color: #fff;
+    padding: 1px 0
+}
+
+.logisticsStatus ul .ico_status i {
+    display: block;
+    width: 11px;
+    height: 11px;
+    background-color: #dedede;
+    border-radius: 50%
+}
+
+.logisticsStatus ul .on {
+    color: #333
+}
+
+.logisticsStatus ul .on .ico_status {
+    left: -31px;
+    top: 4px
+}
+
+.logisticsStatus ul .on .ico_status i {
+    width: 13px;
+    height: 13px;
+    background-color: #f55
+}
+
+.logisticsStatus ul .statusTxt {
+    font-size: 16px;
+    margin-bottom: 5px
+}
+
+.logisticsCar {
+    padding: 40px 0 30px
+}
+
+.logisticsCar i {
+    width: 100px;
+    margin: 0 auto;
+    display: block
+}
+
+.logisticsTxt {
+    color: #999;
+    padding-bottom: 100px
+}
+
+.serviceTel {
+    color: #999;
+    font-size: 15px
+}
+
+.spellgroupInfo {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding-bottom: 20px
+}
+
+.proItem {
+    position: relative
+}
+
+.proItem a {
+    overflow: hidden;
+    display: block;
+    color: #333;
+    padding: 17px 15px;
+    font-size: 15px
+}
+
+.copyBox, .personList {
+    font-size: 0;
+    text-align: center
+}
+
+.proItem a:hover {
+    color: #333
+}
+
+.proItem .proImg {
+    float: left;
+    width: 80px;
+    margin-right: 20px
+}
+
+.proItem .proImg img {
+    width: 100%
+}
+
+.proItem .proTxt {
+    overflow: hidden;
+    display: block;
+    padding-top: 0
+}
+
+.proItem .proTxt em {
+    display: block;
+    padding-top: 8px
+}
+
+.proItem .proTxt .emTxt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 42px;
+    word-break: break-all;
+    padding-top: 0
+}
+
+.posSpan {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 70px;
+    height: 73px;
+    margin-top: -38px;
+    background: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_02.png) no-repeat;
+    background-size: 70px auto;
+    display: block
+}
+
+.fail_posSpan {
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_03.png)
+}
+
+.personList {
+    padding: 18px 2% 0 0
+}
+
+.personList li {
+    width: 20%;
+    padding: 0 0 2% 2%;
+    position: relative;
+    display: inline-block
+}
+
+.personList li img {
+    width: 100%
+}
+
+.groupList li .imgDiv span, .personList li span {
+    display: block;
+    overflow: hidden
+}
+
+.groupList li .imgDiv span {
+    height: 40px
+}
+
+.groupList li .imgDiv span img, .personList li span img {
+    width: 100%;
+    border-radius: 50%
+}
+
+.ico_head {
+    position: absolute;
+    background-color: #f55;
+    top: -8px;
+    right: -12px;
+    font-size: 13px;
+    color: #fff;
+    line-height: 18px;
+    padding: 0 5px 1px;
+    border-radius: 3px
+}
+
+.comTxt, .moreGroup ul, .moreGroup ul li {
+    position: relative
+}
+
+.groupList li, .moreGroup {
+    background-color: #fff;
+    overflow: hidden
+}
+
+.groupList li, .groupStatus p, .moreTtl {
+    line-height: 40px
+}
+
+.txtInfo {
+    font-size: 16px;
+    text-align: center;
+    padding: 5px 0;
+    color: #666
+}
+
+.groupList li {
+    padding: 10px 15px 8px;
+    font-size: 13px;
+    color: #666
+}
+
+.groupList li:last-child {
+    border-bottom: none
+}
+
+.groupList li .imgDiv {
+    position: relative;
+    float: left;
+    width: 40px;
+    height: 40px
+}
+
+.groupList li .imgDiv .ico_head {
+    font-size: 10px;
+    padding-bottom: 0
+}
+
+.groupList li .nameTxt {
+    float: left;
+    padding: 0 0 0 15px
+}
+
+.groupList li .groupTime {
+    float: right;
+    padding: 0
+}
+
+.moreTtl {
+    padding: 2px 15px;
+    color: #666
+}
+
+.moreTtl a {
+    color: #666;
+    font-size: 14px;
+    padding: 0 0 0 5px
+}
+
+.moreGroup {
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    width: 100%
+}
+
+.moreGroup ul li {
+    float: left
+}
+
+.moreGroup ul li a {
+    display: block;
+    width: 33.33%;
+    float: left
+}
+
+.moreGroup ul li .groupImg {
+    display: block
+}
+
+.moreGroup ul li p {
+    text-align: center;
+    color: #666;
+    font-size: 14px
+}
+
+.moreGroup ul li p i {
+    margin-left: 10%;
+    display: inline-block
+}
+
+.icoTab {
+    text-align: center
+}
+
+.icoTab a {
+    display: inline-block;
+    width: 11px;
+    height: 3px;
+    background-color: #d9d9d9;
+    margin: 0 2px
+}
+
+.icoTab .on {
+    background-color: #f55;
+    height: 4px
+}
+
+.comTxt {
+    text-align: center;
+    margin: 0 15px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #666
+}
+
+.comTxt:after {
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 1px;
+    background-color: #dedede;
+    z-index: 3
+}
+
+.comTxt span, .ico_04 {
+    display: inline-block
+}
+
+.comTxt span {
+    background-color: #fff;
+    padding: 0 10px;
+    position: relative;
+    z-index: 7
+}
+
+.allInfo {
+    font-size: 14px
+}
+
+.allInfo a {
+    color: #666
+}
+
+.ico_04 {
+    width: 15px;
+    height: 8px;
+    background-position: -124px -13px;
+    margin: -2px 0 0 5px
+}
+
+.btn-block, .text-center {
+    display: block
+}
+
+.groupFail {
+    background-color: #fffbd9;
+    text-align: center;
+    color: #f60;
+    border-bottom: 1px solid #faeccc;
+    padding: 15px 0;
+    font-size: 15px
+}
+
+#countdown i, .groupStatus p.countDown, .xs-font {
+    font-size: 14px
+}
+
+.soldout_posSpan {
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_done.png)
+}
+
+.w-40-p {
+    width: 40%
+}
+
+.w-50-p {
+    width: 50%
+}
+
+.w-60-p {
+    width: 60%
+}
+
+.p-r-10 {
+    padding-right: 10px
+}
+
+.text-center {
+    text-align: center;
+    padding: 10px
+}
+
+#countdown i {
+    display: inline-block;
+    margin: 0;
+    width: 70px
+}
+
+.groupStatus {
+    padding: 10px 15px
+}
+
+.groupStatus p.countDown span {
+    float: left;
+    width: 62px
+}
+
+.groupStatus a {
+    min-width: 94px;
+    margin-left: 3px
+}
+
+.groupRule {
+    background-color: #fff
+}
+
+.ttlBox {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+    padding-top: 20px
+}
+
+.ruleList {
+    margin: 0 15px 25px
+}
+
+.ruleList li {
+    float: left;
+    width: 50%;
+    padding: 0 2% 5px
+}
+
+.ruleList li p {
+    position: relative;
+    padding: 10px 0 10px 25px
+}
+
+.ruleList li p i {
+    display: block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    left: 0;
+    top: 50%;
+    margin-top: -9px;
+    background-color: #393a3f;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    line-height: 18px
+}
+
+.shareBox, input[type=checkbox].switchBox {
+    display: none
+}
+
+.dl_rule {
+    margin: 0 15px
+}
+
+.dl_rule dt {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.8;
+    font-weight: 400
+}
+
+.dl_rule dd {
+    color: #666;
+    line-height: 1.8;
+    padding: 5px 0 20px
+}
+
+.shareBox {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    z-index: 9
+}
+
+.shareBg {
+    background-color: #000;
+    opacity: .7;
+    filter: alpha(opacity=70);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10
+}
+
+.shareTxt {
+    position: relative;
+    z-index: 11;
+    width: 82%;
+    margin: 0 auto;
+    padding: 15px 0
+}
+
+.timeTxt {
+    float: left
+}
+
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+        -webkit-transform-origin: center;
+        -webkit-transform: translateY(10%) scale(.9)
+    }
+    to {
+        opacity: 1;
+        -webkit-transform-origin: center;
+        -webkit-transform: translateY(0) scale(1)
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform-origin: center;
+        transform: translateY(10%) scale(.9)
+    }
+    to {
+        opacity: 1;
+        transform-origin: center;
+        transform: translateY(0) scale(1)
+    }
+}
+
+@-o-keyframes fadein {
+    from {
+        opacity: 0;
+        -o-transform-origin: center;
+        -o-transform: translateY(10%) scale(.9)
+    }
+    to {
+        opacity: 1;
+        -o-transform-origin: center;
+        -o-transform: translateY(0) scale(1)
+    }
+}
+
+@-ms-keyframes fadein {
+    from, to {
+        -ms-transform-origin: center
+    }
+    from {
+        opacity: 0;
+        -ms-transform: translateY(10%) scale(.9)
+    }
+    to {
+        opacity: 1;
+        -ms-transform: translateY(0) scale(1)
+    }
+}
+
+@-moz-keyframes fadein {
+    from {
+        opacity: 0;
+        -moz-transform-origin: center;
+        -moz-transform: translateY(10%) scale(.9)
+    }
+    to {
+        opacity: 1;
+        -moz-transform-origin: center;
+        -moz-transform: translateY(0) scale(1)
+    }
+}
+
+.fadeIn {
+    opacity: 1;
+    transform-origin: center;
+    -webkit-animation-duration: .4s;
+    -webkit-animation-name: fadein;
+    animation-duration: .4s;
+    animation-name: fadein;
+    -o-animation-duration: .4s;
+    -o-animation-name: fadein;
+    -ms-animation-duration: .4s;
+    -ms-animation-name: fadein;
+    -moz-animation-duration: .4s;
+    -moz-animation-name: fadein
+}
+
+.showtips {
+    position: fixed;
+    bottom: 50%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, .5);
+    padding: 10px;
+    border-radius: 10px;
+    left: 50%;
+    max-width: 80%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top: -10px;
+    color: #fff;
+    text-align: center;
+    z-index: 9999
+}
+
+.showtips.active {
+    -webkit-animation: tips 2s;
+    -o-animation: tips 2s;
+    animation: tips 2s
+}
+
+@-webkit-keyframes tips {
+    from {
+        -webkit-transform: translateX(-50%) translateY(-60px)
+    }
+    43% {
+        -webkit-transform: translateX(-50%) translateY(0);
+        opacity: 1
+    }
+    70% {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+@-o-keyframes tips {
+    from {
+        -o-transform: translateX(-50%) translateY(-60px)
+    }
+    43% {
+        -o-transform: translateX(-50%) translateY(0);
+        opacity: 1
+    }
+    70% {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+@keyframes tips {
+    from {
+        transform: translateX(-50%) translateY(-60px)
+    }
+    43% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1
+    }
+    70% {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+.checkBox {
+    color: #666
+}
+
+input[type=checkbox].switchBox + label {
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    width: 47px;
+    height: 25px;
+    background: #aaa;
+    border-radius: 13px;
+    z-index: 52;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+    right: 10px
+}
+
+input[type=checkbox].switchBox + label:before {
+    content: "";
+    position: absolute;
+    background: #fff;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    padding: 0;
+    z-index: 53;
+    left: 1px;
+    top: 1px;
+    transition: all .5s
+}
+
+input[type=checkbox].switchBox:checked + label {
+    padding: 0;
+    background: #f55
+}
+
+.menu_item a i:after, .menu_item a:before {
+    content: "";
+    background-repeat: no-repeat
+}
+
+input[type=checkbox].switchBox:checked + label:before {
+    -webkit-transform: translateX(23px);
+    -ms-transform: translateX(23px);
+    -o-transform: translateX(23px);
+    transform: translateX(23px)
+}
+
+.errorTip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%)
+}
+
+.errorIcon, .errorInfo {
+    position: relative;
+    display: block
+}
+
+.errorIcon {
+    width: 100px;
+    margin: 0 auto
+}
+
+.errorInfo {
+    text-align: center;
+    margin: 5px auto 25px;
+    color: #999
+}
+
+.errorMore {
+    width: 200px
+}
+
+.pop-fightGroups {
+    display: none
+}
+
+.copyBox .copy-txt, .copyBox .copyBtn, .my_face, .my_name {
+    display: inline-block
+}
+
+.pop-fightGroups .bg-pop {
+    background-color: #000;
+    opacity: .5;
+    filter: alpha(opacity=50);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 12
+}
+
+.pop-fight {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 13
+}
+
+.pop-inrBox {
+    background-color: #fff;
+    margin: 0 20px;
+    position: relative
+}
+
+.pop-inrBox .popImg {
+    margin: 10px 15px
+}
+
+.ico-close img, .pop-inrBox .popImg img {
+    width: 100%
+}
+
+.copyBox {
+    background-color: #f55;
+    padding: 15px 0;
+    color: #fff;
+    line-height: 30px
+}
+
+.copyBox .copy-txt {
+    border: 0;
+    background-color: #fff;
+    line-height: 30px;
+    height: 30px;
+    color: #333;
+    font-size: 15px;
+    width: 35%;
+    padding: 0 8px
+}
+
+.copyBox .copyBtn {
+    width: 80px;
+    line-height: 30px;
+    height: 30px;
+    color: #f55;
+    background-color: #fff600;
+    font-size: 15px
+}
+
+.copyBox .successBtn {
+    background-color: #d8d8d8
+}
+
+.copyBox .copyBtn:hover {
+    color: #f55
+}
+
+.copyBox span {
+    font-size: 15px;
+    padding-left: 10px
+}
+
+.ico-close {
+    width: 10%;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.my_face, .my_info {
+    position: relative
+}
+
+.my_info {
+    background-color: #CA157F;
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/center_bg.jpg);
+    background-size: cover;
+    color: #fff;
+    overflow: hidden
+}
+
+.my_face {
+    width: 120px;
+    height: 140px;
+    padding: 25px 5px 25px 25px;
+    float: left
+}
+
+.my_face img {
+    border-radius: 50%;
+    max-width: 100%;
+    width: 90px;
+    height: 90px
+}
+
+.my_name {
+    position: absolute;
+    left: 130px;
+    top: 50%;
+    font-size: 14px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.my_menu {
+    position: relative;
+    overflow: hidden;
+    font-size: 14px
+}
+
+.menu_item a.open i:after {
+    -webkit-transform: rotateZ(90deg);
+    -ms-transform: rotateZ(90deg);
+    -o-transform: rotateZ(90deg);
+    transform: rotateZ(90deg)
+}
+
+.menu_item.open .toggle-list {
+    display: block
+}
+
+.menu_content.noicon-menu .toggle-list li {
+    margin-top: 0
+}
+
+.ads_content li, .menu_content li {
+    margin-top: 10px
+}
+
+.menu_list li a {
+    background-color: #fff
+}
+
+.menu_list li a:active, .menu_list li a:focus, .menu_list li a:hover {
+    background-color: rgba(255, 255, 255, .5)
+}
+
+.menu_item {
+    display: block;
+    border-bottom: 1px solid #E7E7E7
+}
+
+.menu_item a {
+    position: relative;
+    display: block;
+    padding: 15px 20px 15px 47px;
+    color: #373737
+}
+
+.menu_item a:before {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/centerIcon2.png);
+    background-size: 34px auto
+}
+
+.menu_item a i {
+    position: absolute;
+    right: 10px;
+    color: #767676;
+    padding-right: 20px;
+    font-size: 14px
+}
+
+.menu_item a i:after {
+    -webkit-transition: transform .5s;
+    -moz-transition: transform .5s;
+    -ms-transition: transform .5s;
+    -o-transition: transform .5s;
+    transition: transform .5s;
+    width: 14px;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 2px;
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/tite_icon.png);
+    background-size: 9px auto
+}
+
+.menu_item a i.item_tel {
+    color: #373737;
+    font-size: 16px
+}
+
+.center-bottom a, .center-bottom a:focus, .center-bottom a:hover {
+    color: #fff;
+    text-decoration: none
+}
+
+.usercenter_center_icon1:before {
+    background-position: 0 -3px
+}
+
+.usercenter_center_icon2:before {
+    background-position: 0 -74px
+}
+
+.usercenter_center_icon3:before {
+    background-position: 0 -144px
+}
+
+.usercenter_center_icon4:before {
+    background-position: 0 -148px
+}
+
+.usercenter_center_icon5:before {
+    background-position: 0 -196px
+}
+
+.usercenter_center_icon6:before {
+    background-position: 0 -244px
+}
+
+.usercenter_center_icon7:before {
+    background-position: 0 -294px
+}
+
+.center-bottom {
+    position: relative;
+    margin-top: 50px;
+    width: 80%;
+    left: 10%;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #f55
+}
+
+.orderId, .wgroupItem {
+    background-color: #fff;
+    border-bottom: 1px solid #dedede
+}
+
+.center-bottom a {
+    font-size: 14px;
+    padding: 10px 5px;
+    width: 100%;
+    display: block
+}
+
+.orderId {
+    color: #333;
+    font-size: 15px;
+    padding: 20px 15px;
+    position: relative
+}
+
+.wgroupItem {
+    margin-bottom: 10px;
+    height: 100px;
+    overflow: hidden;
+    overflow-x: auto;
+    padding: 10px
+}
+
+.itemPic {
+    position: absolute;
+    width: 70px;
+    height: 70px
+}
+
+.desc {
+    position: relative;
+    padding: 0 10px 0 85px
+}
+
+.title {
+    line-height: 20px
+}
+
+.price {
+    font-weight: bolder;
+    font-size: 1.2em;
+    color: #f55;
+    margin-top: 10px
+}
+
+.logisticsInfo {
+    margin-left: -5px;
+    margin-bottom: 13px;
+    color: #666
+}
+
+.carriNo {
+    position: absolute;
+    right: 30px
+}
+
+.appCode {
+    position: relative;
+    overflow: hidden;
+    padding: 10px 10px 10px 100px;
+    background: #fff;
+    margin: 0;
+    min-height: 90px
+}
+
+.appCodeIcon {
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    left: 10px;
+    top: 10px;
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/homeIcon1.png);
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.appCodeForm, .appCodeTips, .appCodeTips span {
+    position: relative;
+    overflow: hidden
+}
+
+.appCodeTips {
+    padding-right: 60px;
+    line-height: 30px;
+    font-size: 14px
+}
+
+.appCodeTips span {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.appCodeTips #showAppRole {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #06c;
+    text-decoration: none;
+    z-index: 2
+}
+
+.appCodeInput {
+    position: relative;
+    overflow: hidden;
+    padding-right: 90px
+}
+
+.appCodeInput input {
+    position: relative;
+    display: block;
+    border: 1px solid #cacaca;
+    border-radius: 0;
+    height: 40px;
+    margin: 0;
+    width: 100%;
+    padding: 0 10px
+}
+
+.listTtl, .viewMore {
+    border-bottom: 1px solid #dedede
+}
+
+.appCodeInput #appCodeSubmit {
+    position: absolute;
+    right: 0;
+    height: 40px;
+    width: 80px;
+    top: 0;
+    background-color: #f55;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    z-index: 2
+}
+
+.pop-modal, .proItem {
+    background-color: #fff
+}
+
+.pop-modal {
+    width: 80%;
+    position: fixed;
+    max-width: 400px;
+    padding: 10px;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+@media (max-width: 345px) {
+    .pop-modal {
+        top: 50px;
+        -webkit-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+        -o-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+        padding: 2px
+    }
+
+    .modal-body {
+        max-height: 330px;
+        overflow: auto
+    }
+}
+
+.modal-close, .modal-header {
+    position: absolute;
+    top: -30px;
+    width: 60px;
+    height: 60px
+}
+
+.modal-info, .modal-title {
+    text-align: center;
+    padding: 10px;
+    display: block
+}
+
+.modal-header {
+    left: 50%;
+    margin-left: -30px
+}
+
+.modal-close {
+    right: -30px
+}
+
+.modal-body {
+    position: relative;
+    margin-top: 30px
+}
+
+.modal-title {
+    position: relative;
+    font-size: 20px
+}
+
+.modal-info {
+    position: relative;
+    font-size: 16px;
+    line-height: 26px;
+    color: #666
+}
+
+.downBtn {
+    border-radius: 0;
+    margin: 0 auto;
+    display: block
+}
+
+.tl {
+    text-align: left
+}
+
+.notesBox {
+    background-color: #ebecec;
+    padding-bottom: 10px
+}
+
+.proItem .proTxt .emTxt02 {
+    color: #666;
+    font-size: 13px
+}
+
+.proItem2 .proTxt em {
+    padding-top: 5px
+}
+
+.posPrize {
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_05.png)
+}
+
+.posWinning {
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_06.png)
+}
+
+.posNotwinning {
+    background-image: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_07.png)
+}
+
+.personList02 li {
+    width: 10%
+}
+
+.personList02 .ico_head {
+    font-size: 10px;
+    padding: 0 3px 1px
+}
+
+.color_gary {
+    color: #333
+}
+
+.percent100 {
+    width: 100%
+}
+
+.winningName {
+    padding: 13px 10px;
+    font-size: 15px;
+    color: #666
+}
+
+.winningName i {
+    display: inline-block;
+    background: url(http://r.360img.cn/wgroup/frontend/dist/images/ico_trophy.png) no-repeat;
+    background-size: 20px auto;
+    width: 20px;
+    height: 20px;
+    margin: -3px 8px 0 0
+}
+
+.listTtl {
+    background-color: #f5f5f5;
+    color: #999;
+    padding: 10px 15px
+}
+
+.listTtl p {
+    float: left
+}
+
+.listTtl .wid01 {
+    width: 30%;
+    padding-left: 20px
+}
+
+.listTtl .wid02 {
+    width: 40%;
+    text-align: center
+}
+
+.listTtl .wid03 {
+    width: 30%;
+    text-align: center
+}
+
+.groupList li .orderNumber {
+    float: left;
+    width: 40%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px
+}
+
+.groupList li .customerInfo {
+    width: 30%;
+    float: left;
+    overflow: hidden
+}
+
+.groupList li .groupTel {
+    width: 30%;
+    float: left;
+    text-align: center
+}
+
+.viewMore {
+    margin-top: 10px;
+    background-color: #fff
+}
+
+.viewMore a {
+    display: block;
+    color: #333;
+    padding: 10px;
+    text-align: center
+}
+
+.viewMore a:hover {
+    color: #333
+}
+
+.proItem .game-role {
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+    font-size: 13px;
+    color: #06c
+}
+
+@media (max-width: 345px) {
+    .proItem .game-role {
+        padding: 0;
+        bottom: 17px;
+        font-size: 12px
+    }
+}
+
+.proItem .game-role:focus, .proItem .game-role:hover {
+    color: #06c
+}
+
+.modal-info .text-left {
+    text-align: left
+}
