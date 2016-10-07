@@ -34,7 +34,7 @@
                 <p class="dt">${fruit.brandName}${fruit.varietyName}</p>
             </div>
             <div class="goodsInfo clearfix">
-                <p class="marketValue">重 &nbsp;&nbsp;&nbsp;量：<i class="i_price">${fruit.weight} kg</i></p>
+                <p class="marketValue">重 &nbsp;&nbsp;&nbsp;量：<i class="i_price">${fruit.weight} kg/${fruit.unit}</i></p>
             </div>
         <#--
         <div class="goodsInfo clearfix">

@@ -5,6 +5,7 @@
     <id column="id" property="id"/>
     <result column="fruit_code" property="fruitCode"/>
     <result column="base_code" property="baseCode"/>
+    <result column="reserved_id" property="reservedId"/>
     <result column="weight" property="weight"/>
     <result column="height" property="height"/>
     <result column="width" property="width"/>
@@ -27,7 +28,7 @@
     <result column="orig_image" property="origImage"/>
   </resultMap>
   <sql id="Base_Column_List" >
-      id, fruit_code, base_code, weight, height, width, high,file_path, maturing_status, harvest_time,
+      id, fruit_code, base_code,reserved_id, weight, height, width, high,file_path, maturing_status, harvest_time,
       market_price, add_time, add_user_id, checkout_user_id, checkout_time, delete_flag, 
       price_flag, lottery_flag,if_sale,variety_id,brand_id,`type`,orig_image
   </sql>
@@ -82,12 +83,12 @@
     </selectKey>
     insert into qr_fruit_detail
     (
-      fruit_code, base_code, weight, height, width, file_path, high, maturing_status, harvest_time, market_price, add_time, add_user_id,
+      fruit_code, base_code,reserved_id, weight, height, width, file_path, high, maturing_status, harvest_time, market_price, add_time, add_user_id,
       checkout_user_id, checkout_time, delete_flag,price_flag, lottery_flag,`type`,brand_id,variety_id,orig_image
     )
     values
     (
-      #{fruitCode}, #{baseCode}, #{weight}, #{height}, #{width}, #{filePath}, #{high},#{maturingStatus}, #{harvestTime},#{marketPrice}, #{addTime}, #{addUserId},
+      #{fruitCode}, #{baseCode},#{reservedId}, #{weight}, #{height}, #{width}, #{filePath}, #{high},#{maturingStatus}, #{harvestTime},#{marketPrice}, #{addTime}, #{addUserId},
       #{checkoutUserId}, #{checkoutTime}, #{deleteFlag}, #{priceFlag}, #{lotteryFlag},#{type},#{brandId},#{varietyId},#{origImage}
     )
   </insert>

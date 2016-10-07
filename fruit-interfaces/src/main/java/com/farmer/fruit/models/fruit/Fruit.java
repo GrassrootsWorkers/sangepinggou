@@ -1,14 +1,11 @@
 package com.farmer.fruit.models.fruit;
 
 import com.farmer.fruit.models.BaseEntity;
-import com.farmer.fruit.models.Constants;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class Fruit extends BaseEntity {
-
     private Long id;
 
     private Long farmerId;
@@ -16,6 +13,11 @@ public class Fruit extends BaseEntity {
     private String fruitCode;
 
     private Long baseCode;
+
+    /**
+     * 申请记录的id
+     */
+    private Long reservedId;
     /**
      * 基础信息块的url
      */
@@ -92,6 +94,10 @@ public class Fruit extends BaseEntity {
      */
     private int clickTimes;
     /**
+     * 称重单位
+     */
+    private String unit;
+    /**
      * 售价
      */
     private BigDecimal salePrice;
@@ -101,6 +107,7 @@ public class Fruit extends BaseEntity {
     private BigDecimal totalPrice;
 
     public BigDecimal getTotalPrice() {
+        if(salePrice == null) salePrice = new BigDecimal(marketPrice);
         totalPrice = new BigDecimal(weight).divide(new BigDecimal(1000)).multiply(salePrice);
         return totalPrice.setScale(2,BigDecimal.ROUND_HALF_UP);
     }
@@ -112,7 +119,7 @@ public class Fruit extends BaseEntity {
         return "http://p.sangepg.com/images/fruit/"+id /10000 +"/"+id+ "/small.jpg";
     }
     public String getQrPath() {
-        return "http://p.sangepg.com/images/qr/"+getFarmerId() +"/"+ id /10000 + "/" + fruitCode + ".png";
+        return "http://p.sangepg.com/images/qr/"+getFarmerId() +"/"+reservedId + "/" + fruitCode + ".png";
     }
 
     public void setTotalPrice(BigDecimal totalPrice) {
@@ -137,7 +144,7 @@ public class Fruit extends BaseEntity {
 
     public String getFilePath() {
         if(id !=null){
-            filePath= filePath+ id / Constants.IMAGES_RANGE_INDEX + "/" + fruitCode + ".html";
+            filePath= filePath+ id /10000 + "/" + fruitCode + ".html";
         }
         return filePath;
     }
@@ -188,8 +195,8 @@ public class Fruit extends BaseEntity {
         this.baseCode = baseCode;
     }
 
-    public Double getWeight() {
-        return weight;
+    public BigDecimal getWeight() {
+        return new BigDecimal(weight).setScale(0,BigDecimal.ROUND_HALF_UP);
     }
 
     public void setWeight(Double weight) {
@@ -363,6 +370,22 @@ public class Fruit extends BaseEntity {
 
     public void setClickTimes(int clickTimes) {
         this.clickTimes = clickTimes;
+    }
+
+    public Long getReservedId() {
+        return reservedId;
+    }
+
+    public void setReservedId(Long reservedId) {
+        this.reservedId = reservedId;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     @Override

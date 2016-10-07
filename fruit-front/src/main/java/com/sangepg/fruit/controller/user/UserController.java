@@ -2,6 +2,7 @@ package com.sangepg.fruit.controller.user;
 
 import com.farmer.fruit.interfaces.user.IUserService;
 import com.farmer.fruit.models.user.User;
+import com.farmer.fruit.models.user.UserQuery;
 import com.farmer.fruit.sms.SmsUtil;
 import com.farmer.fruit.utils.IpUtils;
 import com.farmer.fruit.utils.MD5Util;
@@ -31,13 +32,13 @@ public class UserController extends BaseAction {
     @Autowired
     JedisPool jedisPool;
     @Autowired
-    IUserService userService;
+    IUserService<User,UserQuery> userService;
     @RequestMapping(value = {"sendSimpleLoginCode", "getCode"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> sendSimpleLoginCode(String mobile) {
         RedisUtils redisUtils = new RedisUtils(jedisPool);
         String checkCode = RandomStrUtil.getNumStr(6);
-        boolean addFlag = redisUtils.setKey(mobile, checkCode, 120);
+        boolean addFlag = redisUtils.setKey(mobile, checkCode, 1200);
         Map<String, Object> result = new HashMap<String, Object>();
             result.put("success", false);
         if (addFlag) {

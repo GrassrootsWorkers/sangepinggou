@@ -14,13 +14,11 @@ import com.farmer.fruit.models.fruit.FruitQuery;
 import com.farmer.fruit.models.fruit.FruitType;
 import com.farmer.fruit.sgpg.controller.base.BaseAction;
 import com.farmer.fruit.sgpg.controller.base.ReloadableConfig;
+import com.farmer.fruit.utils.QRUtil;
 import com.farmer.fruit.utils.RandomStrUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -118,6 +116,7 @@ public class QrCodeController extends BaseAction {
             ModelAndView view = new ModelAndView(redirectView);
             return view;
         }
+        reserved.setFarmerId(farmer.getId());
         if(!validateIfMapBaseInfo(reserved)){
             //错误提示页面
             RedirectView redirectView = new RedirectView("/jsp/tip/load_fruit_info_error.html");
@@ -150,6 +149,7 @@ public class QrCodeController extends BaseAction {
             dataMap.put("tip", "login");
             return dataMap;
         }
+        reserved.setFarmerId(farmer.getId());
         if(!validateIfMapBaseInfo(reserved)){
             dataMap.put("tip", "error");
             return dataMap;
@@ -157,6 +157,12 @@ public class QrCodeController extends BaseAction {
         long id =0L;
         if (reserved.getId() != null) {
             reserved.setNewRecord(false);
+            String token = RandomStrUtil.getLowerStr(4).toUpperCase();
+            farmer.setNewRecord(false);
+            farmer.setToken(token+","+farmer.getToken()==null?"":farmer.getToken());
+            farmer.setLastLoginTime(new Date());
+            farmerService.save(farmer);
+            reserved.setToken(token);
             qrCodeService.save(reserved);
             id = reserved.getId();
         } else {
@@ -191,7 +197,7 @@ public class QrCodeController extends BaseAction {
     @RequestMapping(value = "toUpload", method = RequestMethod.GET)
     public ModelAndView uploadFruitInfo(Reserved reserved, HttpServletRequest request) {
         Reserved applied = qrCodeService.getById(reserved.getId());
-        if (!ReservedQuery.SEND_OUT.equals(applied.getStatus())) {
+        if (!ReservedQuery.PRINT.equals(applied.getStatus())) {
             return returnLoginHtml();
         }
         Map<String, Object> dataMap = new HashMap<String, Object>();
@@ -208,6 +214,37 @@ public class QrCodeController extends BaseAction {
         ModelAndView view = new ModelAndView("/usercenter/upload_fruit", dataMap);
         return view;
     }
+
+
+    @RequestMapping(value = "print/{id}", method = RequestMethod.GET)
+    public ModelAndView loadFruitInfo(@PathVariable("id")Long id, HttpServletRequest request) {
+        Reserved applied = qrCodeService.getById(id);
+        if (!ReservedQuery.SEND_OUT.equals(applied.getStatus())) {
+            return returnLoginHtml();
+        }
+        Farmer farmer = getLoginFarmer(request);
+        if (farmer == null) {
+            RedirectView redirectView = new RedirectView("/jsp/user/user_login.html");
+            ModelAndView view = new ModelAndView(redirectView);
+            return view;
+        }
+        applied.setNewRecord(false);
+        applied.setStatus(ReservedQuery.PRINT);
+        qrCodeService.save(applied);
+        int begin = applied.getBegin();
+        int end = applied.getEnd();
+        List<String> qrList = new ArrayList<>();
+        for(int i = begin;i<= end ;i++){
+            String fruitCode = QRUtil.getFruitCode(applied.getToken(),applied.getType(),i);
+            String qrUrl = QRUtil.getQrUrl(applied.getId(),fruitCode,applied.getFarmerId());
+            qrList.add(qrUrl);
+        }
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("qrList",qrList);
+        resultMap.put("reservedId",applied.getId());
+        return  new ModelAndView("/usercenter/print_qr_code",resultMap);
+    }
+
 
     @RequestMapping(value = "loadFruitInfo", method = RequestMethod.POST)
     public ModelAndView loadFruitInfo(Reserved reserved, HttpServletRequest request) {

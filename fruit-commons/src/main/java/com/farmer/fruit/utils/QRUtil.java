@@ -10,9 +10,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Hashtable;
 import javax.imageio.ImageIO;
+
+import com.farmer.fruit.Constants;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
@@ -35,6 +38,39 @@ import com.google.zxing.common.HybridBinarizer;
  * 二维码图片工具类
  */
 public class QRUtil {
+
+    /**
+     * 组装水果编码
+     * @param token
+     * @param type
+     * @param index
+     * @return
+     */
+    public static String getFruitCode(String token, String type, int index) {
+        //token+类型+年+10000000'
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        return token + type + year + (Constants.FRUIT_START_INDEX + index);
+    }
+
+    /**
+     * 生成特定内容的二维码
+     * @param reservedId
+     * @param fruitCode
+     * @param farmerId
+     * @return
+     */
+    public static String createQr(long reservedId, String fruitCode, long farmerId) {
+        String root = Constants.UPLOAD_IMAGE_PATH + "/qr";
+        String content = "http://m.sangepg.com/fruit/" + farmerId + "/" + StringUtils.getYear() + "/" + reservedId+ "/" + fruitCode + ".html";
+        String filePath = root + "/" + farmerId + "/" + reservedId + "/" + fruitCode + ".png";
+        QRUtil.encode(content, 50, 50, filePath);
+        return content;
+    }
+    public static String getQrUrl(long reservedId, String fruitCode, long farmerId){
+        String filePath = Constants.QR_URL + "/" + farmerId + "/" + reservedId + "/" + fruitCode + ".png";
+        return filePath;
+    }
     /**
      * 编码（将文本生成二维码）
      *

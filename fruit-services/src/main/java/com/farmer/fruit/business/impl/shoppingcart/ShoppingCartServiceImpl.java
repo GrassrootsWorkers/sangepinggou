@@ -1,12 +1,11 @@
 package com.farmer.fruit.business.impl.shoppingcart;
 
+import com.farmer.fruit.Constants;
 import com.farmer.fruit.interfaces.common.ICommonService;
 import com.farmer.fruit.interfaces.fruit.IFruitService;
 import com.farmer.fruit.interfaces.shopping.IShoppingCartService;
 import com.farmer.fruit.json.GsonUtil;
-import com.farmer.fruit.models.Constants;
 import com.farmer.fruit.models.fruit.Fruit;
-import com.farmer.fruit.models.lottery.Lottery;
 import com.farmer.fruit.models.shopping.ShoppingCart;
 import com.farmer.fruit.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,7 +126,7 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
 
         BigDecimal totalWeight = new BigDecimal(0);
         for (Fruit f : fruitList) {
-            totalWeight = totalWeight.add(new BigDecimal(f.getWeight()));
+            totalWeight = totalWeight.add(f.getWeight());
         }
         cart.setTotalWeight(totalWeight);
 
@@ -172,22 +171,16 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
     @Override
     public Map<String, Object> addCart(String mobile, String fruitCode) {
         Fruit fruit = fruitService.getByCode(fruitCode);
+        fruit.setTypeName(commonService.getFruitTypeName(fruit.getType()));
         Map<String, Object> resultMap = new HashMap<String, Object>();
         if (fruit == null) {
             resultMap.put("msg", "login");
             return resultMap;
         }
         RedisUtils redisUtils = new RedisUtils(jedisPool);
-
         //记录被扫描次数
         redisUtils.setTimes(fruitCode);
 
-        /*
-        //记录用户购买了那些类型的水果--购物车中的key
-        //购买的key
-        redisUtils.recordKey(mobile,getUserBuyCartKey(mobile,fruit));
-        //未购买的key
-        redisUtils.recordKey(mobile,getUserNoBuyCartKey(mobile,fruit));*/
         String addedUserMobile = redisUtils.getValueByKey(fruitCode);
         if (addedUserMobile == null) {
             redisUtils.setKey(fruitCode, mobile, Constants.FRUIT_EXPIRE_SECOND);
@@ -201,13 +194,9 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
                 resultMap.put("msg", "已放入篮子");
             }
         }
-        if ("Y".equals(fruit.getLotteryFlag())) {
-            //获取抽奖规则
-            resultMap.put("lottery", true);
-            resultMap.put("lotteryId", Lottery.DEFAULT_ID);
-        }
         resultMap.put("cartCount", redisUtils.getFieldSize(getUserBuyCartKey(mobile)));
         resultMap.put("success", true);
+        resultMap.put("fruit", fruit);
         return resultMap;
     }
 

@@ -74,7 +74,6 @@ public class QrCodeServiceImpl implements IQrCodeService {
     @Transactional(readOnly = false)
     public Long save(Reserved entity) {
         if (entity.isNewRecord()) {
-            entity.setApplyTime(new Date());
             ReservedQuery query = new ReservedQuery();
             Reserved maxReserved = reservedDao.get(query);
             int end = 1;
@@ -82,7 +81,8 @@ public class QrCodeServiceImpl implements IQrCodeService {
                 end = maxReserved.getEnd();
             }
             entity.setBegin(end + 1);
-            entity.setEnd(entity.getApplyCount() + end + 1);
+            entity.setEnd(entity.getApplyCount() + end );
+            entity.setApplyTime(new Date());
             reservedDao.insert(entity);
             return entity.getId();
         } else {
@@ -125,7 +125,7 @@ public class QrCodeServiceImpl implements IQrCodeService {
         File file = new File(filePath);
         File[] files = file.listFiles();
         if (files == null) return false;
-        if (files.length == length) {
+        if (files.length == length || Reserved.P_FLAGE.equals(reserved.getPictureFlag())) {
             //保存上传信息
             save(reserved);
             reserved.setBrandName(commonService.getBrandName(reserved.getBrandId()));

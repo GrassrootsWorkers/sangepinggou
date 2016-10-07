@@ -3,7 +3,7 @@ package com.farmer.fruit.task;
 import com.farmer.fruit.commons.pictures.FruitPictureUtil;
 import com.farmer.fruit.excel.ExcelUtils;
 import com.farmer.fruit.interfaces.fruit.IFruitService;
-import com.farmer.fruit.models.Constants;
+
 import com.farmer.fruit.models.farmer.Reserved;
 import com.farmer.fruit.models.fruit.Fruit;
 import com.farmer.fruit.models.fruit.FruitInformation;
@@ -46,7 +46,7 @@ public class AddFruitTask implements Runnable {
         FruitInformation fruitInformation = fruitInformationDao.get(query);
 
         RedisQueue<Fruit> redisQueue = new RedisQueue<Fruit>(jedisPool, "fruit_queue", Fruit.class);
-        List<Fruit> fruitList = null;
+        List<Fruit> fruitList;
         String filePath = reserved.getPicturePath().substring(0, reserved.getPicturePath().lastIndexOf("/") + 1) + reserved.getId() + "/";
         File file = new File(filePath);
         File[] files = file.listFiles();
@@ -56,9 +56,17 @@ public class AddFruitTask implements Runnable {
                 Fruit fruit = fruitList.get(i);
                 fruit.setFarmerId(reserved.getFarmerId());
                 fruit.setBaseCode(fruitInformation.getId());
-                fruit.setOrigImage(files[i].getPath());
-                String fruitCode = getFruitCode(reserved, reserved.getBegin() + i);
-                if (fruitCode == null) break;
+                String origImage;
+                if(Reserved.P_FLAGE.equals(reserved.getPictureFlag())){
+                    origImage = files[0].getPath();
+                }else{
+                    origImage = files[i].getPath();
+                }
+                fruit.setOrigImage(origImage);
+
+                if(reserved.getBegin()+i >reserved.getEnd()) break;
+
+                String fruitCode = QRUtil.getFruitCode(reserved.getToken(),reserved.getType(), reserved.getBegin() + i);
                 fruit.setFruitCode(fruitCode);
                 fruit.setAddTime(new Date());
                 fruit.setAddUserId(reserved.getFarmerId());
@@ -73,14 +81,16 @@ public class AddFruitTask implements Runnable {
                 fruit.setVarietyName(reserved.getVarietyName());
                 fruit.setHarvestTime(reserved.getHarvestTime());
                 fruit.setMarketPrice(reserved.getMarketPrice());
+                fruit.setReservedId(reserved.getId());
+                fruit.setUnit(reserved.getUnit());
                 fruit.setFilePath("http://m.sangepg.com/fruit/" + reserved.getFarmerId() + "/" + StringUtils.getYear() + "/" );
                 long fruitId = fruitService.save(fruit);
 
                 fruit.setBaseInfoPath("/block/" + fruitInformation.getFarmerId() + "/" + fruitInformation.getFarmerId() + "_" + fruitInformation.getType() + "_" + fruitInformation.getId() + ".html");
                 //生成图片
                 createPicture(fruitId, fruit.getOrigImage());
-                //生成二维码
-                createQr(fruitId, fruit.getFruitCode(), reserved.getFarmerId());
+                //生成二维码--审核通过时生成
+                //createQr(fruitId, fruit.getFruitCode(), reserved.getFarmerId());
                 //放入redis中 利用生产者消费者生成静态文件
                 redisQueue.add(fruit);
             }
@@ -109,23 +119,7 @@ public class AddFruitTask implements Runnable {
         return fruitList;
     }
 
-    private String getFruitCode(Reserved reserved, int index) {
-        if (index > reserved.getEnd()) {
-            return null;
-        }
-        //token+类型+年+10000000'
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        return reserved.getToken() + reserved.getType() + year + (Constants.FRUIT_START_INDEX + index);
-    }
 
-    private String createQr(long fruitId, String fruitCode, long farmerId) {
-        String root = Constants.UPLOAD_IMAGE_PATH + "/qr";
-        String content = "http://m.sangepg.com/fruit/" + farmerId + "/" + StringUtils.getYear() + "/" + fruitId / Constants.IMAGES_RANGE_INDEX + "/" + fruitCode + ".html";
-        String filePath = root + "/" + farmerId + "/" + fruitId / Constants.IMAGES_RANGE_INDEX + "/" + fruitCode + ".png";
-        QRUtil.encode(content, 50, 50, filePath);
-        return content;
-    }
 
     private boolean createPicture(long fruitId, String sourceFilePath) {
         try {

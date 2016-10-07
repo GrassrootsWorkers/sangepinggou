@@ -5,8 +5,11 @@ import com.farmer.fruit.models.QueryDataEntity;
 import java.util.Date;
 
 public class ReservedQuery extends QueryDataEntity {
-    public static String SEND_OUT="5";
-    public static String USED="7";
+    public static String SEND_OUT = "5";
+    public static String WAIT_PRINT = "5";
+    public static String PRINT = "6";
+    public static String USED = "7";
+    public static String APPLIED = "2";
     private Long id;
 
     private Long farmerId;

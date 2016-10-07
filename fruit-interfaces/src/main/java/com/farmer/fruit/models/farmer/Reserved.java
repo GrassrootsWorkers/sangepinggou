@@ -13,15 +13,21 @@ import java.util.Map;
 
 public class Reserved extends BaseEntity {
     public  static Map<String,String> statusNameMap;
+
+    public static final String P_FLAGE = "Y";
     static {
+        //第一期用0-->1-->5-->6-->7
         statusNameMap = new HashMap<String,String>();
         statusNameMap.put("0","已经保存");
         statusNameMap.put("1","正在审核");
-        statusNameMap.put("2","等待付款");
+        //statusNameMap.put("2","等待付款");
+        statusNameMap.put("2","审核通过");
         statusNameMap.put("3","审核未通过");
         statusNameMap.put("4","等待发货");
-        statusNameMap.put("5","已经发货");
-        statusNameMap.put("6","等待确认收货");
+        //statusNameMap.put("5","已经发货");
+        statusNameMap.put("5","等待打印");
+        //statusNameMap.put("6","等待确认收货");
+        statusNameMap.put("6","等待添加水果");
         statusNameMap.put("7","已经完成");
     }
     private Long id;
@@ -99,6 +105,34 @@ public class Reserved extends BaseEntity {
      * 标记是否完成
      */
     private String finishFlag;
+    /**
+     * 标记是否共用同一张图片
+     */
+    private String pictureFlag;
+    /**
+     * 计量单位
+     */
+    private String unit;
+    /**
+     * 成熟度
+     */
+    private String maturingStatus;
+
+    public String getMaturingStatus() {
+        return maturingStatus;
+    }
+
+    public void setMaturingStatus(String maturingStatus) {
+        this.maturingStatus = maturingStatus;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
 
     public String getTypeName() {
         return typeName;
@@ -285,6 +319,14 @@ public class Reserved extends BaseEntity {
 
     public void setFinishFlag(String finishFlag) {
         this.finishFlag = finishFlag;
+    }
+
+    public String getPictureFlag() {
+        return pictureFlag;
+    }
+
+    public void setPictureFlag(String pictureFlag) {
+        this.pictureFlag = pictureFlag;
     }
 
     @Override

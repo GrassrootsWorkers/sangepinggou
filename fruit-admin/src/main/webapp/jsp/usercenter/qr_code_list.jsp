@@ -61,15 +61,19 @@
                                     <div class="r">
                                         <span class="operation">
                                             <c:choose>
-                                                <c:when test="${qr.status == '5' or qr.status =='6'}">
+                                                <c:when test="${qr.status == '5'}">
+                                                    <a class="delete" href="#" onclick="print_qr(this,${qr.id})">打印二维码</a>
+                                                </c:when>
+                                                <c:when test="${qr.status =='6'}">
                                                     <a class="delete" href="http://www.sangepg.com/admin/qr/toUpload?id=${qr.id}" target="_blank">上传水果</a>
                                                 </c:when>
                                                 <c:when test="${qr.status == '7'}">
                                                     <a class="delete" href="#" target="_blank">已经完成</a>
                                                 </c:when>
-                                                <c:otherwise>
+
+                                                <c:when test="${qr.status == '0' or qr.status == '1' }">
                                                     <a class="delete" href="/admin/qr/toApplyQr?id=${qr.id}" target="_blank">编辑</a>
-                                                </c:otherwise>
+                                                </c:when>
 
                                             </c:choose>
                                             <a class="time"><f:formatDate value="${qr.applyTime}" pattern="yyyy-MM-dd"/></a>
@@ -189,6 +193,16 @@
     }
     function toEdit(id){
         window.location.href="/admin/qr/toApplyQr?id="+id;
+    }
+    var printed = false;
+    function print_qr(obj,id){
+        if(!printed){
+            var url = "http://www.sangepg.com/admin/qr/print/"+id;
+            $(obj).text("上传水果");
+            printed = true;
+            window.location.href = url;
+        }
+
     }
 </script>
 

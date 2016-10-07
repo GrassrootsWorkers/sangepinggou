@@ -78,25 +78,36 @@
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 1px; padding-bottom: 0px;">
                     <label>
                         <span><i>*</i>市场价格(元/kg)：</span>
-                        <input  id="mark_price" name="marketPrice"  value="${reserved.marketPrice}" placeholder="填写实例:9.99"/>
+                        <input id="mark_price" name="marketPrice" value="${reserved.marketPrice}"
+                               placeholder="填写实例:9.99"/>
                     </label>
 
                     <label>
                         <span><i>*</i>采摘时间：</span>
-                        <input id="harvest_time" name="harvestTime"   value="<fmt:formatDate value="${reserved.harvestTime}" pattern="YYYY-MM-dd HH:mm:ss"/> " placeholder="水果采摘的日期"/>
+                        <input id="harvest_time" name="harvestTime"
+                               value="<fmt:formatDate value="${reserved.harvestTime}" pattern="YYYY-MM-dd HH:mm:ss"/> "
+                               placeholder="水果采摘的日期"/>
                     </label>
                 </section>
             </div>
-           <%-- <div class="row_w">
+            <%-- <div class="row_w">
+                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 1px; padding-bottom: 0px;">
+                     <label>
+                         <span><i>*</i>申请的二维码链接：</span>
+                         <input class="w442" id="test_url" name="testUrl" value="${reserved.testUrl}"
+                                placeholder="http://www.sangepg.com/${reserved.type}/${reserved.token}10000010001.html"/>
+                     </label>
+                 </section>
+             </div>--%>
+            <div class="row_w pd30 ">
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 1px; padding-bottom: 0px;">
                     <label>
-                        <span><i>*</i>申请的二维码链接：</span>
-                        <input class="w442" id="test_url" name="testUrl" value="${reserved.testUrl}"
-                               placeholder="http://www.sangepg.com/${reserved.type}/${reserved.token}10000010001.html"/>
+                        <span>是否共用同一张图片</span>
+                        <label>是：</label><input name="pictureFlag" type="radio" value="Y">
+                        否：<input name="pictureFlag" type="radio" value="N">
                     </label>
                 </section>
-            </div>--%>
-
+            </div>
             <div class="row_w pd30 ">
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 1px; padding-bottom: 0px;">
                     <label>
@@ -116,7 +127,7 @@
                     </label>
                 </section>
             </div>
-            <div class="row_w pd30 "></div>
+
             <div class="row_w pd30 ">
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 1px; padding-bottom: 0px;">
                     <label>
@@ -124,8 +135,6 @@
                         <a href="javascript:;" class="file">
                             <input type="file" id="picture" name="picture" style="height:100px;width:100px;"/>
                         </a>
-
-
                     </label>
                     <label>
                         <c:if test="${reserved.picturePath != null}">
@@ -172,10 +181,10 @@
 <script type="text/javascript">
     $(function () {
         $('#harvest_time').datetimepicker({
-            language:'zh-CN',
-            format:'yyyy-mm-dd hh:ii:ss',
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd hh:ii:ss',
             weekStart: 1,
-            todayBtn:  1,
+            todayBtn: 1,
             autoclose: 1,
             todayHighlight: 1,
             startView: 2,
@@ -251,16 +260,16 @@
             return false;
         }
         var harvest_time = $("#harvest_time").val();
-        if(harvest_time == ""){
+        if (harvest_time == "") {
             alert("请填写采摘时间");
             return false;
         }
-        if(new Date(harvest_time) > new Date()){
+        if (new Date(harvest_time) > new Date()) {
             alert("采摘时间不能大于今天");
             return false;
         }
         var price = $("#mark_price").val();
-        if(!validateNDouble(price)){
+        if (!validateNDouble(price)) {
             alert("市场价输入错误，要填写到几分");
             return false;
         }

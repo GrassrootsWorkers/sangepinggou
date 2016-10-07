@@ -22,11 +22,13 @@
         <result column="finish_flag" property="finishFlag"/>
         <result column="market_price" property="marketPrice"/>
         <result column="harvest_time" property="harvestTime"/>
+        <result column="unit" property="unit"/>
+        <result column="maturing_status" property="maturingStatus"/>
     </resultMap>
 
     <sql id="base_column_List">
       r.id, r.farmer_id, `begin`, `end`, r.`status`, r.token, r.apply_time,r.apply_count,r.brand_id,r.variety_id,
-      r.`type`,r.audit_desc,r.apply_desc,r.file_path,r.picture_path,r.test_url,r.finish_flag,r.market_price,r.harvest_time
+      r.`type`,r.audit_desc,r.apply_desc,r.file_path,r.picture_path,r.test_url,r.finish_flag,r.market_price,r.harvest_time,r.unit,r.maturing_status
   </sql>
     <sql id="condition">
         <if test="farmerId != null">
@@ -67,9 +69,9 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         insert into qr_reserved (farmer_id, `begin`,`end`, `status`,
-        token,apply_count,apply_time,`type`,brand_id,variety_id,apply_desc,market_price,harvest_time)
+        token,apply_count,apply_time,`type`,brand_id,variety_id,apply_desc,market_price,harvest_time,unit,maturing_status)
         values (#{farmerId}, #{begin},#{end}, #{status},
-        #{token},#{applyCount},#{applyTime},#{type},#{brandId},#{varietyId},#{applyDesc},#{marketPrice},#{harvestTime})
+        #{token},#{applyCount},#{applyTime},#{type},#{brandId},#{varietyId},#{applyDesc},#{marketPrice},#{harvestTime},#{unit},#{maturingStatus})
     </insert>
     <select id="getTotalCount" parameterType="ReservedQuery" resultType="java.lang.Integer">
         select count(1) from qr_reserved r where 1=1
@@ -81,6 +83,12 @@
         where r.brand_id = b.id and b.id =v.brand_id
         <include refid="condition"/>
         limit #{pageNo},#{pageSize}
+    </select>
+    <select id="findAllList" parameterType="ReservedQuery" resultMap="BaseResultMap">
+        select<include refid="base_column_List"/>
+        from qr_reserved r
+         where 1=1
+        <include refid="condition"/>
     </select>
     <update id="update" parameterType="Reserved">
         update qr_reserved
@@ -121,6 +129,12 @@
             </if>
             <if test="marketPrice !=null">
              market_price = #{marketPrice},
+            </if>
+            <if test="unit !=null">
+             unit = #{unit},
+            </if>
+            <if test="maturingStatus !=null">
+                maturing_status = #{maturingStatus},
             </if>
 
         </set>

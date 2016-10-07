@@ -72,7 +72,7 @@
                             <input type="text" name="sale_price" lang="${cart.cartGroup}" class="num"
                                    onblur="moneyCheck(this)" value="${cart.salePrice}">
                         </p>
-                        <p class="shop-title-link fr"><span class="red">价格：</span></p>
+                        <p class="shop-title-link fr"><span class="red">单价：</span></p>
                         <p class="shop-title-link fr"><span class="red"><i>￥</i>${cart.saleTotalPrice}<i class="postage">(${cart.totalCount}个)</i></span>
                         </p>
                     </div>

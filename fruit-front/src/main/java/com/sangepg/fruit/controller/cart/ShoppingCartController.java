@@ -1,12 +1,11 @@
 package com.sangepg.fruit.controller.cart;
 
-import com.farmer.fruit.Constants;
-import com.farmer.fruit.interfaces.fruit.IFruitService;
+import com.farmer.fruit.interfaces.lottery.ILotteryService;
 import com.farmer.fruit.interfaces.shopping.IShoppingCartService;
 import com.farmer.fruit.json.GsonUtil;
 import com.farmer.fruit.models.fruit.Fruit;
+import com.farmer.fruit.models.lottery.Lottery;
 import com.farmer.fruit.models.shopping.ShoppingCart;
-import com.farmer.fruit.utils.RedisUtils;
 import com.sangepg.fruit.controller.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import redis.clients.jedis.JedisPool;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
@@ -30,19 +28,30 @@ import java.util.Map;
 public class ShoppingCartController extends BaseAction {
     @Autowired
     IShoppingCartService shoppingCartService;
+    @Autowired
+    ILotteryService lotteryService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> addCart(String fruitCode, HttpServletRequest request) {
         String mobile = this.getCookieValue("mobile",request);
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("success", false);
-
         if (mobile == null || "".equals(mobile.trim())) {
+            Map<String, Object> resultMap = new HashMap<String, Object>();
+            resultMap.put("success", false);
             resultMap.put("msg", "login");
             return resultMap;
+        }else{
+            Map<String, Object>  resultMap = shoppingCartService.addCart(mobile, fruitCode);
+            //计算抽奖功能--做活动时提前录入一批
+            Lottery lottery = lotteryService.getCartLottery(mobile,(Fruit)resultMap.get("fruit"));
+            if(lottery != null){
+                resultMap.put("lottery", GsonUtil.getJSON(lottery));
+            }
+            resultMap.put("fruit",null);
+            return resultMap;
         }
-        return shoppingCartService.addCart(mobile, fruitCode);
+        //验证用户是不是刚注册的
+
     }
 
     //购物车删除商品

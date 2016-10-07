@@ -74,9 +74,33 @@
             <div class="row_w pd30 ">
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 15px; padding-bottom: 0px;">
                     <label>
-                        <span><i>*</i>需要多少张：</span>
-                        <input type="text" name="applyCount" class="bgef"/><span class="color00"></span>
+                        <span><i>*</i>申请张数：</span>
+                        <input type="text" name="applyCount" style="width:130px"/><span class="color00"></span>
                     </label>
+                    <label>
+                        <span><i>*</i>包装单位：</span>
+                    </label>
+                    <div class="com_select">
+                        <select id="unit_id" name="unit" style="width:150px">
+                            <option value="个">个</option>
+                            <option value="袋">袋</option>
+                            <option value="箱">箱</option>
+                            <option value="筐">筐</option>
+                        </select>
+                    </div>
+                    <label>
+                        <span><i>*</i>成&nbsp&nbsp熟&nbsp&nbsp度：</span>
+                    </label>
+                    <div class="com_select">
+                        <select id="maturing_status" name="maturingStatus" style="width:150px">
+                            <option value="5">五成</option>
+                            <option value="6">六成</option>
+                            <option value="7">七成</option>
+                            <option value="8">八成</option>
+                            <option value="9">九成</option>
+                        </select>
+                    </div>
+
                 </section>
             </div>
             <div class="row_w pd30 ">
