@@ -47,7 +47,6 @@
 		<servlet-name>ValidateCodeServlet</servlet-name>
 		<url-pattern>/servlet/validateCodeServlet</url-pattern>
 	</servlet-mapping>
-	
 	<!-- 静态文件访问 -->
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>

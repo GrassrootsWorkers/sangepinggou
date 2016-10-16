@@ -143,9 +143,7 @@ public class Fruit extends BaseEntity {
     }
 
     public String getFilePath() {
-        if(id !=null){
-            filePath= filePath+ id /10000 + "/" + fruitCode + ".html";
-        }
+        filePath= filePath + fruitCode + ".html";
         return filePath;
     }
 

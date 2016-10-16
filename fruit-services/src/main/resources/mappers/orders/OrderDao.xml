@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.orders.IOrderDao">
+    <resultMap id="BaseResultMap" type="Order">
+        <id column="id" property="id"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="open_id" property="openId"/>
+        <result column="mobile" property="mobile"/>
+        <result column="grade" property="grade"/>
+        <result column="price" property="price"/>
+        <result column="weight" property="weight"/>
+        <result column="if_pay" property="ifPay"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="user_ip" property="userIp"/>
+        <result column="order_status" property="orderStatus"/>
+        <result column="city" property="city"/>
+        <result column="address" property="address"/>
+        <result column="trade_no" property="tradeNo"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,update_time,create_time,trade_no
+    </sql>
+    <sql id="condition">
+        <where>
+            <if test="openId !=null">
+                and open_id = #{openId}
+            </if>
+            <if test="orderNo != null">
+                and order_no = #{orderNo}
+            </if>
+        </where>
+    </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="FruitQuery" >
+        select
+        <include refid="Base_Column_List" />
+        from qr_fruit_orders
+        where order_no = #{order_no}
+    </select>
+
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List"/>
+        from qr_fruit_orders
+        where id = #{id}
+    </select>
+
+    <select id="findList" parameterType="OrderQuery" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        FROM qr_fruit_orders o
+        <include refid="condition"/>
+        order by update_time desc
+        limit #{pageNo}, #{pageSize}
+    </select>
+
+    <select id="getTotalCount" parameterType="PageViewQuery" resultType="java.lang.Integer">
+        select count(1) from qr_fruit_orders o
+        <include refid="condition"/>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="PageView">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        insert into qr_fruit_orders
+        (order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,trade_no,create_time)
+        values
+        (#{orderNo},#{openId},#{mobile},#{grade},#{price},#{weight},#{ifPay},#{payTime},#{userIp},#{orderStatus},#{city},#{address},#{tradeNo},#{createTime})
+
+    </insert>
+
+    <update id="update" parameterType="Order">
+        update qr_fruit_orders
+        <set>
+            <if test="tradeNo != null">
+                trade_no = #{tradeNo},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus},
+            </if>
+        </set>
+        where order_no = #{orderNo}
+    </update>
+</mapper>

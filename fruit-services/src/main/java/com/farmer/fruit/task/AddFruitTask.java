@@ -83,7 +83,7 @@ public class AddFruitTask implements Runnable {
                 fruit.setMarketPrice(reserved.getMarketPrice());
                 fruit.setReservedId(reserved.getId());
                 fruit.setUnit(reserved.getUnit());
-                fruit.setFilePath("http://m.sangepg.com/fruit/" + reserved.getFarmerId() + "/" + StringUtils.getYear() + "/" );
+                fruit.setFilePath("http://m.sangepg.com/fruit/" + reserved.getFarmerId() + "/" + StringUtils.getYear() + "/"+reserved.getId()+"/" );
                 long fruitId = fruitService.save(fruit);
 
                 fruit.setBaseInfoPath("/block/" + fruitInformation.getFarmerId() + "/" + fruitInformation.getFarmerId() + "_" + fruitInformation.getType() + "_" + fruitInformation.getId() + ".html");

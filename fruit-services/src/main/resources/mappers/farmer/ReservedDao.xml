@@ -82,6 +82,7 @@
         from qr_reserved r,qr_brand b, qr_variety v
         where r.brand_id = b.id and b.id =v.brand_id
         <include refid="condition"/>
+        order by r.update_time desc
         limit #{pageNo},#{pageSize}
     </select>
     <select id="findAllList" parameterType="ReservedQuery" resultMap="BaseResultMap">

@@ -1,12 +1,17 @@
 package com.sangepg.fruit.controller.cart;
 
+import com.farmer.fruit.interfaces.fruit.IFruitPageViewService;
 import com.farmer.fruit.interfaces.lottery.ILotteryService;
+import com.farmer.fruit.interfaces.review.IReviewService;
 import com.farmer.fruit.interfaces.shopping.IShoppingCartService;
 import com.farmer.fruit.json.GsonUtil;
 import com.farmer.fruit.models.fruit.Fruit;
 import com.farmer.fruit.models.lottery.Lottery;
+import com.farmer.fruit.models.pageview.PageView;
 import com.farmer.fruit.models.shopping.ShoppingCart;
+import com.farmer.fruit.utils.IpUtils;
 import com.sangepg.fruit.controller.BaseAction;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +36,10 @@ public class ShoppingCartController extends BaseAction {
     IShoppingCartService shoppingCartService;
     @Autowired
     ILotteryService lotteryService;
+    @Autowired
+    IFruitPageViewService fruitPageViewService;
+    @Autowired
+    IReviewService reviewService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
@@ -78,15 +88,39 @@ public class ShoppingCartController extends BaseAction {
     @RequestMapping(value = "ifAdd", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> ifAdded(String fruitCode, HttpServletRequest request) {
+
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String mobile = this.getCookieValue("mobile",request);
+
         if (mobile == null || "".equals(mobile.trim())) {
             resultMap.put("success", false);
             return resultMap;
         }
+
         boolean ifAdd = shoppingCartService.ifAlreadyAddToCart(mobile, fruitCode);
         resultMap.put("cartCount", shoppingCartService.getCartGoodsCount(mobile));
         resultMap.put("success", ifAdd);
+        return resultMap;
+    }
+
+    @RequestMapping(value = "pageView", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> recordPageViewCount(String fruitCode,Long farmerId, HttpServletRequest request) {
+        //记录访问次数
+        String mobile = this.getCookieValue("mobile",request);
+        if(StringUtils.isEmpty(mobile)){
+            mobile = "11011011011";
+        }
+        PageView pageView = new PageView();
+        pageView.setMobile(mobile);
+        pageView.setFruitCode(fruitCode);
+        pageView.setIp(IpUtils.IpToLong(getRealIP(request)));
+        pageView.setCreateTime(new Date());
+        pageView.setNewRecord(true);
+        fruitPageViewService.save(pageView);
+        int praiseCount = reviewService.getPraiseFruitCount(farmerId);
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("praiseCount",praiseCount);
         return resultMap;
     }
 

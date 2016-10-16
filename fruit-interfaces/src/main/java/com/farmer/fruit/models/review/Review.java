@@ -1,18 +1,18 @@
 package com.farmer.fruit.models.review;
 
+import com.farmer.fruit.models.BaseEntity;
+
 import java.io.Serializable;
 import java.util.Date;
 
-public class Review implements Serializable {
-    private Integer id;
+public class Review  extends BaseEntity {
+    private Long id;
 
-    private Integer userId;
+    private Long userId;
 
     private String content;
 
     private Byte score;
-
-    private Date addTime;
 
     private String userIp;
 
@@ -20,21 +20,39 @@ public class Review implements Serializable {
 
     private String fruitCode;
 
-    private static final long serialVersionUID = 1L;
+    private int starLevel;
 
-    public Integer getId() {
+    private long farmerId;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public int getStarLevel() {
+        return starLevel;
+    }
+
+    public void setStarLevel(int starLevel) {
+        this.starLevel = starLevel;
+    }
+
+    public long getFarmerId() {
+        return farmerId;
+    }
+
+    public void setFarmerId(long farmerId) {
+        this.farmerId = farmerId;
+    }
+
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -52,14 +70,6 @@ public class Review implements Serializable {
 
     public void setScore(Byte score) {
         this.score = score;
-    }
-
-    public Date getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
     }
 
     public String getUserIp() {
@@ -96,11 +106,9 @@ public class Review implements Serializable {
         sb.append(", userId=").append(userId);
         sb.append(", content=").append(content);
         sb.append(", score=").append(score);
-        sb.append(", addTime=").append(addTime);
         sb.append(", userIp=").append(userIp);
         sb.append(", replayFlag=").append(replayFlag);
         sb.append(", fruitCode=").append(fruitCode);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }

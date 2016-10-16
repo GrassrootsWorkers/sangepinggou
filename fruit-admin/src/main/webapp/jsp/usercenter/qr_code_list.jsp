@@ -200,7 +200,7 @@
             var url = "http://www.sangepg.com/admin/qr/print/"+id;
             $(obj).text("上传水果");
             printed = true;
-            window.location.href = url;
+            window.open(url);
         }
 
     }

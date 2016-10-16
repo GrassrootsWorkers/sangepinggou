@@ -98,7 +98,7 @@
                         <span><i>*</i>成&nbsp&nbsp熟&nbsp&nbsp度：</span>
                     </label>
                     <div class="com_select">
-                        <select id="maturing_status" name="maturingStatus" style="width:150px" onchange="changeBrand()">
+                        <select id="maturing_status" name="maturingStatus" style="width:150px">
                             <option value="5">五成</option>
                             <option value="6">六成</option>
                             <option value="7">七成</option>

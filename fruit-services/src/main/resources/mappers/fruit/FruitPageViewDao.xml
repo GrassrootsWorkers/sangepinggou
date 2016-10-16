@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.fruit.IFruitPageViewDao" >
+  <resultMap id="BaseResultMap" type="PageView" >
+    <id column="id" property="id"/>
+    <result column="mobile" property="mobile"/>
+    <result column="fruit_code" property="fruitCode"/>
+    <result column="ip" property="ip"/>
+    <result column="create_time" property="createTime"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+     id,ip,fruit_code,create_time,mobile
+  </sql>
+
+  <select id="findList" parameterType="PageViewQuery" resultMap="BaseResultMap" >
+  select
+    <include refid="Base_Column_List"/>
+    from qr_page_view
+    limit #{pageNo}, #{pageSize}
+  </select>
+  <select id="getTotalCount" parameterType="PageViewQuery" resultType="java.lang.Integer">
+    select count(1) from qr_page_view f
+  </select>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id"    parameterType="PageView" >
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+    insert into qr_page_view
+    (
+    ip,fruit_code,create_time,mobile
+    )
+    values
+    (
+    #{ip},#{fruitCode},#{createTime},#{mobile}
+    )
+  </insert>
+
+
+</mapper>

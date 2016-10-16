@@ -9,7 +9,12 @@
        default-lazy-init="true">
     <bean class="com.farmer.fruit.job.qr.CreateQrJobService" id="createQrJobService"/>
     <task:scheduled-tasks>
-        <task:scheduled ref="createQrJobService" method="execute" cron="10 * * * * ?"/>
+        <task:scheduled ref="createQrJobService" method="execute" cron="0 0/5 * * * ?"/>
     </task:scheduled-tasks>
-
+    <bean class="com.farmer.fruit.job.weixin.WeixinFreshAccessTokenService" id="wxAccessTokenService">
+        <property name="jedisPool" ref="jedisPool"/>
+    </bean>
+    <task:scheduled-tasks>
+        <task:scheduled ref="wxAccessTokenService" method="execute" cron="0 0/10 * * * ?"/>
+    </task:scheduled-tasks>
 </beans>

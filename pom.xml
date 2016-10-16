@@ -151,6 +151,12 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 		<!-- LOGGING end -->
+		<!--json-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 	<finalName>farmer</finalName>

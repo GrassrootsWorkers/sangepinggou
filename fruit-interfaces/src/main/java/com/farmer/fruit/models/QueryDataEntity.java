@@ -34,6 +34,16 @@ public abstract class QueryDataEntity implements Serializable {
 	 */
 	private int count;
 
+	protected String deleteFlag;// 删除标识（0：未删除，1：删除）
+
+	public String getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
