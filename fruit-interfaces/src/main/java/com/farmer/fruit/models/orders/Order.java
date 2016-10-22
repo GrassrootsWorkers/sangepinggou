@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class Order extends BaseEntity {
    private Long id;
+    private String fruitType;
     private String orderNo;
     private String openId;
     private String mobile;
@@ -134,5 +135,13 @@ public class Order extends BaseEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getFruitType() {
+        return fruitType;
+    }
+
+    public void setFruitType(String fruitType) {
+        this.fruitType = fruitType;
     }
 }

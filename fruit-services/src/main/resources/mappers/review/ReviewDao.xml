@@ -3,14 +3,21 @@
 <mapper namespace="com.farmer.fruit.persistence.review.IReviewDao" >
   <resultMap id="BaseResultMap" type="com.farmer.fruit.models.review.Review" >
     <id column="id" property="id"  />
-    <result column="user_id" property="userId"  />
+    <result column="user_mobile" property="mobile"  />
     <result column="content" property="content" />
-    <result column="score" property="score"  />
+    <result column="taste_score" property="tasteScore"  />
+    <result column="avg_taste_score" property="avgTasteScore"  />
+    <result column="sugar_score" property="sugarScore"  />
+    <result column="avg_sugar_score" property="avgSugarScore"  />
+    <result column="avg_water_score" property="avgWaterScore"  />
+    <result column="water_score" property="waterScore"  />
     <result column="user_ip" property="userIp" />
     <result column="replay_flag" property="replayFlag"  />
     <result column="fruit_code" property="fruitCode" />
     <result column="farmer_id" property="farmerId" />
     <result column="star_level" property="starLevel" />
+    <result column="avg_star_level" property="avgStarLevel" />
+    <result column="review_count" property="reviewCount" />
     <result column="delete_flag" property="deleteFlag" />
     <result column="create_time" property="createTime"/>
     <result column="update_time" property="updateTime"/>
@@ -18,7 +25,7 @@
   </resultMap>
 
   <sql id="Base_Column_List" >
-    id,user_id,user_mobile,content,score,user_ip,replay_flag,fruit_code,farmer_id,star_level,create_time,delete_flag,update_time
+    id,user_mobile,content,taste_score,water_score,sugar_score,user_ip,replay_flag,fruit_code,farmer_id,star_level,create_time,delete_flag,update_time
   </sql>
   <sql id="condition">
     <where>
@@ -49,9 +56,9 @@
       SELECT LAST_INSERT_ID() AS id
     </selectKey>
     insert into qr_review
-    (user_id,user_mobile,content,score,user_ip,replay_flag,fruit_code,farmer_id,star_level,create_time,delete_flag)
+    (user_mobile,content,taste_score,water_score,sugar_score,user_ip,replay_flag,fruit_code,farmer_id,star_level,create_time,delete_flag)
     values
-    ({user_id},#{user_mobile},#{content},#{score},#{user_ip},#{replay_flag},#{fruit_code},#{farmer_id},#{star_level},#{create_time},#{delete_flag})
+    (#{mobile},#{content},#{tasteScore},#{waterScore},#{sugarScore},#{userIp},#{replayFlag},#{fruitCode},#{farmerId},#{starLevel},#{createTime},#{deleteFlag})
 
   </insert>
 
@@ -64,4 +71,11 @@
       </set>
     where id = #{id}
   </update>
+  <select id="getTotalAvgScore" resultMap="BaseResultMap" parameterType="ReviewQuery">
+    select count(id) as review_count, round(avg(taste_score),1) as avg_taste_score,round(avg(water_score),1) as avg_water_score,
+    round(avg(sugar_score),1) as avg_sugar_score,  round(avg(star_level),1) as avg_star_level
+    from qr_review
+    where  farmer_id = #{farmerId}
+        GROUP  by farmer_id
+  </select>
 </mapper>

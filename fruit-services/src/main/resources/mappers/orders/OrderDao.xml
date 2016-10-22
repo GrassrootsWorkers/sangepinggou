@@ -3,6 +3,7 @@
 <mapper namespace="com.farmer.fruit.persistence.orders.IOrderDao">
     <resultMap id="BaseResultMap" type="Order">
         <id column="id" property="id"/>
+        <result column="fruit_type" property="fruitType"/>
         <result column="order_no" property="orderNo"/>
         <result column="open_id" property="openId"/>
         <result column="mobile" property="mobile"/>
@@ -20,7 +21,7 @@
         <result column="create_time" property="createTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id,order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,update_time,create_time,trade_no
+        id,fruit_type,order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,update_time,create_time,trade_no
     </sql>
     <sql id="condition">
         <where>
@@ -29,6 +30,9 @@
             </if>
             <if test="orderNo != null">
                 and order_no = #{orderNo}
+            </if>
+            <if test="fruitType!=null">
+                and fruit_type= #{fruitType}
             </if>
         </where>
     </sql>
@@ -65,9 +69,9 @@
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         insert into qr_fruit_orders
-        (order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,trade_no,create_time)
+        (fruit_type,order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,trade_no,create_time)
         values
-        (#{orderNo},#{openId},#{mobile},#{grade},#{price},#{weight},#{ifPay},#{payTime},#{userIp},#{orderStatus},#{city},#{address},#{tradeNo},#{createTime})
+        (#{fruitType},#{orderNo},#{openId},#{mobile},#{grade},#{price},#{weight},#{ifPay},#{payTime},#{userIp},#{orderStatus},#{city},#{address},#{tradeNo},#{createTime})
 
     </insert>
 

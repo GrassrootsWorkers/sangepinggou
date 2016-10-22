@@ -22,4 +22,10 @@ public interface IReviewService extends ICurdService<Review,ReviewQuery> {
      * @return
      */
     int getPraiseFruitCount(long farmerId);
+    /**
+     * 获取评价的平均分
+     * @param query
+     * @return
+     */
+    Review getTotalAvgScore(ReviewQuery query);
 }

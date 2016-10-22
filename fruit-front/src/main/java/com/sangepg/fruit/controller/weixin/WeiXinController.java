@@ -20,7 +20,9 @@ import redis.clients.jedis.JedisPool;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by liuzhi on 2016/10/11.
@@ -52,9 +54,10 @@ public class WeiXinController extends BaseAction {
         //查询用户的订单
         OrderQuery query = new OrderQuery();
         query.setOpenId(openId);
-        List<Order> orderList = orderService.findList(query,0,5);
-
-
+        List<Order> historyOrders = orderService.findList(query,0,5);
+        Map<String,Object> resultMap = new HashMap<String,Object>();
+        resultMap.put("history" ,historyOrders);
+        ModelAndView modelAndView = new ModelAndView("order/order_confirm",resultMap);
         return null ;
     }
 }

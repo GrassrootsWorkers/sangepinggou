@@ -9,6 +9,7 @@ import org.junit.Test;
 public class IpUtils {
 
     public static long IpToLong(String strIp)  {
+        if(strIp == null || "".equals(strIp)) return 0l;
         long[] ip = new long[4];
 
         String[] ipStrs = strIp.split("\\.");

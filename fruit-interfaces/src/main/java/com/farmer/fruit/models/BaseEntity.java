@@ -13,7 +13,7 @@ public abstract class BaseEntity  implements Serializable {
 	
 	protected Date updateTime;	// 更新日期
 	
-	protected String deleteFlag;// 删除标识（0：未删除，1：删除）
+	protected String deleteFlag;// 删除标识（N：未删除，Y：删除）
 	
 	protected boolean isNewRecord;
 	/**
@@ -40,7 +40,7 @@ public abstract class BaseEntity  implements Serializable {
 		this.updateTime = updateTime;
 	}
 	public String getDeleteFlag() {
-		return deleteFlag;
+		return deleteFlag ==null?"N":deleteFlag;
 	}
 	public void setDeleteFlag(String deleteFlag) {
 		this.deleteFlag = deleteFlag;

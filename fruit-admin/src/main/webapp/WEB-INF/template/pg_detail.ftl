@@ -24,9 +24,9 @@
     <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA5MzYzOTgyOQ==&sn=67d7f1b106ec79c6265f5ce2bbc52f1&scene=1##wechat_redirect" class="open" pt_pos_lid="float_banner_download">立即关注</a>
 </div>
 <article class="container autoScroll" id="container">
-    <header id="gHeader" class="clearfix">
+    <header id="gHeader" style="margin-top: 0px;height:47px"  class="clearfix">
         <div class="h_prev"><a href="javascript:historyUtils.back();"></a></div>
-        <h1>水果的真实信息</h1>
+        <h1 style="margin-top: 0px;">水果的真实信息</h1>
     </header>
     <div class="wrapper">
         <div class="goodsDetail">
@@ -92,29 +92,21 @@
         });
     }
     function giveThumbs(farmerId){
-        var mobile = jQuery.cookie("mobile");
-        if (mobile == null) {
-            jQuery.cookie('ReturnUrl', '${fruit.filePath}' ,
-                    { path: '/', domain: 'sangepg.com', expires: 1}
-            );
-            window.location.href = "http://m.sangepg.com/user/user_login.html";
-        } else {
-            praiseCount = praiseCount+1;
-            $("#praise").html(praiseCount + "人点赞")
-            $.ajax({
-                type: "post",
-                url: "http://m.sangepg.com/front/review/praise",
-                data: {
-                    "farmerId": farmerId
-                },
-                async: true,
-                dataType: "json"
+        praiseCount = praiseCount+1;
+        $("#praise").html(praiseCount + "人点赞")
+        $.ajax({
+            type: "post",
+            url: "http://m.sangepg.com/front/review/praise",
+            data: {
+                "farmerId": farmerId
+            },
+            async: true,
+            dataType: "json"
 
-            });
-        }
+        });
     }
     function toReview(fruitCode,farmerId){
-        var mobile = jQuery.cookie("mobile");
+        var mobile = jQuery.cookie("m");
         if (mobile == null) {
             jQuery.cookie('ReturnUrl', 'http://m.sangepg.com/front/review/otReview?fruitCode='+fruitCode+'&farmerId='+farmerId ,
                     { path: '/', domain: 'sangepg.com', expires: 1}
@@ -123,6 +115,9 @@
         } else{
             window.location.href = 'http://m.sangepg.com/front/review/toReview?fruitCode='+fruitCode+'&farmerId='+farmerId;
         }
+    }
+    function close_div(){
+        $("#floatBanner").hide();
     }
 </script>
 </body>

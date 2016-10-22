@@ -11,19 +11,53 @@ public class Review  extends BaseEntity {
     private Long userId;
 
     private String content;
+    /**
+     * 口感评分
+     */
+    private int tasteScore;
 
-    private Byte score;
+    /**
+     * 口感平均分
+     */
+    private double avgTasteScore;
+    /**
+     * 含水量评分
+     */
+    private int waterScore;
+    /**
+     * 含水量平均分
+     */
+    private double avgWaterScore;
+    /**
+     * 含糖量评分
+     */
+    private int sugarScore;
+    /**
+     * 含糖量两平均分
+     */
+    private double avgSugarScore;
+    /**
+     * 总体得分
+     */
+    private int starLevel;
 
-    private String userIp;
+    /**
+     * 总体评分
+     */
+    private double avgStarLevel;
+    /**
+     * 评论人数
+     */
+    private int reviewCount;
+
+    private long userIp;
 
     private String replayFlag;
 
     private String fruitCode;
 
-    private int starLevel;
-
     private long farmerId;
-
+    private String mobile;
     public Long getId() {
         return id;
     }
@@ -64,20 +98,40 @@ public class Review  extends BaseEntity {
         this.content = content == null ? null : content.trim();
     }
 
-    public Byte getScore() {
-        return score;
+    public int getTasteScore() {
+        return tasteScore;
     }
 
-    public void setScore(Byte score) {
-        this.score = score;
+    public void setTasteScore(int tasteScore) {
+        this.tasteScore = tasteScore;
     }
 
-    public String getUserIp() {
+    public double getAvgTasteScore() {
+        return avgTasteScore;
+    }
+
+    public int getWaterScore() {
+        return waterScore;
+    }
+
+    public void setWaterScore(int waterScore) {
+        this.waterScore = waterScore;
+    }
+
+    public int getSugarScore() {
+        return sugarScore;
+    }
+
+    public void setSugarScore(int sugarScore) {
+        this.sugarScore = sugarScore;
+    }
+
+    public long getUserIp() {
         return userIp;
     }
 
-    public void setUserIp(String userIp) {
-        this.userIp = userIp == null ? null : userIp.trim();
+    public void setUserIp(long userIp) {
+        this.userIp = userIp;
     }
 
     public String getReplayFlag() {
@@ -96,6 +150,50 @@ public class Review  extends BaseEntity {
         this.fruitCode = fruitCode == null ? null : fruitCode.trim();
     }
 
+    public double getAvgStarLevel() {
+        return avgStarLevel;
+    }
+
+    public void setAvgStarLevel(double avgStarLevel) {
+        this.avgStarLevel = avgStarLevel;
+    }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(int reviewCount) {
+        this.reviewCount = reviewCount;
+    }
+
+    public void setAvgTasteScore(double avgTasteScore) {
+        this.avgTasteScore = avgTasteScore;
+    }
+
+    public double getAvgWaterScore() {
+        return avgWaterScore;
+    }
+
+    public void setAvgWaterScore(double avgWaterScore) {
+        this.avgWaterScore = avgWaterScore;
+    }
+
+    public double getAvgSugarScore() {
+        return avgSugarScore;
+    }
+
+    public void setAvgSugarScore(double avgSugarScore) {
+        this.avgSugarScore = avgSugarScore;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -105,7 +203,7 @@ public class Review  extends BaseEntity {
         sb.append(", id=").append(id);
         sb.append(", userId=").append(userId);
         sb.append(", content=").append(content);
-        sb.append(", score=").append(score);
+        sb.append(", score=").append(starLevel);
         sb.append(", userIp=").append(userIp);
         sb.append(", replayFlag=").append(replayFlag);
         sb.append(", fruitCode=").append(fruitCode);

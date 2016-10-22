@@ -58,13 +58,13 @@
         <table class="table" >
 
             <tr align="center"><td>评价人数</td><td>总评</td><td>口感</td><td>甜度</td><td>水分</td></tr>
-            <tr align="center"><td>${avg.reviewCount}人</td><td>${avg.avgStarLevel}分</td><td>${avg.avgTasteScore}分</td><td>${avg.avgSugarScore}分</td><td>${avg.avgWaterScore}分</td></tr>
+            <tr align="center"><td>45人</td><td>5分</td><td>5分</td><td>5分</td><td>5分</td></tr>
         </table>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                口感
+              口感
             </h3>
         </div>
         <div class="panel-body">
@@ -116,7 +116,6 @@
 <script src="http://s.sangepg.com/js/jquery/jquery.cookie.js"></script>
 <script src="http://s.sangepg.com/js/jquery/jquery.alerts.js"></script>
 <script src="http://s.sangepg.com/js/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://s.sangepg.com/js/360/global.js"></script>
 <script>
     $(function(){
         $('#taste_star').raty(
@@ -124,7 +123,9 @@
                     half: false,
                     starOff: 'http://p.sangepg.com/images/h5/review/taste.png',
                     starOn : 'http://p.sangepg.com/images/h5/review/taste_1.png',
-                    scoreName: 'tasteScore',
+                    scoreName: 'taste',
+                    size : 50,
+
                 }
         );
         $('#sugar_star').raty(
@@ -132,7 +133,7 @@
                     half: false,
                     starOff: 'http://p.sangepg.com/images/h5/review/taste.png',
                     starOn : 'http://p.sangepg.com/images/h5/review/taste_1.png',
-                    scoreName: 'sugarScore'
+                    scoreName: 'sugar'
                 }
         );
         $('#water_star').raty(
@@ -140,7 +141,7 @@
                     half: false,
                     starOff: 'http://p.sangepg.com/images/h5/review/taste.png',
                     starOn : 'http://p.sangepg.com/images/h5/review/taste_1.png',
-                    scoreName: 'waterScore'
+                    scoreName: 'water'
 
                 }
         );
@@ -149,49 +150,13 @@
                     half: false,
                     starOff: 'http://p.sangepg.com/images/h5/review/taste.png',
                     starOn : 'http://p.sangepg.com/images/h5/review/taste_1.png',
-                    scoreName: 'starLevel'
+                    scoreName: 'all'
                 }
         );
-    });
-    var if_review = false;
+    })
     function saveReview(){
-        if(if_review){
-            jAlert("您已经评论，谢谢");
-            return ;
-        }
-        var mobile = jQuery.cookie("m");
-        if (mobile == null) {
-            jQuery.cookie('ReturnUrl', 'http://m.sangepg.com/front/review/otReview?fruitCode=${fruitCode}&farmerId= ${farmer.id}' ,
-                    { path: '/', domain: 'sangepg.com', expires: 1}
-            );
-            window.location.href = "http://m.sangepg.com/user/user_login.html";
-        }
-        var data ={farmerId: ${farmer.id},fruitCode:'${fruitCode}'};
-        $("input").each(function(index,value){
-           var name = $(value).attr("name");
-           var content = $(value).val();
-            if(content =="") content = 5;
-           data[name] = content;
-        });
-        $.ajax({
-            type: "post",
-            url: "http://m.sangepg.com/front/review/review",
-            data: data,
-            async: true,
-            dataType: "json",
-            success: function (data) {
-                var flag = data.msg;
-                if("success" == flag){
-                    if_review = true;
-                    jAlert("感谢您的评论");
-
-                }else{
-                    window.location.href = "http://m.sangepg.com/user/user_login.html";
-                }
-            }
-
-        });
-
+        <input type="hidden" name="fruitCode" value="${fruitCode}">
+            <input type="hidden" name="farmerId" value="${farmer.id}">
     }
 </script>
 </html>

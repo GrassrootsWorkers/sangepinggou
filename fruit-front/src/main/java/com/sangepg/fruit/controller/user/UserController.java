@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.JedisPool;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Date;
@@ -59,7 +60,7 @@ public class UserController extends BaseAction {
     }
     @RequestMapping(value = {"login","register"},method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> loginOrRegister(String mobile, String code, HttpServletRequest request){
+    public Map<String, Object> loginOrRegister(String mobile, String code, HttpServletRequest request, HttpServletResponse response){
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", false);
         if(!validateMobile(mobile)){
@@ -89,6 +90,10 @@ public class UserController extends BaseAction {
             redisUtils.addMobileToRedis(mobile);
             result.put("success", true);
         }
+        //记录cookie 和redis
+        addCookie("m",mobile,365*60*60,response);
+        //fron_login_user
+        redisUtils.setKey("f_l_u"+mobile,mobile,365*60*60);
         return result;
     }
 

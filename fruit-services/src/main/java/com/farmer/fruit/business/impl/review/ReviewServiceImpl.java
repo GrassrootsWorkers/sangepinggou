@@ -92,4 +92,19 @@ public class ReviewServiceImpl implements IReviewService {
             return 1;
         }
     }
+
+    @Override
+    public Review getTotalAvgScore(ReviewQuery query) {
+        Review avgReview = reviewDao.getTotalAvgScore(query);
+        if(avgReview.getAvgSugarScore()<=0){
+            avgReview.setAvgSugarScore(5.0);
+        }
+        if(avgReview.getAvgTasteScore()<=0){
+            avgReview.setAvgTasteScore(5.0);
+        }
+        if(avgReview.getAvgWaterScore()<=0){
+            avgReview.setAvgWaterScore(5.0);
+        }
+        return avgReview;
+    }
 }
