@@ -113,7 +113,11 @@
         </div>
     </div>
 </div>
-
+<div class="col-lg-4" style="background: #fff;height: 6%;margin-top: 15px;;margin-bottom: 0px" >
+    <div class="bill">
+        <div class="grade"  style="margin-top: 10px;"><i  style="font-weight:bold;color: #f55;">查看历史订单></i></div>
+    </div>
+</div>
 </body>
 <script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.min.js"></script>
 <script src="http://s.sangepg.com/js/bootstrap/bootstrap.min.js"></script>
