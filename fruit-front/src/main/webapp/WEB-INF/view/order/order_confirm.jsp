@@ -32,7 +32,12 @@
     <div class="col-lg-4" style="background: #fff">
         <form class="form-horizontal" role="form">
             <br/>
-
+            <div class="form-group">
+                <label class="col-sm-2 control-label">商品名称</label>
+                <div class="col-sm-10" style="display: inline-block; width: 250px;">
+                   烟台栖霞红富士
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">收&nbsp;货&nbsp;人&nbsp;&nbsp;</label>
                 <div class="col-sm-10" style="display: inline-block; width: 250px;">
@@ -88,7 +93,7 @@
         </form>
     </div>
 </article>
-<div class="col-lg-4" style="background: #fff">
+<div class="col-lg-4" style="background: #fff;margin-top: 1px;">
     <div class="line_recom" id="user_ferry_data">
         <div class="bill">
             <div class="line_detail">
@@ -99,7 +104,7 @@
                 </div>
                 <div class="line_intro" onclick="">
                     <div class="address">
-                        <span class="place">北京市昌平区育知东路龙1</span>
+                        <span class="place">北京市昌平区育知东路龙腾苑6区7栋4单元501</span>
                         <span class="place">刘志(186****2693)收</span>
                     </div>
                 </div>
@@ -108,6 +113,7 @@
         </div>
     </div>
 </div>
+
 </body>
 <script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.min.js"></script>
 <script src="http://s.sangepg.com/js/bootstrap/bootstrap.min.js"></script>
