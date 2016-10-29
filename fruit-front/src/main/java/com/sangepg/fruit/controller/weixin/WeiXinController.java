@@ -28,7 +28,7 @@ import java.util.Map;
  * Created by liuzhi on 2016/10/11.
  */
 @Controller()
-@RequestMapping(value = "/weixin")
+@RequestMapping(value = "/front/weixin")
 public class WeiXinController extends BaseAction {
 
    @Autowired
@@ -58,6 +58,16 @@ public class WeiXinController extends BaseAction {
         Map<String,Object> resultMap = new HashMap<String,Object>();
         resultMap.put("history" ,historyOrders);
         ModelAndView modelAndView = new ModelAndView("order/order_confirm",resultMap);
-        return null ;
+        return modelAndView ;
+    }
+    @RequestMapping(value = "/to/order/page/test", method = RequestMethod.GET)
+    public ModelAndView testPage(String openId){
+        OrderQuery query = new OrderQuery();
+        query.setOpenId(openId);
+        List<Order> historyOrders = orderService.findList(query,0,5);
+        Map<String,Object> resultMap = new HashMap<String,Object>();
+        resultMap.put("history" ,historyOrders);
+        ModelAndView modelAndView = new ModelAndView("order/order_confirm",resultMap);
+        return modelAndView ;
     }
 }

@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by liuzhi on 2016/10/12.
  */
 public class Order extends BaseEntity {
-   private Long id;
+    private Long id;
     private String fruitType;
     private String orderNo;
     private String openId;
@@ -24,6 +24,15 @@ public class Order extends BaseEntity {
     private String city;
     private String address;
     private String tradeNo;
+    private String farmerIds;
+
+    public String getFarmerIds() {
+        return farmerIds;
+    }
+
+    public void setFarmerIds(String farmerIds) {
+        this.farmerIds = farmerIds;
+    }
 
     public String getTradeNo() {
         return tradeNo;

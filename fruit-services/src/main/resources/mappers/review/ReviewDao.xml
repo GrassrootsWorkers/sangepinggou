@@ -76,6 +76,16 @@
     round(avg(sugar_score),1) as avg_sugar_score,  round(avg(star_level),1) as avg_star_level
     from qr_review
     where  farmer_id = #{farmerId}
+    <if test="mobile !=null">
+      and user_mobile = #{mobile}
+    </if>
         GROUP  by farmer_id
+  </select>
+  <select id="getUserReviewAvgScore" resultMap="BaseResultMap" parameterType="ReviewQuery">
+    select count(id) as review_count, round(avg(taste_score),1) as avg_taste_score,round(avg(water_score),1) as avg_water_score,
+    round(avg(sugar_score),1) as avg_sugar_score,  round(avg(star_level),1) as avg_star_level
+    from qr_review
+    where  user_mobile = #{mobile}
+    GROUP  by farmer_id
   </select>
 </mapper>

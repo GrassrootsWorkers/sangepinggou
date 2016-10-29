@@ -17,11 +17,12 @@
         <result column="city" property="city"/>
         <result column="address" property="address"/>
         <result column="trade_no" property="tradeNo"/>
+        <result column="farmer_ids" property="farmerIds"/>
         <result column="update_time" property="updateTime"/>
         <result column="create_time" property="createTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id,fruit_type,order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,update_time,create_time,trade_no
+        id,fruit_type,order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,update_time,create_time,trade_no,farmer_ids
     </sql>
     <sql id="condition">
         <where>
@@ -36,7 +37,7 @@
             </if>
         </where>
     </sql>
-    <select id="get" resultMap="BaseResultMap" parameterType="FruitQuery" >
+    <select id="get" resultMap="BaseResultMap" parameterType="OrderQuery" >
         select
         <include refid="Base_Column_List" />
         from qr_fruit_orders
@@ -59,19 +60,19 @@
         limit #{pageNo}, #{pageSize}
     </select>
 
-    <select id="getTotalCount" parameterType="PageViewQuery" resultType="java.lang.Integer">
+    <select id="getTotalCount" parameterType="OrderQuery" resultType="java.lang.Integer">
         select count(1) from qr_fruit_orders o
         <include refid="condition"/>
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="PageView">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Order">
         <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() AS id
         </selectKey>
         insert into qr_fruit_orders
-        (fruit_type,order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,trade_no,create_time)
+        (fruit_type,order_no,open_id,mobile,grade,price,weight,if_pay,pay_time,user_ip,order_status,city,address,trade_no,create_time,farmer_ids)
         values
-        (#{fruitType},#{orderNo},#{openId},#{mobile},#{grade},#{price},#{weight},#{ifPay},#{payTime},#{userIp},#{orderStatus},#{city},#{address},#{tradeNo},#{createTime})
+        (#{fruitType},#{orderNo},#{openId},#{mobile},#{grade},#{price},#{weight},#{ifPay},#{payTime},#{userIp},#{orderStatus},#{city},#{address},#{tradeNo},#{createTime},#{farmerIds})
 
     </insert>
 

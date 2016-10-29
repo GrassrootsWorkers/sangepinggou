@@ -1,6 +1,5 @@
 package com.farmer.fruit.models.orders;
 
-import com.farmer.fruit.models.BaseEntity;
 import com.farmer.fruit.models.QueryDataEntity;
 
 import java.math.BigDecimal;
@@ -10,7 +9,8 @@ import java.util.Date;
  * Created by liuzhi on 2016/10/12.
  */
 public class OrderQuery extends QueryDataEntity {
-   private Long id;
+    private Long id;
+    private String fruitType;
     private String orderNo;
     private String openId;
     private String mobile;
@@ -23,6 +23,32 @@ public class OrderQuery extends QueryDataEntity {
     private String orderStatus;
     private String city;
     private String address;
+    private String tradeNo;
+    private String farmerIds;
+
+    public String getFruitType() {
+        return fruitType;
+    }
+
+    public void setFruitType(String fruitType) {
+        this.fruitType = fruitType;
+    }
+
+    public String getTradeNo() {
+        return tradeNo;
+    }
+
+    public void setTradeNo(String tradeNo) {
+        this.tradeNo = tradeNo;
+    }
+
+    public String getFarmerIds() {
+        return farmerIds;
+    }
+
+    public void setFarmerIds(String farmerIds) {
+        this.farmerIds = farmerIds;
+    }
 
     public Long getId() {
         return id;
