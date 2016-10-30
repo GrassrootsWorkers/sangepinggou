@@ -103,9 +103,10 @@
                 <section style="margin-left: 15px; margin-right: 15px; padding-top: 1px; padding-bottom: 0px;">
                     <label>
                         <span>是否共用同一张图片</span>
-                        <label>是：</label><input name="pictureFlag" type="radio" value="Y">
-                        否：<input name="pictureFlag" type="radio" value="N">
+
                     </label>
+                    <label>是：</label><input name="pictureFlag" type="radio" value="Y" checked="checked">
+                    否：<input name="pictureFlag" type="radio" value="N">
                 </section>
             </div>
             <div class="row_w pd30 ">

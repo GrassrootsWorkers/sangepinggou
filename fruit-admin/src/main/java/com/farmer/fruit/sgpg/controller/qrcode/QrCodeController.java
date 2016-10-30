@@ -267,6 +267,7 @@ public class QrCodeController extends BaseAction {
         applied.setMarketPrice(reserved.getMarketPrice());
         //此处有坑
         applied.setHarvestTime(reserved.getHarvestTime());
+        applied.setPictureFlag(reserved.getPictureFlag());
         //qrCodeService.save(reserved);
         //调用模板 发布页面
         boolean flag = qrCodeService.createFruit(applied, farmer.getId());

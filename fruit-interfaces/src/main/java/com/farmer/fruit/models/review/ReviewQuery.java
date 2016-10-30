@@ -4,10 +4,12 @@ import com.farmer.fruit.models.QueryDataEntity;
 
 import java.util.Date;
 
-public class ReviewQuery extends QueryDataEntity{
+public class ReviewQuery extends QueryDataEntity {
     private Long id;
 
     private Integer userId;
+
+    private String mobile;
 
     private String content;
 
@@ -103,5 +105,13 @@ public class ReviewQuery extends QueryDataEntity{
 
     public void setFarmerId(long farmerId) {
         this.farmerId = farmerId;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

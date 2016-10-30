@@ -48,7 +48,7 @@ public class CompressFile {
      * @param descDir
      * String 解压后的目标目录
      */
-    public static void unZipFiles(java.io.File zipFile, String descDir) {
+    public static boolean unZipFiles(java.io.File zipFile, String descDir) {
         try {
             ZipFile zf = new ZipFile(zipFile);
             for (Enumeration entries = zf.entries(); entries.hasMoreElements();) {
@@ -67,22 +67,23 @@ public class CompressFile {
                 }
                 in.close();
                 out.close();
-                System.out.println("解压缩完成.");
             }
             zf.close();
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
     /**
      * 根据原始rar路径，解压到指定文件夹下.
      * @param srcRarPath 原始rar路径
      * @param dstDirectoryPath 解压到的文件夹
      */
-    public static void unRarFile(String srcRarPath, String dstDirectoryPath) {
+    public static boolean unRarFile(String srcRarPath, String dstDirectoryPath) {
         if (!srcRarPath.toLowerCase().endsWith(".rar")) {
             System.out.println("非rar文件！");
-            return;
+            return false;
         }
         File dstDirectory = new File(dstDirectoryPath);
         if (!dstDirectory.exists()) {// 目标目录不存在时，创建该文件夹
@@ -118,9 +119,11 @@ public class CompressFile {
                 }
                 archive.close();
             }
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 
 

@@ -64,10 +64,12 @@ public class AddFruitTask implements Runnable {
                 }
                 fruit.setOrigImage(origImage);
 
-                if(reserved.getBegin()+i >reserved.getEnd()) break;
+                if(fruit.getFruitCode() == null || "".equals(fruit.getFruitCode())){
+                    if(reserved.getBegin()+i >reserved.getEnd()) break;
+                    String fruitCode = QRUtil.getFruitCode(reserved.getToken(),reserved.getType(), reserved.getBegin() + i);
+                    fruit.setFruitCode(fruitCode);
+                }
 
-                String fruitCode = QRUtil.getFruitCode(reserved.getToken(),reserved.getType(), reserved.getBegin() + i);
-                fruit.setFruitCode(fruitCode);
                 fruit.setAddTime(new Date());
                 fruit.setAddUserId(reserved.getFarmerId());
                 fruit.setCreateTime(new Date());
@@ -103,15 +105,27 @@ public class AddFruitTask implements Runnable {
     private List<Fruit> getFruitList(String filePath) throws IOException {
         List<Map<String, Object>> fruitMapList = null;
         List<Fruit> fruitList = new ArrayList<Fruit>();
-        ExcelUtils utils = new ExcelUtils();
-        if ("xls".equals(filePath.substring(filePath.lastIndexOf(".") + 1, filePath.length()))) {
-            fruitMapList = utils.loadExcel2003Info(filePath);
+        if (".xls".equals(filePath.substring(filePath.lastIndexOf(".") , filePath.length()))) {
+            fruitMapList = ExcelUtils.loadExcel2003Info(filePath);
+        } else if (".csv".equals(filePath.substring(filePath.lastIndexOf(".") , filePath.length()))) {
+            fruitMapList = ExcelUtils.loadCVSInfo(filePath);
         } else {
-            fruitMapList = utils.loadExcel2007Info(filePath);
+            fruitMapList = ExcelUtils.loadExcel2007Info(filePath);
         }
         for (Map<String, Object> fm : fruitMapList) {
             Fruit f = new Fruit();
-            Double weight = (Double) fm.get("ID1");
+            Double weight = null;
+            String qrUrl = (String)fm.get("ID2");
+            Map<String,Object> splitUrlMap =  splitQrUrl(qrUrl);
+           if(splitUrlMap != null){
+               f.setFarmerId((Long)splitUrlMap.get("farmerId"));
+               f.setReservedId((Long)splitUrlMap.get("reservedId"));
+               f.setFruitCode((String)splitUrlMap.get("fruitCode"));
+               String weightStr =  (String)fm.get("ID3");
+               weight = Double.parseDouble(weightStr);
+           }else{
+               weight = (Double) fm.get("ID1");
+           }
             //ke -->g
             f.setWeight(weight*1000);
             fruitList.add(f);
@@ -119,6 +133,25 @@ public class AddFruitTask implements Runnable {
         return fruitList;
     }
 
+    private Map<String,Object> splitQrUrl(String url){
+        try{
+            if(url == null || url.indexOf("http") < 0){
+                return null;
+            }
+            url = url.replace("http://","");
+            String[] contents = url.split("/");
+            Map<String,Object> contentMap = new HashMap<>();
+            contentMap.put("farmerId",Long.parseLong(contents[2]));
+            contentMap.put("reservedId",Long.parseLong(contents[4]));
+            String fruitCode =contents[5];
+            contentMap.put("fruitCode",fruitCode.substring(0,fruitCode.lastIndexOf(".")));
+            return contentMap;
+        }catch (Exception e){
+            return null;
+        }
+
+
+    }
 
 
     private boolean createPicture(long fruitId, String sourceFilePath) {

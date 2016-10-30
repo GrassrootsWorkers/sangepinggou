@@ -57,7 +57,9 @@ public class Review  extends BaseEntity {
     private String fruitCode;
 
     private long farmerId;
+
     private String mobile;
+
     public Long getId() {
         return id;
     }

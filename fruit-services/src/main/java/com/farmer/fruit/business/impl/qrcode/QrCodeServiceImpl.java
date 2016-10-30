@@ -12,6 +12,7 @@ import com.farmer.fruit.models.fruit.FruitInformationQuery;
 import com.farmer.fruit.persistence.farmer.IReservedDao;
 import com.farmer.fruit.persistence.fruit.IFruitInformationDao;
 import com.farmer.fruit.task.AddFruitTask;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ import java.util.Map;
 @Service
 @Transactional(readOnly = true)
 public class QrCodeServiceImpl implements IQrCodeService {
+    Logger logger = Logger.getLogger(QrCodeServiceImpl.class);
     @Autowired
     IReservedDao reservedDao;
     @Autowired
@@ -81,7 +83,7 @@ public class QrCodeServiceImpl implements IQrCodeService {
                 end = maxReserved.getEnd();
             }
             entity.setBegin(end + 1);
-            entity.setEnd(entity.getApplyCount() + end );
+            entity.setEnd(entity.getApplyCount() + end);
             entity.setApplyTime(new Date());
             reservedDao.insert(entity);
             return entity.getId();
@@ -100,16 +102,21 @@ public class QrCodeServiceImpl implements IQrCodeService {
     @Transactional(readOnly = false)
     public boolean createFruit(Reserved reserved, long farmerId) {
         List<Map<String, Object>> fruitMapList = null;
-        ExcelUtils utils = new ExcelUtils();
         String fileSuffix = reserved.getFilePath().substring(reserved.getFilePath().lastIndexOf("."), reserved.getFilePath().length());
         try {
             if (".xls".equals(fileSuffix)) {
-                fruitMapList = utils.loadExcel2003Info(reserved.getFilePath());
+                fruitMapList = ExcelUtils.loadExcel2003Info(reserved.getFilePath());
+            } else if (".csv".equals(fileSuffix)) {
+                fruitMapList = ExcelUtils.loadCVSInfo(reserved.getFilePath());
             } else {
-                fruitMapList = utils.loadExcel2007Info(reserved.getFilePath());
+                fruitMapList = ExcelUtils.loadExcel2007Info(reserved.getFilePath());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("error= read file  pic error weight file=" + reserved.getFilePath());
+            return false;
+        }
+        if (fruitMapList.size() <= 0) {
+            logger.error("error= file content is null" + reserved.getFilePath());
             return false;
         }
         int length = fruitMapList.size();
@@ -117,33 +124,42 @@ public class QrCodeServiceImpl implements IQrCodeService {
         String suffix = picturePath.substring(picturePath.lastIndexOf("."), picturePath.length());
         String filePath = picturePath.substring(0, picturePath.lastIndexOf("/") + 1) + reserved.getId() + "/";
         CompressFile compressFile = new CompressFile();
+        boolean compressFlag = false;
         if (".zip".equalsIgnoreCase(suffix)) {
-            compressFile.unZipFiles(new File(picturePath), filePath);
+            compressFlag = compressFile.unZipFiles(new File(picturePath), filePath);
         } else if (".rar".equalsIgnoreCase(suffix)) {
-            compressFile.unRarFile(picturePath, filePath);
+            compressFlag = compressFile.unRarFile(picturePath, filePath);
+        }
+        if (!compressFlag) {
+            logger.error("error=compress pic error filePath=" + picturePath);
+            return compressFlag;
         }
         File file = new File(filePath);
         File[] files = file.listFiles();
-        if (files == null) return false;
+        if (files == null) {
+            logger.error("error=compress pic picture size=0 filePath=" + picturePath);
+            return false;
+        }
         if (files.length == length || Reserved.P_FLAGE.equals(reserved.getPictureFlag())) {
             //保存上传信息
             save(reserved);
             reserved.setBrandName(commonService.getBrandName(reserved.getBrandId()));
             reserved.setTypeName(commonService.getFruitTypeName(reserved.getType()));
             reserved.setVarietyName(commonService.getVarietyName(reserved.getVarietyId()));
-            System.out.println("begin pool size :" + taskExecutor.getPoolSize());
+            logger.info("begin pool size :" + taskExecutor.getPoolSize());
             AddFruitTask task = new AddFruitTask(reserved);
             task.setJedisPool(jedisPool);
             task.setFruitInformationDao(fruitInformationDao);
             task.setFruitService(fruitService);
             //task.run();
             taskExecutor.execute(task);
-            System.out.println("end pool size :" + taskExecutor.getPoolSize());
+           logger.info("end pool size :" + taskExecutor.getPoolSize());
             return true;
 
         }
         return false;
 
     }
+
 
 }
