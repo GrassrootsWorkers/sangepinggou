@@ -166,6 +166,10 @@ public class ShoppingCartController extends BaseAction {
 
         BigDecimal allPrice = new BigDecimal(0);
         int totalCount = 0;
+        for(ShoppingCart cart : shoppingCartList){
+            allPrice = allPrice.add(cart.getSaleTotalPrice());
+            totalCount = totalCount + cart.getTotalCount();
+        }
         Map<String,Object> dataMap = new HashMap<String,Object>();
         dataMap.put("carts", shoppingCartList);
         dataMap.put("totalPrice",allPrice.setScale(2, BigDecimal.ROUND_HALF_UP));

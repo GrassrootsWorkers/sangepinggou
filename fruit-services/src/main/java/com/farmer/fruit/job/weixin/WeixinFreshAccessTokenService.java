@@ -23,22 +23,52 @@ public class WeixinFreshAccessTokenService {
     private static Logger log = LoggerFactory.getLogger(WeixinFreshAccessTokenService.class);
 
     private JedisPool jedisPool;
+    private  RedisUtils redisUtils = new RedisUtils(jedisPool);
 
-    public  void execute(){
-        RedisUtils redisUtils = new RedisUtils(jedisPool);
+    public void execute() {
+
         String weiXinAccount = redisUtils.getValueByKey("wx_accounts");
         String[] accounts = weiXinAccount.split(",");
-        for(String account : accounts){
-            String url = redisUtils.getHashValueByKey("wx_urls",account);
+        for (String account : accounts) {
+
             try {
-                String responseJson = WebUtils.doGet(url,null,WebUtils.DEFAULT_CHARSET);
-                JSONObject jsonObject = JSON.parseObject(responseJson);
-                String accessToken = (String) jsonObject.get("access_token");
-                redisUtils.setHKey("wx_access_token",account,accessToken);
+                boolean flag = cacheAccessToken(account);
+                if (flag) {
+                    cacheTicket(account);
+                }
             } catch (IOException e) {
-                log.error("account={} get access token error url ={}",account,url);
-                e.printStackTrace();
+                log.error("WeiXinFreshAccessTokenService={}",e.getMessage());
             }
+        }
+
+    }
+
+    public boolean cacheAccessToken(String account) {
+        String url = null;
+        try {
+            url = redisUtils.getHashValueByKey("wx_urls", account);
+            String responseJson = WebUtils.doGet(url, null, WebUtils.DEFAULT_CHARSET);
+            JSONObject jsonObject = JSON.parseObject(responseJson);
+            String accessToken = (String) jsonObject.get("access_token");
+            redisUtils.setHKey("wx_access_token", account, accessToken);
+        } catch (Exception e) {
+            log.error("account={} get access token error url ={}", account, url);
+            return false;
+        }
+        return true;
+
+    }
+
+    public void cacheTicket(String account) throws IOException {
+        try {
+            String accessToken = redisUtils.getHashValueByKey("wx_access_token", account);
+            String url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + accessToken + "&type=jsapi";
+            String responseJson = WebUtils.doGet(url, null, WebUtils.DEFAULT_CHARSET);
+            JSONObject jsonObject = JSON.parseObject(responseJson);
+            String ticket = (String) jsonObject.get("ticket");
+            redisUtils.setHKey("wx_ticket", account, ticket);
+        } catch (Exception e) {
+            log.error("account={} get ticket error url ={}", account);
         }
 
     }

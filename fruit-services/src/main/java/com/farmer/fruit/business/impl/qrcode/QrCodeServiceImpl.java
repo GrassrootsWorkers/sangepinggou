@@ -119,17 +119,21 @@ public class QrCodeServiceImpl implements IQrCodeService {
             logger.error("error= file content is null" + reserved.getFilePath());
             return false;
         }
+        //
+
         int length = fruitMapList.size();
         String picturePath = reserved.getPicturePath();
         String suffix = picturePath.substring(picturePath.lastIndexOf("."), picturePath.length());
         String filePath = picturePath.substring(0, picturePath.lastIndexOf("/") + 1) + reserved.getId() + "/";
         CompressFile compressFile = new CompressFile();
         boolean compressFlag = false;
+
         if (".zip".equalsIgnoreCase(suffix)) {
             compressFlag = compressFile.unZipFiles(new File(picturePath), filePath);
         } else if (".rar".equalsIgnoreCase(suffix)) {
             compressFlag = compressFile.unRarFile(picturePath, filePath);
         }
+
         if (!compressFlag) {
             logger.error("error=compress pic error filePath=" + picturePath);
             return compressFlag;

@@ -29,17 +29,29 @@ function checkCartAll(e, cartType) {
 }
 
 function checkItemStatus(e) {
-    var checkStatus = $(e).find("input[type=checkbox]").prop("checked"),
-        itemId = $(e).attr("value"),
-        itemType = $(e).attr("itemType"),
-        refMainItemId = $(e).attr('refMainItemId'),
-        itemNum = $(e).attr('itemNum'),
-        status = 0;
-    if (checkStatus == true) {
-        status = -1;
-    } else {
-        status = 0;
+    var fruitCodes = "";
+    var checkObject = $(e).find("input[type=checkbox]");
+    var checkStatus = false;
+    $.each(checkObject,function(index,obj){
+        fruitCodes = $(obj).val();
+        if($(obj).prop("checked")){
+            checkStatus = true;
+        }
+    });
+    var markFlag = "noBuy";
+    if (!checkStatus) {
+        markFlag = "buy";
     }
+    getCartPrice("sale_price", "lang");
+    var url = "http://m.sangepg.com/front/cart/mark?fruitCodes=" + fruitCodes + "&markFlag=" + markFlag
+        + "&cartGroups=" + cartGroup.join(";") + "&salePrices=" + salePrices.join(";");
+    $.get(url, {}, function (returnData) {
+        var begin = returnData.indexOf('<div id="main"');
+        //alert(begin);
+        var end = returnData.lastIndexOf('<span></span>');
+        var html = returnData.substring(begin, end);
+        renderCart(html);
+    });
 }
 var cartGroup = null;
 var salePrices = null;
@@ -65,7 +77,6 @@ function moneyCheck(obj) {
             var begin = returnData.indexOf('<div id="main"');
             var end = returnData.lastIndexOf('<span></span>');
             var html = returnData.substring(begin, end);
-            alert(html);
             renderCart(html);
         });
     }

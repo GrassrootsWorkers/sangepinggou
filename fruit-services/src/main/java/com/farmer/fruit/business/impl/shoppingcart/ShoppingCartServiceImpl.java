@@ -76,7 +76,11 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
             Set<Map.Entry<String, String>> noBuySet = noBuyGoods.entrySet();
             for (Map.Entry<String, String> entry : noBuySet) {
                 String fruitJson = entry.getValue();
+                if(fruitJson == null || "null".equals(fruitJson)){
+                    continue;
+                }
                 Fruit fruit = GsonUtil.getObject(fruitJson, Fruit.class);
+
                 fruit.setBrandName(commonService.getBrandName(fruit.getBrandId()));
                 fruit.setVarietyName(commonService.getVarietyName(fruit.getVarietyId()));
                 fruit.setTypeName(commonService.getFruitTypeName(fruit.getType()));

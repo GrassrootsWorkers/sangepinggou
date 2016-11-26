@@ -60,6 +60,16 @@ public class Review  extends BaseEntity {
 
     private String mobile;
 
+    private String openId;
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
     public Long getId() {
         return id;
     }

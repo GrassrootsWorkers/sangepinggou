@@ -172,8 +172,7 @@ public abstract class WebUtils {
 				// 组装文本请求参数
 				Set<Entry<String, String>> textEntrySet = params.entrySet();
 				for (Entry<String, String> textEntry : textEntrySet) {
-					byte[] textBytes = getTextEntry(
-							textEntry.getKey(), textEntry.getValue(), charset);
+					byte[] textBytes = getTextEntry(textEntry.getKey(), textEntry.getValue(), charset);
 					out.write(entryBoundaryBytes);
 					out.write(textBytes);
 				}
@@ -182,11 +181,12 @@ public abstract class WebUtils {
 				Set<Entry<String, FileItem>> fileEntrySet = fileParams.entrySet();
 				for (Entry<String, FileItem> fileEntry : fileEntrySet) {
 					FileItem fileItem = fileEntry.getValue();
-					byte[] fileBytes = getFileEntry(fileEntry.getKey(), fileItem.getFileName(),
-							fileItem.getMimeType(), charset);
+					byte[] fileBytes = getFileEntry(fileEntry.getKey(), fileItem.getFileName(),fileItem.getMimeType(), charset);
 					out.write(entryBoundaryBytes);
 					out.write(fileBytes);
 					out.write(fileItem.getContent());
+					out.write(entryBoundaryBytes);
+					out.write(String.format("Content-Disposition: form-data; name=\"media\"; filename=\"%s\"\n",fileItem.getFileName()).getBytes());
 				}
 
 				// 添加请求结束标志

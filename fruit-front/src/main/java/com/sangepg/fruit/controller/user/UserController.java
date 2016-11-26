@@ -61,6 +61,8 @@ public class UserController extends BaseAction {
     @RequestMapping(value = {"login","register"},method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> loginOrRegister(String mobile, String code, HttpServletRequest request, HttpServletResponse response){
+        //获取用户openId关联手机号
+        //如果有则关联
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("success", false);
         if(!validateMobile(mobile)){
@@ -92,6 +94,7 @@ public class UserController extends BaseAction {
         }
         //记录cookie 和redis
         addCookie("m",mobile,365*60*60,response);
+        addCookie("mobile",mobile,365*60*60,response);
         //fron_login_user
         redisUtils.setKey("f_l_u"+mobile,mobile,365*60*60);
         return result;

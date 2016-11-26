@@ -39,7 +39,9 @@ public class ReviewController extends BaseAction {
     @RequestMapping(value = "toReview", method = RequestMethod.GET)
     public ModelAndView toReview(String fruitCode, long farmerId,HttpServletRequest request) {
         String mobile = this.getCookieValue("m",request);
-        if (mobile == null || "".equals(mobile.trim())) {
+        String openId =  this.getCookieValue("openid",request);
+        //没手机号看看有没有openId
+        if ((openId == null || "".equals(openId.trim()))&&(mobile == null || "".equals(mobile.trim()))) {
              return loginModel();
         }
         Map<String,Object> dataMap = new HashMap<String,Object>();
@@ -77,23 +79,32 @@ public class ReviewController extends BaseAction {
     @RequestMapping(value = "review", method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> review(Review review,HttpServletRequest request) {
-        String mobile = this.getCookieValue("m",request);
+
         Map<String,Object> resultMap = new HashMap<String,Object>();
-        if (mobile == null || "".equals(mobile.trim())) {
+
+        String mobile = this.getCookieValue("m",request);
+        String openId = this.getCookieValue("openid",request);
+        //没手机号看看有没有openId
+        if ((openId == null || "".equals(openId.trim())) &&(mobile == null || "".equals(mobile.trim()))) {
             resultMap.put("msg","login");
             return resultMap;
         }
-        RedisUtils redisUtils = new RedisUtils(jedisPool);
 
-        String serverMobile = redisUtils.getValueByKey("f_l_u"+mobile);
-        if(serverMobile == null||"".equals(serverMobile)){
+        if(mobile !=null){
+            RedisUtils redisUtils = new RedisUtils(jedisPool);
+            mobile = redisUtils.getValueByKey("f_l_u"+mobile);
+        }
+
+        if((openId ==null ||"".equals(openId.trim())) && (mobile == null||"".equals(mobile))){
             resultMap.put("msg","login");
             return resultMap;
         }
         review.setUserIp(IpUtils.IpToLong(getRealIP(request)));
         review.setMobile(mobile);
+        review.setOpenId(openId);
         review.setNewRecord(true);
         review.setCreateTime(new Date());
+        review.setOpenId(openId);
         reviewService.save(review);
         resultMap.put("msg","success");
         return resultMap;

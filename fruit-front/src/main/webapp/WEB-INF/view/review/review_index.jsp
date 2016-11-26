@@ -184,7 +184,8 @@
                 if("success" == flag){
                     if_review = true;
                     jAlert("感谢您的评论");
-
+                    //调到首页
+                    window.location.href = "http://m.sangepg.com";
                 }else{
                     window.location.href = "http://m.sangepg.com/user/user_login.html";
                 }

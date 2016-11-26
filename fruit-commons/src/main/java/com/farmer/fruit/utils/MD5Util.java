@@ -43,12 +43,17 @@ public class MD5Util {
      * @throws NoSuchAlgorithmException
      * @throws UnsupportedEncodingException
      */
-    public static String sign(String signString) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        MessageDigest crypt = MessageDigest.getInstance("SHA-1");
-        crypt.reset();
-        crypt.update(signString.getBytes("UTF-8"));
-        String signature = byteToHex(crypt.digest());
-        return signature;
+    public static String sign(String signString){
+        try{
+            MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+            crypt.reset();
+            crypt.update(signString.getBytes("UTF-8"));
+            String signature = byteToHex(crypt.digest());
+            return signature;
+        }catch (Exception e){
+            return null;
+        }
+
     }
 
 

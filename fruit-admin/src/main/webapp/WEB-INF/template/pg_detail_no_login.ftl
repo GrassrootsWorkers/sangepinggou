@@ -193,7 +193,7 @@
         if (strDate >= 0 && strDate <= 9) {
             strDate = "0" + strDate;
         }
-        var currentDate = date.getYear()  + month  + strDate + date.getHours()  + date.getMinutes() + date.getSeconds();
+        var currentDate = date.getYear()  +""+ month  +""+ strDate + date.getHours()  + "" +date.getMinutes() + date.getSeconds();
         return currentDate;
     }
 
@@ -228,9 +228,9 @@
         });
     }
     function toReview(fruitCode,farmerId){
-        var mobile = jQuery.cookie("m");
+        var mobile = jQuery.cookie("mobile");
         if (mobile == null) {
-            jQuery.cookie('ReturnUrl', 'http://m.sangepg.com/front/review/toReview?fruitCode='+fruitCode+'&farmerId='+farmerId ,
+            jQuery.cookie('ReturnUrl', 'http://m.sangepg.com/front/review/otReview?fruitCode='+fruitCode+'&farmerId='+farmerId ,
                     { path: '/', domain: 'sangepg.com', expires: 1}
             );
             window.location.href = "http://m.sangepg.com/user/user_login.html";

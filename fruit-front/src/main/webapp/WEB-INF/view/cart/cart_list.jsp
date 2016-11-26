@@ -34,12 +34,7 @@
             box-sizing: border-box;
         }
     </style>
-    <script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.min.js"></script>
-    <script src="http://s.sangepg.com/js/jquery/jquery.cookie.js"></script>
-    <script src="http://s.sangepg.com/js/jquery/jquery.alerts.js"></script>
-    <script src="http://s.sangepg.com/js/bootstrap/bootstrap.min.js"></script>
-    <script src="http://s.sangepg.com/js/360/global.js"></script>
-    <script src="http://s.sangepg.com/js/cart/cart.js"></script>
+
 </head>
 <body class="content pd-50">
 <article id="container">
@@ -69,8 +64,7 @@
                         </div>
                         <p class="shop-title-shopname fl">${cart.cartGroupName}</p>
                         <p class="shop-title-edit fr">
-                            <input type="text" name="sale_price" lang="${cart.cartGroup}" class="num"
-                                   onblur="moneyCheck(this)" value="${cart.salePrice}">
+                            <input type="text" name="sale_price" class="num" lang = "${cart.cartGroup}" onblur="moneyCheck(this)" value="${cart.salePrice}">
                         </p>
                         <p class="shop-title-link fr"><span class="red">单价：</span></p>
                         <p class="shop-title-link fr"><span class="red"><i>￥</i>${cart.saleTotalPrice}<i class="postage">(${cart.totalCount}个)</i></span>
@@ -80,7 +74,7 @@
                         <div class="cart-shop-items">
                             <div class="cart-shop-item">
                                 <div class="shop-checkbox shop-item-checkbox" onclick="checkItemStatus(this)">
-                                    <input id="${fruit.fruitCode}" type="checkbox" name="nobuy_${cart.cartGroup}"
+                                    <input id="${fruit.fruitCode}" type="checkbox" lang="${cart.cartGroup}" name="nobuy_${cart.cartGroup}"
                                            value="${fruit.fruitCode}">
                                     <label for="shop01-1"></label>
                                 </div>
@@ -96,7 +90,7 @@
                                         <span><i>重量：</i>${fruit.weight}g</span>
                                     </p>
                                     <p class="shop-item-price">
-                                        <span class="shop-item-num">价格：<i>￥</i>${fruit.totalPrice}</span>
+                                        <span class="shop-item-num">支付金额：<i>￥</i>${fruit.totalPrice}</span>
                                         <span class="shop-item-count">x1</span>
                                     </p>
                                 </div>
@@ -109,7 +103,7 @@
                             <div class="cart-shop-item">
                                 <div class="shop-checkbox shop-item-checkbox" onclick="checkItemStatus(this)">
                                     <input id="${fruit.fruitCode}" checked="checked" type="checkbox"
-                                           name="buy_${cart.cartGroup}" value="${fruit.fruitCode}">
+                                           name="buy_${cart.cartGroup}" lang="${cart.cartGroup}" value="${fruit.fruitCode}">
                                     <label for="shop01-1"></label>
                                 </div>
                                 <a class="shop-item-img" href="${fruit.filePath}">
@@ -124,7 +118,7 @@
                                         <span><i>重量：</i>${fruit.weight}g</span>
                                     </p>
                                     <p class="shop-item-price">
-                                        <span class="shop-item-num">价格：<i>￥</i>${fruit.totalPrice}</span>
+                                        <span class="shop-item-num">支付金额：<i>￥</i>${fruit.totalPrice}</span>
                                         <span class="shop-item-count">x1</span>
                                     </p>
                                 </div>
@@ -137,11 +131,53 @@
         </c:if>
         <div class="contact_fixed cartBottom">
             <span class="red">合计：${totalPrice}<i class="postage">(${totalCount}个)</i></span>
-            <%-- <a href="javascript:void(0)" id="goToShoppingCart" class="red_btn">去结算</a>--%>
+          <a href="javascript:void(0)" id="goToShoppingCart" onclick="scan_pay(${totalPrice})" class="red_btn">扫&nbsp;码&nbsp;支&nbsp;付</a>
         </div>
     </div>
     <span></span>
 </article>
 </body>
+<script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.min.js"></script>
+<script src="http://s.sangepg.com/js/jquery/jquery.cookie.js"></script>
+<script src="http://s.sangepg.com/js/jquery/jquery.alerts.js"></script>
+<script src="http://s.sangepg.com/js/bootstrap/bootstrap.min.js"></script>
+<script src="http://s.sangepg.com/js/360/global.js"></script>
+<script src="http://s.sangepg.com/js/cart/cart.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"/>
+<script type="text/javascript">
+    var timestamp = 0;
+    var nonceStr = "";
+    var signature = "";
+
+    function scan_pay(total_money){
+        var url = "http://m.sangepg.com/front/token/ticket?account=page&url=http://m.sangepg.com/front/cart/list";
+        $.get(url, {}, function (data) {
+            var json = eval(data);
+            timestamp = json.timestamp;
+            nonceStr = json.nonceStr;
+            signature = json.signature;
+        });
+        wx.config({
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: 'wx23be1b9cbc0f1324', // 必填，公众号的唯一标识
+            timestamp: timestamp , // 必填，生成签名的时间戳
+            nonceStr: nonceStr, // 必填，生成签名的随机串
+            signature: signature,// 必填，签名，见附录1
+            jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+        wx.ready(function(){
+            wx.scanQRCode({
+                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                success: function (res) {
+                    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                    //
+
+                }
+            });
+        });
+
+    }
+</script>
 </html>
 
