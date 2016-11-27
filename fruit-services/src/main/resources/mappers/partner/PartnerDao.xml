@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.partner.IPartnerDao">
+    <resultMap id="BaseResultMap" type="Partner">
+        <id column="id" property="id"/>
+        <result column="father_id" property="fatherId"/>
+        <result column="partner_name" property="partnerName"/>
+        <result column="partner_type" property="partnerType"/>
+        <result column="address" property="address"/>
+        <result column="identity_code" property="identityCode"/>
+        <result column="picture" property="picture"/>
+        <result column="weixin_code" property="weixinCode"/>
+        <result column="status" property="status"/>
+        <result column="description" property="description"/>
+        <result column="qr_url" property="qrUrl"/>
+        <result column="lon" property="lon"/>
+        <result column="lat" property="lat"/>
+        <result column="recommend_code" property="recommendCode"/>
+        <result column="pay_flag" property="payFlag"/>
+        <result column="open_id" property="openId"/>
+        <result column="mobile" property="mobile"/>
+        <result column="introduce_code" property="introduceCode"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="delete_flag" property="deleteFlag"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+     partner_name,partner_type,address,identity_code,picture,weixin_code,status,description,qr_url,lon,lat,recommend_code,father_id,pay_flag,open_id,mobile,introduce_code,create_time,update_time,delete_flag
+    </sql>
+    <sql id="condition">
+        <where>
+            <if test="openId !=null">
+                and open_id = #{openId}
+            </if>
+            <if test="partnerType != null">
+                and partner_type = #{partnerType}
+            </if>
+            <if test="mobile!=null">
+                and mobile= #{mobile}
+            </if>
+            <if test="id >0">
+                and id = #{id}
+            </if>
+        </where>
+    </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="PartnerQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from qr_partner
+        where 1=1
+        <if test="openId !=null">
+            and open_id = #{openId}
+        </if>
+        <if test="id>0">
+            and id = #{id}
+        </if>
+    </select>
+
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from qr_partner
+        where id = #{id}
+    </select>
+    <select id="getByOpenId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from qr_partner
+        where open_id = #{openId}
+    </select>
+
+    <select id="findList" parameterType="PartnerQuery" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        FROM qr_partner p
+        <include refid="condition"/>
+        order by update_time desc
+        limit #{pageNo}, #{pageSize}
+    </select>
+
+    <select id="getTotalCount" parameterType="PartnerQuery" resultType="java.lang.Integer">
+        select count(1) from qr_partner o
+        <include refid="condition"/>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Partner">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        insert into qr_partner
+        (father_id,partner_name,partner_type,address,identity_code,picture,weixin_code,status,description,qr_url,lon,lat,recommend_code,pay_flag,open_id,mobile,introduce_code,create_time,delete_flag)
+        values
+        (#{fatherId},#{partnerName},#{partnerType},#{address},#{identityCode},#{picture},#{weixinCode},#{status},#{description},#{qrUrl},#{lon},#{lat},#{recommendCode},#{payFlag},#{openId},#{mobile},#{introduceCode},#{createTime},#{deleteFlag})
+
+    </insert>
+
+    <update id="update" parameterType="Partner">
+        update qr_partner
+        <set>
+            <if test="partnerName != null "> partner_name=#{partnerName},</if>
+            <if test="partnerType != null "> partner_type=#{partnerType},</if>
+            <if test="address != null "> address=#{address},</if>
+            <if test="identityCode != null "> identity_code=#{identityCode},</if>
+            <if test="picture != null "> picture=#{picture},</if>
+            <if test="status != null "> status=#{status},</if>
+            <if test="description != null "> description=#{description},</if>
+            <if test="qrUrl != null "> qr_url=#{qrUrl},</if>
+            <if test="lon != null "> lon=#{lon},</if>
+            <if test="lat != null "> lat=#{lat},</if>
+            <if test="payFlag != null "> pay_flag=#{payFlag},</if>
+            <if test="mobile != null "> mobile=#{mobile},</if>
+            <if test="createTime != null "> create_time=#{createTime}</if>
+            <if test="deleteFlag !=null"> delete_flag = #{deleteFlag}</if>
+        </set>
+        where open_id = #{openId}
+    </update>
+</mapper>

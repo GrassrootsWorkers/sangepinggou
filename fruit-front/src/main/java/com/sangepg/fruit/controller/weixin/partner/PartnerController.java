@@ -5,6 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.farmer.fruit.Constants;
 import com.farmer.fruit.FileItem;
 import com.farmer.fruit.business.impl.weixin.WeixinDataConvert;
+import com.farmer.fruit.interfaces.orders.IPartnerOrderService;
+import com.farmer.fruit.interfaces.partner.IPartnerService;
+import com.farmer.fruit.models.partner.Partner;
 import com.farmer.fruit.models.weixin.Image;
 import com.farmer.fruit.models.weixin.ReceivedMessage;
 import com.farmer.fruit.models.weixin.SendMessage;
@@ -35,6 +38,10 @@ public class PartnerController {
 
     @Autowired
     JedisPool jedisPool;
+    @Autowired
+    IPartnerService partnerService;
+    @Autowired
+    IPartnerOrderService partnerOrderService;
     @RequestMapping(value = "/{source}", method = RequestMethod.POST)
     public void receiveMsgPost(HttpServletRequest request, HttpServletResponse response, @PathVariable("source") String source) {
         WeixinDataConvert<SendMessage> sendConvert = new WeixinDataConvert<SendMessage>();
@@ -68,9 +75,15 @@ public class PartnerController {
             }
            //获取合作商的手机号
             String mobile = getPartnerMobile(receivedMsg.getFromUserName());
+            if(mobile ==null){
+                sendMessage.setContent("账号未认证");
+                String returnXml = sendConvert.ConvertObjectToXml(sendMessage);
+                response.getWriter().write(returnXml);
+                return;
+            }
 
             //生成支付的二维码
-            String qrContent = getWeiXinPayUrl(mobile);
+            String qrContent = getWeiXinPayUrl(mobile,payAccount,receivedMsg.getFromUserName());
             String filePath = Constants.UPLOAD_IMAGE_PATH + File.separator+mobile+File.separator+new Date().getTime()+".png";
             QRUtil.encode(qrContent, 100, 100, filePath);
 
@@ -117,10 +130,17 @@ public class PartnerController {
         return postData.toString();
     }
     private String getPartnerMobile(String openId){
-
-        return "18618102693";
+        Partner partner = partnerService.getByOpenId(openId);
+        if(partner == null){
+            return null;
+        }else{
+            return partner.getMobile();
+        }
     }
-    private String getWeiXinPayUrl(String mobile){
+    private String getWeiXinPayUrl(String mobile,String payAccount,String openId){
+        String[]accounts = payAccount.split("_");
+        String orderNo = partnerOrderService.getPartnerOrderNo(openId);
+
 
         return "";
     }
