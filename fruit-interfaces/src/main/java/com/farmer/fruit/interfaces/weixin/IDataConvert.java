@@ -2,20 +2,20 @@ package com.farmer.fruit.interfaces.weixin;
 
 public interface IDataConvert<T> {
 	/**
-	 * °Ñ¶ÔÏó×ªÎªxml×Ö·û´®
+	 * æŠŠå¯¹è±¡è½¬ä¸ºxmlå­—ç¬¦ä¸²
 	 * @param o
 	 * @return
 	 */
 	public String ConvertObjectToXml(T o);
 	/**
-	 * °Ñ¶ÔÏó×ªÎªjson×Ö·û´®
+	 * æŠŠå¯¹è±¡è½¬ä¸ºjsonå­—ç¬¦ä¸²
 	 * @param o
 	 * @return
 	 */
 	public String ConvertObjectToJson(T o);
 	
 	/**
-	 * °Ñxml×ªÎª¶ÔÏó
+	 * æŠŠxmlè½¬ä¸ºå¯¹è±¡
 	 * @param xmlStr
 	 * @param o
 	 * @return
@@ -23,7 +23,7 @@ public interface IDataConvert<T> {
 	public T ConvertXmlToObject(String xmlStr, T o);
 	
 	/**
-	 * °Ñjson×ªÎª¶ÔÏó
+	 * æŠŠjsonè½¬ä¸ºå¯¹è±¡
 	 * @param jsonStr
 	 * @param o
 	 * @return
