@@ -2,6 +2,10 @@ package com.farmer.fruit.models.weixin;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by liuzhi on 2016/11/27.
  */
@@ -83,10 +87,6 @@ public class WeiXinOrder {
 
     public String getSign() {
         return sign;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign;
     }
 
     public String getSignType() {
@@ -215,5 +215,37 @@ public class WeiXinOrder {
 
     public void setOpenid(String openid) {
         this.openid = openid;
+    }
+
+    public void setSigin(String secret){
+        try {
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            //加密后的字符串
+            String str = "bba2fe6f74344036bcbf34ce4bfcdf90" +
+                    "begin_date=2016-11-06 	00:00:01&channel_id=51fanli&end_date=2016-11-08 23:59:59" +
+                    "bba2fe6f74344036bcbf34ce4bfcdf90";
+            md5.update(str.getBytes("utf-8"));
+            String sign = (bytesToString(md5.digest())).toUpperCase();
+            this.sign = sign;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * 将字节码转换为16进的字符串
+     * @param data
+     * @return
+     */
+    private static String bytesToString(byte[] data) {
+        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 							'c', 'd','e', 'f'};
+        char[] temp = new char[data.length * 2];
+        for (int i = 0; i < data.length; i++) {
+            byte b = data[i];
+            temp[i * 2] = hexDigits[b >>> 4 & 0x0f];
+            temp[i * 2 + 1] = hexDigits[b & 0x0f];
+        }
+        return new String(temp);
     }
 }

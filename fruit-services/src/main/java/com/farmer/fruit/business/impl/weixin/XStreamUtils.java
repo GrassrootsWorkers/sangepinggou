@@ -57,7 +57,7 @@ public class XStreamUtils {
 	}
 
 	/**
-	 * »ñÈ¡xstream¶ÔÏó Èç¹ûmapÖĞ²»´æÔÚÔò´´½¨ Ê¹ÓÃweakHashMap
+	 * è·å–xstreamå¯¹è±¡ å¦‚æœmapä¸­ä¸å­˜åœ¨åˆ™åˆ›å»º ä½¿ç”¨weakHashMap
 	 * 
 	 * @param c
 	 * @param isSkip
@@ -75,7 +75,7 @@ public class XStreamUtils {
 	}
 
 	/**
-	 * ´´½¨¿ÉÒÔºöÂÔ¶àÓà½ÚµãµÄMapperWarpper
+	 * åˆ›å»ºå¯ä»¥å¿½ç•¥å¤šä½™èŠ‚ç‚¹çš„MapperWarpper
 	 * 
 	 * @param mapper
 	 * @return
@@ -88,7 +88,7 @@ public class XStreamUtils {
 				try {
 					res = super.realClass(elementName);
 				} catch (CannotResolveClassException e) {
-					System.out.println("¶àÓàµÄÔªËØ" + elementName);
+					System.out.println("å¤šä½™çš„å…ƒç´ " + elementName);
 				}
 				return res;
 			}
@@ -97,8 +97,8 @@ public class XStreamUtils {
 	}
 
 	/**
-	 * ´´½¨xstream¶ÔÏó Ê¹ÓÃ²ÎÊıclassÉÏµÄ@XmlClass½øĞĞmapping
-	 * Èç¹ûisSkip==ture£¬ÔòXml´æÔÚ¶àÓà½ÚµãÊ±²»»á±¨´í£¬¶øÊÇºöÂÔµô
+	 * åˆ›å»ºxstreamå¯¹è±¡ ä½¿ç”¨å‚æ•°classä¸Šçš„@XmlClassè¿›è¡Œmapping
+	 * å¦‚æœisSkip==tureï¼Œåˆ™Xmlå­˜åœ¨å¤šä½™èŠ‚ç‚¹æ—¶ä¸ä¼šæŠ¥é”™ï¼Œè€Œæ˜¯å¿½ç•¥æ‰
 	 * 
 	 * @param c
 	 * @param isSkip
