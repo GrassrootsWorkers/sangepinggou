@@ -1,4 +1,4 @@
-package com.sangepg.fruit.controller.weixin.customer;
+package com.sangepg.fruit.controller.weixin;
 
 import com.farmer.fruit.utils.MD5Util;
 import com.farmer.fruit.utils.RandomStrUtil;
@@ -17,14 +17,16 @@ import java.util.Map;
 /**
  * Created by liuzhi on 2016/11/20.
  */
-@Controller("/front/token")
-public class WeiXinAccessTokenController {
+@Controller()
+@RequestMapping("/wx/commons")
+public class WeiXinCommonController {
     @Autowired
     JedisPool jedisPool;
-    @RequestMapping(value = "ticket", method = RequestMethod.GET)
+    @RequestMapping(value = "ticket", method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> getWeiXinTicket(String account, String url){
         Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("success",false);
         RedisUtils redisUtils = new RedisUtils(jedisPool);
         String ticket = redisUtils.getHashValueByKey("wx_ticket",account);
         if(ticket == null){
@@ -42,9 +44,9 @@ public class WeiXinAccessTokenController {
             return resultMap;
         }
         resultMap.put("code","200");
-        resultMap.put("msg","success");
-        resultMap.put("ticket",ticket);
-        resultMap.put("noncestr",nonceStr);
+        resultMap.put("success",true);
+        //resultMap.put("ticket",ticket);
+        resultMap.put("nonceStr",nonceStr);
         resultMap.put("timestamp",timestamp);
         resultMap.put("sign",sign);
         return resultMap;

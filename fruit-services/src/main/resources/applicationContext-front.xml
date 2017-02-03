@@ -11,6 +11,7 @@
 
 	<description>Spring Configuration</description>
 	<import resource="classpath*:spring-redis.xml" />
+	<import resource="classpath*:spring-job.xml"/>
     <!-- 加载配置属性文件 -->
 	<context:property-placeholder ignore-unresolvable="true" location="classpath:config.properties" />
 	

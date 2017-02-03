@@ -12,8 +12,28 @@ public class PartnerOrder extends BaseEntity {
     private String orderNo;
     private String tradeNo;
     private String openId;
+    private String mobile;
+    private String userOpenId;//支付者的openId
     private int totalFee;
     private Date payTime;
+    //PENDING : 支付中 PAID:已经支付
+    private String orderStatus;
+
+    public String getUserOpenId() {
+        return userOpenId;
+    }
+
+    public void setUserOpenId(String userOpenId) {
+        this.userOpenId = userOpenId;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
     public long getId() {
         return id;
@@ -61,5 +81,13 @@ public class PartnerOrder extends BaseEntity {
 
     public void setPayTime(Date payTime) {
         this.payTime = payTime;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

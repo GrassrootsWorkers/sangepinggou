@@ -27,7 +27,7 @@ import java.util.Map;
  * Created by liuzhi on 2016/10/15.
  */
 @Controller()
-@RequestMapping(value = "/front/review")
+@RequestMapping(value = "/review")
 public class ReviewController extends BaseAction {
 
     @Autowired

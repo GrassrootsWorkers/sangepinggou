@@ -42,12 +42,42 @@ public class ReceivedMessage {
 	private String title;
 	@XStreamAlias("Description")
 	private String description;
+	@XStreamAlias("Longitude")
+	private String lon;
+	@XStreamAlias("Latitude")
+	private String lat;
+	@XStreamAlias("Precision")
+	private String precision;
 	@XStreamAlias("Url")
 	private String url;
 	private Integer shopId;
 	private String venderId;
 	private String username;
-	
+
+	public String getLon() {
+		return lon;
+	}
+
+	public void setLon(String lon) {
+		this.lon = lon;
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	public String getPrecision() {
+		return precision;
+	}
+
+	public void setPrecision(String precision) {
+		this.precision = precision;
+	}
+
 	public String getUsername() {
 		return username;
 	}

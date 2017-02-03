@@ -4,9 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
         <constructor-arg index="0" ref="jedisPoolConfig"/>
-        <constructor-arg index="1" value="master.redis.sangepg.com"/>
-        <constructor-arg index="2" value="6379" type="int"/>
+        <constructor-arg index="1" value="master.redis.sangepg.com" type="java.lang.String"/>
+        <constructor-arg index="2" value="6379" type="int" />
         <constructor-arg index="3" value="1000000" type="int"/>
+        <constructor-arg index="4" value="y4yhl9tlz"/>
+    </bean>
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="2"/>
+        <property name="maxIdle" value="3000"/>
+        <property name="minIdle" value="1000"/>
     </bean>
     <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
         <constructor-arg index="0">
@@ -23,11 +29,7 @@
         <constructor-arg index="2" value="10" type="int"/>
         <constructor-arg index="3" ref="jedisPoolConfig"/>
     </bean>
-    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxTotal" value="2"/>
-        <property name="maxIdle" value="3000"/>
-        <property name="minIdle" value="1000"/>
-    </bean>
+
     <bean id="hp0" class="redis.clients.jedis.HostAndPort">
         <constructor-arg index="0" value="192.168.118.128"/>
         <constructor-arg index="1" value="7001"/>

@@ -23,10 +23,8 @@ public class WeixinFreshAccessTokenService {
     private static Logger log = LoggerFactory.getLogger(WeixinFreshAccessTokenService.class);
 
     private JedisPool jedisPool;
-    private  RedisUtils redisUtils = new RedisUtils(jedisPool);
-
     public void execute() {
-
+        RedisUtils redisUtils = new RedisUtils(jedisPool);
         String weiXinAccount = redisUtils.getValueByKey("wx_accounts");
         String[] accounts = weiXinAccount.split(",");
         for (String account : accounts) {
@@ -46,6 +44,7 @@ public class WeixinFreshAccessTokenService {
     public boolean cacheAccessToken(String account) {
         String url = null;
         try {
+            RedisUtils redisUtils = new RedisUtils(jedisPool);
             url = redisUtils.getHashValueByKey("wx_urls", account);
             String responseJson = WebUtils.doGet(url, null, WebUtils.DEFAULT_CHARSET);
             JSONObject jsonObject = JSON.parseObject(responseJson);
@@ -61,6 +60,7 @@ public class WeixinFreshAccessTokenService {
 
     public void cacheTicket(String account) throws IOException {
         try {
+            RedisUtils redisUtils = new RedisUtils(jedisPool);
             String accessToken = redisUtils.getHashValueByKey("wx_access_token", account);
             String url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + accessToken + "&type=jsapi";
             String responseJson = WebUtils.doGet(url, null, WebUtils.DEFAULT_CHARSET);

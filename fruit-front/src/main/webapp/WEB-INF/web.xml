@@ -37,7 +37,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>spring</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/front/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- 静态文件访问 -->

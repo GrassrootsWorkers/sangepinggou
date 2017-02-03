@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.farmer.fruit.persistence.partner.IPartnerOrderDao">
+    <resultMap id="BaseResultMap" type="PartnerOrder">
+        <id column="id" property="id"/>
+        <result column="order_no"  property="orderNo"/>
+        <result column="trade_no"  property="tradeNo"/>
+        <result column="open_id"  property="openId"/>
+        <result column="mobile"  property="mobile"/>
+        <result column="user_open_id"  property="userOpenId"/>
+        <result column="total_fee"  property="totalFee"/>
+        <result column="pay_time"  property="payTime"/>
+        <result column="order_status"  property="orderStatus"/>
+        <result column="remarks"  property="remarks"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="delete_flag" property="deleteFlag"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        order_no,trade_no,open_id,mobile,user_open_id,total_fee,pay_time,order_status,create_time,update_time,remarks,delete_flag
+    </sql>
+    <sql id="condition">
+        <where>
+            <if test="orderNo !=null">
+               and  order_no = #{orderNo}
+            </if>
+            <if test="tradeNo !=null">
+               and trade_no = #{tradeNo}
+            </if>
+            <if test="openId !=null">
+                and open_id = #{openId}
+            </if>
+            <if test="mobile !=null">
+                and mobile = #{mobile}
+            </if>
+           <if test="orderStatus !=null">
+              and order_status = #{orderStatus}
+           </if>
+        </where>
+    </sql>
+    <select id="get" resultMap="BaseResultMap" parameterType="PartnerOrderQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from qr_partner_order
+        where 1=1
+        <if test="openId !=null">
+            and open_id = #{openId}
+        </if>
+        <if test="id>0">
+            and id = #{id}
+        </if>
+    </select>
+
+    <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from qr_partner_order_order
+        where id = #{id}
+    </select>
+    <select id="getByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from qr_partner_order_order
+        where order_no = #{orderNo}
+    </select>
+
+    <select id="findList" parameterType="PartnerOrderQuery" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        FROM qr_partner_order o
+        <include refid="condition"/>
+        order by update_time desc
+        limit #{pageNo}, #{pageSize}
+    </select>
+
+    <select id="getTotalCount" parameterType="PartnerOrderQuery" resultType="java.lang.Integer">
+        select count(1) from qr_partner_order o
+        <include refid="condition"/>
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="PartnerOrder">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        insert into qr_partner_order
+        (father_id,partner_name,partner_type,address,identity_code,picture,weixin_code,status,description,qr_url,lon,lat,recommend_code,pay_flag,open_id,mobile,introduce_code,create_time,delete_flag)
+        values
+        (#{fatherId},#{partnerName},#{partnerType},#{address},#{identityCode},#{picture},#{weixinCode},#{status},#{description},#{qrUrl},#{lon},#{lat},#{recommendCode},#{payFlag},#{openId},#{mobile},#{introduceCode},#{createTime},#{deleteFlag})
+
+    </insert>
+
+    <update id="update" parameterType="PartnerOrder">
+        update qr_partner_order
+        <set>
+            <if test="partnerName != null "> partner_name=#{partnerName},</if>
+            <if test="partnerType != null "> partner_type=#{partnerType},</if>
+            <if test="address != null "> address=#{address},</if>
+            <if test="identityCode != null "> identity_code=#{identityCode},</if>
+            <if test="picture != null "> picture=#{picture},</if>
+            <if test="status != null "> status=#{status},</if>
+            <if test="description != null "> description=#{description},</if>
+            <if test="qrUrl != null "> qr_url=#{qrUrl},</if>
+            <if test="lon != null "> lon=#{lon},</if>
+            <if test="lat != null "> lat=#{lat},</if>
+            <if test="payFlag != null "> pay_flag=#{payFlag},</if>
+            <if test="mobile != null "> mobile=#{mobile},</if>
+            <if test="createTime != null "> create_time=#{createTime}</if>
+            <if test="deleteFlag !=null"> delete_flag = #{deleteFlag}</if>
+        </set>
+        where open_id = #{openId}
+    </update>
+</mapper>

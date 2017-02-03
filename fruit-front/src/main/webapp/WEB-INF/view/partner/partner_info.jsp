@@ -17,8 +17,9 @@
     <title>完善信息</title>
     <link rel="stylesheet" href="http://s.sangepg.com/css/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="http://s.sangepg.com/css/360/alerts.css">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
-<body style="background: #ebebeb" >
+<body style="background: #ebebeb">
 <article id="container">
     <header id="gHeader" style="margin-top: 0px;" class="clearfix">
         <div class="h_prev"><a href="javascript:historyUtils.back();"></a>
@@ -46,9 +47,11 @@
                     <input type="text" class="form-control" id="address" placeholder="水果店地址">
                 </div>
             </div>
+            <input type="hidden" id="lat" name="lat">
+            <input type="hidden" id="lon" name="lon">
             <div class="bottom_btn">
-                <div class="form-group" >
-                    <a href="javascript:void(0);" onclick="save()" class="btn btn-block"><i
+                <div class="form-group">
+                    <a href="javascript:void(0);" onclick="test()" class="btn btn-block"><i
                             style="font-weight:bold;">合计:￥15</i></a>
                 </div>
             </div>
@@ -61,53 +64,44 @@
 <script src="http://s.sangepg.com/js/bootstrap/bootstrap.min.js"></script>
 <script src="http://s.sangepg.com/js/jquery/jquery.cookie.js"></script>
 <script src="http://s.sangepg.com/js/jquery/jquery.alerts.js"></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script>
-    var open_id = jQuery.cookie("open_id");
-    $.ajax({
-        type: "post",
-        url: "http://m.sangepg.com/front/wx/commons/ticket",
-        data: {
-            "account": "partner",
-            "url":"http://m.sanggepg.com/view/partner/partner_info.jsp"
-        },
-        async: false,
-        dataType:"json",
-        success: function (data) {
-            if(data.success){
-                wx.config({
-                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                    appId: 'wx81cb60beb04da0f8', // 必填，公众号的唯一标识
-                    timestamp: data.timestamp, // 必填，生成签名的时间戳
-                    nonceStr: data.nonceStr, // 必填，生成签名的随机串
-                    signature: data.sign,// 必填，签名，见附录1
-                    jsApiList: ["openLocation","getLocation"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-                });
-            }
 
-        }
-    });
+<script>
 
     $(function () {
-        wx.ready(function(){
-            jConfirm('获取您当前位置', '', function(yes){
-                        if(yes){
-                            wx.getLocation({
-                                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-                                success: function (res) {
-                                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-                                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-                                    var speed = res.speed; // 速度，以米/每秒计
-                                    var accuracy = res.accuracy; // 位置精度
-                                    jAlert(latitude)
-                                }
-                            });
-                        }else{
-                            jAlert(false);
-                        }
-                    }, '允许', '禁止');
+        wx.config({
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: 'wx81cb60beb04da0f8', // 必填，公众号的唯一标识
+            timestamp: ${timestamp}, // 必填，生成签名的时间戳
+            nonceStr: '${nonceStr}', // 必填，生成签名的随机串
+            signature: '${sign}',// 必填，签名，见附录1
+            jsApiList: ["getLocation"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
         });
+        wx.ready(function(){
+            wx.getLocation({
+                type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    $("#lat").val(res.latitude) ; // 纬度，浮点数，范围为90 ~ -90
+                    $("#lon").val(res.longitude) ; // 纬度，浮点数，范围为90 ~ -90
+                }
+
+            });
+
+        });
+
     });
+    function test(){
+        jConfirm('获取您当前位置', '', function (yes) {
+            if (yes) {
+
+            } else {
+
+            }
+        }, '允许', '禁止');
+
+
+
+
+    }
 </script>
 
 

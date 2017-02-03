@@ -30,7 +30,7 @@ import java.util.Map;
  * Created by liuzhi on 2016/8/19.
  */
 @Controller()
-@RequestMapping(value = "/front/cart")
+@RequestMapping(value = "/cart")
 public class ShoppingCartController extends BaseAction {
     @Autowired
     IShoppingCartService shoppingCartService;

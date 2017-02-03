@@ -28,7 +28,7 @@ import java.util.Map;
  * Created by liuzhi on 2016/8/11.
  */
 @Controller
-@RequestMapping(value = "/front/user/")
+@RequestMapping(value = "/user/")
 public class UserController extends BaseAction {
     @Autowired
     JedisPool jedisPool;

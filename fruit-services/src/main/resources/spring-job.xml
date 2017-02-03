@@ -15,6 +15,6 @@
         <property name="jedisPool" ref="jedisPool"/>
     </bean>
     <task:scheduled-tasks>
-        <task:scheduled ref="wxAccessTokenService" method="execute" cron="0 0/10 * * * ?"/>
+        <task:scheduled ref="wxAccessTokenService" method="execute" cron="0 0 0/2 * * ?"/>
     </task:scheduled-tasks>
 </beans>

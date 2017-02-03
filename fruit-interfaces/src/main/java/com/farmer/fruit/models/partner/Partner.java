@@ -6,6 +6,9 @@ import com.farmer.fruit.models.BaseEntity;
  * Created by liuzhi on 2016/11/27.
  */
 public class Partner extends BaseEntity {
+    public static String PARTNER_SHOP = "shop";
+    public static String PARTNER_PERSON = "personal";
+    public static String PARTNER_POP = "pop";
     private long id;
     private String partnerName;//
     private String partnerType;//合作人类型

@@ -28,9 +28,9 @@ import java.util.Map;
 /**
  * Created by liuzhi on 2016/10/11.
  */
-@Controller()
-@RequestMapping(value = "/front/weixin")
-public class WeiXinController extends BaseAction {
+@Controller
+@RequestMapping(value = "/customer")
+public class CustomerController extends BaseAction {
 
     @Autowired
     JedisPool jedisPool;
