@@ -27,35 +27,35 @@
         <h1 style="margin-top: 0px;">完善信息</h1>
     </header>
     <div class="col-lg-4" style="background: #fff">
-        <form class="form-horizontal" role="form" action="/front">
-            <br/>
+<br/>
             <div class="form-group">
-                <label class="col-sm-2 control-label">法人姓名:</label>
+                <label class="col-sm-2 control-label">您的名字:</label>
                 <div class="col-sm-10" style="display: inline-block; width: 250px;">
-                    <input type="text" class="form-control" id="name" placeholder="水果店地址">
+                    <input type="text" class="form-control" id="name" name="partnerName" placeholder="请输入您的称名字">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">法人手机号:</label>
+                <label class="col-sm-2 control-label">您的手机号:</label>
                 <div class="col-sm-10" style="display: inline-block; width: 250px;">
-                    <input type="text" class="form-control" id="mobile" placeholder="手机号">
+                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="请输入您的手机号">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">地址:</label>
+                <label class="col-sm-2 control-label">您的地址:</label>
                 <div class="col-sm-10" style="display: inline-block; width: 250px;">
-                    <input type="text" class="form-control" id="address" placeholder="水果店地址">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="请输入您的水果店地址">
                 </div>
             </div>
             <input type="hidden" id="lat" name="lat">
             <input type="hidden" id="lon" name="lon">
+            <input type="hidden" id="open_id" name="openId" value="${openId}">
+
             <div class="bottom_btn">
                 <div class="form-group">
-                    <a href="javascript:void(0);" onclick="test()" class="btn btn-block"><i
-                            style="font-weight:bold;">合计:￥15</i></a>
+                    <a href="javascript:void(0);" onclick="submitInfo()" class="btn btn-block"><i
+                            style="font-weight:bold;">提交资料</i></a>
                 </div>
             </div>
-        </form>
     </div>
 </article>
 
@@ -89,18 +89,26 @@
         });
 
     });
-    function test(){
-        jConfirm('获取您当前位置', '', function (yes) {
-            if (yes) {
+    function submitInfo(){
+        $.ajax({
+            url: "/front/partner/info",
+            type: "post",
+            dataType:"json",
+            async:false,
+            data: {
+                mobile: jQuery("#mobile").val(),
+                openId: jQuery("#open_id").val(),
+                partnerName: jQuery("#name").val(),
+                address: jQuery("#address").val()
+            },
+            success: function (data) {
+                if (data.code == 200) {
+                alert("success");
+                } else {
 
-            } else {
-
+                }
             }
-        }, '允许', '禁止');
-
-
-
-
+        });
     }
 </script>
 

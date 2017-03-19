@@ -14,11 +14,14 @@ import com.farmer.fruit.models.weixin.SendMessage;
 import com.farmer.fruit.models.weixin.WeiXinOrder;
 import com.farmer.fruit.utils.*;
 import com.sangepg.fruit.controller.BaseAction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import redis.clients.jedis.JedisPool;
 
@@ -38,7 +41,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/partner")
 public class PartnerController extends BaseAction {
-
+    private Logger logger = LoggerFactory.getLogger(PartnerController.class);
     @Autowired
     JedisPool jedisPool;
     @Autowired
@@ -46,61 +49,69 @@ public class PartnerController extends BaseAction {
     @Autowired
     IPartnerOrderService partnerOrderService;
 
-    @RequestMapping(value = "/msg/{source}", method = RequestMethod.GET)
-    public void getWeiXinMsg(HttpServletRequest request, HttpServletResponse response, @PathVariable("source") String source) {
+    @RequestMapping(value = "/msg", method = RequestMethod.POST)
+    public void getWeiXinMsg(HttpServletRequest request, HttpServletResponse response) {
+        WeixinDataConvert<SendMessage> sendConvert = new WeixinDataConvert<SendMessage>();
         SendMessage sendMessage = new SendMessage();
         sendMessage.setCreateTime(new Date().getTime());
+
         try {
             response.setCharacterEncoding("UTF-8");
             String xmlContent = getPostData(request);
             WeixinDataConvert<ReceivedMessage> convert = new WeixinDataConvert<ReceivedMessage>();
             ReceivedMessage receivedMsg = new ReceivedMessage();
             receivedMsg = convert.ConvertXmlToObject(xmlContent, receivedMsg);
-
             sendMessage.setFromUserName(receivedMsg.getToUserName());
             sendMessage.setToUserName(receivedMsg.getFromUserName());
+            //关注返回 完善信息
+            if("event".equals(receivedMsg.getMsgType())){
+                logger.info("subscribe event>>>>>>>>>>>>>>openId={}",receivedMsg.getFromUserName());
+                if("subscribe".equals(receivedMsg.getEvent())){
+                    Partner partner = new Partner();
+                    partner.setOpenId(receivedMsg.getFromUserName());
+                    partner.setNewRecord(true);
+                    partner.setPartnerType(Partner.PARTNER_SHOP);
+                    partnerService.save(partner);
+                    //返回完善资料的url
+                    sendMessage.setContent(String.format("<a href='http://m.sangepg.com/partner//toPage/partner?openId={}'>完善用户信息</a>",receivedMsg.getFromUserName()));
+                    sendMessage.setMsgType(SendMessage.MSG_TYPE_TXT);
+                    String returnXml = sendConvert.ConvertObjectToXml(sendMessage);
+                    logger.info("return xml={}", returnXml);
+                    response.getWriter().write(returnXml);
+                    return;
+                }
+            }
+
             String mobile = getPartnerMobile(receivedMsg.getFromUserName());
             //获取合作商的手机号
             if (mobile == null) {
                 sendMessage.setContent("账号未认证");
             }else {
-                if("event".equals(receivedMsg.getMsgType())){
-                    if("subscribe".equals(receivedMsg.getEvent())){
-                        Partner partner = new Partner();
-                        partner.setOpenId(receivedMsg.getFromUserName());
-                        partner.setNewRecord(true);
-                        partner.setPartnerType(Partner.PARTNER_SHOP);
-                        partnerService.save(partner);
-                        //返回完善资料的url
-                    }
+                String contentStr = receivedMsg.getContent();
+                if(contentStr != "" || contentStr == null){
+                    sendMessage.setContent("小苹果不知道您的指示是啥");
                 }else{
-                    String contentStr = receivedMsg.getContent();
-                    if(contentStr != "" || contentStr == null){
-                        sendMessage.setContent("小苹果不知道您的指示是啥");
-                    }else{
-                        if (contentStr.indexOf("$") >= 0) {
-                            sendMessage = pay(sendMessage,receivedMsg,mobile,source);
-                        }
-                        //完善用户资料
-                        if(contentStr.contains("mobile")){
-
-                        }
+                    if (contentStr.indexOf("$") >= 0) {
+                        sendMessage = pay(sendMessage,receivedMsg,mobile,"partner");
                     }
+                    //完善用户资料 #mobile#18618102693--约定格式
+                    if(contentStr.contains("mobile")){
 
+                    }
                 }
             }
 
-            WeixinDataConvert<SendMessage> sendConvert = new WeixinDataConvert<SendMessage>();
+
             String returnXml = sendConvert.ConvertObjectToXml(sendMessage);
             response.getWriter().write(returnXml);
             return;
         } catch (Exception e) {
-
+            e.printStackTrace();
+            logger.error("error msg={}", e.getMessage());
         }
 
 
     }
-
     private SendMessage pay(SendMessage sendMessage, ReceivedMessage receivedMsg, String partnerMobile, String source) {
         //生成支付的二维码
         //格式 appId_mchId_secret
@@ -224,8 +235,20 @@ public class PartnerController extends BaseAction {
         resultMap.put("nonceStr",nonceStr);
         resultMap.put("timestamp",timestamp);
         resultMap.put("sign",sign);
-        addCookie("open_id", openId, 365*24, response);
+        resultMap.put("openId",openId);
+        addCookie("openId", openId, 365*24, response);
         ModelAndView modelAndView = new ModelAndView("partner/partner_info", resultMap);
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/info", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> savePartnerInfo(Partner partner){
+        partner.setNewRecord(false);
+        long count = partnerService.save(partner);
+        if(count ==1){
+            return super.successMsg();
+        }
+        return super.errorMsg();
     }
 }

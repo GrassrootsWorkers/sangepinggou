@@ -14,7 +14,7 @@
         <property name="maxIdle" value="3000"/>
         <property name="minIdle" value="1000"/>
     </bean>
-    <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+  <!--  <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
         <constructor-arg index="0">
             <set>
                 <ref bean="hp0"/>
@@ -53,5 +53,5 @@
     <bean id="hp5" class="redis.clients.jedis.HostAndPort">
         <constructor-arg index="0" value="192.168.118.128"/>
         <constructor-arg index="1" value="7006"/>
-    </bean>
+    </bean>-->
 </beans>

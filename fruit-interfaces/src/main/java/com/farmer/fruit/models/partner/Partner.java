@@ -25,6 +25,15 @@ public class Partner extends BaseEntity {
     private String openId;
     private String mobile;
     private String introduceCode;//合作商推广给用户
+    private String payFlag;
+
+    public String getPayFlag() {
+        return payFlag;
+    }
+
+    public void setPayFlag(String payFlag) {
+        this.payFlag = payFlag;
+    }
 
     public long getId() {
         return id;

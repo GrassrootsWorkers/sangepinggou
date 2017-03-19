@@ -90,4 +90,16 @@ public class BaseAction {
         Matcher m = p.matcher(mobile);
         return m.matches();
     }
+    public Map<String,Object> successMsg(){
+        Map<String,Object> msg = new HashMap<>();
+        msg.put("msg", "success");
+        msg.put("code",200);
+        return msg;
+    }
+    public Map<String,Object> errorMsg(){
+        Map<String,Object> msg = new HashMap<>();
+        msg.put("msg", "error");
+        msg.put("code",-1);
+        return msg;
+    }
 }
