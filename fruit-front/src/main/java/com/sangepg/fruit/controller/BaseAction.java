@@ -1,6 +1,7 @@
 package com.sangepg.fruit.controller;
 
 
+import com.farmer.fruit.utils.SHAUtil;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -10,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
-import java.util.DoubleSummaryStatistics;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -101,5 +100,24 @@ public class BaseAction {
         msg.put("msg", "error");
         msg.put("code",-1);
         return msg;
+    }
+    public String[] sortStrings(String[] strArr) {
+        Arrays.sort(strArr, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        return strArr;
+    }
+    public boolean validateSign(String[] strArr, String sign) {
+        StringBuffer params = new StringBuffer();
+        for (String s : strArr) {
+            params.append(s);
+        }
+        String destSign = SHAUtil.SHA(params.toString());
+        if (sign.equals(destSign))
+            return true;
+        return false;
     }
 }

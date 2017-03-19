@@ -49,11 +49,43 @@ public class PartnerController extends BaseAction {
     @Autowired
     IPartnerOrderService partnerOrderService;
 
+    /**
+     * 微信验证token
+     *
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "/msg", method = RequestMethod.GET)
+    public void validateWeiXinURL(HttpServletRequest request, HttpServletResponse response) {
+        String signature = request.getParameter("signature");
+        String timestamp = request.getParameter("timestamp");
+        String nonce = request.getParameter("nonce");
+        String echoStr = request.getParameter("echostr");
+        String token = "UDW5pqTDYGmaqhOL0gw";
+        logger.info("wx >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>signature={}", signature);
+        try {
+            String[] params = new String[]{token, timestamp, nonce};
+            params = this.sortStrings(params);
+            if (super.validateSign(params, signature)) {
+                //回写微信传来的echoStr
+                response.getWriter().write(echoStr);
+                return;
+            } else {
+                response.getWriter().write("token error");
+                return;
+            }
+        } catch (Exception e) {
+            logger.error("sigin error msg={}", e.getMessage());
+        }
+
+    }
+
     @RequestMapping(value = "/msg", method = RequestMethod.POST)
-    public void getWeiXinMsg(HttpServletRequest request, HttpServletResponse response) {
+    public void getWeiXinMsgPost(HttpServletRequest request, HttpServletResponse response) {
         WeixinDataConvert<SendMessage> sendConvert = new WeixinDataConvert<SendMessage>();
         SendMessage sendMessage = new SendMessage();
         sendMessage.setCreateTime(new Date().getTime());
+        sendMessage.setMsgType(SendMessage.MSG_TYPE_TXT);
 
         try {
             response.setCharacterEncoding("UTF-8");
@@ -64,19 +96,18 @@ public class PartnerController extends BaseAction {
             sendMessage.setFromUserName(receivedMsg.getToUserName());
             sendMessage.setToUserName(receivedMsg.getFromUserName());
             //关注返回 完善信息
-            if("event".equals(receivedMsg.getMsgType())){
-                logger.info("subscribe event>>>>>>>>>>>>>>openId={}",receivedMsg.getFromUserName());
-                if("subscribe".equals(receivedMsg.getEvent())){
+            if ("event".equals(receivedMsg.getMsgType())) {
+                logger.info("subscribe event>>>>>>>>>>>>>>openId={}", receivedMsg.getFromUserName());
+                if ("subscribe".equals(receivedMsg.getEvent())) {
                     Partner partner = new Partner();
                     partner.setOpenId(receivedMsg.getFromUserName());
                     partner.setNewRecord(true);
                     partner.setPartnerType(Partner.PARTNER_SHOP);
                     partnerService.save(partner);
                     //返回完善资料的url
-                    sendMessage.setContent(String.format("<a href='http://m.sangepg.com/partner//toPage/partner?openId={}'>完善用户信息</a>",receivedMsg.getFromUserName()));
-                    sendMessage.setMsgType(SendMessage.MSG_TYPE_TXT);
+                    sendMessage.setContent(String.format("<a href='http://m.sangepg.com/front/partner/toPage/partner?openId=%s'>完善用户信息</a>", receivedMsg.getFromUserName()));
                     String returnXml = sendConvert.ConvertObjectToXml(sendMessage);
-                    logger.info("return xml={}", returnXml);
+                    logger.info("subscribe  return xml={}", returnXml);
                     response.getWriter().write(returnXml);
                     return;
                 }
@@ -85,26 +116,36 @@ public class PartnerController extends BaseAction {
             String mobile = getPartnerMobile(receivedMsg.getFromUserName());
             //获取合作商的手机号
             if (mobile == null) {
-                sendMessage.setContent("账号未认证");
-            }else {
-                String contentStr = receivedMsg.getContent();
-                if(contentStr != "" || contentStr == null){
+                //sendMessage.setContent("账号未认证");
+                //返回完善资料的url
+                sendMessage.setContent(String.format("您还没完善您的联系方式 请点击<a href='http://m.sangepg.com/front/partner/toPage/partner?openId=%s'>《完善联系方式》</a>", receivedMsg.getFromUserName()));
+                String returnXml = sendConvert.ConvertObjectToXml(sendMessage);
+                logger.info("mobile return xml={}", returnXml);
+                response.getWriter().write(returnXml);
+                return;
+            } else {
+                sendMessage.setContent("相关功能在完善当中！");
+                String returnXml = sendConvert.ConvertObjectToXml(sendMessage);
+                response.getWriter().write(returnXml);
+                logger.info("other return xml={}, openId={}", returnXml,receivedMsg.getFromUserName());
+                return;
+                //支付信息
+              /*  String contentStr = receivedMsg.getContent();
+                if (contentStr != "" || contentStr == null) {
                     sendMessage.setContent("小苹果不知道您的指示是啥");
-                }else{
+                } else {
                     if (contentStr.indexOf("$") >= 0) {
-                        sendMessage = pay(sendMessage,receivedMsg,mobile,"partner");
+                        sendMessage = pay(sendMessage, receivedMsg, mobile, "partner");
                     }
                     //完善用户资料 #mobile#18618102693--约定格式
-                    if(contentStr.contains("mobile")){
+                    if (contentStr.contains("mobile")) {
 
                     }
-                }
+                }*/
             }
 
 
-            String returnXml = sendConvert.ConvertObjectToXml(sendMessage);
-            response.getWriter().write(returnXml);
-            return;
+
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("error msg={}", e.getMessage());
@@ -112,6 +153,7 @@ public class PartnerController extends BaseAction {
 
 
     }
+
     private SendMessage pay(SendMessage sendMessage, ReceivedMessage receivedMsg, String partnerMobile, String source) {
         //生成支付的二维码
         //格式 appId_mchId_secret
@@ -191,8 +233,8 @@ public class PartnerController extends BaseAction {
 
             sendMessage.setFromUserName(receivedMsg.getToUserName());
             sendMessage.setToUserName(receivedMsg.getFromUserName());
-            if("event".equals(receivedMsg.getMsgType())){
-                if("LOCATION".equals(receivedMsg.getEvent())){
+            if ("event".equals(receivedMsg.getMsgType())) {
+                if ("LOCATION".equals(receivedMsg.getEvent())) {
                     Partner partner = new Partner();
                     partner.setOpenId(receivedMsg.getFromUserName());
                     partner.setNewRecord(false);
@@ -213,40 +255,44 @@ public class PartnerController extends BaseAction {
     }
 
     @RequestMapping(value = "/toPage/{account}", method = RequestMethod.GET)
-    public ModelAndView toCompetePartnerInfoPage(String openId,@PathVariable("account") String account, HttpServletResponse response){
-        Map<String,Object> resultMap = new HashMap<>();
+    public ModelAndView toCompetePartnerInfoPage(String openId, @PathVariable("account") String account, HttpServletResponse response) {
+        Map<String, Object> resultMap = new HashMap<>();
         RedisUtils redisUtils = new RedisUtils(jedisPool);
-        String ticket = redisUtils.getHashValueByKey("wx_ticket",account);
-        if(ticket == null){
-            resultMap.put("code","501");
-            resultMap.put("msg","error");
+        String ticket = redisUtils.getHashValueByKey("wx_ticket", account);
+        logger.info("location >>>>>>>>>>>>>>>>>>>ticket ={}", ticket);
+        if (ticket == null) {
+            resultMap.put("code", "501");
+            resultMap.put("msg", "error");
         }
         String nonceStr = RandomStrUtil.getCommonStr(16);
-        long timestamp = (new Date().getTime())/1000;
-        String queryString = "jsapi_ticket="+ticket+"&noncestr="+nonceStr+"&timestamp="+timestamp+"&url=http://m.sangepg.com/front/partner/toPage/partner?openId=123fdfas";
+        long timestamp = (new Date().getTime()) / 1000;
+        String queryString = "jsapi_ticket=" + ticket + "&noncestr=" + nonceStr + "&timestamp=" + timestamp + "&url=http://m.sangepg.com/front/partner/toPage/"+account+"?openId="+openId;
         String sign = MD5Util.sign(queryString);
-        if(sign == null){
-            resultMap.put("code","501");
-            resultMap.put("msg","error");
+        logger.info("location>>>>>>>>>>>>>>>>>>>>>>>>>> sign ={}", sign);
+        if (sign == null) {
+            resultMap.put("code", "501");
+            resultMap.put("msg", "error");
         }
-        resultMap.put("code","200");
-        resultMap.put("success",true);
+        resultMap.put("code", "200");
+        resultMap.put("success", true);
         //resultMap.put("ticket",ticket);
-        resultMap.put("nonceStr",nonceStr);
-        resultMap.put("timestamp",timestamp);
-        resultMap.put("sign",sign);
-        resultMap.put("openId",openId);
-        addCookie("openId", openId, 365*24, response);
+        resultMap.put("nonceStr", nonceStr);
+        resultMap.put("timestamp", timestamp);
+        resultMap.put("sign", sign);
+        resultMap.put("openId", openId);
+        addCookie("openId", openId, 365 * 24, response);
         ModelAndView modelAndView = new ModelAndView("partner/partner_info", resultMap);
         return modelAndView;
     }
 
     @RequestMapping(value = "/info", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> savePartnerInfo(Partner partner){
+    public Map<String, Object> savePartnerInfo(Partner partner) {
+        logger.info(">>>>>>>>>>>>>>>>> open_id={}", partner.getOpenId());
+        logger.info(">>>>>>>>>>>>>>lon={},lat={}",partner.getLon(), partner.getLat());
         partner.setNewRecord(false);
         long count = partnerService.save(partner);
-        if(count ==1){
+        if (count == 1) {
             return super.successMsg();
         }
         return super.errorMsg();

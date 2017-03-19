@@ -16,8 +16,10 @@
     <meta name="description" content="">
     <title>完善信息</title>
     <link rel="stylesheet" href="http://s.sangepg.com/css/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="http://s.sangepg.com/css/360/alerts.css">
+  <%--  <link rel="stylesheet" href="http://s.sangepg.com/css/360/alerts.css">--%>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <link rel="stylesheet" href="http://s.sangepg.com/css/360/global.css">
+    <link rel="stylesheet" href="http://s.sangepg.com/css/360/cart_new.css">
 </head>
 <body style="background: #ebebeb">
 <article id="container">
@@ -28,6 +30,12 @@
     </header>
     <div class="col-lg-4" style="background: #fff">
 <br/>
+        <div class="alert alert-warning" id="alert_div" style="display: none">
+            <a  class="close" data-dismiss="alert">
+                &times;
+            </a>
+            <div id="alert_content"><strong>恭喜！</strong>提交成功。</div>
+        </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">您的名字:</label>
                 <div class="col-sm-10" style="display: inline-block; width: 250px;">
@@ -63,13 +71,14 @@
 <script src="http://s.sangepg.com/js/jquery/jquery-3.0.0.min.js"></script>
 <script src="http://s.sangepg.com/js/bootstrap/bootstrap.min.js"></script>
 <script src="http://s.sangepg.com/js/jquery/jquery.cookie.js"></script>
-<script src="http://s.sangepg.com/js/jquery/jquery.alerts.js"></script>
+<script src="http://s.sangepg.com/js/360/global.js"></script>
+<%--<script src="http://s.sangepg.com/js/jquery/jquery.alerts.js"></script>--%>
 
 <script>
-
+    var repeat_flag = false;
     $(function () {
         wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: 'wx81cb60beb04da0f8', // 必填，公众号的唯一标识
             timestamp: ${timestamp}, // 必填，生成签名的时间戳
             nonceStr: '${nonceStr}', // 必填，生成签名的随机串
@@ -90,6 +99,11 @@
 
     });
     function submitInfo(){
+        if(repeat_flag){
+            $("#alert_div").show();
+            $("#alert_content").html("<strong>提示！</strong>资料已经提交。");
+            return ;
+        }
         $.ajax({
             url: "/front/partner/info",
             type: "post",
@@ -99,11 +113,14 @@
                 mobile: jQuery("#mobile").val(),
                 openId: jQuery("#open_id").val(),
                 partnerName: jQuery("#name").val(),
-                address: jQuery("#address").val()
-            },
+                address: jQuery("#address").val(),
+                lat:$("#lat").val(),
+                lon:$("#lon").val()
+    },
             success: function (data) {
                 if (data.code == 200) {
-                alert("success");
+                    $("#alert_div").show();
+                    repeat_flag = true;
                 } else {
 
                 }
